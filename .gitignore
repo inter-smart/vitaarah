@@ -1,0 +1,15 @@
+# Next.js
+frontend/.next
+frontend/node_modules
+
+# Strapi
+backend/node_modules
+backend/.cache
+backend/build
+
+# Env files
+frontend/.env*
+backend/.env*
+
+# Logs
+*.log
