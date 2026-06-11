@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_members",
+  "info": {
+    "displayName": "Members"
+  },
+  "options": {},
+  "attributes": {
+    "members": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::member.member"
+    }
+  },
+  "config": {}
+}

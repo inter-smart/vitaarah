@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_packages",
+  "info": {
+    "displayName": "Packages"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "packages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::package.package"
+    }
+  },
+  "config": {}
+}

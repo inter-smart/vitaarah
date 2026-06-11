@@ -1,0 +1,117 @@
+import { Button } from "@/components/ui/button";
+import { getStrapiMediaUrl } from "@/lib/strapi";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import Image from "next/image";
+import { Fragment } from "react";
+// -mr-[100px] sm:-mr-[115px] xl:-mr-[130px] 2xl:-mr-[160px]
+const ElementStyle =
+  "group w-[200px] sm:w-[230px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[100px] sm:-mr-[115px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1";
+
+export default function HomeAbout({ data }) {
+  return (
+    <section
+      id="About"
+      className="w-full py-[40px] sm:py-[60px] xl:py-[110px] 2xl:py-[130px] 3xl:py-[160px] overflow-hidden relative z-0"
+    >
+      <Image
+        src="/images/home-about-elmt-1.svg"
+        alt="home about element 1"
+        width={300}
+        height={300}
+        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[300px] translate-x-1/2 absolute -z-1 top-[10%] right-0"
+      />
+      <Image
+        src="/images/home-about-elmt-2.svg"
+        alt="home about element 2"
+        width={60}
+        height={60}
+        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 3xl:bottom-[4%] 3xl:left-[1%]"
+      />
+      <div className="container mx-auto">
+        <div className="flex flex-wrap">
+          <div className="w-full sm:w-[53%]">
+            <div className="flex relative z-0">
+              <a
+                href="#About"
+                className="w-[50px] xl:w-[60px] 2xl:w-[74px] 3xl:w-[90px] rounded-full aspect-square p-[6px] 2xl:p-[8px] bg-linear-to-t from-[#a14962] to-[#e9cba3] absolute z-2 top-[5%] right-[16%]"
+              >
+                <span className="w-full h-full bg-white rounded-full flex items-center justify-center">
+                  <Image
+                    src="/images/icon-arrow-2.svg"
+                    alt="icon arrow"
+                    width={16}
+                    height={7}
+                    className="w-3 2xl:w-4 3xl:w-4.5 block"
+                  />
+                </span>
+              </a>
+              <div className={ElementStyle} />
+              {data?.secondaryImage?.url && (
+                <div className={ElementStyle}>
+                  <Image
+                    src={getStrapiMediaUrl(data.secondaryImage.url)}
+                    alt={data.secondaryImage.alternativeText || "home about 1"}
+                    width={300}
+                    height={300}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                    unoptimized
+                  />
+                </div>
+              )}
+              {data?.mainImage?.url && (
+                <div className={ElementStyle}>
+                  <Image
+                    src={getStrapiMediaUrl(data.mainImage.url)}
+                    alt={data.mainImage.alternativeText || "home about 2"}
+                    width={300}
+                    height={300}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                    unoptimized
+                  />
+                </div>
+              )}
+            </div>
+
+            {data?.aboutStatistic?.length > 0 && (
+              <div className="xl:max-w-[520px] xl:max-w-[600px] 2xl:max-w-[640px] 3xl:max-w-[720px] flex items-center justify-between gap-[10px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[25px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
+                {data?.aboutStatistic.map((stat, index) => (
+                  <Fragment key={stat.label}>
+                    <div>
+                      <h3 className="text-[18px] sm:text-[26.6px] xl:text-[32.9px] 2xl:text-[37.3px] 3xl:text-[45.2px] leading-normal font-normal font-helvetica text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[6px]">
+                        {stat.valueCount}
+                        {stat.valueSuffix || ""}
+                      </h3>
+                      <p className="text_3 !leading-tight text-black xl:max-w-[80%]">
+                        {stat.label}
+                      </p>
+                    </div>
+                    {index < data.aboutStatistic.length - 1 && (
+                      <div className="w-[1px] h-[91px] 2xl:h-[110px] 3xl:h-[130px] bg-[#ECE7D7]" />
+                    )}
+                  </Fragment>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="w-full sm:w-[47%]">
+            {data.title && (
+              <h2 className="text_2 mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
+                {data.title}
+              </h2>
+            )}
+            {data.description && (
+              <div className="text_3 font-normal text-black mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
+                <BlocksRenderer content={data.description} />
+              </div>
+            )}
+            {data?.button && (
+              <Button as="a" href={data.button.url}>
+                {data.button.label}
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

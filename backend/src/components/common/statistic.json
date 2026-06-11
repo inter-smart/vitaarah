@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_common_statistics",
+  "info": {
+    "displayName": "Statistic"
+  },
+  "options": {},
+  "attributes": {
+    "valueCount": {
+      "type": "string"
+    },
+    "valueSuffix": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

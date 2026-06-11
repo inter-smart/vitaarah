@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_treatments",
+  "info": {
+    "displayName": "Treatments"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "treatments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::treatment.treatment"
+    }
+  },
+  "config": {}
+}

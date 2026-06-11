@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_specialities",
+  "info": {
+    "displayName": "Specialities"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "specialties": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::specialty.specialty"
+    }
+  },
+  "config": {}
+}

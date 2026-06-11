@@ -1,0 +1,39 @@
+import qs from "qs";
+
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
+const TOKEN = process.env.STRAPI_API_TOKEN;
+
+export function buildQuery(populate) {
+  return qs.stringify(
+    { populate },
+    { encode: false },
+  );
+}
+
+export async function fetchAPI(endpoint, options = {}) {
+  try {
+    const response = await fetch(`${STRAPI_URL}${endpoint}`, {
+      headers: TOKEN
+        ? { Authorization: `Bearer ${TOKEN}` }
+        : undefined,
+      next: { revalidate: 3600 },
+      ...options,
+    });
+
+    if (!response.ok) {
+      console.error(`Strapi fetch failed: ${response.status} for ${endpoint}`);
+      return null;
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Strapi fetch error:", error);
+    return null;
+  }
+}
+
+export function getStrapiMediaUrl(url) {
+  if (!url) return null;
+  if (url.startsWith("http")) return url;
+  return `${STRAPI_URL}${url}`;
+}

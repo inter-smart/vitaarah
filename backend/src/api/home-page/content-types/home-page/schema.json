@@ -1,0 +1,60 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "component": "common.seo",
+      "repeatable": false
+    },
+    "hero": {
+      "type": "component",
+      "component": "sections.hero",
+      "repeatable": false
+    },
+    "about": {
+      "type": "component",
+      "component": "sections.about",
+      "repeatable": false
+    },
+    "specialities": {
+      "type": "component",
+      "component": "sections.specialities",
+      "repeatable": false
+    },
+    "treatments": {
+      "type": "component",
+      "component": "sections.treatments",
+      "repeatable": false
+    },
+    "packages": {
+      "type": "component",
+      "component": "sections.packages",
+      "repeatable": false
+    },
+    "testimonials": {
+      "type": "component",
+      "component": "sections.testimonials",
+      "repeatable": false
+    },
+    "members": {
+      "type": "component",
+      "component": "sections.members",
+      "repeatable": false
+    },
+    "blogs": {
+      "type": "component",
+      "component": "sections.blogs",
+      "repeatable": false
+    }
+  }
+}
