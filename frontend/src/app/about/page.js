@@ -478,4 +478,4 @@ const local_data = {
 
 export default function About() {
   return <AboutPage />;
-}
+} 

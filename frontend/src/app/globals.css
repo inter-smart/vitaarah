@@ -137,6 +137,12 @@
 }
 
 @layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
   .text_1 {
     @apply text-[12px] lg:text-[12.4px] xl:text-[15.4px] 2xl:text-[17.4px] 3xl:text-[21.2px] leading-normal font-normal font-helvetica;
   }
@@ -147,17 +153,12 @@
     @apply text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal xl:leading-8 font-helvetica;
   }
   .text_4 {
-    @apply text-[14px] xl:text-[16px] 2xl:text-[20px] leading-normal font-normal font-helvetica text-[#a14962] bg-red-500;
+    @apply text-[14px] lg:text-[17px] xl:text-[21px] 2xl:text-[23.8px] 3xl:text-[28.9px] leading-normal font-normal font-helvetica text-[#a14962];
   }
   .text_5 {
-    @apply text-[12px] lg:text-[12px] xl:text-[13.3px] 2xl:text-[16.6px] leading-normal font-helvetica bg-orange-500;
+    @apply text-[13px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica;
   }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-}
 
-@layer components {
   .container {
     width: 100%;
     margin-inline: auto;
@@ -165,7 +166,6 @@
     @apply max-w-full lg:max-w-lg! xl:max-w-xl! 2xl:max-w-2xl! 3xl:max-w-3xl!;
   }
 
-  
   /* .typography {
     --text-color: black;
 

@@ -585,11 +585,14 @@ export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    badgeType: Schema.Attribute.Enumeration<
+      ['Best Seller', 'New Arrival', 'Featured', 'Offer Deal']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    days: Schema.Attribute.Integer;
     description: Schema.Attribute.Blocks;
-    duration: Schema.Attribute.Integer;
     featuredImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
@@ -602,8 +605,8 @@ export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     shortDescription: Schema.Attribute.Text;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

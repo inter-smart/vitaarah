@@ -10,7 +10,7 @@ const variants = {
 
 const sizes = {
   default:
-    "text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-none font-helvetica font-normal text-center h-[27px] xl:h-[32.8px] 2xl:h-[37px] 3xl:h-[45px] p-[13px] 2xl:p-[14px] 3xl:p-[18px]",
+    "text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-none font-helvetica font-normal text-center h-[27px] xl:h-[32.8px] 2xl:h-[37px] 3xl:h-[45px] px-[13px] 2xl:px-[14px] 3xl:px-[18px]",
   sm: "h-8 rounded-sm px-3",
   lg: "",
 };

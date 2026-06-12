@@ -20,7 +20,7 @@ export default function HomeBlogs({ data }) {
   );
   return (
     <section className="w-full py-[40px] sm:py-[60px] xl:py-[74px] 2xl:py-[90px]">
-      <div className="container mx-auto">
+      <div className="container">
         <div className="flex flex-wrap items-center justify-between mb-[10px] xl:mb-[15px] 2xl:mb-[30px]">
           {data.title && (
             <h2 className="text_2 text-center lg:mb-0">

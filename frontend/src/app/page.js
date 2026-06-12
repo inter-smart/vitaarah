@@ -91,14 +91,14 @@ export default async function Home() {
   
   return (
     <>
-      {hero && <HomeHero data={hero} />}
+      {/* {hero && <HomeHero data={hero} />}
       {about && <HomeAbout data={about} />}
-      {specialities && <HomeSpecialities data={specialities} />}
-      {treatments && <HomeTreatments data={treatments} />}
-      {packages && <HomePackages data={packages} />}
-      {testimonials && <HomeTestimonials data={testimonials} />}
-      {blogs && <HomeBlogs data={blogs} />}
+      {specialities && <HomeSpecialities data={specialities} />} */}
+      {/* {treatments && <HomeTreatments data={treatments} />} */}
+      {/* {packages && <HomePackages data={packages} />} */}
+      {/* {testimonials && <HomeTestimonials data={testimonials} />} */}
       {members && <HomeMembers data={members} />}
+      {blogs && <HomeBlogs data={blogs} />}
     </>
   );
 }

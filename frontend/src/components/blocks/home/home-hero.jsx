@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function HomeHero({ data }) {
   return (
     <section className="w-full pt-[25px] xl:pt-[29px] 2xl:pt-[33px] 3xl:pt-[40px]">
-      <div className="container mb-[20px] xl:mb-[25px] 2xl:mb-[30px]">
+      <div className="container mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[55]">
         <div className="flex flex-wrap">
           <div className="w-full sm:w-[45%]">
             {data.smallHeading && (
@@ -29,13 +29,13 @@ export default function HomeHero({ data }) {
                     src="/images/icon-arrow.svg"
                     alt="icon arrow"
                     width={16}
-                    height={7}
+                    height={7} 
                     className="w-2 2xl:w-2.5 3xl:w-3 block"
                   />
                 </span>
               </a>
               {data.description && (
-                <div className="text_3 font-normal text-[#1f1f1f] mt-[30px] xl:mt-[40px] 2xl:mt-[60px] 3xl:mt-[70px] mb-[20px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
+                <div className="text_3 font-normal text-[#1f1f1f] mt-[30px] xl:mt-[40px] 2xl:mt-[50px] 3xl:mt-[60px] mb-[20px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
                   <BlocksRenderer content={data.description} />
                 </div>
               )}
@@ -65,7 +65,7 @@ export default function HomeHero({ data }) {
         autoPlay
         muted
         loop
-        className="border w-full max-w-[1920px] h-auto mx-auto aspect-[1024/420] object-cover"
+        className="w-full max-w-[1920px] h-auto mx-auto aspect-[1024/420] object-cover"
       >
         <source
           src={getStrapiMediaUrl(data?.heroMedia.url)}

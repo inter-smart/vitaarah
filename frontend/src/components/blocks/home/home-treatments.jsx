@@ -8,6 +8,7 @@ import Link from "next/link";
 
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { Button } from "@/components/ui/button";
 
 export default function HomeTreatments({ data }) {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -28,70 +29,81 @@ export default function HomeTreatments({ data }) {
       id="Treatments"
       className="w-full bg-black pt-[30px] sm:pt-[40px] xl:pt-[55px] 2xl:pt-[70px] overflow-hidden relative z-0"
     >
-      <div className="absolute z-0 inset-0">
+      <div className="absolute z-0 inset-0 bg-black/40" />
+      <div className="absolute -z-1 inset-0">
+        {treatments.map((item, idx) => {
+          const isActive = idx === activeIdx;
+          return (
+            <div
+              key={"treatments-bg" + idx}
+              className={cn(
+                "absolute z-0 inset-0 transition-all duration-700 ease-in-out",
+                isActive
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-105",
+              )}
+            >
+              {item?.featuredImage?.mime?.startsWith("video/") ? (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                >
+                  <source
+                    src={getStrapiMediaUrl(item.featuredImage.url)}
+                    type={item.featuredImage.mime}
+                  />
+                </video>
+              ) : item?.featuredImage?.url ? (
+                <Image
+                  src={getStrapiMediaUrl(item.featuredImage.url)}
+                  alt={
+                    item.featuredImage.alternativeText ||
+                    item.title ||
+                    "Treatment"
+                  }
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority={idx === 0}
+                  unoptimized
+                />
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="absolute z-1 inset-0">
         {treatments.map((item, idx) => (
           <div
-            key={"treatments-bg" + idx}
+            key={"treatments-title" + idx}
             className={cn(
-              "absolute inset-0 transition-opacity duration-700",
+              "absolute z-1 inset-x-0 top-1/2 -translate-y-1/2 transition-opacity duration-500 m-auto",
               idx === activeIdx ? "opacity-100" : "opacity-0",
             )}
           >
-            {item?.featuredImage?.mime?.startsWith("video/") ? (
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-              >
-                <source
-                  src={getStrapiMediaUrl(item.featuredImage.url)}
-                  type={item.featuredImage.mime}
-                />
-              </video>
-            ) : item?.featuredImage?.url ? (
-              <Image
-                src={getStrapiMediaUrl(item.featuredImage.url)}
-                alt={item.featuredImage.alternativeText || item.title || "Treatment"}
-                fill
-                sizes="100vw"
-                className="object-cover"
-                priority={idx === 0}
-                unoptimized
-              />
-            ) : null}
+            {item?.title && (
+              <div className="text-[48px] sm:text-[64px] lg:text-[113px] xl:text-[140px] 2xl:text-[158.8px] 3xl:text-[192px] leading-normal font-bold font-helvetica text-center text-[#d9d9d9]/30 whitespace-nowrap backdrop-blur-[2px]">
+                {item.title}
+              </div>
+            )}
           </div>
         ))}
       </div>
-      <div className="container mx-auto relative z-10">
+      <div className="container relative z-10">
         {data.title && (
           <h2 className="text_2 text-center text-white mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
             {data.title}
           </h2>
         )}
         {data.description && (
-          <div className="text_3 text-center text-white mb-[60px] xl:mb-[100px] 2xl:mb-[135px]">
+          <div className="text_3 text-center text-white mb-[20px] lg:mb-[45px] xl:mb-[57px] 2xl:mb-[65px] 3xl:mb-[80px]">
             <BlocksRenderer content={data.description} />
           </div>
         )}
-        <div className="relative h-16 lg:h-24 xl:h-32 2xl:h-40 bg-red-500 mb-[60px] xl:mb-[100px] 2xl:mb-[135px]">
-          {treatments.map((item, idx) => (
-            <div
-              key={"treatments-title" + idx}
-              className={cn(
-                "absolute inset-0 transition-opacity duration-500",
-                idx === activeIdx ? "opacity-100" : "opacity-0",
-              )}
-            >
-              {item?.title && (
-                <div className="text-[48px] lg:text-[72px] xl:text-[106px] 2xl:text-[133.3px] leading-normal font-bold font-helvetica text-center text-[#d9d9d9]/30 whitespace-nowrap">
-                  {item.title}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
         <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
           <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
             {treatments.map((item, idx) => (
@@ -102,21 +114,49 @@ export default function HomeTreatments({ data }) {
                 )}
               >
                 <Link
-                  href={`/conditions/${item?.slug}`}
-                  className="group w-full h-full block bg-linear-to-b from-transparent to-[#a14962]"
+                  href={`/treatments/${item?.slug}`}
+                  className={cn(
+                    "group w-full h-[268px] lg:h-[358px] xl:h-[442px] 2xl:h-[500px] 3xl:h-[610px] block flex flex-col justify-end p-[20px_10px] sm:p-[34px_15px] xl:p-[42px_20px] 2xl:p-[47px_25px] 3xl:p-[57px_30px] overflow-hidden transition-all duration-300",
+                    idx === activeIdx
+                      ? "bg-linear-to-b from-transparent from-30% to-[#a14962]"
+                      : "bg-none",
+                  )}
                   onMouseEnter={() => setActiveIdx(idx)}
                 >
-                  <div className="text_5 text-center font-bold text-white mb-[4px] 2xl:mb-[6px]">
-                    {item?.title}
+                  <div
+                    className={cn(
+                      "transition-all duration-300",
+                      idx === activeIdx
+                        ? "h-0 opacity-0 translate-y-full"
+                        : "h-auto translate-y-0 opacity-100 group-hover:h-0 group-hover:opacity-0 group-hover:translate-y-full",
+                    )}
+                  >
+                    <div className="text_5 text-center font-bold text-white underline underline-offset-2 mb-[4px] 2xl:mb-[6px]">
+                      {item?.title}
+                    </div>
                   </div>
-                  <div className="text_3 text-center font-normal text-white">
-                    {item?.shortDescription}
+                  <div
+                    className={cn(
+                      "transition-all duration-300",
+                      idx === activeIdx
+                        ? "h-auto opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-full h-0 group-hover:h-auto group-hover:opacity-100 group-hover:translate-y-0",
+                    )}
+                  >
+                    <div className="text_5 text-center font-bold text-white mb-[4px] 2xl:mb-[6px]">
+                      {item?.title}
+                    </div>
+                    <div className="text_3 text-center font-normal line-clamp-3 text-white mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                      {item?.shortDescription}
+                    </div>
+                    {item?.slug && (
+                      <div className="flex">
+                        <Button className="border-[#a14962] mx-auto" asChild>
+                          <span>Read More</span>
+                        </Button>
+                      </div>
+                    )}
                   </div>
-                  {item?.slug && (
-                    <span className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-center text-primary-foreground mx-auto shadow transition-colors hover:bg-primary/90">
-                      Read More
-                    </span>
-                  )}
                 </Link>
               </div>
             ))}

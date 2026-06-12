@@ -18,22 +18,22 @@ export default function HomeAbout({ data }) {
         alt="home about element 1"
         width={300}
         height={300}
-        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[300px] translate-x-1/2 absolute -z-1 top-[10%] right-0"
+        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[310px] translate-x-1/2 absolute -z-1 top-[10%] right-0"
       />
       <Image
         src="/images/home-about-elmt-2.svg"
         alt="home about element 2"
         width={60}
         height={60}
-        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 3xl:bottom-[4%] 3xl:left-[1%]"
+        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 3xl:bottom-[5%] 3xl:left-[1%]"
       />
-      <div className="container mx-auto">
+      <div className="container">
         <div className="flex flex-wrap">
-          <div className="w-full sm:w-[53%]">
+          <div className="w-full sm:w-[55%]">
             <div className="flex relative z-0">
               <a
                 href="#About"
-                className="w-[50px] xl:w-[60px] 2xl:w-[74px] 3xl:w-[90px] rounded-full aspect-square p-[6px] 2xl:p-[8px] bg-linear-to-t from-[#a14962] to-[#e9cba3] absolute z-2 top-[5%] right-[16%]"
+                className="w-[50px] xl:w-[60px] 2xl:w-[74px] 3xl:w-[90px] rounded-full aspect-square p-[6px] 2xl:p-[8px] bg-linear-to-t from-[#a14962] to-[#e9cba3] absolute z-2 top-[5%] right-[19%]"
               >
                 <span className="w-full h-full bg-white rounded-full flex items-center justify-center">
                   <Image
@@ -93,7 +93,7 @@ export default function HomeAbout({ data }) {
               </div>
             )}
           </div>
-          <div className="w-full sm:w-[47%]">
+          <div className="w-full sm:w-[45%]">
             {data.title && (
               <h2 className="text_2 mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
                 {data.title}
