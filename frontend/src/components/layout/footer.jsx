@@ -1,25 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const defaultLinks = {
-  Company: [
-    { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Contact", href: "/contact" },
-  ],
-  Support: [
-    { label: "FAQ", href: "/faq" },
-    { label: "Privacy", href: "/privacy" },
-    { label: "Terms", href: "/terms" },
-  ],
-};
-
-export default function Footer({ logo, columns, copyright }) {
-  const copyrightText = copyright || "Vitaarah. All rights reserved.";
+export default function Footer({ logo, columns, copyrightText }) {
+  console.log(copyrightText);
 
   return (
-    <footer className="border-t bg-muted/50">
-      <div className="container px-4 py-12">
+    <footer className="w-full block">
+      <div className="container">
+        <div className="flex flex-wrap">
+          <div className="w-full lg:w-[20%]">
+            <div className="text-[]">Quick Links</div>
+            {navigation.map((link) => (
+              <Link
+                key={link.url}
+                href={link.url}
+                onClick={() => setIsOpen(false)}
+                className="rounded-sm px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             {logo?.url ? (
@@ -43,7 +45,7 @@ export default function Footer({ logo, columns, copyright }) {
             </p>
           </div>
 
-          {defaultLinks.map((col) => (
+          {/* {defaultLinks.map((col) => (
             <div key={col.title}>
               <h3 className="mb-3 text-sm font-semibold">{col.title}</h3>
               <ul className="space-y-2">
@@ -59,7 +61,7 @@ export default function Footer({ logo, columns, copyright }) {
                 ))}
               </ul>
             </div>
-          ))}
+          ))} */}
         </div>
 
         <div className="mt-12 border-t pt-6 text-center text-sm text-muted-foreground">
