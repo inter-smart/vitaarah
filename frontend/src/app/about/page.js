@@ -16,6 +16,8 @@ const local_data = {
     id: 25,
     heroMedia: {
       alternativeText: "about page title",
+      mime: "image/jpeg",
+      // if video - mime: "video/mp4",
       url: "/images/about/about-page-title.png",
     },
     title: "The Essence of Vitaarah",
