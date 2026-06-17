@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import AppointmentForm from "../form/appointment-form";
 
 const headStyle =
   "text-[13px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica text-[#a14962] mb-[30px] xl:mb-[30px] 2xl:mb-[30px] 3xl:mb-[30px]";
@@ -38,16 +39,10 @@ export default function Footer({
   console.log(data);
 
   return (
-    <footer className="[--top-box:60px] sm:[--top-box:72px] xl:[--top-box:90px] 2xl:[--top-box:102px] 3xl:[--top-box:124px] w-full block bg-[#faf7ed] pt-[40px] sm:pt-[60px] xl:pt-[73px] 2xl:pt-[80px] 3xl:pt-[100px] relative z-0">
+    <footer className="[--top-box:60px] sm:[--top-box:72px] xl:[--top-box:90px] 2xl:[--top-box:102px] 3xl:[--top-box:124px] w-full block bg-[#faf7ed] pt-[40px] sm:pt-[60px] xl:pt-[73px] 2xl:pt-[80px] 3xl:pt-[100px] mt-[calc(var(--top-box)/2)] relative z-0">
       <div className="w-full h-[calc(var(--top-box)/2)] "></div>
       <div className="container absolute z-1 top-0 inset-x-0 -translate-y-1/2">
-        <div className="w-full bg-[#a14962] p-[15px] sm:p-[23px] xl:p-[28px] 2xl:p-[32px] 3xl:p-[40px]">
-          <div className="flex flex-wrap">
-            <div className="text-[12px] lg:text-[12.4px] xl:text-[15.4px] 2xl:text-[17.4px] 3xl:text-[21.2px] leading-normal font-normal font-helvetica text-white">
-              Appointment
-            </div>
-          </div>
-        </div>
+        <AppointmentForm />
       </div>
       <div className="container">
         <div className="flex flex-wrap lg:gap-x-[1%] ">
@@ -56,7 +51,7 @@ export default function Footer({
             <div className="flex flex-col gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
               {quickLinks.map((link) => (
                 <Link
-                  key={link.url}
+                  key={link.label}
                   href={link.url}
                   className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
                 >

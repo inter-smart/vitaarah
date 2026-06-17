@@ -52,7 +52,7 @@ export default async function RootLayout({ children }) {
       <body className={cn("flex min-h-screen flex-col antialiased")}>
         <Providers>
           <Header {...headerProps} />
-          {/* <main className="flex-1">{children}</main> */}
+          <main className="flex-1">{children}</main>
           <Footer {...footerProps} data={footer} />
         </Providers>
       </body>
