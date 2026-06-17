@@ -1,3 +1,4 @@
+import Herosection from "@/components/common/InnerHero";
 import AboutPage from "@/components/blocks/about/about-page";
 
 const local_data = {
@@ -14,11 +15,23 @@ const local_data = {
   },
   hero: {
     id: 25,
-    heroMedia: {
-      alternativeText: "about page title",
-      url: "/images/about/about-page-title.png",
+
+    media: {
+      type: "video", // image | video
+
+      image: {
+        alternativeText: "about page title",
+        url: "/images/about/about-page-title.png",
+      },
+
+      video: {
+        url: "/videos/about-hero.mp4",
+        poster: "/images/about/about-page-title.png",
+      },
     },
+
     title: "The Essence of Vitaarah",
+
     description: [
       {
         type: "paragraph",
@@ -30,6 +43,7 @@ const local_data = {
         ],
       },
     ],
+
     button: {
       slug: "about",
       label: "Begin Your Journey",
@@ -477,5 +491,8 @@ const local_data = {
 // exambles= http://localhost:1337/api/home-page?populate[seo][populate][ogImage]=true&populate[hero][populate][heroMedia]=true&populate[hero][populate][primaryButton][populate][icon]=true&populate[hero][populate][secondaryButton][populate][icon]=true&populate[about][populate][mainImage]=true&populate[about][populate][secondaryImage]=true&populate[about][populate][button][populate][icon]=true&populate[about][populate][aboutStatistic]=true&populate[specialities][populate][specialties][populate][icon]=true&populate[specialities][populate][specialties][populate][featuredImage]=true&populate[treatments][populate][treatments][populate][featuredImage]=true&populate[packages][populate][packages][populate][featuredImage]=true&populate[packages][populate][packages][populate][features][populate][icon]=true&populate[testimonials][populate][testimonials][populate][authorImage]=true&populate[testimonials][populate][testimonials][populate][videoTestimonial]=true&populate[members][populate][members][populate][thumbnailImage]=true&populate[members][populate][members][populate][featuredImage]=true&populate[blogs][populate][blogs][populate][featuredImage]=true
 
 export default function About() {
-  return <AboutPage />;
+  return <>
+    <Herosection data={local_data.hero} />
+    <AboutPage />;
+  </>
 } 
