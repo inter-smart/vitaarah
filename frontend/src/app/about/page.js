@@ -19,17 +19,7 @@ const local_data = {
       url: "/images/about/about-page-title.png",
     },
     title: "The Essence of Vitaarah",
-    description: [
-      {
-        type: "paragraph",
-        children: [
-          {
-            type: "text",
-            text: "Where ancient wisdom meets refined healing experiences.",
-          },
-        ],
-      },
-    ],
+    description: "Where ancient wisdom meets refined healing experiences.",
     button: {
       slug: "about",
       label: "Begin Your Journey",
@@ -478,4 +468,4 @@ const local_data = {
 
 export default function About() {
   return <AboutPage />;
-} 
+}
