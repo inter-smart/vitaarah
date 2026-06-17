@@ -37,7 +37,7 @@
     "emailAddress": {
       "type": "email"
     },
-    "address": {
+    "uaeAddress": {
       "type": "text"
     },
     "copyrightText": {
@@ -48,6 +48,11 @@
     },
     "googleMapsUrl": {
       "type": "string"
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "navigation.button",
+      "repeatable": true
     }
   }
 }

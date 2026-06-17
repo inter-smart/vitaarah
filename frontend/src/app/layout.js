@@ -42,6 +42,8 @@ export default async function RootLayout({ children }) {
               alternativeText: footer.logo.alternativeText,
             }
           : null,
+        quickLinks: footer.quickLinks || [],
+        legalLinks: footer.legalLinks || [],
       }
     : {};
 

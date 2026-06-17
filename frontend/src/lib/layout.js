@@ -7,13 +7,20 @@ const headerQuery = buildQuery({
   ctaButton: { populate: { icon: true } },
 });
 
+const footerQuery = buildQuery({
+  logo: true,
+  quickLinks: true,
+  legalLinks: true,
+});
+
 export async function getLayoutData() {
-  const [header] = await Promise.all([
+  const [header, footer] = await Promise.all([
     fetchAPI(`/api/header?${headerQuery}`),
+    fetchAPI(`/api/footer?${footerQuery}`),
   ]);
 
   return {
     header: header?.data ?? null,
-    footer: null,
+    footer: footer?.data ?? null,
   };
 }

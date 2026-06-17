@@ -15,35 +15,14 @@ const local_data = {
   },
   hero: {
     id: 25,
-
-    media: {
-      type: "video", // image | video
-
-      image: {
-        alternativeText: "about page title",
-        url: "/images/about/about-page-title.png",
-      },
-
-      video: {
-        url: "/videos/about-hero.mp4",
-        poster: "/images/about/about-page-title.png",
-      },
+    heroMedia: {
+      alternativeText: "about page title",
+      mime: "video/mp4",
+      // if video - mime: "video/mp4",
+      url: "/videos/about-hero.mp4",
     },
-
     title: "The Essence of Vitaarah",
-
-    description: [
-      {
-        type: "paragraph",
-        children: [
-          {
-            type: "text",
-            text: "Where ancient wisdom meets refined healing experiences.",
-          },
-        ],
-      },
-    ],
-
+    description: "Where ancient wisdom meets refined healing experiences.",
     button: {
       slug: "about",
       label: "Begin Your Journey",
@@ -495,4 +474,4 @@ export default function About() {
     <Herosection data={local_data.hero} />
     <AboutPage />;
   </>
-} 
+}
