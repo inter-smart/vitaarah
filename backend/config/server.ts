@@ -7,7 +7,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Server =>
     keys: env.array('APP_KEYS'),
   },
   cron: { enabled: false },
-
+  url: env('PUBLIC_URL', ''),
 });
 
 export default config;

@@ -14,18 +14,22 @@ export default function Header({ logo, navigation, ctaButton }) {
     <header className="w-full flex items-center">
       <div className="container">
         <div className="h-(--header-y) xl:h-(--header-y-xl) 2xl:h-(--header-y-2xl) 3xl:h-(--header-y-3xl) flex flex-wrap items-center justify-between">
-          <Link
-            href="/"
-            className="w-[120px] xl:w-[136px] 2xl:w-[170px] 3xl:w-[246px] flex items-center gap-2"
-          >
-            <Image
-              src={logo.url}
-              alt={logo.alternativeText || "Vitaarah"}
-              width={170}
-              height={44}
-              className="w-full h-full"
-            />
-          </Link>
+          {logo ? (
+            <Link
+              href="/"
+              className="w-[120px] xl:w-[136px] 2xl:w-[170px] 3xl:w-[246px] flex items-center gap-2"
+            >
+              <Image
+                src={logo.url}
+                alt={logo.alternativeText || "Vitaarah"}
+                width={170}
+                height={44}
+                className="w-full h-full"
+              />
+            </Link>
+          ) : (
+            <div className="w-[120px] xl:w-[136px] 2xl:w-[170px] 3xl:w-[246px]" />
+          )}
           <div className="md:flex items-center gap-[48px] 2xl:gap-[54px] 3xl:gap-[65px]">
             {ctaButton && (
               <Button
@@ -49,7 +53,7 @@ export default function Header({ logo, navigation, ctaButton }) {
             )}
 
             {/* <nav>
-              {navigation.map((link) => (
+          {navigation?.map((link) => (
                 <Link
                   key={link.url}
                   href={link.url}

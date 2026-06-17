@@ -4,9 +4,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "vitaarah.onrender.com", // your deployed backend domain
+        hostname: "**",
       },
-
       {
         protocol: "http",
         hostname: "localhost",
