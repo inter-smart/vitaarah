@@ -142,6 +142,70 @@
   }
 }
 
+@keyframes reveal-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.visible {
+  animation: reveal-fade-up 0.7s ease-out forwards;
+}
+
+.reveal[data-reveal="fade-left"].visible {
+  animation-name: reveal-fade-left;
+}
+
+.reveal[data-reveal="fade-right"].visible {
+  animation-name: reveal-fade-right;
+}
+
+.reveal[data-reveal="scale"].visible {
+  animation-name: reveal-scale;
+}
+
 @layer components {
   .text_1 {
     @apply text-[12px] lg:text-[12.4px] xl:text-[15.4px] 2xl:text-[17.4px] 3xl:text-[21.2px] leading-normal font-normal font-helvetica;

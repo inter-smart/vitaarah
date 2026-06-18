@@ -1,4 +1,5 @@
 import { fetchAPI, buildQuery } from "@/lib/strapi";
+import Reveal from "@/components/ui/reveal";
 import HomeHero from "@/components/blocks/home/home-hero";
 import HomeAbout from "@/components/blocks/home/home-about";
 import HomeSpecialities from "@/components/blocks/home/home-specialities";
@@ -91,14 +92,14 @@ export default async function Home() {
 
   return (
     <>
-      {hero && <HomeHero data={hero} />}
-      {about && <HomeAbout data={about} />}
-      {specialities && <HomeSpecialities data={specialities} />}
-      {treatments && <HomeTreatments data={treatments} />}
-      {packages && <HomePackages data={packages} />}
-      {testimonials && <HomeTestimonials data={testimonials} />}
-      {members && <HomeMembers data={members} />}
-      {blogs && <HomeBlogs data={blogs} />}
+      {hero && <Reveal><HomeHero data={hero} /></Reveal>}
+      {about && <Reveal><HomeAbout data={about} /></Reveal>}
+      {specialities && <Reveal><HomeSpecialities data={specialities} /></Reveal>}
+      {treatments && <Reveal><HomeTreatments data={treatments} /></Reveal>}
+      {packages && <Reveal><HomePackages data={packages} /></Reveal>}
+      {testimonials && <Reveal><HomeTestimonials data={testimonials} /></Reveal>}
+      {members && <Reveal><HomeMembers data={members} /></Reveal>}
+      {blogs && <Reveal><HomeBlogs data={blogs} /></Reveal>}
     </>
   );
 }

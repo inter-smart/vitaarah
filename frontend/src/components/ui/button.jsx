@@ -22,13 +22,15 @@ const Button = forwardRef(function Button(
     size = "default",
     as: Comp = "button",
     asChild,
+    noHover,
     children,
     ...props
   },
   ref,
 ) {
   const classString = cn(
-    "inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center gap-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+    !noHover && "hover:-translate-y-0.5 hover:shadow-lg",
     variants[variant],
     sizes[size],
     className,
