@@ -19,10 +19,10 @@ export default function HomeHero({ data }) {
             )}
           </div>
           <div className="w-full sm:w-[55%]">
-            <div className="w-full max-w-[300px] sm:max-w-[340px] xl:max-w-[490px] 2xl:max-w-[590px] 3xl:max-w-[710px] ml-auto pr-[40px] xl:pr-[65px] 2xl:pr-[78px] 3xl:pr-[90px] relative z-0">
+            <div className="w-full max-w-full sm:max-w-[340px] xl:max-w-[490px] 2xl:max-w-[590px] 3xl:max-w-[710px] ml-auto pr-[40px] xl:pr-[65px] 2xl:pr-[78px] 3xl:pr-[90px] relative z-0">
               <a
                 href="#About"
-                className="w-[60px] xl:w-[76px] 2xl:w-[90px] 3xl:w-[120px] rounded-full aspect-square p-[4px] 2xl:p-[6px] bg-linear-to-r from-[#a14962] to-[#f8c63d] absolute z-0 bottom-[15%] right-0 translate-y-1/2"
+                className="w-[50px] sm:w-[60px] xl:w-[76px] 2xl:w-[90px] 3xl:w-[120px] rounded-full aspect-square p-[4px] 2xl:p-[6px] bg-linear-to-r from-[#a14962] to-[#f8c63d] absolute z-0 bottom-[15%] right-0 translate-y-1/2"
               >
                 <span className="w-full h-full bg-white rounded-full flex items-center justify-center">
                   <Image
@@ -35,7 +35,7 @@ export default function HomeHero({ data }) {
                 </span>
               </a>
               {data.description && (
-                <div className="text_3 font-normal text-[#1f1f1f] mt-[30px] xl:mt-[40px] 2xl:mt-[50px] 3xl:mt-[60px] mb-[20px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
+                <div className="text_3 font-normal text-[#1f1f1f] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px] 3xl:mt-[60px] mb-[20px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
                   <BlocksRenderer content={data.description} />
                 </div>
               )}

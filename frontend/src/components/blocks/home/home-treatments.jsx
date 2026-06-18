@@ -17,7 +17,7 @@ export default function HomeTreatments({ data }) {
 
   const [emblaRef] = useEmblaCarousel(
     {
-      loop: false,
+      loop: true,
       align: "start",
       slidesToScroll: 1,
       containScroll: "trimSnaps",

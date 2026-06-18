@@ -11,7 +11,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 
 export default function HomeBlogs({ data }) {
-  const [hoveredIdx, setHoveredIdx] = useState(0);
+  const [hoveredIdx, setHoveredIdx] = useState(2);
   const [emblaRef] = useEmblaCarousel(
     {
       loop: false,
@@ -32,7 +32,7 @@ export default function HomeBlogs({ data }) {
         unoptimized
       />
       <div className="container">
-        <div className="flex flex-wrap items-center justify-between mb-[10px] xl:mb-[15px] 2xl:mb-[30px]">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-[20px] sm:mb-[10px] xl:mb-[15px] 2xl:mb-[30px]">
           {data.title && (
             <h2 className="text_2 text-center lg:mb-0">{data.title}</h2>
           )}
@@ -46,12 +46,12 @@ export default function HomeBlogs({ data }) {
           </Button>
         </div>
         <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
-          <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-[14px] 2xl:-mx-[16px] 3xl:-mx-[20px]">
+          <div className="flex touch-pan-y touch-pinch-zoom -mx-[10px] xl:-mx-[14px] 2xl:-mx-[16px] 3xl:-mx-[20px]">
             {data?.blogs?.map((item, idx) => (
               <div
                 key={"blogs" + idx}
                 className={cn(
-                  "flex-[0_0_220px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-1 xl:px-[14px] 2xl:px-[16px] 3xl:px-[20px]",
+                  "flex-[0_0_220px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-[10px] xl:px-[14px] 2xl:px-[16px] 3xl:px-[20px]",
                 )}
               >
                 <div
@@ -62,7 +62,7 @@ export default function HomeBlogs({ data }) {
                   onMouseEnter={() => setHoveredIdx(idx)}
                 >
                   <div className={cn(
-                    "absolute -z-1 inset-x-0 bottom-0 transition-opacity duration-500",
+                    "max-sm:invisible absolute -z-1 inset-x-0 bottom-0 transition-opacity duration-500",
                     hoveredIdx === idx ? "opacity-0" : "opacity-100",
                   )}>
                     <div className="text_4 line-clamp-2 mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px]">{item?.title}</div>
@@ -93,7 +93,7 @@ export default function HomeBlogs({ data }) {
                   >
                   <div className={cn(
                     "bg-white transition-opacity duration-500",
-                    hoveredIdx === idx ? "opacity-100" : "opacity-0",
+                    hoveredIdx === idx ? "opacity-100" : "opacity-100 sm:opacity-0",
                   )}>
                     <div className="text_4 line-clamp-2 mb-[4px] xl:mb-[6px] 2xl:mb-[8px] 3xl:mb-[10px]">{item?.title}</div>
                     <div className="text_3 leading-relaxed line-clamp-2 text-black mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px]">

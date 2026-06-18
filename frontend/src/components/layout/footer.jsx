@@ -3,7 +3,7 @@ import Image from "next/image";
 import AppointmentForm from "../form/appointment-form";
 
 const headStyle =
-  "text-[13px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica text-[#a14962] mb-[30px] xl:mb-[30px] 2xl:mb-[30px] 3xl:mb-[30px]";
+  "text-[13px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica text-[#a14962] mb-[10px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[30px] 3xl:mb-[30px]";
 
 const defaultSocialLinks = [
   {
@@ -12,14 +12,24 @@ const defaultSocialLinks = [
     icon: "/images/social-fb.png",
   },
   {
-    label: "Twitter",
+    label: "youtube",
     url: "https://twitter.com/",
-    icon: "/images/social-fb.png",
+    icon: "/images/icon-youtube.png",
   },
   {
     label: "Instagram",
     url: "https://www.instagram.com/",
-    icon: "/images/social-fb.png",
+    icon: "/images/icon-insta.png",
+  },
+  {
+    label: "LinkedIn",
+    url: "https://www.linkedin.com/",
+    icon: "/images/icon-linked.png",
+  },
+  {
+    label: "Twitter",
+    url: "https://www.x.com/",
+    icon: "/images/icon-x.png",
   },
 ];
 
@@ -39,16 +49,16 @@ export default function Footer({
   console.log(data);
 
   return (
-    <footer className="[--top-box:60px] sm:[--top-box:72px] xl:[--top-box:90px] 2xl:[--top-box:102px] 3xl:[--top-box:124px] w-full block bg-[#faf7ed] pt-[40px] sm:pt-[60px] xl:pt-[73px] 2xl:pt-[80px] 3xl:pt-[100px] mt-[calc(var(--top-box)/2)] relative z-0">
-      <div className="w-full h-[calc(var(--top-box)/2)] "></div>
-      <div className="container absolute z-1 top-0 inset-x-0 -translate-y-1/2">
+    <footer className="[--top-box:60px] sm:[--top-box:72px] xl:[--top-box:90px] 2xl:[--top-box:102px] 3xl:[--top-box:124px] w-full block bg-[#faf7ed] sm:pt-[60px] xl:pt-[73px] 2xl:pt-[80px] 3xl:pt-[100px] sm:mt-[calc(var(--top-box)/2)] relative z-0">
+      <div className="w-full h-[calc(var(--top-box)/2)] bg-white sm:bg-[#faf7ed] max-sm:absolute -z-1 top-0 inset-x-0 pointer-events-none"></div>
+      <div className="container sm:absolute z-1 top-0 inset-x-0 sm:-translate-y-1/2 mb-[calc(var(--top-box)/2)]">
         <AppointmentForm />
       </div>
       <div className="container">
-        <div className="flex flex-wrap lg:gap-x-[1%] ">
-          <div className="w-full lg:w-[19%]">
+        <div className="flex flex-wrap flex-row-reverse sm:flex-row gap-y-5 sm:gap-y-4 gap-x-[4%] sm:gap-x-[2%] xl:gap-x-[1%]">
+          <div className="w-[48%] sm:w-[30%] lg:w-[17%] xl:w-[19%]">
             <div className={headStyle}>Quick Links</div>
-            <div className="flex flex-col gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
+            <div className="flex flex-col gap-[10px] lg:gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
               {quickLinks.map((link) => (
                 <Link
                   key={link.label}
@@ -60,13 +70,14 @@ export default function Footer({
               ))}
             </div>
           </div>
-          <div className="w-full lg:w-[13%]">
+          <div className="w-[48%] sm:w-[30%] lg:w-[13%]">
             <div className={headStyle}>Follow Us</div>
-            <div className="flex flex-col gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
+            <div className="flex flex-col gap-[10px] lg:gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
               {socialLinks.map((link) => (
                 <Link
                   key={link.url}
                   href={link.url}
+                  target="_blank"
                   className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2"
                 >
                   <Image
@@ -74,14 +85,14 @@ export default function Footer({
                     alt={logo.alternativeText || "social"}
                     width={48}
                     height={48}
-                    className="w-[14px] xl:w-[16px] 2xl:w-[18px] 3xl:w-[22px] aspect-square object-contain block"
+                    className="w-[10px] sm:w-[12px] xl:w-[16px] 2xl:w-[18px] 3xl:w-[22px] aspect-square object-contain block"
                   />
                   <span>{link.label}</span>
                 </Link>
               ))}
             </div>
           </div>
-          <div className="w-full lg:w-[18%]">
+          <div className="w-[48%] sm:w-[30%] lg:w-[16%] xl:w-[18%]">
             <div className="mb-2">
               <div className={headStyle}>UAE</div>
               <div className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] xl:max-w-[90%]">
@@ -89,9 +100,9 @@ export default function Footer({
                   "Test data - melbin@vitaarah.ae 202, API Business Suites, Al Barsha 1 ,Dubai"}
               </div>
             </div>
-            <hr className="max-w-[120px] 3xl:max-w-[154px] border-[#AF8C80]/20 my-[20px] 2xl:my-[25px] 3xl:my-[30px]" />
+            <hr className="max-w-[120px] 3xl:max-w-[154px] border-[#AF8C80]/20 my-[10px] lg:my-[20px] 2xl:my-[25px] 3xl:my-[30px]" />
             <div>
-              <div className="flex flex-col gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
+              <div className="flex flex-col gap-[10px] lg:gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
                 {legalLinks.map((link) => (
                   <Link
                     key={link.url}
@@ -104,7 +115,7 @@ export default function Footer({
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-[20%]">
+          <div className="w-[48%] sm:w-[30%] lg:w-[20%]">
             <div className={headStyle}>Connect with Us</div>
             <div className="flex flex-col gap-[15px] sm:gap-[20px] xl:gap-[25px] 2xl:gap-[30px] 3xl:gap-[35px]">
               {phoneNumber && (
@@ -143,11 +154,11 @@ export default function Footer({
               )}
             </div>
           </div>
-          <div className="w-full lg:w-[26%]">
+          <div className="w-full sm:w-[68%] lg:w-[26%] order-first sm:order-last">
             {logo?.url && (
               <Link
                 href="/"
-                className="w-[168px] lg:w-[212px] xl:w-[262px] 2xl:w-[297px] 3xl:w-[360px] block ml-auto mb-[10px] 3xl:mb-[15px]"
+                className="w-[168px] lg:w-[212px] xl:w-[262px] 2xl:w-[297px] 3xl:w-[360px] block sm:ml-auto mb-[10px] 3xl:mb-[15px]"
               >
                 <Image
                   src={logo.url}
@@ -158,7 +169,7 @@ export default function Footer({
                 />
               </Link>
             )}
-            <div className="text_3 leading-relaxed text-end text-[#875849] xl:max-w-[90%] ml-auto">
+            <div className="text_3 leading-relaxed sm:text-end text-[#875849] xl:max-w-[90%] ml-auto">
               {shortDescription}
             </div>
           </div>
@@ -166,7 +177,7 @@ export default function Footer({
 
         <hr className="border-[#AF8C80]/20 mt-[30px] sm:mt-[40px] xl:mt-[60px] 2xl:mt-[80px] 3xl:mt-[100px]" />
 
-        <div className="flex gap-2.5 justify-between py-[15px] sm:py-[20px] xl:py-[27px] 2xl:py-[30px] 3xl:py-[37px]">
+        <div className="flex flex-col sm:flex-row gap-2.5 max-sm:items-center sm:justify-between py-[15px] sm:py-[20px] xl:py-[27px] 2xl:py-[30px] 3xl:py-[37px]">
           <div className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849]">
             &copy; {new Date().getFullYear()} {copyrightText}
           </div>
@@ -191,7 +202,7 @@ export default function Footer({
 function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
   return (
     <div className="flex gap-2.5 xl:gap-[12px] 2xl:gap-[14px] 3xl:gap-[17px]">
-      <div className="w-[30px] xl:w-[35px] 2xl:w-[40px] 3xl:w-[48px]">
+      <div className="w-[20px] sm:w-[30px] xl:w-[35px] 2xl:w-[40px] 3xl:w-[48px]">
         <Image
           src={url}
           alt={alternativeText}

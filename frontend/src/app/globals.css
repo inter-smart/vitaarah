@@ -16,7 +16,7 @@
   --container-3xl: 1625px;
 
   /* Header Sizes */
-  --header-y: 88px;
+  --header-y-sm: 80px;
   --header-y-xl: 110px;
   --header-y-2xl: 120px;
   --header-y-3xl: 150px;
@@ -150,7 +150,7 @@
     @apply text-[32px] lg:text-[56.7px] xl:text-[70px] 2xl:text-[79.4px] 3xl:text-[96.3px] leading-tight font-normal font-things;
   }
   .text_3 {
-    @apply text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal xl:leading-8 font-helvetica;
+    @apply text-[12px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal 2xl:leading-7 3xl:leading-8 font-helvetica;
   }
   .text_4 {
     @apply text-[14px] lg:text-[17px] xl:text-[21px] 2xl:text-[23.8px] 3xl:text-[28.9px] leading-normal font-normal font-helvetica text-[#a14962];

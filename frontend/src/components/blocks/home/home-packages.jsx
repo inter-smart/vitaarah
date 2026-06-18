@@ -12,15 +12,13 @@ import { Button } from "@/components/ui/button";
 
 export default function HomePackages({ data }) {
   const [selectedIdx, setSelectedIdx] = useState(0);
-
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
-      loop: false,
+      loop: true,
       align: "center",
       slidesToScroll: 1,
-      containScroll: "trimSnaps",
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: true, pauseOnHover: true })],
+    // [Autoplay({ delay: 5000, stopOnInteraction: true, pauseOnHover: true })],
   );
 
   const scrollPrev = useCallback(() => {
@@ -31,18 +29,26 @@ export default function HomePackages({ data }) {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  const onSelect = useCallback(() => {
-    if (emblaApi) setSelectedIdx(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
+  const canScrollPrev = emblaApi ? emblaApi.canScrollPrev() : true;
+  const canScrollNext = emblaApi ? emblaApi.canScrollNext() : true;
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
+
+    const onSelect = () => {
+      setSelectedIdx(emblaApi.selectedScrollSnap());
+    };
+
     emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+
+    onSelect();
+
     return () => {
       emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi]);
 
   return (
     <section
@@ -56,54 +62,50 @@ export default function HomePackages({ data }) {
           </h2>
         )}
         {data.description && (
-          <div className="text_3 text-center font-normal text-black mb-[10px] xl:mb-[15px] 2xl:mb-[30px]">
+          <div className="text_3 text-center font-normal text-black mb-[20px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
             <BlocksRenderer content={data.description} />
           </div>
         )}
-        <div className="relative">
+        <div className="w-full relative z-0">
           <button
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
+            disabled={!canScrollPrev}
+            className={cn(
+              "absolute z-0 -left-[1%] lg:-left-[2%] top-1/2 -translate-y-1/2 -translate-x-4 w-[16px] xl:w-[20px] 2xl:w-[22px] 3xl:w-[25px] bg-none flex items-center justify-center transition-all",
+              !canScrollPrev && "opacity-0 pointer-events-none",
+            )}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
+            <Image
+              src="/images/icon-right-slider.svg"
+              alt="prev"
+              width={25}
+              height={25}
+              className="w-full h-full object-contain"
+              unoptimized
+            />
           </button>
           <button
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
+            disabled={!canScrollNext}
+            className={cn(
+              "absolute z-0 -right-[1%] lg:-right-[2%] top-1/2 -translate-y-1/2 translate-x-4 w-[16px] xl:w-[20px] 2xl:w-[22px] 3xl:w-[25px] -rotate-180 bg-none flex items-center justify-center transition-all",
+              !canScrollNext && "opacity-0 pointer-events-none",
+            )}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
+            <Image
+              src="/images/icon-right-slider.svg"
+              alt="next"
+              width={25}
+              height={25}
+              className="w-full h-full object-contain"
+              unoptimized
+            />
           </button>
-          <div
-            ref={emblaRef}
-            className="w-full max-w-full overflow-hidden"
-          >
-            <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5">
+          <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
+            <div className="flex sm:items-center touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5">
               {data?.packages?.map((item, idx) => {
-                const isCenter = idx === selectedIdx;
+                const centerIdx = (selectedIdx + 1) % data.packages.length;
+                const isCenter = idx === centerIdx;
                 return (
                   <div
                     key={"packages" + idx}
@@ -114,14 +116,16 @@ export default function HomePackages({ data }) {
                     <Link
                       href={`/packages/${item?.slug}`}
                       className={cn(
-                        "group w-full block border border-[#b1b1b1] transition-all duration-300",
-                        isCenter ? "bg-[#FAF7ED]" : "bg-white",
+                        "group w-full h-full block border border-[#b1b1b1] bg-white transition-all duration-500 transform",
+                        isCenter
+                          ? "sm:scale-100 z-1 sm:bg-[#FAF7ED] sm:border-[#FAF7ED]"
+                          : "sm:scale-90",
                       )}
                     >
                       {item?.featuredImage && (
-                        <div className="w-full aspect-[336/262] bg-black relative z-0 transition-all duration-300 mb-[15px] xl:mb-[20px] 2xl:mb-[24px]">
+                        <div className="w-full aspect-[336/262] bg-black relative z-0 overflow-hidden mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[24px]">
                           {item?.badgeType && (
-                            <div className="absolute z-0 top-[10px] xl:top-[12px] 2xl:top-[13px] 3xl:top-[16px] right-[10px] xl:right-[12px] 2xl:right-[13px] 3xl:right-[16px] text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-tight font-normal tracking-wider font-things text-[#a14962] h-[24px] xl:h-[30px] 2xl:h-[34px] 3xl:h-[40px] bg-[#fff9eb] px-[6px] xl:px-[8px] 2xl:px-[10px] 3xl:px-[12px] flex items-center">
+                            <div className="absolute z-1 top-[10px] xl:top-[12px] 2xl:top-[13px] 3xl:top-[16px] right-[10px] xl:right-[12px] 2xl:right-[13px] 3xl:right-[16px] text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-tight font-normal tracking-wider font-things text-[#a14962] h-[24px] xl:h-[30px] 2xl:h-[34px] 3xl:h-[40px] bg-[#fff9eb] px-[6px] xl:px-[8px] 2xl:px-[10px] 3xl:px-[12px] flex items-center">
                               {item?.badgeType}
                             </div>
                           )}
@@ -134,7 +138,7 @@ export default function HomePackages({ data }) {
                             }
                             width={336}
                             height={262}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
                             unoptimized
                           />
                         </div>
@@ -155,7 +159,7 @@ export default function HomePackages({ data }) {
                           {item?.features?.map((feature, featureIdx) => (
                             <div
                               key={"features" + featureIdx}
-                              className="flex gap-x-[10px] xl:gap-x-[14px] 2xl:gap-x-[16px] 3xl:gap-x-[18px] text_3 leading-tight text-black"
+                              className="flex gap-x-[5px] sm:gap-x-[8px] xl:gap-x-[14px] 2xl:gap-x-[16px] 3xl:gap-x-[18px] text_3 leading-tight text-black"
                             >
                               {feature?.icon ? (
                                 <Image
@@ -192,8 +196,8 @@ export default function HomePackages({ data }) {
                             className={cn(
                               "w-full mx-auto transition-all duration-300",
                               isCenter
-                                ? "border-red-500"
-                                : "border-transparent",
+                                ? "bg-[#FAF7ED]"
+                                : "from-white to-white border-black text-black",
                             )}
                             asChild
                           >

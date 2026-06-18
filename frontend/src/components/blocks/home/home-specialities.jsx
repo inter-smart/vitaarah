@@ -54,7 +54,7 @@ export default function HomeSpecialities({ data }) {
               <div
                 key={"specialties" + idx}
                 className={cn(
-                  "flex-[0_0_220px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-1 xl:px-2.5",
+                  "flex-[0_0_180px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-1 xl:px-2.5",
                 )}
               >
                 <Link

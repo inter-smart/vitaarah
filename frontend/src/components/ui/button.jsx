@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, Children, cloneElement } from "react";
 import { cn } from "@/lib/utils";
 
 const variants = {
@@ -21,21 +21,32 @@ const Button = forwardRef(function Button(
     variant = "default",
     size = "default",
     as: Comp = "button",
+    asChild,
+    children,
     ...props
   },
   ref,
 ) {
+  const classString = cn(
+    "inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+    variants[variant],
+    sizes[size],
+    className,
+  );
+
+  if (asChild) {
+    const child = Children.only(children);
+    return cloneElement(child, {
+      ref,
+      className: cn(classString, child.props.className),
+      ...props,
+    });
+  }
+
   return (
-    <Comp
-      ref={ref}
-      className={cn(
-        "inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-        variants[variant],
-        sizes[size],
-        className,
-      )}
-      {...props}
-    />
+    <Comp ref={ref} className={classString} {...props}>
+      {children}
+    </Comp>
   );
 });
 
