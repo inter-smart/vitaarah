@@ -150,13 +150,17 @@
     @apply text-[32px] lg:text-[56.7px] xl:text-[70px] 2xl:text-[79.4px] 3xl:text-[96.3px] leading-tight font-normal font-things;
   }
   .text_3 {
-    @apply text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal xl:leading-8 font-helvetica;
+    @apply text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal font-helvetica;
   }
   .text_4 {
     @apply text-[14px] lg:text-[17px] xl:text-[21px] 2xl:text-[23.8px] 3xl:text-[28.9px] leading-normal font-normal font-helvetica text-[#a14962];
   }
   .text_5 {
     @apply text-[13px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica;
+  }
+  /* inner headings */
+  .heading_1 {
+    @apply text-[31px] sm:text-[35px] md:text-[40px] lg:text-[45.42px] xl:text-[56.04px] 2xl:text-[63.54px] 3xl:text-[77.08px] leading-normal font-things;
   }
 
   .container {

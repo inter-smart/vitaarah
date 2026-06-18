@@ -1,5 +1,7 @@
 import Herosection from "@/components/common/InnerHero";
 import AboutPage from "@/components/blocks/about/about-page";
+import AboutIntelligence from "@/components/blocks/about/about-intelligence";
+import AboutGuidence from "@/components/blocks/about/about-guidence";
 
 const local_data = {
   id: 24,
@@ -129,7 +131,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/nature_icon1.svg",
         },
         specs: [
           {
@@ -164,7 +166,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/nature_icon2.svg",
         },
         specs: [
           {
@@ -199,7 +201,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/nature_icon3.svg",
         },
         specs: [
           {
@@ -248,7 +250,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/docotor-1.png",
         },
       },
       {
@@ -262,7 +264,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/docotor-2.png",
         },
       },
     ],
@@ -470,8 +472,12 @@ const local_data = {
 // exambles= http://localhost:1337/api/home-page?populate[seo][populate][ogImage]=true&populate[hero][populate][heroMedia]=true&populate[hero][populate][primaryButton][populate][icon]=true&populate[hero][populate][secondaryButton][populate][icon]=true&populate[about][populate][mainImage]=true&populate[about][populate][secondaryImage]=true&populate[about][populate][button][populate][icon]=true&populate[about][populate][aboutStatistic]=true&populate[specialities][populate][specialties][populate][icon]=true&populate[specialities][populate][specialties][populate][featuredImage]=true&populate[treatments][populate][treatments][populate][featuredImage]=true&populate[packages][populate][packages][populate][featuredImage]=true&populate[packages][populate][packages][populate][features][populate][icon]=true&populate[testimonials][populate][testimonials][populate][authorImage]=true&populate[testimonials][populate][testimonials][populate][videoTestimonial]=true&populate[members][populate][members][populate][thumbnailImage]=true&populate[members][populate][members][populate][featuredImage]=true&populate[blogs][populate][blogs][populate][featuredImage]=true
 
 export default function About() {
-  return <>
-    <Herosection data={local_data.hero} />
-    <AboutPage />;
-  </>
+  return (
+    <>
+      <Herosection data={local_data.hero} />
+      <AboutIntelligence data={local_data.services} />
+      <AboutGuidence data={local_data.members} />
+
+    </>
+  )
 }
