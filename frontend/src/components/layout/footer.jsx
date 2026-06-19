@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import AppointmentForm from "../form/appointment-form";
+import ConsultationForm from "../form/consultation-form";
 
 const headStyle =
   "text-[13px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica text-[#a14962] mb-[10px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[30px] 3xl:mb-[30px]";
@@ -53,6 +54,7 @@ export default function Footer({
       <div className="w-full h-[calc(var(--top-box)/2)] bg-white sm:bg-[#faf7ed] max-sm:absolute -z-1 top-0 inset-x-0 pointer-events-none"></div>
       <div className="container sm:absolute z-1 top-0 inset-x-0 sm:-translate-y-1/2 mb-[calc(var(--top-box)/2)]">
         <AppointmentForm />
+        <ConsultationForm />
       </div>
       <div className="container">
         <div className="flex flex-wrap flex-row-reverse sm:flex-row gap-y-5 sm:gap-y-4 gap-x-[4%] sm:gap-x-[2%] xl:gap-x-[1%]">
