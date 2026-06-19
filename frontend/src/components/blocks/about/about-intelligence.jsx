@@ -59,7 +59,7 @@ export default function AboutIntelligence({ data }) {
                                 <div className="text_3 text-[#000000] font-light mb-[12px] lg:mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[33px]">{item?.shortDescription}</div>
                                 <div className="flex flex-wrap gap-[7px] xl:gap-[9px] 2xl:gap-[11px] 3xl:gap-[13px]">
                                     {item?.specs.map((spec, id) =>
-                                        <div className="text_3 text-[#B88190] text-center font-light flex-grow-1 rounded-[50px] bg-[rgba(230,198,160,0.2)] flex items-center justify-center h-[25px] xl:h-[30px] 2xl:h-[35px] 3xl:h-[42px] px-[8px] xl:px-[10px] 2xl:px-[12px] 3xl:px-[15px]">{spec.title}</div>
+                                        <div key={id} className="text_3 text-[#B88190] text-center font-light flex-grow-1 rounded-[50px] bg-[rgba(230,198,160,0.2)] flex items-center justify-center h-[25px] xl:h-[30px] 2xl:h-[35px] 3xl:h-[42px] px-[8px] xl:px-[10px] 2xl:px-[12px] 3xl:px-[15px]">{spec.title}</div>
                                     )}
                                 </div>
                             </div>

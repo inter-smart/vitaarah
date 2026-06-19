@@ -1,7 +1,11 @@
 import Herosection from "@/components/common/InnerHero";
-import AboutPage from "@/components/blocks/about/about-page";
 import AboutIntelligence from "@/components/blocks/about/about-intelligence";
 import AboutGuidence from "@/components/blocks/about/about-guidence";
+import AboutClinic from "@/components/blocks/about/about-clinic";
+import AboutApproach from "@/components/blocks/about/about-approach";
+import AboutCredibility from "@/components/blocks/about/about-credibility";
+import AboutMoto from "@/components/blocks/about/about-moto";
+import HomeAbout from "@/components/blocks/home/home-about";
 
 const local_data = {
   id: 24,
@@ -47,12 +51,12 @@ const local_data = {
     mainImage: {
       alternativeText: null,
       mime: "image/jpeg",
-      url: "/uploads/home_about_2_95d5b5afc5.jpg",
+      url: "/images/about_img1.jpg",
     },
     secondaryImage: {
       alternativeText: null,
       mime: "image/jpeg",
-      url: "/uploads/home_about_2_95d5b5afc5.jpg",
+      url: "/images/about_img2.png",
     },
     companyMoto: [
       {
@@ -297,7 +301,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-1.png",
         },
         title: "Certified Clinic",
       },
@@ -305,7 +309,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-2.png",
         },
         title: "Quality Healthcare",
       },
@@ -313,7 +317,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-3.png",
         },
         title: "Quality Management",
       },
@@ -321,7 +325,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-4.png",
         },
         title: "Registered & Licensed",
       },
@@ -329,7 +333,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-5.png",
         },
         title: "Quality Healthcare",
       },
@@ -394,7 +398,7 @@ const local_data = {
     featuredImage: {
       alternativeText: null,
       mime: "image/jpeg",
-      url: "/uploads/home_about_2_95d5b5afc5.jpg",
+      url: "/images/clinicImage.jpg",
     },
   },
   approach: {
@@ -429,7 +433,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/approach_icon1.svg",
         },
       },
       {
@@ -440,7 +444,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/approach_icon2.svg",
         },
       },
       {
@@ -451,7 +455,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/approach_icon3.svg",
         },
       },
       {
@@ -462,7 +466,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/approach_icon4.svg",
         },
       },
     ],
@@ -475,8 +479,13 @@ export default function About() {
   return (
     <>
       <Herosection data={local_data.hero} />
+      <HomeAbout data={local_data.about} />
+      <AboutMoto data={local_data.about} />
       <AboutIntelligence data={local_data.services} />
       <AboutGuidence data={local_data.members} />
+      <AboutCredibility data={local_data.certifications} />
+      <AboutClinic data={local_data.clinicEnvironment} />
+      <AboutApproach data={local_data.approach} />
 
     </>
   )
