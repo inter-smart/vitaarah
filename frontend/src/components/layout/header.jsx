@@ -13,27 +13,31 @@ export default function Header({ logo, navigation, ctaButton }) {
   return (
     <header className="w-full flex items-center">
       <div className="container">
-        <div className="h-(--header-y) xl:h-(--header-y-xl) 2xl:h-(--header-y-2xl) 3xl:h-(--header-y-3xl) flex flex-wrap items-center justify-between">
-          <Link
-            href="/"
-            className="w-[120px] xl:w-[136px] 2xl:w-[170px] 3xl:w-[246px] flex items-center gap-2"
-          >
-            <Image
-              src={logo.url}
-              alt={logo.alternativeText || "Vitaarah"}
-              width={170}
-              height={44}
-              className="w-full h-full"
-            />
-          </Link>
-          <div className="md:flex items-center gap-[48px] 2xl:gap-[54px] 3xl:gap-[65px]">
+        <div className="h-(--header-y-sm) xl:h-(--header-y-xl) 2xl:h-(--header-y-2xl) 3xl:h-(--header-y-3xl) flex flex-wrap items-center justify-between">
+          {logo ? (
+            <Link
+              href="/"
+              className="w-[120px] xl:w-[136px] 2xl:w-[170px] 3xl:w-[246px] flex items-center gap-2"
+            >
+              <Image
+                src={logo.url}
+                alt={logo.alternativeText || "Vitaarah"}
+                width={170}
+                height={44}
+                className="w-full h-full"
+              />
+            </Link>
+          ) : (
+            <div className="w-[120px] xl:w-[136px] 2xl:w-[170px] 3xl:w-[246px]" />
+          )}
+          <div className="sm:flex items-center gap-[48px] 2xl:gap-[54px] 3xl:gap-[65px]">
             {ctaButton && (
               <Button
                 as="a"
                 variant="none"
                 size="none"
                 href={`tel:${ctaButton.url}`}
-                className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none font-helvetica font-normal text-center text-[#1c1c1c] bg-white border-white"
+                className="max-sm:hidden text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none font-helvetica font-normal text-center text-[#1c1c1c] bg-white border-white"
               >
                 <span className="w-[11px] 2xl:w-[12px] 3xl:w-[14px]">
                   <Image
@@ -49,7 +53,7 @@ export default function Header({ logo, navigation, ctaButton }) {
             )}
 
             {/* <nav>
-              {navigation.map((link) => (
+          {navigation?.map((link) => (
                 <Link
                   key={link.url}
                   href={link.url}

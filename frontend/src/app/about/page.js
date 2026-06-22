@@ -1,4 +1,4 @@
-import Herosection from "@/components/common/InnerHero";
+ 
 import AboutIntelligence from "@/components/blocks/about/about-intelligence";
 import AboutGuidence from "@/components/blocks/about/about-guidence";
 import AboutClinic from "@/components/blocks/about/about-clinic";
@@ -6,6 +6,7 @@ import AboutApproach from "@/components/blocks/about/about-approach";
 import AboutCredibility from "@/components/blocks/about/about-credibility";
 import AboutMoto from "@/components/blocks/about/about-moto";
 import HomeAbout from "@/components/blocks/home/home-about";
+import InnerHero from "@/components/common/InnerHero";
 
 const local_data = {
   id: 24,
@@ -478,7 +479,7 @@ const local_data = {
 export default function About() {
   return (
     <>
-      <Herosection data={local_data.hero} />
+      <InnerHero data={local_data.hero} />
       <HomeAbout data={local_data.about} />
       <AboutMoto data={local_data.about} />
       <AboutIntelligence data={local_data.services} />

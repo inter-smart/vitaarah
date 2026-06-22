@@ -53,7 +53,7 @@ export default async function RootLayout({ children }) {
         <Providers>
           {/* <Header {...headerProps} /> */}
           <main className="flex-1">{children}</main>
-          {/* <Footer {...footerProps} /> */}
+          {/* <Footer {...footerProps} data={footer} /> */}
         </Providers>
       </body>
     </html>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Fragment } from "react";
 // -mr-[100px] sm:-mr-[115px] xl:-mr-[130px] 2xl:-mr-[160px]
 const ElementStyle =
-  "group w-[200px] sm:w-[230px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[100px] sm:-mr-[115px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1";
+  "group w-[140px] sm:w-[180px] lg:w-[200px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[90px] lg:-mr-[100px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1";
 
 export default function HomeAbout({ data }) {
   return (
@@ -25,15 +25,15 @@ export default function HomeAbout({ data }) {
         alt="home about element 2"
         width={60}
         height={60}
-        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 3xl:bottom-[5%] 3xl:left-[1%]"
+        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[5%] left-[1%]"
       />
       <div className="container">
         <div className="flex flex-wrap">
-          <div className="w-full sm:w-[55%]">
+          <div className="w-full lg:w-[55%] mb-5 lg:mb-0">
             <div className="flex relative z-0">
               <a
                 href="#About"
-                className="w-[50px] xl:w-[60px] 2xl:w-[74px] 3xl:w-[90px] rounded-full aspect-square p-[6px] 2xl:p-[8px] bg-linear-to-t from-[#a14962] to-[#e9cba3] absolute z-2 top-[5%] right-[19%]"
+                className="w-[40px] lg:w-[50px] xl:w-[60px] 2xl:w-[74px] 3xl:w-[90px] rounded-full aspect-square p-[4px] lg:p-[6px] 2xl:p-[8px] bg-linear-to-t from-[#a14962] to-[#e9cba3] absolute z-2 top-[5%] left-[200px] sm:left-[310px] lg:left-[69%] xl:left-[73%] 2xl:left-[76%] 3xl:left-[71%]"
               >
                 <span className="w-full h-full bg-white rounded-full flex items-center justify-center">
                   <Image
@@ -73,7 +73,7 @@ export default function HomeAbout({ data }) {
             </div>
 
             {data?.aboutStatistic?.length > 0 && (
-              <div className="xl:max-w-[520px] xl:max-w-[600px] 2xl:max-w-[640px] 3xl:max-w-[720px] flex items-center justify-between gap-[10px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[25px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
+              <div className="lg:max-w-[403px] xl:max-w-[497px] 2xl:max-w-[563px] 3xl:max-w-[685px] flex items-center justify-between gap-[10px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[25px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
                 {data?.aboutStatistic.map((stat, index) => (
                   <Fragment key={stat.label}>
                     <div>
@@ -93,7 +93,7 @@ export default function HomeAbout({ data }) {
               </div>
             )}
           </div>
-          <div className="w-full sm:w-[45%]">
+          <div className="w-full lg:w-[45%]">
             {data.title && (
               <h2 className="text_2 mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
                 {data.title}
