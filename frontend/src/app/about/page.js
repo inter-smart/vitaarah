@@ -486,7 +486,6 @@ export default function About() {
       <AboutCredibility data={local_data.certifications} />
       <AboutClinic data={local_data.clinicEnvironment} />
       <AboutApproach data={local_data.approach} />
-
     </>
   )
 }
