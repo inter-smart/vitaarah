@@ -8,6 +8,7 @@ export default function AboutPage() {
           This is the about page template. Customize it with your content.
         </p>
       </div>
+      <div className=""></div>
     </section>
   );
 }

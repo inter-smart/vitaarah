@@ -1,4 +1,11 @@
-import AboutPage from "@/components/blocks/about/about-page";
+import Herosection from "@/components/common/InnerHero";
+import AboutIntelligence from "@/components/blocks/about/about-intelligence";
+import AboutGuidence from "@/components/blocks/about/about-guidence";
+import AboutClinic from "@/components/blocks/about/about-clinic";
+import AboutApproach from "@/components/blocks/about/about-approach";
+import AboutCredibility from "@/components/blocks/about/about-credibility";
+import AboutMoto from "@/components/blocks/about/about-moto";
+import HomeAbout from "@/components/blocks/home/home-about";
 
 const local_data = {
   id: 24,
@@ -16,9 +23,9 @@ const local_data = {
     id: 25,
     heroMedia: {
       alternativeText: "about page title",
-      mime: "image/jpeg",
+      mime: "video/mp4",
       // if video - mime: "video/mp4",
-      url: "/images/about/about-page-title.png",
+      url: "/videos/about-hero.mp4",
     },
     title: "The Essence of Vitaarah",
     description: "Where ancient wisdom meets refined healing experiences.",
@@ -44,12 +51,12 @@ const local_data = {
     mainImage: {
       alternativeText: null,
       mime: "image/jpeg",
-      url: "/uploads/home_about_2_95d5b5afc5.jpg",
+      url: "/images/about_img1.jpg",
     },
     secondaryImage: {
       alternativeText: null,
       mime: "image/jpeg",
-      url: "/uploads/home_about_2_95d5b5afc5.jpg",
+      url: "/images/about_img2.png",
     },
     companyMoto: [
       {
@@ -128,7 +135,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/nature_icon1.svg",
         },
         specs: [
           {
@@ -163,7 +170,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/nature_icon2.svg",
         },
         specs: [
           {
@@ -198,7 +205,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/nature_icon3.svg",
         },
         specs: [
           {
@@ -247,7 +254,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/docotor-1.png",
         },
       },
       {
@@ -261,7 +268,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/docotor-2.png",
         },
       },
     ],
@@ -294,7 +301,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-1.png",
         },
         title: "Certified Clinic",
       },
@@ -302,7 +309,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-2.png",
         },
         title: "Quality Healthcare",
       },
@@ -310,7 +317,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-3.png",
         },
         title: "Quality Management",
       },
@@ -318,7 +325,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-4.png",
         },
         title: "Registered & Licensed",
       },
@@ -326,7 +333,7 @@ const local_data = {
         featuredImage: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/certificate-5.png",
         },
         title: "Quality Healthcare",
       },
@@ -391,7 +398,7 @@ const local_data = {
     featuredImage: {
       alternativeText: null,
       mime: "image/jpeg",
-      url: "/uploads/home_about_2_95d5b5afc5.jpg",
+      url: "/images/clinicImage.jpg",
     },
   },
   approach: {
@@ -426,7 +433,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/approach_icon1.svg",
         },
       },
       {
@@ -437,7 +444,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/approach_icon2.svg",
         },
       },
       {
@@ -448,7 +455,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/approach_icon3.svg",
         },
       },
       {
@@ -459,7 +466,7 @@ const local_data = {
         icon: {
           alternativeText: "icon",
           mime: "image/jpeg",
-          url: "/uploads/home_about_2_95d5b5afc5.jpg",
+          url: "/images/approach_icon4.svg",
         },
       },
     ],
@@ -469,5 +476,16 @@ const local_data = {
 // exambles= http://localhost:1337/api/home-page?populate[seo][populate][ogImage]=true&populate[hero][populate][heroMedia]=true&populate[hero][populate][primaryButton][populate][icon]=true&populate[hero][populate][secondaryButton][populate][icon]=true&populate[about][populate][mainImage]=true&populate[about][populate][secondaryImage]=true&populate[about][populate][button][populate][icon]=true&populate[about][populate][aboutStatistic]=true&populate[specialities][populate][specialties][populate][icon]=true&populate[specialities][populate][specialties][populate][featuredImage]=true&populate[treatments][populate][treatments][populate][featuredImage]=true&populate[packages][populate][packages][populate][featuredImage]=true&populate[packages][populate][packages][populate][features][populate][icon]=true&populate[testimonials][populate][testimonials][populate][authorImage]=true&populate[testimonials][populate][testimonials][populate][videoTestimonial]=true&populate[members][populate][members][populate][thumbnailImage]=true&populate[members][populate][members][populate][featuredImage]=true&populate[blogs][populate][blogs][populate][featuredImage]=true
 
 export default function About() {
-  return <AboutPage />;
+  return (
+    <>
+      <Herosection data={local_data.hero} />
+      <HomeAbout data={local_data.about} />
+      <AboutMoto data={local_data.about} />
+      <AboutIntelligence data={local_data.services} />
+      <AboutGuidence data={local_data.members} />
+      <AboutCredibility data={local_data.certifications} />
+      <AboutClinic data={local_data.clinicEnvironment} />
+      <AboutApproach data={local_data.approach} />
+    </>
+  )
 }
