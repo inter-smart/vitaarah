@@ -27,7 +27,8 @@ export default function TreatmentDetail({ data }) {
                 <BlocksRenderer content={data?.aboutSection?.description} />
               </div>
             </div>
-          </div>
+          </div> 
+          
         </div>
       </div>
     </section>
