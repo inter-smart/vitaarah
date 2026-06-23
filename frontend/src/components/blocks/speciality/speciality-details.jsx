@@ -1,62 +1,53 @@
-
-import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 
-
-export default function SpecialityPathway({ data }) {
+export default function SpecialityDetail({ data }) {
     return (
-        <section className='relative py-[30px_45px] lg:py-[30px_60px] xl:py-[45px_80px] 2xl:py-[55px_120px] 3xl:py-[70px_150px]'>
+        <section className="relative py-[30px_40px] lg:py-[30px_60px] xl:py-[35px_80px] 2xl:py-[40px_120px] 3xl:py-[42px_140px]">
 
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                <div className="absolute left-[50px] bottom-[-65px] xl:bottom-[-105px] 2xl:bottom-[-120px] 3xl:bottom-[-145px] ">
-                    <Image src="/images/circle.svg" className="w-full max-w-[87px]" width="85" height="85" alt="floating_icon" />
-                </div>
+                
                 <div className="absolute right-[50px] top-[150px]  w-full max-w-[170px] xl:max-w-[210px] 2xl:max-w-[240px] 3xl:max-w-[290px] ">
                     <Image src="/images/circle.svg" className="w-full object-cover" width="85" height="85" alt="floating_icon" />
                 </div>
             </div>
             <div className="container">
-                <div className="w-full text-center m-auto lg:max-w-[450px] xl:max-w-[550px] 2xl:max-w-[630px] 3xl:max-w-[790px] mb-[40px] xl:mb-[50px] 2xl:mb-[55px] 3xl:mb-[72px]">
-                    <div className="heading_1 mb-[0px] ">{data?.title}</div>
-                    <div className="text_3 font-light [&>p]:mb-[15px]">
+                <div className="w-full text-center m-auto lg:max-w-[510px] xl:max-w-[630px] 2xl:max-w-[720px] 3xl:max-w-[850px] mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
+                    <div className="heading_1 mb-[0px] ">{data.title}</div>
+                    <div className="text_3 font-light mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
                         {data.subtitle}
                     </div>
-                </div>
-                <div className="w-full flex flex-wrap border-t border-r border-[#C3C3C3] mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]">
+                    <div className="text_3 font-light [&>p]:mb-[30px]">
+                        <BlocksRenderer content={data.description} />
+                    </div>
 
-                    {data?.specialities.map((item, idx) => (
-                        <div className="w-full   sm:w-1/2 md:w-1/3 border-b border-l border-[#C3C3C3]" key={idx} >
-                            <Link href={`/speciality/${item.slug}`} className=" relative z-1 w-full h-full block p-[20px] md:p-[20px_15px] xl:p-[30px_25px] 2xl:p-[40px_35px] 3xl:p-[50px_45px] bg-white transition-all hover:bg-[#FFF9EB]">
-                                <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[85px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] bg-white rounded-full border border-[#A7546C] overflow-hidden p-[10px] xl:p-[12px] 2xl:p-[15px] 3xl:p-[20px] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
-                                    <Image src={item?.icon.url} width={25} height={25} className="w-full h-full object-contain" alt={item.alternativeText} />
-                                </div>
-                                <div className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-[8px] xl:mb-[10px] 2xl:mb-[15px]">{item.title}</div>
-                                <div className="text_3 font-light mb-[25px] md:mb-[40px] lg:mb-[70px] xl:mb-[85px] 2xl:mb-[100px] 3xl:mb-[130px] max-w-[215px] xl:max-w-[257px] 2xl:max-w-[290px] 3xl:max-w-[372px]">
-                                    <BlocksRenderer content={item.description} />
-                                </div>
-                                <div className="w-full">
-                                    <div className="text_3 font-light mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">{item.conditionLabel}</div>
-                                    <div className="flex flex-wrap gap-[5px] md:gap-[10px] 2xl:gap-[13px]">
-                                        {item?.conditions.map((condition, id) => (
-                                            <div key={id} className="text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[16px] bg-[rgba(230,198,160,0.2)] font-light flex items-center justify-center rounded-[30px] p-[10px] xl:p-[11px] 2xl:px-[12px] 3xl:px-[15px] h-[30px] xl:h-[35px] 2xl:h-[40px] 3xl:h-[45px]">
-                                                {condition?.title}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </Link>
+
+                </div>
+                <div className="relative z-1 w-full h-full bg-[#FFF9EB] border border-[#C3C3C3] p-[12px] md:p-[18px] xl:p-[23px] 2xl:p-[26px] 3xl:p-[33px] mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]" >
+                    <div className="flex flex-wrap max-md:gap-[20px]">
+                        <div className="w-full md:w-[calc(100%-380px)] lg:w-[calc(100%-520px)] xl:w-[calc(100%-640px)] 2xl:w-[calc(100%-725px)] 3xl:w-[calc(100%-920px)] flex items-center">
+                            <div className="w-full md:pl-[10px]">
+                                <div className="text-[19px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-[12px] xl:mb-[15px] 2xl:mb-[18px] 3xl:mb-[22px]">{data?.contentSection?.title}</div>
+                                <ul className="space-y-[5px]">
+                                    {data?.contentSection?.conditions.map((item, idx) => (
+                                        <li key={idx} className="text_3 font-light relative flex items-center gap-[10px] before:content-[''] before:p-[2px] before:2xl:p-[3px] before:block before:w-[2px] before:h-[2px] before:bg-black before:rounded-full ">{item.title}</li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
-                    ))}
+                        <div className="w-full md:w-[380px] lg:w-[520px] xl:w-[640px] 2xl:w-[725px] 3xl:w-[920px]">
+                            <div className="w-full">
+                                <Image src={data?.contentSection?.image?.url} className="w-full h-full object-cover" width={1640} height={460} alt={data?.contentSection?.image?.alternativeText} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
                 <div className="flex flex-wrap justify-between items-center gap-[15px]">
-                    <div className="text_3 mb-0">{data?.ctaSection?.footerText}</div>
+                    <div className="text_3 font-light mb-0">{data?.ctaSection?.footerText}</div>
                     <div className="flex items-center gap-[10px]">
-                        <Link
-                            href={`/${data?.ctaSection?.button.slug}`}
+                        <Link href={`/${data?.ctaSection?.button?.slug}`}
                             className="group relative overflow-hidden  bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3]
                                 text-white font-medium inline-flex items-center justify-center 
                                px-[8px] min-w-[120px] xl:min-w-[150px] 2xl:min-w-[170px] 3xl:min-w-[205px] h-[32px] 2xl:h-[37px]

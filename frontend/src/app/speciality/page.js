@@ -33,6 +33,7 @@ const local_data = {
             {
                 id: 1,
                 title: "Panchakarma",
+                slug: "panchakarma",
                 conditionLabel: "Conditions treated",
                 description: [
                     {
@@ -65,12 +66,13 @@ const local_data = {
                         title: "Joint Stiffness"
                     }
                 ],
-                 
+
             },
 
             {
                 id: 2,
                 title: "Skin Rituals",
+                slug: "skin-rituals",
                 conditionLabel: "Conditions treated",
                 description: [
                     {
@@ -101,13 +103,13 @@ const local_data = {
                         id: 3,
                         title: "Eczema"
                     }
-                ],
-                featured: false
+                ], 
             },
 
             {
                 id: 3,
                 title: "Hair & Scalp Therapy",
+                slug: "hair-scalp-therapy",
                 conditionLabel: "Conditions treated",
                 description: [
                     {
@@ -138,13 +140,13 @@ const local_data = {
                         id: 3,
                         title: "Dandruff"
                     }
-                ],
-                featured: false
+                ], 
             },
 
             {
                 id: 4,
                 title: "Stress Recovery",
+                slug: "stress-recovery",
                 conditionLabel: "Conditions treated",
                 description: [
                     {
@@ -175,13 +177,13 @@ const local_data = {
                         id: 3,
                         title: "Burnout"
                     }
-                ],
-                featured: false
+                ], 
             },
 
             {
                 id: 5,
                 title: "Metabolic Balance",
+                slug: "metabolic-balance",
                 conditionLabel: "Conditions treated",
                 description: [
                     {
@@ -212,13 +214,13 @@ const local_data = {
                         id: 3,
                         title: "Thyroid Imbalance"
                     }
-                ],
-                featured: true
+                ], 
             },
 
             {
                 id: 6,
                 title: "Women's Wellness",
+                slug: "womens-wellness",
                 conditionLabel: "Conditions treated",
                 description: [
                     {
@@ -249,21 +251,22 @@ const local_data = {
                         id: 3,
                         title: "Fertility"
                     }
-                ],
-                featured: false
-            }
+                ], 
+            },
         ],
 
-        footerText:
-            "Unsure which path is yours? Speak with a practitioner — we'll guide you to the right protocol.",
+        ctaSection: {
+            footerText:
+                "Unsure which path is yours? Speak with a practitioner — we'll guide you to the right protocol.",
 
-        button: {
-            label: "Enquiry Form",
-            url: "/enquiry"
-        },
-        whatsapp: {   
-            label: "whtasapp_label"  ,       
-            Url: "/"
+            button: {
+                label: "Enquiry Form",
+                slug: "/"
+            },
+            whatsapp: {
+                label: "whtasapp_label",
+                Url: "/"
+            }
         }
     }
 }
