@@ -24,13 +24,17 @@ export default function InnerHero({ data }) {
                     )}
                     {/* Content */}
                     <div className="relative z-10 w-full max-w-[350px] lg:max-w-[400px] xl:max-w-[500px] 2xl:max-w-[560px] 3xl:max-w-[680px] h-auto backdrop-blur-2xl ml-auto bg-white/10 border border-white/80 p-[20px_22px] xl:p-[25px_20px] 2xl:p-[30px_32px] 3xl:p-[35px_35px_32px_40px]">
-                        <h1 className="mb-[10px] text-[25px] sm:text-[30px] md:text-[35px] lg:text-[45px] xl:text-[56px] 2xl:text-[63px] 3xl:text-[77px] leading-[1] text-white font-normal font-things">
-                            {data?.title}
-                        </h1>
-                        <p className="text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] text-white ">
-                            {data?.description}
-                        </p>
-                        {data?.button && (
+                        {data?.title && (
+                            <h1 className="mb-[10px] text-[25px] sm:text-[30px] md:text-[35px] lg:text-[45px] xl:text-[56px] 2xl:text-[63px] 3xl:text-[77px] leading-[1] text-white font-normal font-things">
+                                {data?.title}
+                            </h1>
+                        )}
+                        {data?.description && (
+                            <p className="text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] text-white ">
+                                {data?.description}
+                            </p>
+                        )}
+                        {data?.button?.label && (
                             <Link
                                 href={`/${data.button.slug}`}
                                 className="group relative overflow-hidden  bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3]
