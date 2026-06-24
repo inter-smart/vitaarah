@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function TreatmentPathway({ data }) {
     return (
-        <section className='relative py-[30px_10px] lg:py-[30px_10px] xl:py-[45px_15px] 2xl:py-[55px_20px] 3xl:py-[70px_25px]'>
+        <section className='relative py-[30px_10px] lg:py-[30px_10px] xl:py-[45px_15px] 2xl:py-[55px_20px] 3xl:py-[70px_25px] overflow-hidden'>
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
                 <div className="absolute left-[0px] bottom-[65px] xl:bottom-[105px] 2xl:bottom-[120px] 3xl:bottom-[145px] ">
                     <Image src="/images/circle.svg" className="w-full max-w-[87px]" width="85" height="85" alt="floating_icon" />

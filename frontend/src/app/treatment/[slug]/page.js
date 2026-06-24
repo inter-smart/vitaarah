@@ -1,4 +1,6 @@
+import TreatmentAlchemy from '@/components/blocks/treatment/treatment-alchemy';
 import TreatmentDetail from '@/components/blocks/treatment/treatment-detail';
+import TreatmentRitualExperience from '@/components/blocks/treatment/treatment-ritual-experience';
 import InnerHero from '@/components/common/InnerHero'
 import { notFound } from "next/navigation";
 
@@ -82,6 +84,192 @@ const local_data = {
                         }
                     ]
                 }
+            },
+            ritualExperienceSection: {
+                title: "The Ritual Experience",
+                subtitle: "A thoughtfully guided process designed to relax the body and calm the mind",
+
+                steps: [
+                    {
+                        id: 1,
+                        stepNumber: "01",
+                        title: "The Need",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "A personalised consultation helps identify your body's current dosha balance. Your therapist selects the ideal medicated oils to restore harmony and calm."
+                                    }
+                                ]
+                            }
+                        ],
+                        featured: true
+                    },
+
+                    {
+                        id: 2,
+                        stepNumber: "02",
+                        title: "Preparation & Anointing",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Warm herbal oils are gently applied as your body begins to unwind. Slow rhythmic movements awaken vital marma points and deepen relaxation."
+                                    }
+                                ]
+                            }
+                        ],
+                        featured: false
+                    },
+
+                    {
+                        id: 3,
+                        stepNumber: "03",
+                        title: "Synchronised Flow",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Continuous flowing strokes ease tension and improve energy circulation. The body gradually settles into a deeply restorative, meditative state."
+                                    }
+                                ]
+                            }
+                        ],
+                        featured: false
+                    },
+
+                    {
+                        id: 4,
+                        stepNumber: "04",
+                        title: "The Afterglow",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "A warm herbal finish helps the oils absorb deeply into the body. You leave feeling lighter, calmer, and completely renewed from within."
+                                    }
+                                ]
+                            }
+                        ],
+                        featured: false
+                    }
+                ]
+            },
+            benefitsSection: {
+                title: "The Alchemy of Benefits",
+                subtitle: "Holistic outcomes that nurture both mind and body",
+
+                description: [
+                    {
+                        type: "paragraph",
+                        children: [
+                            {
+                                type: "text",
+                                text: "The benefits of Abhyanga are not merely felt during the session — they accumulate. The oils continue working for up to 12 hours after treatment, the lymphatic system remains activated, and many guests report the deepest sleep of their recent lives in the nights that follow."
+                            }
+                        ]
+                    }
+                ],
+
+                image: {
+                    alternativeText: "Abhyanga Benefits",
+                    mime: "image/jpeg",
+                    url: "/images/alchemy.jpg"
+                },
+
+                benefits: [
+                    {
+                        id: 1,
+                        icon: {
+                            alternativeText: "Deep Muscular Release",
+                            mime: "image/svg+xml",
+                            url: "/images/benefit_icon1.svg"
+                        },
+                        title: "Deep Muscular Release",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Accumulated tension held in the deep myofascial layers dissolves under the sustained, heated strokes — releasing knots that habitual movement patterns have locked in place for years."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+
+                    {
+                        id: 2,
+                        icon: {
+                            alternativeText: "Lymphatic Awakening",
+                            mime: "image/svg+xml",
+                            url: "/images/benefit_icon2.svg"
+                        },
+                        title: "Lymphatic Awakening",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "The directional strokes stimulate lymphatic circulation — the body's detoxification network — clearing stagnation, reducing puffiness, and supporting the immune system's innate intelligence."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+
+                    {
+                        id: 3,
+                        icon: {
+                            alternativeText: "Nervous System Reset",
+                            mime: "image/svg+xml",
+                            url: "/images/benefit_icon3.svg"
+                        },
+                        title: "Nervous System Reset",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Sustained, rhythmic touch activates the parasympathetic nervous system — suspending the fight-or-flight response and coaxing the body into a state of deep biological rest it rarely accesses in daily life."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+
+                    {
+                        id: 4,
+                        icon: {
+                            alternativeText: "Skin Nourishment",
+                            mime: "image/svg+xml",
+                            url: "/images/benefit_icon4.svg"
+                        },
+                        title: "Skin Nourishment",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Herb-infused oils penetrate the seven dhatu layers of skin, restoring elasticity, natural luminosity, and tone — leaving the skin visibly softer and deeply hydrated for several days after treatment."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {
@@ -160,6 +348,8 @@ export default async function TreatmentDetails({ params }) {
         <>
             <InnerHero data={treatment.hero} />
             <TreatmentDetail data={treatment.aboutTreatmentSection} />
+            <TreatmentRitualExperience data={treatment.ritualExperienceSection} />
+            <TreatmentAlchemy data={treatment.benefitsSection} />
         </>
     )
 }
