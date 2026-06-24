@@ -37,7 +37,7 @@ export default function PackagesStatistics({ data }) {
             ))}
           </div>
         )}
-        <hr className="border-black/10" />
+        <hr className="border-black/10 mt-[34px] xl:mt-[41.5px] 2xl:mt-[48px] 3xl:mt-[58px]" />
       </div>
     </section>
   );

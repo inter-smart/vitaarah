@@ -1,50 +1,45 @@
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-
-export default function HomePackages({ data }) {
+export default function PackagesListing({ data }) {
   return (
-    <section
-      id="Packages"
-      className="w-full bg-linear-to-b from-[#fff9eb] to-[30%] to-white py-[30px_60px] sm:py-[50px_80px] lg:py-[70px_105px] xl:py-[90px_134px] 2xl:py-[100px_150px] 3xl:py-[123px_185px]"
-    >
-      <div className="container">
-        {data.title && (
-          <h2 className="text_2 text-center text-[#1f1f1f] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
-            {data.title}
-          </h2>
-        )}
+    <>
+      <style>{`
+      .group\\/includedTreatments:hover .included-treatment-label {
+        color: #a14962 !important;
+      }
+    `}</style>
+      <section
+        id="PackagesListing"
+        className="w-full block py-[15px_15px] sm:py-[15px_20px] lg:py-[15px_24px] xl:py-[19px_29px] 2xl:py-[22px_33px] 3xl:py-[28px_35px]"
+      >
+        <div className="container">
+          {data.title && (
+            <h2 className="text_2 text-center text-[#1f1f1f] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+              {data.title}
+            </h2>
+          )}
 
-
-        <div className="w-full flex items-center justify-center gap-[20px] sm:gap-[40px] xl:gap-[80px] 2xl:gap-[90px] 3xl:gap-[100px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
-          {data?.packages?.map((item, idx) => {
-            const isCenter = idx;
-            return (
-              <div
-                key={"packages" + idx}
-                className={cn(
-                  "flex-[0_0_220px] sm:flex-[0_0_33.333%] lg:flex-[0_0_33.333%] min-w-0 select-none px-1 xl:px-2.5",
-                )}
-              >
-                <Link
-                  href={`/packages/${item?.slug}`}
+          <div className="flex flex-wrap justify-center -mx-2.5 xl:-mx-[14px] 2xl:-mx-[16px] 3xl:-mx-[20px]">
+            {data?.packages?.map((item, idx) => {
+              const isCenter = idx;
+              return (
+                <div
+                  key={"packages" + idx}
                   className={cn(
-                    "group w-full h-full block border border-[#b1b1b1] bg-white transition-all duration-500 transform",
-                    isCenter
-                      ? "sm:scale-100 z-1 sm:bg-[#FAF7ED] sm:border-[#FAF7ED]"
-                      : "sm:scale-90",
+                    "w-full sm:w-1/2 lg:w-1/2 min-w-0 select-none p-2.5 xl:p-[18px_14px] 2xl:p-[20px_16px] 3xl:p-[25px_20px]",
                   )}
                 >
-                  {item?.featuredImage && (
-                    <div className="w-full aspect-[336/262] bg-black relative z-0 overflow-hidden mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[24px]">
-                      {item?.badgeType && (
-                        <div className="absolute z-1 top-[10px] xl:top-[12px] 2xl:top-[13px] 3xl:top-[16px] right-[10px] xl:right-[12px] 2xl:right-[13px] 3xl:right-[16px] text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-tight font-normal tracking-wider font-things text-[#a14962] h-[24px] xl:h-[30px] 2xl:h-[34px] 3xl:h-[40px] bg-[#fff9eb] px-[6px] xl:px-[8px] 2xl:px-[10px] 3xl:px-[12px] flex items-center">
-                          {item?.badgeType}
-                        </div>
-                      )}
+                  <Link
+                    href={`/packages/${item?.slug}`}
+                    className={cn(
+                      "group/packages w-full h-full p-[20px_15px] sm:p-[40px_17px] xl:p-[50px_25px] 2xl:p-[57px_28px] 3xl:p-[69px_34.6px] flex flex-wrap gap-[20px] sm:gap-[24px] xl:gap-[29.4px] 2xl:gap-[33.3px] 3xl:p-[40.4px] border border-[#fff9eb] bg-linear-to-l from-[#fff9eb] to-[#fff9eb] transition-all duration-300 hover:from-[#e9cba3] hover:to-[#a14962]",
+                    )}
+                  >
+                    <div className="w-[129px] xl:w-[160px] 2xl:w-[180.3px] 3xl:w-[218.7px] aspect-[218/436] rounded-[482px] xl:rounded-[482px] 2xl:rounded-[180.3px] 3xl:rounded-[482px] bg-black relative z-0 overflow-hidden">
                       <Image
-                        src={getStrapiMediaUrl(item.featuredImage.url)}
+                        src={item.featuredImage.url}
                         alt={
                           item.featuredImage.alternativeText ||
                           item.title ||
@@ -56,75 +51,71 @@ export default function HomePackages({ data }) {
                         unoptimized
                       />
                     </div>
-                  )}
-                  <div className="w-full p-[12px] sm:p-[16px] xl:p-[20px] 2xl:p-[22px] 3xl:p-[27px]">
-                    <div className="text_5 text-black mb-[8px] xl:mb-[12px] 2xl:mb-[16px] 3xl:mb-[20px]">
-                      {item?.days} days
-                    </div>
-                    {item?.title && (
-                      <div className="text_4 text-[#a14962] mb-[4px] 2xl:mb-[6px] 3xl:mb-[8px]">
-                        {item?.title}
-                      </div>
-                    )}
-                    <div className="text_3 font-normal text-black mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
-                      {item?.shortDescription}
-                    </div>
-                    <div className="flex flex-col space-y-[10px] 2xl:space-y-[12px] 3xl:space-y-[14px] mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
-                      {item?.features?.map((feature, featureIdx) => (
-                        <div
-                          key={"features" + featureIdx}
-                          className="flex gap-x-[5px] sm:gap-x-[8px] xl:gap-x-[14px] 2xl:gap-x-[16px] 3xl:gap-x-[18px] text_3 leading-tight text-black"
-                        >
-                          {feature?.icon ? (
-                            <Image
-                              src={getStrapiMediaUrl(feature?.icon?.url)}
-                              alt={
-                                feature?.icon?.alternativeText ||
-                                feature?.title ||
-                                "features"
-                              }
-                              width={14}
-                              height={14}
-                              className="w-[13px] 3xl:w-[14px] aspect-square object-contain"
-                              unoptimized
-                            />
-                          ) : (
-                            <Image
-                              src="/images/package-feature-list.svg"
-                              alt={
-                                feature?.icon?.alternativeText ||
-                                feature?.title ||
-                                "features"
-                              }
-                              width={14}
-                              height={14}
-                              className="w-[14px] aspect-square object-contain"
-                            />
-                          )}
-                          <span className="flex-1">{feature?.title}</span>
+                    <div className="flex-1 ">
+                      {item?.title && (
+                        <div className="heading_1 leading-tight text-[#1f1f1f] group-hover/packages:text-white mb-[1px] 3xl:mb-[2px]">
+                          {item?.title}
                         </div>
-                      ))}
-                    </div>
-                    {item?.slug && (
-                      <Button
-                        className={cn(
-                          "w-full mx-auto transition-all duration-300",
-                          isCenter
-                            ? "bg-[#FAF7ED]"
-                            : "from-white to-white border-black text-black",
+                      )}
+                      <div className="text_3 font-normal text-black group-hover/packages:text-white mb-[10px] xl:mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">
+                        {item?.shortDescription}
+                      </div>
+                      {item?.includedTreatments && (
+                        <>
+                          <div className="text_3 font-normal tracking-[4px] xl:tracking-[4px] text-black group-hover/packages:text-white mb-[10px] xl:mb-[12px] 2xl:mb-[14px] 3xl:mb-[16px]">
+                            PROGRAMSINCLUDED
+                          </div>
+                          <div className="xl:max-w-[282px] 2xl:max-w-[320px] 3xl:max-w-[388px] flex flex-col mb-[10px] xl:mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">
+                            {item?.includedTreatments?.map(
+                              (includedTreatment, idx) => (
+                                <div
+                                  key={"includedTreatments" + idx}
+                                  className="group/includedTreatments flex gap-x-[8px] lg:gap-x-[11px] 2xl:gap-x-[12px] 3xl:gap-x-[15px] p-[6px_8px] sm:p-[8px_9px] xl:p-[10px_10px] 2xl:p-[11px_11px] 3xl:p-[12px_13.4px] hover:bg-[#d9d9d9]/20 transition-all duration-300"
+                                >
+                                  <Image
+                                    src="/images/includedTreatments-icon.svg"
+                                    alt="includedTreatments-icon"
+                                    width={12}
+                                    height={12}
+                                    className="w-[8px] 2xl:w-[10px] 3xl:w-[12px] object-contain"
+                                  />
+                                  <span className="included-treatment-label text_3 leading-tight text-black group-hover/packages:text-white flex-1">
+                                    {includedTreatment?.label}
+                                  </span>
+                                  <Image
+                                    src="/images/includedTreatments-icon2.svg"
+                                    alt="includedTreatments-icon2"
+                                    width={24}
+                                    height={12}
+                                    className="w-[8px] 2xl:w-[10px] 3xl:w-[12px] object-contain transition-opacity duration-300 opacity-0 group-hover/includedTreatments:opacity-100"
+                                  />
+                                </div>
+                              ),
+                            )}
+                          </div>
+                        </>
+                      )}
+
+                      <div className="flex flex-wrap gap-[4px] sm:gap-[6px] xl:gap-[7.6px] 2xl:gap-[8.6px] 3xl:gap-[10.5px]">
+                        {item?.availableDurations?.map(
+                          (availableDuration, idx) => (
+                            <div
+                              key={"availableDurations" + idx}
+                              className="text-[9px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[13px] leading-tight font-helvetica text-black p-[8px_10px] xl:p-[10px_12px] 2xl:p-[12px_14px] 3xl:p-[14px_16px] bg-[#E6C6A0]/20 rounded-full backdrop-blur-lg shadow-[-1px_-1px_0px_rgba(255,255,255,0.4)] inset-shadow-[-1px_-1px_0px_0px_rgba(255,255,255,0.4)] transition-all duration-300 group-hover/packages:bg-[#E6C6A0]/20 group-hover/packages:text-white"
+                            >
+                              {availableDuration?.label}
+                            </div>
+                          ),
                         )}
-                        asChild
-                      >
-                        <span>Select Plan</span>
-                      </Button>
-                    )}
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section >
+      </section>
+    </>
   );
 }
