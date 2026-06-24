@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 
-
 export default function PackagesStatistics({ data }) {
   return (
     <section
@@ -27,7 +26,7 @@ export default function PackagesStatistics({ data }) {
                     {stat.valueCount}
                     {stat.valueSuffix || ""}
                   </h3>
-                  <p className="text_3 !leading-tight text-black xl:max-w-[80%]">
+                  <p className="text_3 leading-tight text-black">
                     {stat.label}
                   </p>
                 </div>

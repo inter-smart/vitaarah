@@ -51,9 +51,9 @@ export default async function RootLayout({ children }) {
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <body className={cn("flex min-h-screen flex-col antialiased")}>
         <Providers>
-          {/* <Header {...headerProps} /> */}
+          <Header {...headerProps} />
           <main className="flex-1">{children}</main>
-          {/* <Footer {...footerProps} data={footer} /> */}
+          <Footer {...footerProps} data={footer} />
         </Providers>
       </body>
     </html>
