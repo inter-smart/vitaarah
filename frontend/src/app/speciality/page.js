@@ -1,4 +1,29 @@
+import SpecialityPathway from "@/components/blocks/speciality/speciality-pathway"
+import InnerHero from "@/components/common/InnerHero"
+
 const local_data = {
+    id: 24,
+    documentId: "a67zp5r21a35cb8qlzrjp54s",
+    createdAt: "2026-06-05T05:56:45.609Z",
+    updatedAt: "2026-06-11T06:26:08.249Z",
+    publishedAt: "2026-06-11T06:26:08.337Z",
+    seo: {
+        id: 21,
+        metaTitle: "Speciality page title",
+        metaDescription: "Speciality page description ",
+        canonicalUrl: null,
+    },
+    hero: {
+        id: 25,
+        heroMedia: {
+            alternativeText: "Curated Healing Domains",
+            mime: "image/jpg",
+            url: "/images/specilaity-banner.jpg",
+        },
+        title: "Curated Healing Domains",
+
+    },
+
     specialitySection: {
         id: 1,
         title: "Dedicated Pathways to Balance",
@@ -8,6 +33,8 @@ const local_data = {
             {
                 id: 1,
                 title: "Panchakarma",
+                slug: "panchakarma",
+                conditionLabel: "Conditions treated",
                 description: [
                     {
                         type: "paragraph",
@@ -22,8 +49,9 @@ const local_data = {
                 icon: {
                     alternativeText: "Panchakarma",
                     mime: "image/svg+xml",
-                    url: "/images/icons/panchakarma.svg"
+                    url: "/images/path_icon1.svg"
                 },
+
                 conditions: [
                     {
                         id: 1,
@@ -38,12 +66,14 @@ const local_data = {
                         title: "Joint Stiffness"
                     }
                 ],
-                featured: false
+
             },
 
             {
                 id: 2,
                 title: "Skin Rituals",
+                slug: "skin-rituals",
+                conditionLabel: "Conditions treated",
                 description: [
                     {
                         type: "paragraph",
@@ -58,7 +88,7 @@ const local_data = {
                 icon: {
                     alternativeText: "Skin Rituals",
                     mime: "image/svg+xml",
-                    url: "/images/icons/skin-rituals.svg"
+                    url: "/images/path_icon2.svg"
                 },
                 conditions: [
                     {
@@ -73,13 +103,14 @@ const local_data = {
                         id: 3,
                         title: "Eczema"
                     }
-                ],
-                featured: false
+                ], 
             },
 
             {
                 id: 3,
                 title: "Hair & Scalp Therapy",
+                slug: "hair-scalp-therapy",
+                conditionLabel: "Conditions treated",
                 description: [
                     {
                         type: "paragraph",
@@ -94,7 +125,7 @@ const local_data = {
                 icon: {
                     alternativeText: "Hair & Scalp Therapy",
                     mime: "image/svg+xml",
-                    url: "/images/icons/hair-scalp.svg"
+                    url: "/images/path_icon3.svg"
                 },
                 conditions: [
                     {
@@ -109,13 +140,14 @@ const local_data = {
                         id: 3,
                         title: "Dandruff"
                     }
-                ],
-                featured: false
+                ], 
             },
 
             {
                 id: 4,
                 title: "Stress Recovery",
+                slug: "stress-recovery",
+                conditionLabel: "Conditions treated",
                 description: [
                     {
                         type: "paragraph",
@@ -130,7 +162,7 @@ const local_data = {
                 icon: {
                     alternativeText: "Stress Recovery",
                     mime: "image/svg+xml",
-                    url: "/images/icons/stress-recovery.svg"
+                    url: "/images/path_icon4.svg"
                 },
                 conditions: [
                     {
@@ -145,13 +177,14 @@ const local_data = {
                         id: 3,
                         title: "Burnout"
                     }
-                ],
-                featured: false
+                ], 
             },
 
             {
                 id: 5,
                 title: "Metabolic Balance",
+                slug: "metabolic-balance",
+                conditionLabel: "Conditions treated",
                 description: [
                     {
                         type: "paragraph",
@@ -166,7 +199,7 @@ const local_data = {
                 icon: {
                     alternativeText: "Metabolic Balance",
                     mime: "image/svg+xml",
-                    url: "/images/icons/metabolic-balance.svg"
+                    url: "/images/path_icon5.svg"
                 },
                 conditions: [
                     {
@@ -181,13 +214,14 @@ const local_data = {
                         id: 3,
                         title: "Thyroid Imbalance"
                     }
-                ],
-                featured: true
+                ], 
             },
 
             {
                 id: 6,
                 title: "Women's Wellness",
+                slug: "womens-wellness",
+                conditionLabel: "Conditions treated",
                 description: [
                     {
                         type: "paragraph",
@@ -202,7 +236,7 @@ const local_data = {
                 icon: {
                     alternativeText: "Women's Wellness",
                     mime: "image/svg+xml",
-                    url: "/images/icons/womens-wellness.svg"
+                    url: "/images/path_icon6.svg"
                 },
                 conditions: [
                     {
@@ -217,17 +251,22 @@ const local_data = {
                         id: 3,
                         title: "Fertility"
                     }
-                ],
-                featured: false
-            }
+                ], 
+            },
         ],
 
-        footerText:
-            "Unsure which path is yours? Speak with a practitioner — we'll guide you to the right protocol.",
+        ctaSection: {
+            footerText:
+                "Unsure which path is yours? Speak with a practitioner — we'll guide you to the right protocol.",
 
-        button: {
-            label: "Enquiry Form",
-            url: "/enquiry"
+            button: {
+                label: "Enquiry Form",
+                slug: "/"
+            },
+            whatsapp: {
+                label: "whtasapp_label",
+                Url: "/"
+            }
         }
     }
 }
@@ -235,7 +274,8 @@ const local_data = {
 export default function Speciality() {
     return (
         <>
-
+            <InnerHero data={local_data.hero} />
+            <SpecialityPathway data={local_data.specialitySection} />
         </>
     )
 }

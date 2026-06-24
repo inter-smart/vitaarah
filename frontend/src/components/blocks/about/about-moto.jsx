@@ -1,9 +1,10 @@
 
 "use client";
 // import Image from "next/image";
+import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
