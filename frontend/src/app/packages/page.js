@@ -88,6 +88,13 @@ const local_data = {
           mime: "image/jpeg",
           url: "/images/packages-list-1.jpg",
         },
+        introductionTitle: "Introduction",
+        introductionDescription: "",
+        introductionImage: {
+          alternativeText: "package 1",
+          mime: "image/jpeg",
+          url: "/images/packages-list-1.jpg",
+        },
         includedTreatments: [
           {
             id: 23,
