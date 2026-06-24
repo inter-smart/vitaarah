@@ -1,6 +1,9 @@
 import TreatmentAlchemy from '@/components/blocks/treatment/treatment-alchemy';
+import TreatmentComplementary from '@/components/blocks/treatment/treatment-complementary';
 import TreatmentDetail from '@/components/blocks/treatment/treatment-detail';
+import TreatmentRight from '@/components/blocks/treatment/treatment-right';
 import TreatmentRitualExperience from '@/components/blocks/treatment/treatment-ritual-experience';
+import TreatmentRythym from '@/components/blocks/treatment/treatment-rythym';
 import InnerHero from '@/components/common/InnerHero'
 import { notFound } from "next/navigation";
 
@@ -270,7 +273,239 @@ const local_data = {
                         ]
                     }
                 ]
+            },
+            eligibilitySection: {
+                title: "Is This Right for You?",
+                subtitle: "Designed for individuals seeking balance, clarity, and restoration",
+                conditions: [
+                    {
+                        id: 1,
+                        title: "Deep Muscular Release",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Careers that demand constant output, mental presence, and emotional regulation leave the nervous system in a state of chronic activation. Abhyanga offers a biological counterweight."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        title: "Sleep disturbances",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Disrupted sleep, racing thoughts at night, or an inability to reach deep rest — Abhyanga re-teaches the body its natural rhythm of rest through sustained parasympathetic activation."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: 3,
+                        title: "Anxiety & overthinking",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "The treatment grounds excess Vata energy — the dosha associated with the nervous system and mental chatter — restoring a felt sense of safety and settledness in the body."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: 4,
+                        title: "Burnout & fatigue",
+                        description: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Chronic exhaustion lives in the tissues, not just the mind. Abhyanga nourishes depleted ojas — the subtle essence of vitality — rebuilding energy reserves at their root."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                commitmentCard: {
+                    title: "The Commitment",
+                    details: [
+                        {
+                            id: 1,
+                            label: "Duration",
+                            value: "60 minutes"
+                        },
+                        {
+                            id: 2,
+                            label: "Sessions",
+                            value: "3 – 7 recommended"
+                        },
+                        {
+                            id: 3,
+                            label: "Frequency",
+                            value: "Weekly or fortnightly"
+                        },
+                        {
+                            id: 4,
+                            label: "Best time",
+                            value: "Morning, before midday"
+                        }
+                    ],
+
+                    button: {
+                        label: "Plan Your Course",
+                        slug: "enquiry"
+                    }
+                }
+            },
+            faqSection: {
+                title: "Frequently Asked Questions",
+                subtitle: "Everything you need to know before your session",
+
+                faqs: [
+                    {
+                        id: 1,
+                        question: "How should I prepare?",
+                        answer: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Arrive a few minutes early, wear comfortable clothing, and avoid heavy meals at least two hours before your session. Your therapist will guide you through any additional preparation based on your chosen treatment."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+
+                    {
+                        id: 2,
+                        question: "Is it suitable for everyone?",
+                        answer: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "Most Ayurvedic therapies are suitable for a wide range of individuals. However, certain treatments may be modified or postponed during pregnancy, acute illness, or specific medical conditions. A consultation helps determine the most appropriate approach."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+
+                    {
+                        id: 3,
+                        question: "What oils are used?",
+                        answer: [
+                            {
+                                type: "paragraph",
+                                children: [
+                                    {
+                                        type: "text",
+                                        text: "We use authentic Ayurvedic herbal oils selected according to your constitution (dosha), current concerns, and treatment goals. Each oil blend is chosen to maximize therapeutic benefit and relaxation."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            treatmentSection: {
+                title: "Complementary Rituals",
+                subtitle: "Enhance your experience with therapies that work in harmony",
+
+                therapies: [
+                    {
+                        id: 1,
+                        title: "Abhyanga",
+                        duration: "60 min",
+                        shortDescription: "Warm Oil Massage",
+                        slug: "Abhyanga",
+                        image: {
+                            alternativeText: "Abhyanga Therapy",
+                            mime: "image/jpeg",
+                            url: "/images/treatment-1.jpg"
+                        }
+                    },
+
+                    {
+                        id: 2,
+                        title: "Shirodhara",
+                        duration: "45 min",
+                        shortDescription: "Stream of Stillness",
+                        slug: "shirodhara",
+                        image: {
+                            alternativeText: "Shirodhara Therapy",
+                            mime: "image/jpeg",
+                            url: "/images/treatment-2.jpg"
+                        }
+                    },
+
+                    {
+                        id: 3,
+                        title: "Nasya",
+                        duration: "30 min",
+                        shortDescription: "Breath & Clarity",
+                        slug: "nasya",
+                        image: {
+                            alternativeText: "Nasya Therapy",
+                            mime: "image/jpeg",
+                            url: "/images/treatment-3.jpg"
+                        }
+                    },
+
+                    {
+                        id: 4,
+                        title: "Kizhi",
+                        duration: "75 min",
+                        shortDescription: "Herbal Poultice Therapy",
+                        slug: "kizhi",
+                        image: {
+                            alternativeText: "Kizhi Therapy",
+                            mime: "image/jpeg",
+                            url: "/images/treatment-4.jpg"
+                        }
+                    },
+
+                    {
+                        id: 5,
+                        title: "Panchakarma",
+                        duration: "5 – 21 days",
+                        shortDescription: "The Five-Fold Detox",
+                        slug: "panchakarma",
+                        image: {
+                            alternativeText: "Panchakarma Therapy",
+                            mime: "image/jpeg",
+                            url: "/images/treatment-5.jpg"
+                        }
+                    }
+                ],
+            },
+            ctaSection: {
+                title: "Ready to restore your natural rhythm?",
+
+                subtitle: "Enhance your experience with therapies that work in harmony",
+
+                button: {
+                    label: "Book Your Abhyanga",
+                    slug: "enquiry"
+                }
             }
+
         },
         {
             id: 2,
@@ -350,6 +585,9 @@ export default async function TreatmentDetails({ params }) {
             <TreatmentDetail data={treatment.aboutTreatmentSection} />
             <TreatmentRitualExperience data={treatment.ritualExperienceSection} />
             <TreatmentAlchemy data={treatment.benefitsSection} />
+            <TreatmentRight data={treatment.eligibilitySection} />
+            <TreatmentComplementary data={treatment.treatmentSection} />
+            <TreatmentRythym data={treatment.ctaSection} />
         </>
     )
 }
