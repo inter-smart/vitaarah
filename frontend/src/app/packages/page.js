@@ -1,11 +1,4 @@
 import Herosection from "@/components/common/InnerHero";
-import AboutIntelligence from "@/components/blocks/about/about-intelligence";
-import AboutGuidence from "@/components/blocks/about/about-guidence";
-import AboutClinic from "@/components/blocks/about/about-clinic";
-import AboutApproach from "@/components/blocks/about/about-approach";
-import AboutCredibility from "@/components/blocks/about/about-credibility";
-import AboutMoto from "@/components/blocks/about/about-moto";
-import HomeAbout from "@/components/blocks/home/home-about";
 import PackagesStatistics from "@/components/blocks/packages/packages-statistics";
 import PackagesListing from "@/components/blocks/packages/packages-listing";
 import PackagesDurations from "@/components/blocks/packages/packages-durations";
@@ -99,7 +92,7 @@ const local_data = {
           {
             id: 23,
             label: "Weight Loss & Metabolic Balance",
-            slug: "Weight Loss & Metabolic Balance",
+            slug: "weight-loss-and-metabolic-balance",
             availabilityMatrix: [
               {
                 id: 1,
