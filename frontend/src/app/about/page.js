@@ -1,4 +1,4 @@
- 
+
 import AboutIntelligence from "@/components/blocks/about/about-intelligence";
 import AboutGuidence from "@/components/blocks/about/about-guidence";
 import AboutClinic from "@/components/blocks/about/about-clinic";
