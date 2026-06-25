@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "text-white bg-linear-to-l from-[#e9cba3] to-[#a14962] border border-[#e9cba3]",
+          "text-white !rounded-0 bg-linear-to-l from-[#e9cba3] to-[#a14962] border border-[#e9cba3]",
         outline: "text-[#1c1c1c] border border-[#ece7d7] bg-white",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
