@@ -245,7 +245,7 @@ const local_data = {
     ],
     members: [
       {
-        id: 7,
+        id: 1,
         name: "Dr. Suresh Nambiar",
         designation: "MD (Ayurveda)",
         expirence: "28 Years Practice",
@@ -259,7 +259,21 @@ const local_data = {
         },
       },
       {
-        id: 7,
+        id: 2,
+        name: "Dr. Suresh Nambiar",
+        designation: "Soumya Satheesh",
+        expirence: "28 Years Practice",
+        specialisation: "Panchakarma Specialist",
+        description:
+          "The body always knows the way back to health. Our role is simply to clear the path.",
+        featuredImage: {
+          alternativeText: "icon",
+          mime: "image/jpeg",
+          url: "/images/docotor-2.png",
+        },
+      },
+      {
+        id: 3,
         name: "Dr. Suresh Nambiar",
         designation: "Soumya Satheesh",
         expirence: "28 Years Practice",
