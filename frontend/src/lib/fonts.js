@@ -34,6 +34,20 @@ export const helvetica = localFont({
   fallback: ["Arial", "Helvetica", "sans-serif"],
 });
 
+export const helveticaLight = localFont({
+  src: [
+    {
+      path: "../../public/fonts/helvetica-light-regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-helvetica-light",
+  display: "swap",
+  preload: true,
+  fallback: ["Arial", "Helvetica", "sans-serif"],
+});
+
 export const things = localFont({
   src: [
     {
@@ -48,5 +62,5 @@ export const things = localFont({
 });
 
 export function getFontVariables() {
-  return `${helvetica.variable} ${things.variable}`;
+  return `${helvetica.variable} ${helveticaLight.variable} ${things.variable}`;
 }

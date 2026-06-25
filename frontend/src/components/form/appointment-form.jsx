@@ -96,7 +96,7 @@ export default function AppointmentForm() {
   }
 
   return (
-    <div className="w-full bg-[#a14962] p-[15px] sm:p-[23px] xl:p-[28px] 2xl:p-[32px] 3xl:p-[40px]">
+    <div className="w-full bg-[#a14962] p-[15px_20px] sm:p-[20px_32px] xl:p-[25px_40px] 2xl:p-[28px_48px] 3xl:p-[34px_54px]">
       <div className="flex flex-col sm:flex-row flex-wrap sm:items-center gap-y-2.5 gap-x-[20px] sm:gap-x-[40px] xl:gap-x-[80px] 2xl:gap-x-[91px] 3xl:gap-x-[110px]">
         <div className="flex-none text-[20px] lg:text-[28.3px] xl:text-[35px] 2xl:text-[39.7px] 3xl:text-[48.1px] leading-normal font-normal font-things text-white">
           Appointment

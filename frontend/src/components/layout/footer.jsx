@@ -75,23 +75,30 @@ export default function Footer({
           <div className="w-[48%] sm:w-[30%] lg:w-[13%]">
             <div className={headStyle}>Follow Us</div>
             <div className="flex flex-col gap-[10px] lg:gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
-              {socialLinks.map((link) => (
-                <Link
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2"
-                >
-                  <Image
-                    src={link.icon}
-                    alt={logo.alternativeText || "social"}
-                    width={48}
-                    height={48}
-                    className="w-[10px] sm:w-[12px] xl:w-[16px] 2xl:w-[18px] 3xl:w-[22px] aspect-square object-contain block"
-                  />
-                  <span>{link.label}</span>
-                </Link>
-              ))}
+              {defaultSocialLinks.map((defaultLink) => {
+                const apiLink = socialLinks.find(
+                  (l) =>
+                    l.label?.toLowerCase() === defaultLink.label.toLowerCase(),
+                );
+                const link = apiLink || defaultLink;
+                return (
+                  <Link
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2"
+                  >
+                    <Image
+                      src={link.icon}
+                      alt={link.label || "social"}
+                      width={48}
+                      height={48}
+                      className="w-[10px] sm:w-[12px] xl:w-[16px] 2xl:w-[18px] 3xl:w-[22px] aspect-square object-contain block"
+                    />
+                    <span>{link.label}</span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
           <div className="w-[48%] sm:w-[30%] lg:w-[16%] xl:w-[18%]">
