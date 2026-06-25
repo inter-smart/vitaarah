@@ -1,17 +1,13 @@
 "use client";
 import Image from "next/image";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
-import { cn } from "@/lib/utils";
 
 export default function ConditionRootCause({ data }) {
-   
- 
     return (
-        <section className='relative bg-[#FFF9EB] py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px] overflow-hidden'>
+        <section className='relative bg-[#FFF9EB] py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[100px] overflow-hidden'>
 
             <div className="container">
                 <div className="max-w-[440px] xl:max-w-[540px] 2xl:max-w-[610px] 3xl:max-w-[740px] text-center m-auto mb-[25px] lg:mb-[35px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
@@ -20,8 +16,6 @@ export default function ConditionRootCause({ data }) {
                         {data.description}
                     </div>
                 </div>
-                {/* intelligence slider */}
-
                 <Swiper
                     modules={[Autoplay]}
                     autoplay={{ delay: 0, disableOnInteraction: false }}
@@ -40,7 +34,9 @@ export default function ConditionRootCause({ data }) {
                 >
                     {data?.rootCauses.map((item, index) => (
                         <SwiperSlide key={index} className="!h-auto">
-                            <div key={"services" + index} className="relative block w-full h-full bg-[#FFFCF5] p-[30px_10px] lg:p-[43px_15px] xl:p-[55px_18px] 2xl:p-[60px_20px] 3xl:p-[73px_55px] text-center group transition-all hover:bg-white">
+                            <div key={"services" + index} className="relative block w-full h-full bg-[#FFFCF5] p-[30px_10px] lg:p-[43px_15px] xl:p-[55px_18px] 2xl:p-[60px_20px] 3xl:p-[73px_55px] 
+                            text-center group transition-all 
+                            ">
 
                                 {/* main icon */}
                                 <div className=" w-[32px]xl:w-[38px] 2xl:w-[42px]  3xl:w-[52px] h-[32px] xl:h-[38px] 2xl:h-[42px]  3xl:h-[52px] overflow-hidden m-auto mb-[12px] 2xl:mb-[15px] 3xl:mb-[20px]">

@@ -20,20 +20,19 @@ const fadeUp = {
 
 export default function ConditionSymtoms({ data }) { 
 
-    const symptoms =
-        data.symptoms?.children || [];
+    const symptoms = data.symptoms?.children || [];
 
     const midpoint = Math.ceil(symptoms.length / 2);
     const leftSymptoms = symptoms.slice(0, midpoint);
     const rightSymptoms = symptoms.slice(midpoint);
 
     return (
-        <section className="relative py-[35px_50px] lg:py-[40px_70px] xl:py-[50px_90px] 2xl:py-[60px_100px] 3xl:py-[70px_130px] ">
+        <section className="relative py-[35px_50px] lg:py-[40px_70px] xl:py-[50px_90px] 2xl:py-[60px_100px] 3xl:py-[70px_130px] overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
                 <div className="absolute left-[0px] bottom-[50px]">
                     <Image src="/images/circle.svg" className="w-full max-w-[87px]" width="85" height="85" alt="floating_icon" />
                 </div>
-                <div className="absolute right-[-60px] top-[-65px] w-full max-w-[170px] xl:max-w-[210px] 2xl:max-w-[240px] 3xl:max-w-[290px] ">
+                <div className="absolute right-[-60px] top-[0x] w-full max-w-[170px] xl:max-w-[210px] 2xl:max-w-[240px] 3xl:max-w-[290px] ">
                     <Image src="/images/conditionCircle.svg" className="w-full object-cover" width="85" height="85" alt="floating_icon" />
                 </div>
             </div>
