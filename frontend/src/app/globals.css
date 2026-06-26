@@ -422,23 +422,16 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
-.phone-input {
-    width: 100%;
-}
+ 
 
 .phone-input .react-international-phone-country-selector-button {
     background: white;
     padding: 5px;
     border: none; 
+    margin-bottom: 10px;
 }
 
-.phone-input .react-international-phone-input {
-    width: 100%;
-    border: 0 !important; 
-    border-radius: 0 !important;
-    background: transparent !important; 
-    color: #875849;
-    
+ .phone-input .react-international-phone-input {
+    @apply w-full !border-0 rounded-none !bg-transparent shadow-none text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:!text-[15.8px] 3xl:!text-[19.2px] ;
+    color: #875849 !important;
 }
-
- 

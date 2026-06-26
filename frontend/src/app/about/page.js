@@ -1,4 +1,4 @@
-
+ "use client"
 import AboutIntelligence from "@/components/blocks/about/about-intelligence";
 import AboutGuidence from "@/components/blocks/about/about-guidence";
 import AboutClinic from "@/components/blocks/about/about-clinic";
@@ -7,6 +7,8 @@ import AboutCredibility from "@/components/blocks/about/about-credibility";
 import AboutMoto from "@/components/blocks/about/about-moto";
 import HomeAbout from "@/components/blocks/home/home-about";
 import InnerHero from "@/components/common/InnerHero";
+import { motion } from "framer-motion";
+import { use } from "react";
 
 const local_data = {
   id: 24,
@@ -489,16 +491,45 @@ const local_data = {
 };
 
 export default function About() {
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60, scale: 0.96 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { 
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        mass: 0.8,
+      } 
+    }
+  };
+
   return (
     <>
       <InnerHero data={local_data.hero} />
-      <HomeAbout data={local_data.about} />
-      <AboutMoto data={local_data.about} />
-      <AboutIntelligence data={local_data.services} />
-      <AboutGuidence data={local_data.members} />
-      <AboutCredibility data={local_data.certifications} />
-      <AboutClinic data={local_data.clinicEnvironment} />
-      <AboutApproach data={local_data.approach} />
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <HomeAbout data={local_data.about} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <AboutMoto data={local_data.about} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <AboutIntelligence data={local_data.services} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <AboutGuidence data={local_data.members} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <AboutCredibility data={local_data.certifications} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <AboutClinic data={local_data.clinicEnvironment} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <AboutApproach data={local_data.approach} />
+      </motion.div>
     </>
   )
 }
