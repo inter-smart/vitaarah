@@ -23,7 +23,6 @@ export default function PackagesListing({ data }) {
 
           <div className="flex flex-wrap justify-center -mx-2.5 xl:-mx-[14px] 2xl:-mx-[16px] 3xl:-mx-[20px]">
             {data?.packages?.map((item, idx) => {
-              const isCenter = idx;
               return (
                 <div
                   key={"packages" + idx}
@@ -31,13 +30,12 @@ export default function PackagesListing({ data }) {
                     "w-full sm:w-1/2 lg:w-1/2 min-w-0 select-none p-2.5 xl:p-[18px_14px] 2xl:p-[20px_16px] 3xl:p-[25px_20px]",
                   )}
                 >
-                  <Link
-                    href={`/packages/${item?.slug}`}
+                  <div
                     className={cn(
-                      "group/packages w-full h-full p-[20px_15px] sm:p-[40px_17px] xl:p-[50px_25px] 2xl:p-[57px_28px] 3xl:p-[69px_34.6px] flex flex-wrap gap-[20px] sm:gap-[24px] xl:gap-[29.4px] 2xl:gap-[33.3px] 3xl:p-[40.4px] border border-[#fff9eb] bg-linear-to-l from-[#fff9eb] to-[#fff9eb] transition-all duration-300 hover:from-[#e9cba3] hover:to-[#a14962]",
+                      "group/packages w-full h-full p-[20px_15px] sm:p-[40px_17px] xl:p-[50px_25px] 2xl:p-[57px_28px] 3xl:p-[69px_34.6px] flex flex-wrap gap-[10px] sm:gap-[15px] lg:gap-[24px] xl:gap-[29.4px] 2xl:gap-[33.3px] 3xl:p-[40.4px] border border-[#fff9eb] bg-linear-to-l from-[#fff9eb] to-[#fff9eb] transition-all duration-300 hover:from-[#e9cba3] hover:to-[#a14962]",
                     )}
                   >
-                    <div className="w-[129px] xl:w-[160px] 2xl:w-[180.3px] 3xl:w-[218.7px] aspect-[218/436] rounded-[482px] xl:rounded-[482px] 2xl:rounded-[180.3px] 3xl:rounded-[482px] bg-black relative z-0 overflow-hidden">
+                    <div className="w-[90px] sm:w-[100px] lg:w-[129px] xl:w-[160px] 2xl:w-[180.3px] 3xl:w-[218.7px] aspect-[218/436] rounded-[482px] xl:rounded-[482px] 2xl:rounded-[180.3px] 3xl:rounded-[482px] bg-black relative z-0 overflow-hidden">
                       <Image
                         src={item.featuredImage.url}
                         alt={
@@ -51,26 +49,27 @@ export default function PackagesListing({ data }) {
                         unoptimized
                       />
                     </div>
-                    <div className="flex-1 ">
+                    <div className="flex-1">
                       {item?.title && (
-                        <div className="heading_1 leading-tight text-[#1f1f1f] group-hover/packages:text-white mb-[1px] 3xl:mb-[2px]">
+                        <div className="heading_1 leading-tight text-[#1f1f1f] group-hover/packages:text-white mb-[1px] 3xl:mb-[2px] transition-colors duration-300">
                           {item?.title}
                         </div>
                       )}
-                      <div className="text_3 font-normal text-black group-hover/packages:text-white mb-[10px] xl:mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">
+                      <div className="text_3 font-normal text-black group-hover/packages:text-white mb-[10px] xl:mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px] transition-colors duration-300">
                         {item?.shortDescription}
                       </div>
                       {item?.includedTreatments && (
                         <>
-                          <div className="text_3 font-normal tracking-[4px] xl:tracking-[4px] text-black group-hover/packages:text-white mb-[10px] xl:mb-[12px] 2xl:mb-[14px] 3xl:mb-[16px]">
+                          <div className="text_3 font-normal tracking-[2px] xl:tracking-[4px] text-black group-hover/packages:text-white mb-[10px] xl:mb-[12px] 2xl:mb-[14px] 3xl:mb-[16px] transition-colors duration-300">
                             PROGRAMSINCLUDED
                           </div>
                           <div className="xl:max-w-[282px] 2xl:max-w-[320px] 3xl:max-w-[388px] flex flex-col mb-[10px] xl:mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">
                             {item?.includedTreatments?.map(
                               (includedTreatment, idx) => (
-                                <div
+                                <Link
                                   key={"includedTreatments" + idx}
-                                  className="group/includedTreatments flex gap-x-[8px] lg:gap-x-[11px] 2xl:gap-x-[12px] 3xl:gap-x-[15px] p-[6px_8px] sm:p-[8px_9px] xl:p-[10px_10px] 2xl:p-[11px_11px] 3xl:p-[12px_13.4px] hover:bg-[#d9d9d9]/20 transition-all duration-300"
+                                  href={`/packages/${includedTreatment?.slug}`}
+                                  className="group/includedTreatments flex gap-x-[8px] lg:gap-x-[11px] 2xl:gap-x-[12px] 3xl:gap-x-[15px] p-[4px_4px] sm:p-[6px_5px] xl:p-[7px_8.5px] 2xl:p-[8px_9.5px] 3xl:p-[10px_11.5px] hover:bg-[#d9d9d9]/20 transition-all duration-300"
                                 >
                                   <Image
                                     src="/images/includedTreatments-icon.svg"
@@ -79,7 +78,7 @@ export default function PackagesListing({ data }) {
                                     height={12}
                                     className="w-[8px] 2xl:w-[10px] 3xl:w-[12px] object-contain"
                                   />
-                                  <span className="included-treatment-label text_3 leading-tight text-black group-hover/packages:text-white flex-1">
+                                  <span className="included-treatment-label text_3 leading-tight text-black group-hover/packages:text-white flex-1 transition-colors duration-300">
                                     {includedTreatment?.label}
                                   </span>
                                   <Image
@@ -89,7 +88,7 @@ export default function PackagesListing({ data }) {
                                     height={12}
                                     className="w-[8px] 2xl:w-[10px] 3xl:w-[12px] object-contain transition-opacity duration-300 opacity-0 group-hover/includedTreatments:opacity-100"
                                   />
-                                </div>
+                                </Link>
                               ),
                             )}
                           </div>
@@ -109,7 +108,7 @@ export default function PackagesListing({ data }) {
                         )}
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               );
             })}

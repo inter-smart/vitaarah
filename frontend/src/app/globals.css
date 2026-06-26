@@ -24,6 +24,7 @@
   --header-y-3xl: 150px;
 
   --font-helvetica: "Helvetica Neue", Arial, sans-serif;
+  --font-helvetica-light: "Helvetica Light", Arial, sans-serif;
   --font-things: "Things", sans-serif;
 
   --color-background: var(--background);
@@ -122,6 +123,18 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+@font-face {
+  font-family: "Helvetica Light";
+  src: url("/fonts/helvetica-light-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-helvetica-light {
+  font-family: "Helvetica Light", Arial, Helvetica, sans-serif;
 }
 
 @layer base {
@@ -409,3 +422,23 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
+.phone-input {
+    width: 100%;
+}
+
+.phone-input .react-international-phone-country-selector-button {
+    background: white;
+    padding: 5px;
+    border: none; 
+}
+
+.phone-input .react-international-phone-input {
+    width: 100%;
+    border: 0 !important; 
+    border-radius: 0 !important;
+    background: transparent !important; 
+    color: #875849;
+    
+}
+
+ 
