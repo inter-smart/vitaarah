@@ -12,8 +12,15 @@ export default function PackagesListing({ data }) {
     `}</style>
       <section
         id="PackagesListing"
-        className="w-full block py-[15px_15px] sm:py-[15px_20px] lg:py-[15px_24px] xl:py-[19px_29px] 2xl:py-[22px_33px] 3xl:py-[28px_35px]"
+        className="w-full block py-[15px_15px] sm:py-[15px_20px] lg:py-[15px_24px] xl:py-[19px_29px] 2xl:py-[22px_33px] 3xl:py-[28px_35px] overflow-hidden relative z-0"
       >
+        <Image
+          src="/images/home-about-elmt-2.svg"
+          alt="home about element 2"
+          width={60}
+          height={60}
+          className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[8%] left-0 -translate-x-1/2"
+        />
         <div className="container">
           {data.title && (
             <h2 className="text_2 text-center text-[#1f1f1f] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">

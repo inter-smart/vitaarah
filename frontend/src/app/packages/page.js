@@ -24,11 +24,6 @@ const local_data = {
       url: "/images/packages-hero.jpg",
     },
     title: "Packages",
-    description: "",
-    button: {
-      slug: "",
-      label: "",
-    },
   },
   statistics: {
     id: 25,

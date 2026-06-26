@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 import { cn } from "@/lib/utils";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -61,11 +60,15 @@ export default function HomeBlogs({ data }) {
                   )}
                   onMouseEnter={() => setHoveredIdx(idx)}
                 >
-                  <div className={cn(
-                    "max-sm:invisible absolute -z-1 inset-x-0 bottom-0 transition-opacity duration-500",
-                    hoveredIdx === idx ? "opacity-0" : "opacity-100",
-                  )}>
-                    <div className="text_4 line-clamp-2 mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px]">{item?.title}</div>
+                  <div
+                    className={cn(
+                      "max-sm:invisible absolute -z-1 inset-x-0 bottom-0 transition-opacity duration-500",
+                      hoveredIdx === idx ? "opacity-0" : "opacity-100",
+                    )}
+                  >
+                    <div className="text_4 line-clamp-2 mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px]">
+                      {item?.title}
+                    </div>
                     {item?.featuredImage?.url && (
                       <div className="w-full aspect-square overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
                         <Image
@@ -86,54 +89,57 @@ export default function HomeBlogs({ data }) {
 
                   <Link
                     href={`/blog/${item?.slug}`}
-                    className={cn(
-                      "mt-auto",
-                      "transition-all duration-500",
-                    )}
+                    className={cn("mt-auto", "transition-all duration-500")}
                   >
-                  <div className={cn(
-                    "bg-white transition-opacity duration-500",
-                    hoveredIdx === idx ? "opacity-100" : "opacity-100 sm:opacity-0",
-                  )}>
-                    <div className="text_4 line-clamp-2 mb-[4px] xl:mb-[6px] 2xl:mb-[8px] 3xl:mb-[10px]">{item?.title}</div>
-                    <div className="text_3 leading-relaxed line-clamp-2 text-black mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px]">
-                      {item?.shortDescription || "-"}
-                    </div>
-                    <div className="flex justify-between gap-2">
-                      <div className="text_3 text-center text-[#a14962] underline underline-offset-4 hover:text-black">
-                        Read More
+                    <div
+                      className={cn(
+                        "bg-white transition-opacity duration-500",
+                        hoveredIdx === idx
+                          ? "opacity-100"
+                          : "opacity-100 sm:opacity-0",
+                      )}
+                    >
+                      <div className="text_4 line-clamp-2 mb-[4px] xl:mb-[6px] 2xl:mb-[8px] 3xl:mb-[10px]">
+                        {item?.title}
                       </div>
-                      <div className="text_3 text-center text-[#a14962]">
-                        {item?.publishedDate
-                          ? new Date(item.publishedDate).toLocaleDateString(
-                              "de-DE",
-                              {
-                                day: "2-digit",
-                                month: "2-digit",
-                                year: "numeric",
-                              },
-                            )
-                          : ""}
+                      <div className="text_3 leading-relaxed line-clamp-2 text-black mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px]">
+                        {item?.shortDescription || "-"}
+                      </div>
+                      <div className="flex justify-between gap-2">
+                        <div className="text_3 text-center text-[#a14962] underline underline-offset-4 hover:text-black">
+                          Read More
+                        </div>
+                        <div className="text_3 text-center text-[#a14962]">
+                          {item?.publishedDate
+                            ? new Date(item.publishedDate).toLocaleDateString(
+                                "de-DE",
+                                {
+                                  day: "2-digit",
+                                  month: "2-digit",
+                                  year: "numeric",
+                                },
+                              )
+                            : ""}
+                        </div>
+                      </div>
+                      <div className="w-full aspect-[373/473] overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
+                        <Image
+                          src={getStrapiMediaUrl(item.featuredImage.url)}
+                          alt={
+                            item.featuredImage.alternativeText ||
+                            item.title ||
+                            "Blog"
+                          }
+                          width={52}
+                          height={52}
+                          className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                          unoptimized
+                        />
                       </div>
                     </div>
-                    <div className="w-full aspect-[373/473] overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
-                      <Image
-                        src={getStrapiMediaUrl(item.featuredImage.url)}
-                        alt={
-                          item.featuredImage.alternativeText ||
-                          item.title ||
-                          "Blog"
-                        }
-                        width={52}
-                        height={52}
-                        className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                        unoptimized
-                      />
-                    </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               </div>
-            </div>
             ))}
           </div>
         </div>

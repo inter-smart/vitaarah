@@ -1,11 +1,19 @@
+import Image from "next/image";
 import { Fragment } from "react";
 
 export default function PackagesStatistics({ data }) {
   return (
     <section
       id="PackagesStatistics"
-      className="w-full bg-white py-[15px] sm:py-[16px] lg:py-[18px] xl:py-[20px] 2xl:py-[23px] 3xl:py-[28px]"
+      className="w-full bg-white py-[15px] sm:py-[16px] lg:py-[18px] xl:py-[20px] 2xl:py-[23px] 3xl:py-[28px] overflow-hidden relative z-0"
     >
+      <Image
+        src="/images/home-about-elmt-1.svg"
+        alt="home about element 1"
+        width={300}
+        height={300}
+        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[310px] translate-x-1/2 absolute -z-1 top-[4%] right-0"
+      />
       <div className="container">
         {data.title && (
           <h2 className="heading_1 leading-tight text-center text-[#1f1f1f] mb-[4px] xl:mb-[6px] 2xl:mb-[10px]">
