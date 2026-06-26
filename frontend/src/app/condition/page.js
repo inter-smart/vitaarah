@@ -269,16 +269,11 @@ const local_data = {
 
         }
     ]
-
-
-
 }
 
 export default function Condition() {
-
     const searchParams = useSearchParams();
     const activeTab = searchParams.get("tab") || "back-pain";
-
     const currentData =
         local_data?.conditions?.find((item) => item.slug === activeTab) ||
         local_data?.conditions?.[0];
