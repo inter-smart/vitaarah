@@ -31,21 +31,35 @@ export default function AboutIntelligence({ data }) {
                     modules={[Autoplay]}
                     autoplay={{ delay: 0, disableOnInteraction: false }}
                     speed={4000}
-                    loop={true}
-                    center={true}
+                    loop={true} 
                     slidesPerView={1.3}
                     spaceBetween={25}
                     breakpoints={{
                         478: { slidesPerView: 2 },
                         768: { slidesPerView: 2.5 },
-                        992: { slidesPerView: 3 },
-                        1280: { slidesPerView: 3 },
+                        1090: {
+                            slidesPerView: 3,
+                            spaceBetween: 25
+                        },
+                        1345: {
+                            slidesPerView: 3,
+                            spaceBetween: 30
+                        },
+                        1525: {
+                            slidesPerView: 3,
+                            spaceBetween: 40
+                        },
+                        1800: {
+                            slidesPerView: 3,
+                            spaceBetween: 60
+                        },
                     }}
                     className="relative z-20"
                 >
                     {data?.services.map((item, index) => (
-                        <SwiperSlide key={index} className="!h-auto">
-                            <div key={"services" + index} className="relative block w-full h-full bg-[#FFFCF5] p-[30px_10px] lg:p-[43px_15px] xl:p-[55px_18px] 2xl:p-[60px_20px] 3xl:p-[73px_25px] text-center group transition-all hover:bg-white">
+                        <SwiperSlide key={index} className="!h-auto group">
+                            <div key={"services" + index} className="relative block w-full h-full bg-white lg:bg-[#FFFCF5] p-[30px_10px] lg:p-[43px_15px] xl:p-[55px_18px] 2xl:p-[60px_20px] 3xl:p-[73px_25px] text-center group 
+                            transition-all hover:bg-white group transition-all  lg:scale-y-90 group-[.swiper-slide-next]:lg:scale-y-100   group-[.swiper-slide-next]:lg:bg-white">
                                 {/* bg-icon  */}
                                 <div className="w-full max-w-[320px] absolute top-[30px] left-0 right-0 opacity-0 m-auto pointer-events-none transition-all group-hover:opacity-[0.04]">
                                     <Image src={item?.icon?.url} width="350" height="350" className="w-full h-full object-cover" alt={item?.title} />

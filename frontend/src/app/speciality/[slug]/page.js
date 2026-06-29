@@ -1,6 +1,8 @@
+"use client"
 import SpecialityDetail from "@/components/blocks/speciality/speciality-details";
 import InnerHero from "@/components/common/InnerHero";
 import { notFound } from "next/navigation";
+import { motion } from "framer-motion";
 
 const local_data = {
   id: 24,
@@ -503,10 +505,27 @@ export default async function SpecialityDetails({ params }) {
     notFound();
   }
 
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60, scale: 0.96 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { 
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        mass: 0.8,
+      } 
+    }
+  };
+
   return (
     <>
       <InnerHero data={speciality.hero} />
-      <SpecialityDetail data={speciality.detailSection} />
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <SpecialityDetail data={speciality.detailSection} />
+      </motion.div>
     </>
   );
 }

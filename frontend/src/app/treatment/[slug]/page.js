@@ -1,6 +1,7 @@
 import TreatmentAlchemy from '@/components/blocks/treatment/treatment-alchemy';
 import TreatmentComplementary from '@/components/blocks/treatment/treatment-complementary';
 import TreatmentDetail from '@/components/blocks/treatment/treatment-detail';
+import TreatmentFaq from '@/components/blocks/treatment/treatment-faq';
 import TreatmentRight from '@/components/blocks/treatment/treatment-right';
 import TreatmentRitualExperience from '@/components/blocks/treatment/treatment-ritual-experience';
 import TreatmentRythym from '@/components/blocks/treatment/treatment-rythym';
@@ -586,6 +587,7 @@ export default async function TreatmentDetails({ params }) {
             <TreatmentRitualExperience data={treatment.ritualExperienceSection} />
             <TreatmentAlchemy data={treatment.benefitsSection} />
             <TreatmentRight data={treatment.eligibilitySection} />
+            <TreatmentFaq data={treatment.faqSection} />
             <TreatmentComplementary data={treatment.treatmentSection} />
             <TreatmentRythym data={treatment.ctaSection} />
         </>

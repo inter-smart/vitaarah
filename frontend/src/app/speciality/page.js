@@ -1,5 +1,7 @@
+"use client"
 import SpecialityPathway from "@/components/blocks/speciality/speciality-pathway"
 import InnerHero from "@/components/common/InnerHero"
+import { motion } from "framer-motion"
 
 const local_data = {
     id: 24,
@@ -272,10 +274,27 @@ const local_data = {
 }
 
 export default function Speciality() {
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 60, scale: 0.96 },
+        visible: { 
+          opacity: 1, 
+          y: 0, 
+          scale: 1,
+          transition: { 
+            type: "spring",
+            stiffness: 100,
+            damping: 20,
+            mass: 0.8,
+          } 
+        }
+      };
+      
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <SpecialityPathway data={local_data.specialitySection} />
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+                <SpecialityPathway data={local_data.specialitySection} />
+            </motion.div>
         </>
     )
 }

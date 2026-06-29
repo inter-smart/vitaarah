@@ -67,7 +67,7 @@ export default function TreatmentRythym({ data }) {
                             href={`/${data?.button?.slug}`}
                             className="group relative overflow-hidden bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3]
                             text-white font-medium inline-flex items-center justify-center
-                            px-[10px] min-w-[120px] xl:min-w-[170px] 2xl:min-w-[170px] 3xl:min-w-[205px]
+                            px-[10px] min-w-[120px] xl:min-w-[170px] 2xl:min-w-[190px] 3xl:min-w-[240px]
                             h-[35px] 2xl:h-[37px] 3xl:h-[45px]
                             transition-all duration-500 ease-out hover:-translate-y-1
                             hover:scale-[1.03]
