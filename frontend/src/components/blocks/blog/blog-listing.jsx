@@ -6,7 +6,7 @@ export default function BlogListing({ data }) {
   return (
     <section
       id="BlogListing"
-      className="w-full block py-[15px_15px] sm:py-[15px_20px] lg:py-[15px_24px] xl:py-[19px_29px] 2xl:py-[22px_33px] 3xl:py-[28px_35px] overflow-hidden relative z-0"
+      className="w-full block py-[25px_30px] sm:py-[30px_40px] lg:py-[44px_57px] xl:py-[54px_70px] 2xl:py-[60px_79px] 3xl:py-[74px_96px] overflow-hidden relative z-0"
     >
       <Image
         src="/images/home-about-elmt-2.svg"
@@ -35,6 +35,20 @@ export default function BlogListing({ data }) {
                   href={`/blog/${item?.slug}`}
                   className={cn("mt-auto", "transition-all duration-500")}
                 >
+                  <div className="w-full aspect-[373/473] overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
+                    <Image
+                      src={item.featuredImage.url}
+                      alt={
+                        item.featuredImage.alternativeText ||
+                        item.title ||
+                        "Blog"
+                      }
+                      width={52}
+                      height={52}
+                      className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                      unoptimized
+                    />
+                  </div>
                   <div className="text_4 line-clamp-2 mb-[4px] xl:mb-[6px] 2xl:mb-[8px] 3xl:mb-[10px]">
                     {item?.title}
                   </div>
@@ -57,20 +71,6 @@ export default function BlogListing({ data }) {
                           )
                         : ""}
                     </div>
-                  </div>
-                  <div className="w-full aspect-[373/473] overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
-                    <Image
-                      src={getStrapiMediaUrl(item.featuredImage.url)}
-                      alt={
-                        item.featuredImage.alternativeText ||
-                        item.title ||
-                        "Blog"
-                      }
-                      width={52}
-                      height={52}
-                      className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                      unoptimized
-                    />
                   </div>
                 </Link>
               </div>
