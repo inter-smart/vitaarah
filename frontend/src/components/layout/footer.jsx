@@ -105,8 +105,7 @@ export default function Footer({
             <div className="mb-2">
               <div className={headStyle}>UAE</div>
               <div className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] xl:max-w-[90%]">
-                {uaeAddress ||
-                  "Test data - melbin@vitaarah.ae 202, API Business Suites, Al Barsha 1 ,Dubai"}
+                {uaeAddress}
               </div>
             </div>
             <hr className="max-w-[120px] 3xl:max-w-[154px] border-[#AF8C80]/20 my-[10px] lg:my-[20px] 2xl:my-[25px] 3xl:my-[30px]" />
