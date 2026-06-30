@@ -3,6 +3,7 @@ import SpecialityDetail from "@/components/blocks/speciality/speciality-details"
 import InnerHero from "@/components/common/InnerHero";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
+import { useParams } from "next/navigation";
 
 const local_data = {
   id: 24,
@@ -497,8 +498,9 @@ const local_data = {
     },
   ],
 };
-export default async function SpecialityDetails({ params }) {
-  const { slug } = await params;
+export default function SpecialityDetails() {
+  const params = useParams();
+  const { slug } = params;
   const speciality = local_data.specialities.find((item) => item.slug === slug);
 
   if (!speciality) {

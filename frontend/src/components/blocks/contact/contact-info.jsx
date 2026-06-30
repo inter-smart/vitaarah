@@ -145,7 +145,7 @@ function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
         />
       </div>
       <div>
-        <div className="text_3 leading-none text-[#875849] mb-1">{label}</div>
+        <div className="text_3 leading-none text-[#875849] xl:mb-1">{label}</div>
         <Link
           href={linkUrl}
           className="text_3 leading-none text-[#875849] hover:text-[#623628]"

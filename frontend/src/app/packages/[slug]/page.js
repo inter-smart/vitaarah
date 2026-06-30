@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import InnerHero from "@/components/common/InnerHero";
 import PackagesDurations from "@/components/blocks/packages/packages-durations";
 import PackagesDetail from "@/components/blocks/packages/packages-detail";
+import TreatmentFaq from "@/components/blocks/treatment/treatment-faq";
 
 const local_data = {
   detailSection: {
@@ -283,7 +284,54 @@ const local_data = {
   faqSection: {
     id: 15,
     title: "Frequently Asked Questions",
-    description: "Everything you need to know before your session",
+    subtitle: "Everything you need to know before your session",
+    faqs: [
+      {
+        id: 1,
+        question: "How should I choose the right package duration?",
+        answer: [
+          {
+            type: "paragraph",
+            children: [
+              {
+                type: "text",
+                text: "A 3-day package is ideal for a brief metabolic reset and introduction to therapies. A 7-day stay allows for a deeper cellular cleanse, while 14 to 28-day packages deliver the full therapeutic benefits of a traditional Panchakarma program with complete diagnostic monitoring."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 2,
+        question: "What is included in the diagnostic assessment?",
+        answer: [
+          {
+            type: "paragraph",
+            children: [
+              {
+                type: "text",
+                text: "Every package includes an initial pulse diagnosis (Nadi Pariksha) by our resident Ayurvedic physicians, a lifestyle analysis, and a detailed metabolic review to tailor your nutrition, herbs, and therapies."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 3,
+        question: "Are meals and dietary plans provided?",
+        answer: [
+          {
+            type: "paragraph",
+            children: [
+              {
+                type: "text",
+                text: "Yes, you will receive a personalized Ayurvedic diet chart aligned with your dosha constitution. Our team provides detailed guidelines and herbal supplements to support your digestive fire (Agni) during your course."
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
 };
 
@@ -309,6 +357,8 @@ export default async function PackageDetail({ params }) {
         availableDurations={local_data.availableDurations}
         data={local_data.detailSection}
       />
+
+      <TreatmentFaq data={local_data.faqSection} />
 
       {/* {treatment.introductionTitle && (
         <section className="w-full block py-[30px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px]">

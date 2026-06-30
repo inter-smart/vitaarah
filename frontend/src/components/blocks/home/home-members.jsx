@@ -35,11 +35,15 @@ export default function HomeMembers({ data }) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect).on("reinit", onSelect);
+    const handleSelect = () => {
+      onSelect();
+    };
+    emblaApi.on("select", handleSelect).on("reinit", handleSelect);
+    // Initial call
+    handleSelect();
     return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reinit", onSelect);
+      emblaApi.off("select", handleSelect);
+      emblaApi.off("reinit", handleSelect);
     };
   }, [emblaApi, onSelect]);
 

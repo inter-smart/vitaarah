@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import ConditionExpert from '@/components/blocks/condition/condition-expert';
 import ConditionLifestyle from '@/components/blocks/condition/condition-lifestyle';
 import ConditionRootCause from '@/components/blocks/condition/condition-root-cause';
@@ -8,6 +9,63 @@ import ConditionTreatment from '@/components/blocks/condition/condition-treatmen
 import InnerHero from '@/components/common/InnerHero'
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+
+function ConditionContent() {
+  const searchParams = useSearchParams();
+  const activeTab = searchParams.get("tab") || "back-pain";
+  const currentData =
+    local_data?.conditions?.find((item) => item.slug === activeTab) ||
+    local_data?.conditions?.[0];
+
+  if (!currentData) return null;
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60, scale: 0.96 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { 
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        mass: 0.8,
+      } 
+    }
+  };
+
+  return (
+    <>
+      <InnerHero data={local_data.hero} />
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <ConditionTab data={local_data.tabs} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <ConditionSymtoms data={currentData.symptomSection} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <ConditionRootCause data={currentData.rootcauseSection} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <ConditionTreatment data={currentData.recomendedSection} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <ConditionLifestyle data={currentData.lifeStyleSection} />
+      </motion.div>
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+        <ConditionExpert data={local_data.expertSection} />
+      </motion.div>
+    </>
+  );
+}
+
+export default function Condition() {
+  return (
+    <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center">Loading...</div>}>
+      <ConditionContent />
+    </Suspense>
+  );
+}
 
 const local_data = {
   id: 24,
@@ -540,54 +598,5 @@ const local_data = {
         slug: "/"
     },
   }
-}
-
-export default function Condition() {
-  const searchParams = useSearchParams();
-  const activeTab = searchParams.get("tab") || "back-pain";
-  const currentData =
-    local_data?.conditions?.find((item) => item.slug === activeTab) ||
-    local_data?.conditions?.[0];
-
-  if (!currentData) return null;
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 60, scale: 0.96 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1,
-      transition: { 
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
-        mass: 0.8,
-      } 
-    }
-  };
-
-  return (
-    <>
-      <InnerHero data={local_data.hero} />
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <ConditionTab data={local_data.tabs} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <ConditionSymtoms data={currentData.symptomSection} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <ConditionRootCause data={currentData.rootcauseSection} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <ConditionTreatment data={currentData.recomendedSection} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <ConditionLifestyle data={currentData.lifeStyleSection} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <ConditionExpert data={local_data.expertSection} />
-      </motion.div>
-    </>
-  )
 }
 

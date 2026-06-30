@@ -6,6 +6,7 @@ import { getLayoutData } from "@/lib/layout";
 import Providers from "./providers";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import FloatingActionButtons from "@/components/layout/floating-action-buttons";
 
 // [local-data-start] Set to true to use local mock data instead of API
 const USE_LOCAL_DATA = true;
@@ -60,6 +61,8 @@ const LOCAL_HEADER = {
     label: "+971 5590 68096",
     url: "+971559068096",
   },
+  emailAddress: "vitaarah@admin.in",
+  phoneNumber: "+971 559068096",
 };
 
 const LOCAL_FOOTER = {
@@ -187,6 +190,8 @@ export default async function RootLayout({ children }) {
           : null,
         navigation: header.navigation || [],
         ctaButton: header.ctaButton || null,
+        phoneNumber: header.phoneNumber || null,
+        emailAddress: header.emailAddress || null,
       }
     : {};
 
@@ -211,6 +216,7 @@ export default async function RootLayout({ children }) {
           <Header {...headerProps} />
           <main className="flex-1">{children}</main>
           <Footer {...footerProps} data={footer} />
+          <FloatingActionButtons />
         </Providers>
       </body>
     </html>

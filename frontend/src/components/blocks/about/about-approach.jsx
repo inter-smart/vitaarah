@@ -34,7 +34,7 @@ export default function AboutApproach({ data }) {
                                     {id === 0 && (
                                         <div className="absolute z-10 bottom-[-60px] right-[-60px] w-[120px] h-[120px] bg-white flex items-center justify-center pointer-events-none">
                                             <div className="w-[34px] h-[34px] flex items-center justify-center">
-                                                <img src="/images/circle.svg" width="40" height="40" alt="circle" />
+                                                <Image src="/images/circle.svg" width="40" height="40" alt="circle" />
                                             </div>
                                         </div>
                                     )}
