@@ -162,7 +162,9 @@ export const metadata = {
     template: "%s | Vitaarah",
   },
   description: "A modern Next.js boilerplate with Tailwind CSS.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://vitaarah.com'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://vitaarah.com",
+  ),
 };
 
 export default async function RootLayout({ children }) {

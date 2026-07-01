@@ -4,13 +4,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "vitaarah.onrender.com",
+        pathname: "/uploads/**",
       },
       {
         protocol: "http",
         hostname: "localhost",
         port: "1337",
-        // pathname: "/uploads/**",
       },
     ],
   },
