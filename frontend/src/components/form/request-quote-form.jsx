@@ -6,13 +6,6 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectValue,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import {
   FieldGroup,
   Field,
   FieldLabel,
@@ -38,10 +31,10 @@ const formSchema = z.object({
 });
 
 const inputStyle =
-  "text-black placeholder:text-black border-black/20 focus:border-black";
+  "text-[#875849] placeholder:text-[#875849] border-black/15 focus:border-black bg-transparent font-helvetica";
 
 const textareaBase =
-  "text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal font-normal text-black placeholder:text-black w-full bg-none border-b border-black/20 focus:outline-none focus:ring-0 focus:border-black disabled:opacity-60 resize-none";
+  "text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal font-normal text-[#875849] placeholder:text-[#875849] w-full bg-transparent border-b border-black/15 focus:outline-none focus:ring-0 focus:border-black disabled:opacity-60 resize-none";
 
 export default function RequestQuoteForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -185,7 +178,7 @@ export default function RequestQuoteForm() {
               }}
             </form.Field>
 
-            {/* <form.Field name="phone">
+            <form.Field name="phone">
               {(field) => {
                 const isInvalid =
                   field.state.meta.isTouched && !field.state.meta.isValid;
@@ -200,17 +193,23 @@ export default function RequestQuoteForm() {
                     <PhoneInput
                       value={field.state.value}
                       onChange={(phone) => field.handleChange(phone)}
-                      defaultCountry="us"
+                      defaultCountry="ae"
                       disabled={isSubmitting}
                       inputProps={{
                         id: field.name,
                         name: field.name,
                         onBlur: field.handleBlur,
                         "aria-invalid": isInvalid || undefined,
-                        placeholder: "Your Phone Number",
+                        placeholder: "Phone*",
                         autoComplete: "tel",
                       }}
-                      className={cn(inputStyle)}
+                      className={cn(
+                        inputStyle,
+                        "w-full h-[35px] xl:h-[40px] 2xl:h-[45px] 3xl:h-[55px] flex items-center bg-transparent border-b border-black/15 focus-within:border-black pb-1",
+                        "[&_.react-international-phone-input]:!border-0 [&_.react-international-phone-input]:!bg-transparent [&_.react-international-phone-input]:flex-1 [&_.react-international-phone-input]:!text-[#875849] [&_.react-international-phone-input]:placeholder:text-[#875849] [&_.react-international-phone-input]:h-[30px] xl:[&_.react-international-phone-input]:h-[35px] 2xl:[&_.react-international-phone-input]:h-[40px] 3xl:[&_.react-international-phone-input]:h-[50px] [&_.react-international-phone-input]:!font-helvetica [&_.react-international-phone-input]:!text-[11px] lg:[&_.react-international-phone-input]:!text-[11.3px] xl:[&_.react-international-phone-input]:!text-[14px] 2xl:[&_.react-international-phone-input]:!text-[15.8px] 3xl:[&_.react-international-phone-input]:!text-[19.2px]",
+                        "[&_.react-international-phone-country-selector-button]:!bg-transparent [&_.react-international-phone-country-selector-button]:!border-0 [&_.react-international-phone-country-selector-button]:!p-0 [&_.react-international-phone-country-selector-button]:mr-3 [&_.react-international-phone-country-selector-button]:mb-0 [&_.react-international-phone-country-selector-button-active]:!bg-transparent",
+                        "[&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:!border-t-black/60 [&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:border-t-4",
+                      )}
                     />
                     {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />
@@ -218,7 +217,7 @@ export default function RequestQuoteForm() {
                   </Field>
                 );
               }}
-            </form.Field> */}
+            </form.Field>
 
             <form.Field name="message">
               {(field) => (
@@ -232,7 +231,7 @@ export default function RequestQuoteForm() {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                    placeholder="Any specific concerns or questions..."
+                    placeholder="Message / Treatment Interest*"
                     rows={3}
                     disabled={isSubmitting}
                     className={cn(textareaBase)}
