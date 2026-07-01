@@ -8,7 +8,7 @@ const config: Core.Config.Middlewares = [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['http://localhost:3000', process.env.FRONTEND_URL].filter(Boolean),
+      origin: ['https://vitaarah.vercel.app', 'http://localhost:3000'],
     },
   },
 
