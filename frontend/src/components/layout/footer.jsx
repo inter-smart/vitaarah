@@ -63,7 +63,7 @@ export default function Footer({
                 <Link
                   key={link.label}
                   href={link.url}
-                  className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
+                  className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
                 >
                   {link.label}
                 </Link>
@@ -84,7 +84,7 @@ export default function Footer({
                     key={link.url}
                     href={link.url}
                     target="_blank"
-                    className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2"
+                    className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2"
                   >
                     <Image
                       src={link.icon}
@@ -102,7 +102,7 @@ export default function Footer({
           <div className="w-[48%] sm:w-[30%] lg:w-[16%] xl:w-[18%]">
             <div className="mb-2">
               <div className={headStyle}>UAE</div>
-              <div className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] xl:max-w-[90%]">
+              <div className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] xl:max-w-[90%]">
                 {uaeAddress}
               </div>
             </div>
@@ -113,7 +113,7 @@ export default function Footer({
                   <Link
                     key={link.url}
                     href={link.url}
-                    className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
+                    className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
                   >
                     {link.label}
                   </Link>
@@ -143,7 +143,12 @@ export default function Footer({
                 />
               )}
               {googleMapsUrl && (
-                <div className="w-full max-w-[120px] xl:max-w-[148px] 2xl:max-w-[169px] 3xl:max-w-[205px] h-[30px] xl:h-[34px] 2xl:h-[39px] 3xl:h-[46px] bg-[#faf7ed] border border-[#AF8C80] flex gap-2 justify-center items-center hover:bg-[#f1f1f1] transition-colors">
+                <a
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full max-w-[120px] xl:max-w-[148px] 2xl:max-w-[169px] 3xl:max-w-[205px] h-[30px] xl:h-[34px] 2xl:h-[39px] 3xl:h-[46px] bg-[#faf7ed] border border-[#AF8C80] flex gap-2 justify-center items-center hover:bg-[#f1f1f1] transition-colors"
+                >
                   <div className="w-[14px] xl:w-[16px] 2xl:w-[18px] 3xl:w-[22px]">
                     <Image
                       src="/images/footer-map-icon.svg"
@@ -156,7 +161,7 @@ export default function Footer({
                   <div>
                     <div className="text_3 text-[#875849]">Google Map</div>
                   </div>
-                </div>
+                </a>
               )}
             </div>
           </div>
@@ -184,10 +189,10 @@ export default function Footer({
         <hr className="border-[#AF8C80]/20 mt-[30px] sm:mt-[40px] xl:mt-[60px] 2xl:mt-[80px] 3xl:mt-[100px]" />
 
         <div className="flex flex-col sm:flex-row gap-2.5 max-sm:items-center sm:justify-between py-[15px] sm:py-[20px] xl:py-[27px] 2xl:py-[30px] 3xl:py-[37px]">
-          <div className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849]">
+          <div className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849]">
             &copy; {new Date().getFullYear()} {copyrightText}
           </div>
-          <div className="text-[10px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] flex items-center gap-2">
+          <div className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] flex items-center gap-2">
             Designed by:{" "}
             <a href="https://www.intersmartsolution.com/">
               <Image

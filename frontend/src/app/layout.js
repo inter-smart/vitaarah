@@ -115,20 +115,20 @@ const LOCAL_FOOTER = {
     },
     {
       id: 36,
-      label: "Healing Arts ",
-      url: "/",
+      label: "Healing Arts",
+      url: "/treatment",
       isExternal: false,
     },
     {
       id: 37,
       label: "Immersive Healing Journeys",
-      url: "/",
+      url: "/packages",
       isExternal: false,
     },
     {
       id: 38,
       label: "The Visionary",
-      url: "/",
+      url: "/about",
       isExternal: false,
     },
     {
@@ -142,13 +142,13 @@ const LOCAL_FOOTER = {
     {
       id: 40,
       label: "Privacy Policy",
-      url: "/privacy",
+      url: "/privacy-policy",
       isExternal: false,
     },
     {
       id: 41,
       label: "Terms & Conditions",
-      url: "/terms",
+      url: "/terms-and-conditions",
       isExternal: false,
     },
   ],

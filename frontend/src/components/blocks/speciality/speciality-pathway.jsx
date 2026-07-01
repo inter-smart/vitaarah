@@ -10,19 +10,19 @@ export default function SpecialityPathway({ data }) {
         <div className="absolute left-[50px] bottom-[-65px] xl:bottom-[-105px] 2xl:bottom-[-120px] 3xl:bottom-[-145px] ">
           <Image
             src="/images/circle.svg"
+            alt="floating_icon"
             className="w-full max-w-[87px]"
             width="85"
             height="85"
-            alt="floating_icon"
           />
         </div>
         <div className="absolute right-[50px] top-[150px]  w-full max-w-[170px] xl:max-w-[210px] 2xl:max-w-[240px] 3xl:max-w-[290px] ">
           <Image
             src="/images/circle.svg"
+            alt="floating_icon"
             className="w-full object-cover"
             width="85"
             height="85"
-            alt="floating_icon"
           />
         </div>
       </div>
@@ -46,10 +46,10 @@ export default function SpecialityPathway({ data }) {
                 <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[85px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] bg-white rounded-full border border-[#A7546C] overflow-hidden p-[10px] xl:p-[12px] 2xl:p-[15px] 3xl:p-[20px] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                   <Image
                     src={item?.icon.url}
+                    alt={item.alternativeText || "Speciality Icon"}
                     width={25}
                     height={25}
                     className="w-full h-full object-contain"
-                    alt={item.alternativeText}
                   />
                 </div>
                 <div className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-[8px] xl:mb-[10px] 2xl:mb-[15px]">

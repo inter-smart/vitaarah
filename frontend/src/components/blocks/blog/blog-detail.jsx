@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
+import BlogCard from "./blog-card";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const WORDS_PER_MINUTE = 200;
@@ -103,7 +104,7 @@ export default function BlogDetail({ data }) {
                       key={"blogs" + idx}
                       className="w-full sm:w-1/2 lg:w-full"
                     >
-                      <Link
+                      {/* <Link
                         href={`/blog/${item?.slug}`}
                         className="w-full h-full flex flex-col"
                       >
@@ -164,7 +165,8 @@ export default function BlogDetail({ data }) {
                             <Button>Read More</Button>
                           </div>
                         </div>
-                      </Link>
+                      </Link> */}
+                      <BlogCard data={item} />
                     </div>
                   );
                 })}
