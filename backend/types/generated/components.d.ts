@@ -104,6 +104,19 @@ export interface SectionsHero extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsInnerHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_inner_heroes';
+  info: {
+    displayName: 'Inner Hero';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    heroMedia: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    primaryButton: Schema.Attribute.Component<'navigation.button', false>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsMembers extends Struct.ComponentSchema {
   collectionName: 'components_sections_members';
   info: {
@@ -181,6 +194,7 @@ declare module '@strapi/strapi' {
       'sections.about': SectionsAbout;
       'sections.blogs': SectionsBlogs;
       'sections.hero': SectionsHero;
+      'sections.inner-hero': SectionsInnerHero;
       'sections.members': SectionsMembers;
       'sections.packages': SectionsPackages;
       'sections.specialities': SectionsSpecialities;

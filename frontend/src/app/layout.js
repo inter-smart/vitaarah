@@ -9,7 +9,7 @@ import Footer from "@/components/layout/footer";
 import FloatingActionButtons from "@/components/layout/floating-action-buttons";
 
 // [local-data-start] Set to true to use local mock data instead of API
-const USE_LOCAL_DATA = true;
+const USE_LOCAL_DATA = false;
 // [local-data-end]
 
 // [local-data-start]

@@ -2,8 +2,6 @@ import { Button } from "@/components/ui/button";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 import BlogCard from "./blog-card";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
 
 const WORDS_PER_MINUTE = 200;
 
@@ -94,7 +92,7 @@ export default function BlogDetail({ data }) {
             <div className="heading_2 text-[#1f1f1f] mb-[10px] xl:mb-[14px] 2xl:mb-[16px] 3xl:mb-[20px]">
               Recent Blogs
             </div>
-            <div className="flex flex-wrap -mx-[15px] lg:m-0 [&>div]:p-[15px] lg-p-0 lg:space-y-[20px] xl:space-y-[48px] 2xl:space-y-[55px] 3xl:space-y-[67px]">
+            <div className="flex flex-wrap -mx-[15px] lg:m-0 [&>div]:p-[15px] lg:[&>div]:p-0 lg:space-y-[20px] xl:space-y-[48px] 2xl:space-y-[55px] 3xl:space-y-[67px]">
               {data?.blogs
                 ?.filter((b) => b.slug !== data.slug)
                 .slice(0, 2)

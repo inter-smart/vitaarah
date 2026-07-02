@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "blog_pages",
+  "info": {
+    "singularName": "blog-page",
+    "pluralName": "blog-pages",
+    "displayName": "Blog Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Seo": {
+      "type": "component",
+      "component": "common.seo",
+      "repeatable": false
+    },
+    "innerHero": {
+      "type": "component",
+      "component": "sections.inner-hero",
+      "repeatable": false
+    }
+  }
+}

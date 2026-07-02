@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_sections_inner_heroes",
+  "info": {
+    "displayName": "Inner Hero"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "heroMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "primaryButton": {
+      "type": "component",
+      "component": "navigation.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
