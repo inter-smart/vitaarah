@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_common_lifestyle_cards",
+  "info": {
+    "displayName": "Lifestyle Card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

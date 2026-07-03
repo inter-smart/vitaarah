@@ -23,7 +23,7 @@
     "instagram_username": {
       "type": "string"
     },
-    "treatment_videos": {
+    "gallery_videos": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::treatment-video.treatment-video"

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_healing_approach_sections",
+  "info": {
+    "displayName": "Healing Approach Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "approach_card": {
+      "type": "component",
+      "component": "common.approach-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

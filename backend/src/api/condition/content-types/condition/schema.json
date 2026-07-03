@@ -18,13 +18,32 @@
       "type": "uid",
       "targetField": "title"
     },
-    "condition_dynamic": {
-      "type": "dynamiczone",
-      "components": [
-        "sections.hero",
-        "sections.about-section",
-        "sections.contact-section"
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
       ]
+    },
+    "symptoms_section": {
+      "type": "component",
+      "component": "sections.symptoms-section",
+      "repeatable": false
+    },
+    "root_cause_section": {
+      "type": "component",
+      "component": "sections.root-cause-section",
+      "repeatable": false
+    },
+    "recommended_treatments_section": {
+      "type": "component",
+      "component": "sections.recommended-treatments-section",
+      "repeatable": false
+    },
+    "lifestyle_section": {
+      "type": "component",
+      "component": "sections.lifestyle-section",
+      "repeatable": false
     }
   }
 }

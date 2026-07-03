@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_expert_ctas",
+  "info": {
+    "displayName": "Expert Cta"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "whatsappUrl": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

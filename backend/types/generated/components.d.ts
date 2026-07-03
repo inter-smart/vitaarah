@@ -1,5 +1,28 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface CommonApproachCard extends Struct.ComponentSchema {
+  collectionName: 'components_common_approach_cards';
+  info: {
+    displayName: 'Approach Card';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'>;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface CommonCertificationCard extends Struct.ComponentSchema {
+  collectionName: 'components_common_certification_cards';
+  info: {
+    displayName: 'Certification Card';
+  };
+  attributes: {
+    certification_media: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface CommonCompanyMotto extends Struct.ComponentSchema {
   collectionName: 'components_common_company_mottos';
   info: {
@@ -18,6 +41,18 @@ export interface CommonFeature extends Struct.ComponentSchema {
   };
   attributes: {
     icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface CommonLifestyleCard extends Struct.ComponentSchema {
+  collectionName: 'components_common_lifestyle_cards';
+  info: {
+    displayName: 'Lifestyle Card';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    featured_image: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String;
   };
 }
@@ -154,6 +189,34 @@ export interface SectionsBlogs extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsCertificationsSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_certifications_sections';
+  info: {
+    displayName: 'Certifications Section';
+  };
+  attributes: {
+    certification_card: Schema.Attribute.Component<
+      'common.certification-card',
+      true
+    >;
+    statistic: Schema.Attribute.Component<'common.statistic', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsClinicEnvironmentSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_clinic_environment_sections';
+  info: {
+    displayName: 'Clinic Environment Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    featured_image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsContactSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_contact_sections';
   info: {
@@ -167,6 +230,18 @@ export interface SectionsContactSection extends Struct.ComponentSchema {
     title: Schema.Attribute.String;
     uaeAddress: Schema.Attribute.Text;
     workingHour: Schema.Attribute.Blocks;
+  };
+}
+
+export interface SectionsExpertCta extends Struct.ComponentSchema {
+  collectionName: 'components_sections_expert_ctas';
+  info: {
+    displayName: 'Expert Cta';
+  };
+  attributes: {
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    whatsappUrl: Schema.Attribute.String;
   };
 }
 
@@ -184,6 +259,18 @@ export interface SectionsGalleryListSection extends Struct.ComponentSchema {
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
+  };
+}
+
+export interface SectionsHealingApproachSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_healing_approach_sections';
+  info: {
+    displayName: 'Healing Approach Section';
+  };
+  attributes: {
+    approach_card: Schema.Attribute.Component<'common.approach-card', true>;
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -227,6 +314,18 @@ export interface SectionsLegalSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsLifestyleSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_lifestyle_sections';
+  info: {
+    displayName: 'Lifestyle Section';
+  };
+  attributes: {
+    lifestyle_card: Schema.Attribute.Component<'common.lifestyle-card', true>;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsMembers extends Struct.ComponentSchema {
   collectionName: 'components_sections_members';
   info: {
@@ -234,6 +333,18 @@ export interface SectionsMembers extends Struct.ComponentSchema {
   };
   attributes: {
     members: Schema.Attribute.Relation<'oneToMany', 'api::member.member'>;
+  };
+}
+
+export interface SectionsMembersSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_members_sections';
+  info: {
+    displayName: 'Members Section';
+  };
+  attributes: {
+    members: Schema.Attribute.Relation<'oneToMany', 'api::member.member'>;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -245,6 +356,37 @@ export interface SectionsPackages extends Struct.ComponentSchema {
   attributes: {
     description: Schema.Attribute.Blocks;
     packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsRecommendedTreatmentsSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_recommended_treatments_sections';
+  info: {
+    displayName: 'Recommended Treatments Section';
+  };
+  attributes: {
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    treatments: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::treatment.treatment'
+    >;
+  };
+}
+
+export interface SectionsRootCauseSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_root_cause_sections';
+  info: {
+    displayName: 'Root Cause Section';
+  };
+  attributes: {
+    root_causes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::root-cause.root-cause'
+    >;
+    short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
 }
@@ -276,6 +418,19 @@ export interface SectionsSpecialities extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsSymptomsSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_symptoms_sections';
+  info: {
+    displayName: 'Symptoms Section';
+  };
+  attributes: {
+    short_description: Schema.Attribute.Text;
+    symptoms_image: Schema.Attribute.Media<'images'>;
+    symptoms_list: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsTestimonials extends Struct.ComponentSchema {
   collectionName: 'components_sections_testimonials';
   info: {
@@ -296,16 +451,16 @@ export interface SectionsTreatmentSection extends Struct.ComponentSchema {
     displayName: 'Treatment Section';
   };
   attributes: {
+    gallery_videos: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::treatment-video.treatment-video'
+    >;
     instagram_url: Schema.Attribute.String;
     instagram_username: Schema.Attribute.String;
     short_description: Schema.Attribute.Text;
     sub_description: Schema.Attribute.Text;
     sub_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
-    treatment_videos: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::treatment-video.treatment-video'
-    >;
   };
 }
 
@@ -327,8 +482,11 @@ export interface SectionsTreatments extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'common.approach-card': CommonApproachCard;
+      'common.certification-card': CommonCertificationCard;
       'common.company-motto': CommonCompanyMotto;
       'common.feature': CommonFeature;
+      'common.lifestyle-card': CommonLifestyleCard;
       'common.seo': CommonSeo;
       'common.service-card': CommonServiceCard;
       'common.service-specifications': CommonServiceSpecifications;
@@ -339,15 +497,24 @@ declare module '@strapi/strapi' {
       'sections.about-section': SectionsAboutSection;
       'sections.blog-listing-section': SectionsBlogListingSection;
       'sections.blogs': SectionsBlogs;
+      'sections.certifications-section': SectionsCertificationsSection;
+      'sections.clinic-environment-section': SectionsClinicEnvironmentSection;
       'sections.contact-section': SectionsContactSection;
+      'sections.expert-cta': SectionsExpertCta;
       'sections.gallery-list-section': SectionsGalleryListSection;
+      'sections.healing-approach-section': SectionsHealingApproachSection;
       'sections.hero': SectionsHero;
       'sections.inner-hero': SectionsInnerHero;
       'sections.legal-section': SectionsLegalSection;
+      'sections.lifestyle-section': SectionsLifestyleSection;
       'sections.members': SectionsMembers;
+      'sections.members-section': SectionsMembersSection;
       'sections.packages': SectionsPackages;
+      'sections.recommended-treatments-section': SectionsRecommendedTreatmentsSection;
+      'sections.root-cause-section': SectionsRootCauseSection;
       'sections.services-section': SectionsServicesSection;
       'sections.specialities': SectionsSpecialities;
+      'sections.symptoms-section': SectionsSymptomsSection;
       'sections.testimonials': SectionsTestimonials;
       'sections.treatment-section': SectionsTreatmentSection;
       'sections.treatments': SectionsTreatments;

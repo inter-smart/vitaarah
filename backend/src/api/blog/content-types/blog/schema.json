@@ -20,7 +20,7 @@
       "targetField": "title",
       "required": true
     },
-    "featuredImage": {
+    "featured_image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -30,18 +30,18 @@
         "audios"
       ]
     },
-    "shortDescription": {
+    "short_description": {
       "type": "text"
     },
     "description": {
       "type": "blocks",
       "required": true
     },
-    "authorName": {
+    "author_name": {
       "type": "string",
       "required": true
     },
-    "publishedDate": {
+    "published_date": {
       "type": "date"
     },
     "category": {

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "treatments",
+  "collectionName": "root_causes",
   "info": {
-    "singularName": "treatment",
-    "pluralName": "treatments",
-    "displayName": "Treatment"
+    "singularName": "root-cause",
+    "pluralName": "root-causes",
+    "displayName": "Root Cause"
   },
   "options": {
     "draftAndPublish": true
@@ -14,18 +14,11 @@
     "title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
-    },
-    "featured_image": {
+    "icon": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "short_description": {

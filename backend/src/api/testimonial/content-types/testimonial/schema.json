@@ -11,22 +11,19 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "authorName": {
+    "author_name": {
       "type": "string",
       "required": true,
       "unique": true
     },
-    "authorImage": {
+    "author_image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
-    "authorDesignation": {
+    "author_designation": {
       "type": "string"
     },
     "rating": {
@@ -36,7 +33,7 @@
       "min": 1,
       "max": 5
     },
-    "videoTestimonial": {
+    "video_testimonial": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [

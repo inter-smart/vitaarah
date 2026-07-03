@@ -30,6 +30,26 @@
       "type": "component",
       "component": "sections.services-section",
       "repeatable": false
+    },
+    "members_section": {
+      "type": "component",
+      "component": "sections.members-section",
+      "repeatable": false
+    },
+    "certifications_section": {
+      "type": "component",
+      "component": "sections.certifications-section",
+      "repeatable": false
+    },
+    "clinic_environment_section": {
+      "type": "component",
+      "component": "sections.clinic-environment-section",
+      "repeatable": false
+    },
+    "healing_approach_section": {
+      "type": "component",
+      "component": "sections.healing-approach-section",
+      "repeatable": false
     }
   }
 }

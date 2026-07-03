@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_recommended_treatments_sections",
+  "info": {
+    "displayName": "Recommended Treatments Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "treatments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::treatment.treatment"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_certifications_sections",
+  "info": {
+    "displayName": "Certifications Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "statistic": {
+      "type": "component",
+      "component": "common.statistic",
+      "repeatable": true
+    },
+    "certification_card": {
+      "type": "component",
+      "component": "common.certification-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

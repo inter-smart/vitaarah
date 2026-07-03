@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_symptoms_sections",
+  "info": {
+    "displayName": "Symptoms Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "symptoms_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "symptoms_list": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

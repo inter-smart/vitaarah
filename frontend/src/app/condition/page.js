@@ -1,12 +1,12 @@
 "use client";
 import { Suspense } from "react";
-import ConditionExpert from '@/components/blocks/condition/condition-expert';
-import ConditionLifestyle from '@/components/blocks/condition/condition-lifestyle';
-import ConditionRootCause from '@/components/blocks/condition/condition-root-cause';
-import ConditionSymtoms from '@/components/blocks/condition/condition-symtoms';
-import ConditionTab from '@/components/blocks/condition/condition-tab'
-import ConditionTreatment from '@/components/blocks/condition/condition-treatment';
-import InnerHero from '@/components/common/InnerHero'
+import ConditionExpert from "@/components/blocks/condition/condition-expert";
+import ConditionLifestyle from "@/components/blocks/condition/condition-lifestyle";
+import ConditionRootCause from "@/components/blocks/condition/condition-root-cause";
+import ConditionSymtoms from "@/components/blocks/condition/condition-symtoms";
+import ConditionTab from "@/components/blocks/condition/condition-tab";
+import ConditionTreatment from "@/components/blocks/condition/condition-treatment";
+import InnerHero from "@/components/common/InnerHero";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 
@@ -21,47 +21,114 @@ function ConditionContent() {
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 60, scale: 0.96 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       scale: 1,
-      transition: { 
+      transition: {
         type: "spring",
         stiffness: 100,
         damping: 20,
         mass: 0.8,
-      } 
-    }
+      },
+    },
   };
 
   return (
     <>
       <InnerHero data={local_data.hero} />
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={fadeInUp}
+      >
         <ConditionTab data={local_data.tabs} />
       </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={fadeInUp}
+      >
         <ConditionSymtoms data={currentData.symptomSection} />
       </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={fadeInUp}
+      >
         <ConditionRootCause data={currentData.rootcauseSection} />
       </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={fadeInUp}
+      >
         <ConditionTreatment data={currentData.recomendedSection} />
       </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={fadeInUp}
+      >
         <ConditionLifestyle data={currentData.lifeStyleSection} />
       </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={fadeInUp}
+      >
         <ConditionExpert data={local_data.expertSection} />
       </motion.div>
     </>
   );
 }
 
-export default function Condition() {
+// The important clue is this:
+// info: Shutting down Strapi
+// Loading Strapi
+// Creating admin
+// Compiling TS
+// Cleaning dist dir
+
+// This is not a session timeout. It is a full development rebuild.
+
+// ==============
+
+// Selected Condition
+
+// When user clicks
+
+// Hair Loss
+
+// Fetch
+
+// GET
+
+// /api/conditions
+
+// ?filters[slug][$eq]=hair-loss
+
+// &populate=*
+
+// Only Hair Loss data comes.
+
+// No need to download every condition.
+
+export default function ConditionPage() {
   return (
-    <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-[400px] flex items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
       <ConditionContent />
     </Suspense>
   );
@@ -124,23 +191,22 @@ const local_data = {
       id: 6,
       label: "Digestive Issues",
       slug: "digestive-issues",
-    }
+    },
   ],
   conditions: [
     {
       id: 1,
       slug: "back-pain",
-      symptomSection:
-      {
+      symptomSection: {
         title: "Signs & Symptoms",
-        subTitle: "Ayurvedic guidance helps restore balance before discomfort becomes deeper.",
+        subTitle:
+          "Ayurvedic guidance helps restore balance before discomfort becomes deeper.",
         image: {
           alternativeText: "Condition page title",
           mime: "image/jpeg",
           url: "/images/symtom.jpg",
         },
-        symptoms:
-        {
+        symptoms: {
           type: "list",
           format: "unordered",
           children: [
@@ -218,11 +284,11 @@ const local_data = {
             },
           ],
         },
-
       },
       rootcauseSection: {
         title: "Ayurvedic Root Causes",
-        description: "Understanding the root cause allows the body to heal naturally and deeply.",
+        description:
+          "Understanding the root cause allows the body to heal naturally and deeply.",
         rootCauses: [
           {
             id: "1",
@@ -257,11 +323,12 @@ const local_data = {
               url: "/images/nature_icon3.svg",
             },
           },
-        ]
+        ],
       },
       recomendedSection: {
         title: "Recommended Treatments",
-        description: "Understanding the root cause allows the body to heal naturally and deeply.",
+        description:
+          "Understanding the root cause allows the body to heal naturally and deeply.",
         treatments: [
           {
             id: "1",
@@ -311,7 +378,7 @@ const local_data = {
               },
             ],
           },
-        ]
+        ],
       },
       lifeStyleSection: {
         title: "Lifestyle & Dinacharya",
@@ -323,8 +390,8 @@ const local_data = {
             image: {
               alternativeText: "Diet",
               mime: "image/jpeg",
-              url: "/images/lifestyle1.jpg"
-            }, 
+              url: "/images/lifestyle1.jpg",
+            },
             content: {
               type: "list",
               format: "unordered",
@@ -334,57 +401,57 @@ const local_data = {
                   children: [
                     {
                       type: "text",
-                      text: "Iron-rich foods: sesame seeds, dates, pomegranate, leafy greens"
-                    }
-                  ]
+                      text: "Iron-rich foods: sesame seeds, dates, pomegranate, leafy greens",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Protein from lentils, mung beans, soaked almonds"
-                    }
-                  ]
+                      text: "Protein from lentils, mung beans, soaked almonds",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Amla (Indian gooseberry) daily — richest natural source of Vitamin C and hair-supporting antioxidants"
-                    }
-                  ]
+                      text: "Amla (Indian gooseberry) daily — richest natural source of Vitamin C and hair-supporting antioxidants",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Avoid: excess spicy food, alcohol, processed food"
-                    }
-                  ]
+                      text: "Avoid: excess spicy food, alcohol, processed food",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Coconut water and soaked black sesame seeds"
-                    }
-                  ]
+                      text: "Coconut water and soaked black sesame seeds",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Reduce caffeine — known to elevate cortisol and worsen Pitta hair loss"
-                    }
-                  ]
-                }
-              ]
-            }
+                      text: "Reduce caffeine — known to elevate cortisol and worsen Pitta hair loss",
+                    },
+                  ],
+                },
+              ],
+            },
           },
           {
             id: 2,
@@ -392,8 +459,8 @@ const local_data = {
             image: {
               alternativeText: "Daily Routine",
               mime: "image/jpeg",
-              url: "/images/lifestyle2.jpg"
-            }, 
+              url: "/images/lifestyle2.jpg",
+            },
             content: {
               type: "list",
               format: "unordered",
@@ -403,57 +470,57 @@ const local_data = {
                   children: [
                     {
                       type: "text",
-                      text: "Warm oil scalp massage (Shiro Abhyanga) twice weekly"
-                    }
-                  ]
+                      text: "Warm oil scalp massage (Shiro Abhyanga) twice weekly",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Leave oil on for minimum 2 hours before washing"
-                    }
-                  ]
+                      text: "Leave oil on for minimum 2 hours before washing",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Wash hair with cool or lukewarm water only"
-                    }
-                  ]
+                      text: "Wash hair with cool or lukewarm water only",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Avoid heat styling tools and chemical treatments"
-                    }
-                  ]
+                      text: "Avoid heat styling tools and chemical treatments",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Practice Sarvangasana (shoulder stand) and Adho Mukha Svanasana to increase scalp circulation"
-                    }
-                  ]
+                      text: "Practice Sarvangasana (shoulder stand) and Adho Mukha Svanasana to increase scalp circulation",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Sleep before 10pm — hair grows during deep sleep cycles"
-                    }
-                  ]
-                }
-              ]
-            }
+                      text: "Sleep before 10pm — hair grows during deep sleep cycles",
+                    },
+                  ],
+                },
+              ],
+            },
           },
           {
             id: 3,
@@ -461,8 +528,8 @@ const local_data = {
             image: {
               alternativeText: "Preventive Care",
               mime: "image/jpeg",
-              url: "/images/lifestyle3.jpg"
-            }, 
+              url: "/images/lifestyle3.jpg",
+            },
             content: {
               type: "list",
               format: "unordered",
@@ -472,52 +539,51 @@ const local_data = {
                   children: [
                     {
                       type: "text",
-                      text: "Use natural, sulphate-free herbal hair washes"
-                    }
-                  ]
+                      text: "Use natural, sulphate-free herbal hair washes",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Avoid tight hairstyles that pull on follicles"
-                    }
-                  ]
+                      text: "Avoid tight hairstyles that pull on follicles",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Annual internal detox with Triphala for blood purification"
-                    }
-                  ]
+                      text: "Annual internal detox with Triphala for blood purification",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Bhringraj rasayana course (3 months) each year as preventive care"
-                    }
-                  ]
+                      text: "Bhringraj rasayana course (3 months) each year as preventive care",
+                    },
+                  ],
                 },
                 {
                   type: "list-item",
                   children: [
                     {
                       type: "text",
-                      text: "Manage stress through regular yoga and pranayama"
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
+                      text: "Manage stress through regular yoga and pranayama",
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
       },
-
     },
     {
       id: 2,
@@ -525,7 +591,8 @@ const local_data = {
       title: "Signs & Symptoms",
       rootcauseSection: {
         title: "Ayurvedic Root Causes",
-        description: "Understanding the root cause allows the body to heal naturally and deeply.",
+        description:
+          "Understanding the root cause allows the body to heal naturally and deeply.",
         rootCauses: [
           {
             id: "1",
@@ -560,43 +627,38 @@ const local_data = {
               url: "/images/nature_icon3.svg",
             },
           },
-        ]
-      }
-
+        ],
+      },
     },
     {
       id: 3,
       slug: "pcos",
       title: "Signs & Symptoms",
-
     },
     {
       id: 4,
       slug: "hair-loss",
       title: "Signs & Symptoms",
-
     },
     {
       id: 5,
       slug: "insomnia",
       title: "Signs & Symptoms",
-
     },
     {
       id: 6,
       slug: "digestive-issues",
       title: "Signs & Symptoms",
-
-    }
+    },
   ],
 
-  expertSection:{
+  expertSection: {
     title: "Speak with an Ayurvedic Expert",
-    description: "Our practitioners will assess your condition, explain its Ayurvedic root cause, and design a personalised healing programme — at no obligation.",
-     whatsappButton: {
-        label: "Whats App Now",
-        slug: "/"
+    description:
+      "Our practitioners will assess your condition, explain its Ayurvedic root cause, and design a personalised healing programme — at no obligation.",
+    whatsappButton: {
+      label: "Whats App Now",
+      slug: "/",
     },
-  }
-}
-
+  },
+};

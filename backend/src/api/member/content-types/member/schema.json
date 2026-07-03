@@ -11,7 +11,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "thumbnailImage": {
+    "thumbnail_image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -32,7 +32,7 @@
       "type": "text",
       "required": true
     },
-    "featuredImage": {
+    "featured_image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [

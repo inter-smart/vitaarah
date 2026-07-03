@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "condition_pages",
+  "info": {
+    "singularName": "condition-page",
+    "pluralName": "condition-pages",
+    "displayName": "Condition Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "component": "common.seo",
+      "repeatable": false
+    },
+    "hero": {
+      "type": "component",
+      "component": "sections.inner-hero",
+      "repeatable": false
+    },
+    "expert_cta_section": {
+      "type": "component",
+      "component": "sections.expert-cta",
+      "repeatable": false
+    }
+  }
+}

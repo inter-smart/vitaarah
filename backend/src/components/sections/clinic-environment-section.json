@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_clinic_environment_sections",
+  "info": {
+    "displayName": "Clinic Environment Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

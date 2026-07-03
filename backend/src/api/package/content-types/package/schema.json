@@ -11,19 +11,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title",
-      "required": true
-    },
-    "days": {
-      "type": "integer"
-    },
-    "featuredImage": {
+    "featured_image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -33,25 +21,22 @@
         "audios"
       ]
     },
-    "shortDescription": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "short_description": {
       "type": "text"
     },
-    "description": {
-      "type": "blocks"
-    },
-    "features": {
-      "type": "component",
-      "component": "common.feature",
-      "repeatable": true
-    },
-    "badgeType": {
-      "type": "enumeration",
-      "enum": [
-        "Best Seller",
-        "New Arrival",
-        "Featured",
-        "Offer Deal"
-      ]
+    "programs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::program.program"
     }
   }
 }

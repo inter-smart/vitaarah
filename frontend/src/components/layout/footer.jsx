@@ -46,7 +46,7 @@ export default function Footer({
   copyrightText,
   socialLinks = defaultSocialLinks,
 }) {
-  console.log(data);
+  console.log(data, "footer data");
 
   return (
     <footer className="[--top-box:60px] sm:[--top-box:72px] xl:[--top-box:90px] 2xl:[--top-box:102px] 3xl:[--top-box:124px] w-full block bg-[#faf7ed] sm:pt-[60px] xl:pt-[73px] 2xl:pt-[80px] 3xl:pt-[100px] sm:mt-[calc(var(--top-box)/2)] relative z-0">
@@ -102,7 +102,7 @@ export default function Footer({
           <div className="w-[48%] sm:w-[30%] lg:w-[16%] xl:w-[18%]">
             <div className="mb-2">
               <div className={headStyle}>UAE</div>
-              <div className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] xl:max-w-[90%]">
+              <div className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-normal font-helvetica text-[#875849] xl:max-w-[90%]">
                 {uaeAddress}
               </div>
             </div>
@@ -223,7 +223,9 @@ function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
         />
       </div>
       <div>
-        <div className="text_3 leading-none text-[#875849]">{label}</div>
+        <div className="text_3 leading-none text-[#875849] xl:mb-0.5 2xl:mb-1">
+          {label}
+        </div>
         <Link
           href={linkUrl}
           className="text_3 leading-none text-[#875849] hover:text-[#623628]"

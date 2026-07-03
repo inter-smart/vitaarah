@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_lifestyle_sections",
+  "info": {
+    "displayName": "Lifestyle Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "lifestyle_card": {
+      "type": "component",
+      "component": "common.lifestyle-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
