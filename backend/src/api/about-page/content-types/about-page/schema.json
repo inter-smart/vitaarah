@@ -1,29 +1,34 @@
 {
   "kind": "singleType",
-  "collectionName": "blog_pages",
+  "collectionName": "about_pages",
   "info": {
-    "singularName": "blog-page",
-    "pluralName": "blog-pages",
-    "displayName": "Blog Page"
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "About Page"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Seo": {
+    "seo": {
       "type": "component",
       "component": "common.seo",
       "repeatable": false
     },
-    "innerHero": {
+    "hero": {
       "type": "component",
       "component": "sections.inner-hero",
       "repeatable": false
     },
-    "blogListingSection": {
+    "about_section": {
       "type": "component",
-      "component": "sections.blog-listing-section",
+      "component": "sections.about-section",
+      "repeatable": false
+    },
+    "services_section": {
+      "type": "component",
+      "component": "sections.services-section",
       "repeatable": false
     }
   }

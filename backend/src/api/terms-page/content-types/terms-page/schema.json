@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "terms_pages",
+  "info": {
+    "singularName": "terms-page",
+    "pluralName": "terms-pages",
+    "displayName": "Terms Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "component": "common.seo",
+      "repeatable": false
+    },
+    "termsSection": {
+      "type": "component",
+      "component": "sections.legal-section",
+      "repeatable": false
+    }
+  }
+}

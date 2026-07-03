@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_common_service_cards",
+  "info": {
+    "displayName": "Service Card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "sub_title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "service_specification": {
+      "type": "component",
+      "component": "common.service-specifications",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

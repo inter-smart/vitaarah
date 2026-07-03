@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_common_company_mottos",
+  "info": {
+    "displayName": "Company Motto"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_sections_about_sections",
+  "info": {
+    "displayName": "About Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "about_media": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "company_motto": {
+      "type": "component",
+      "component": "common.company-motto",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

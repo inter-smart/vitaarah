@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "conditions",
+  "info": {
+    "singularName": "condition",
+    "pluralName": "conditions",
+    "displayName": "Condition"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "condition_dynamic": {
+      "type": "dynamiczone",
+      "components": [
+        "sections.hero",
+        "sections.about-section",
+        "sections.contact-section"
+      ]
+    }
+  }
+}

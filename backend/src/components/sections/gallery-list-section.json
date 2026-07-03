@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_gallery_list_sections",
+  "info": {
+    "displayName": "Gallery List Section"
+  },
+  "options": {},
+  "attributes": {
+    "gallery_images": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::gallery-image.gallery-image"
+    },
+    "gallery_media": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

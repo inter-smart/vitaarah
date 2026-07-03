@@ -1,16 +1,54 @@
 import Herosection from "@/components/common/InnerHero";
 import BlogListing from "@/components/blocks/blog/blog-listing";
-import { blogData } from "./blog-data";
+import { fetchAPI, buildQuery, getStrapiMediaUrl } from "@/lib/strapi";
 
-const local_data = blogData;
+const blogPageQuery = buildQuery({
+  Seo: { populate: { ogImage: true } },
+  innerHero: {
+    populate: {
+      heroMedia: true,
+      primaryButton: { populate: { icon: true } },
+    },
+  },
+});
 
-export default function BlogPage() {
+const blogsQuery = buildQuery({
+  featuredImage: true,
+});
+
+function resolveFeaturedImage(blog) {
+  if (!blog?.featuredImage?.url) return blog;
+  return {
+    ...blog,
+    featuredImage: {
+      ...blog.featuredImage,
+      url: getStrapiMediaUrl(blog.featuredImage.url),
+    },
+  };
+}
+
+export default async function BlogPage() {
+  const [pageRes, blogsRes] = await Promise.all([
+    fetchAPI(`/api/blog-page?${blogPageQuery}`),
+    fetchAPI(`/api/blogs?${blogsQuery}`),
+  ]);
+
+  const pageData = pageRes?.data ?? null;
+  const blogs = (blogsRes?.data ?? []).map(resolveFeaturedImage);
+
+  const innerHero = pageData?.innerHero ?? null;
+  const blogListingSection = pageData?.blogListingSection ?? null;
+
+  if (!innerHero && blogs.length === 0) return null;
+
+  const blogListData = blogListingSection
+    ? { ...blogListingSection, blogs }
+    : { title: "Blogs", blogs };
+
   return (
     <>
-      {local_data.hero && <Herosection data={local_data.hero} />}
-      {local_data.blogListSection && (
-        <BlogListing data={local_data.blogListSection} />
-      )}
+      {innerHero && <Herosection data={innerHero} />}
+      <BlogListing data={blogListData} />
     </>
   );
 }

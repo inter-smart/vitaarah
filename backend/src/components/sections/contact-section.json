@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_sections_contact_sections",
+  "info": {
+    "displayName": "ContactSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "uaeAddress": {
+      "type": "text"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "googleMapsUrl": {
+      "type": "string"
+    },
+    "emailAddress": {
+      "type": "email"
+    },
+    "workingHour": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

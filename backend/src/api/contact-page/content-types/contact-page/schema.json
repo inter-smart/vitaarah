@@ -1,29 +1,29 @@
 {
   "kind": "singleType",
-  "collectionName": "blog_pages",
+  "collectionName": "contact_pages",
   "info": {
-    "singularName": "blog-page",
-    "pluralName": "blog-pages",
-    "displayName": "Blog Page"
+    "singularName": "contact-page",
+    "pluralName": "contact-pages",
+    "displayName": "Contact Page"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Seo": {
+    "seo": {
       "type": "component",
       "component": "common.seo",
       "repeatable": false
     },
-    "innerHero": {
+    "hero": {
       "type": "component",
       "component": "sections.inner-hero",
       "repeatable": false
     },
-    "blogListingSection": {
+    "contactSection": {
       "type": "component",
-      "component": "sections.blog-listing-section",
+      "component": "sections.contact-section",
       "repeatable": false
     }
   }

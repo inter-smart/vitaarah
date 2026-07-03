@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_common_service_specifications",
+  "info": {
+    "displayName": "Service Specifications"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

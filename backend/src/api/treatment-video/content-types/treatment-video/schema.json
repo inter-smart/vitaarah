@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "treatment_videos",
+  "info": {
+    "singularName": "treatment-video",
+    "pluralName": "treatment-videos",
+    "displayName": "Treatment Video"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "treatmentVideo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "instagramPostUrl": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

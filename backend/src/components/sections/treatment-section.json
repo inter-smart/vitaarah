@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_sections_treatment_sections",
+  "info": {
+    "displayName": "Treatment Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "sub_title": {
+      "type": "string"
+    },
+    "sub_description": {
+      "type": "text"
+    },
+    "instagram_url": {
+      "type": "string"
+    },
+    "instagram_username": {
+      "type": "string"
+    },
+    "treatment_videos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::treatment-video.treatment-video"
+    }
+  },
+  "config": {}
+}

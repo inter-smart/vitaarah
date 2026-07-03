@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_blog_listing_sections",
+  "info": {
+    "displayName": "Blog Listing Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "itemsPerPage": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}
