@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_treatment_benefits_sections",
+  "info": {
+    "displayName": "Treatment Benefits Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "benefits_item": {
+      "type": "component",
+      "component": "common.approach-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

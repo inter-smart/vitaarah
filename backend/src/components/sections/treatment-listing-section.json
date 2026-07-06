@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_treatment_listing_sections",
+  "info": {
+    "displayName": "Treatment Listing Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

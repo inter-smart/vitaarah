@@ -10,5 +10,52 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "available_durationss": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::available-duration.available-duration"
+    },
+    "hero": {
+      "type": "component",
+      "component": "sections.inner-hero",
+      "repeatable": false
+    },
+    "introduction_section": {
+      "type": "component",
+      "component": "sections.introduction-section",
+      "repeatable": false
+    },
+    "benefits_section": {
+      "type": "component",
+      "component": "sections.benefits-section",
+      "repeatable": false
+    },
+    "Included_treatments_section": {
+      "type": "component",
+      "component": "sections.included-treatments-section",
+      "repeatable": false
+    },
+    "who_is_this_for_section": {
+      "type": "component",
+      "component": "sections.who-is-this-for-section",
+      "repeatable": false
+    },
+    "treatments_included_section": {
+      "type": "component",
+      "component": "sections.treatments-included-section",
+      "repeatable": false
+    },
+    "faq_section": {
+      "type": "component",
+      "component": "sections.faq-section",
+      "repeatable": false
+    }
+  }
 }

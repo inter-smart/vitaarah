@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_statistics_sections",
+  "info": {
+    "displayName": "Statistics Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "Statistics": {
+      "type": "component",
+      "component": "common.statistic",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

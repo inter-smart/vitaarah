@@ -34,6 +34,17 @@ export interface CommonCompanyMotto extends Struct.ComponentSchema {
   };
 }
 
+export interface CommonFaqItem extends Struct.ComponentSchema {
+  collectionName: 'components_common_faq_items';
+  info: {
+    displayName: 'Faq Item';
+  };
+  attributes: {
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface CommonFeature extends Struct.ComponentSchema {
   collectionName: 'components_common_features';
   info: {
@@ -53,6 +64,17 @@ export interface CommonLifestyleCard extends Struct.ComponentSchema {
   attributes: {
     description: Schema.Attribute.Blocks;
     featured_image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface CommonRitualExperienceItem extends Struct.ComponentSchema {
+  collectionName: 'components_common_ritual_experience_items';
+  info: {
+    displayName: 'Ritual Experience Item';
+  };
+  attributes: {
+    short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
 }
@@ -94,6 +116,20 @@ export interface CommonServiceSpecifications extends Struct.ComponentSchema {
   };
   attributes: {
     title: Schema.Attribute.String;
+  };
+}
+
+export interface CommonSpecialitiesItem extends Struct.ComponentSchema {
+  collectionName: 'components_common_specialities_items';
+  info: {
+    displayName: 'Specialities Item';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    treatment: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::treatment.treatment'
+    >;
   };
 }
 
@@ -167,6 +203,17 @@ export interface SectionsAboutSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsBenefitsSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_benefits_sections';
+  info: {
+    displayName: 'Benefits Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsBlogListingSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_blog_listing_sections';
   info: {
@@ -233,6 +280,18 @@ export interface SectionsContactSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsCtaSpecialitiesSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_cta_specialities_sections';
+  info: {
+    displayName: 'Cta Specialities Section';
+  };
+  attributes: {
+    botton_label: Schema.Attribute.String;
+    short_description: Schema.Attribute.Text;
+    whatsapp_number: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsExpertCta extends Struct.ComponentSchema {
   collectionName: 'components_sections_expert_ctas';
   info: {
@@ -242,6 +301,18 @@ export interface SectionsExpertCta extends Struct.ComponentSchema {
     short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
     whatsappUrl: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsFaqSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_faq_sections';
+  info: {
+    displayName: 'Faq Section';
+  };
+  attributes: {
+    faq_item: Schema.Attribute.Component<'common.faq-item', true>;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -289,6 +360,18 @@ export interface SectionsHero extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsIncludedTreatmentsSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_included_treatments_sections';
+  info: {
+    displayName: 'Included Treatments Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsInnerHero extends Struct.ComponentSchema {
   collectionName: 'components_sections_inner_heroes';
   info: {
@@ -299,6 +382,18 @@ export interface SectionsInnerHero extends Struct.ComponentSchema {
     heroMedia: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     primaryButton: Schema.Attribute.Component<'navigation.button', false>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsIntroductionSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_introduction_sections';
+  info: {
+    displayName: 'Introduction Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    introduction_image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -348,6 +443,28 @@ export interface SectionsMembersSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsPackageDurationsSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_package_durations_sections';
+  info: {
+    displayName: 'Package Durations Section';
+  };
+  attributes: {
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsPackageListingSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_package_listing_sections';
+  info: {
+    displayName: 'Package Listing Section';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsPackages extends Struct.ComponentSchema {
   collectionName: 'components_sections_packages';
   info: {
@@ -373,6 +490,54 @@ export interface SectionsRecommendedTreatmentsSection
       'oneToMany',
       'api::treatment.treatment'
     >;
+  };
+}
+
+export interface SectionsRelatedTreatments extends Struct.ComponentSchema {
+  collectionName: 'components_sections_related_treatments';
+  info: {
+    displayName: 'Related Treatments';
+  };
+  attributes: {
+    related_treatments: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::treatment.treatment'
+    >;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsRightForYouSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_right_for_you_sections';
+  info: {
+    displayName: 'Right for You Section';
+  };
+  attributes: {
+    button_label: Schema.Attribute.String;
+    right_for_you_item: Schema.Attribute.Component<
+      'common.ritual-experience-item',
+      true
+    >;
+    short_description: Schema.Attribute.Text;
+    sub_title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsRitualExperienceSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_ritual_experience_sections';
+  info: {
+    displayName: 'Ritual Experience Section';
+  };
+  attributes: {
+    ritual_experience_item: Schema.Attribute.Component<
+      'common.ritual-experience-item',
+      true
+    >;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -418,6 +583,34 @@ export interface SectionsSpecialities extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsSpecialitiesListingSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_specialities_listing_sections';
+  info: {
+    displayName: 'Specialities Listing Section';
+  };
+  attributes: {
+    short_description: Schema.Attribute.Text;
+    specialities_item: Schema.Attribute.Component<
+      'common.specialities-item',
+      true
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsStatisticsSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_statistics_sections';
+  info: {
+    displayName: 'Statistics Section';
+  };
+  attributes: {
+    short_description: Schema.Attribute.Text;
+    Statistics: Schema.Attribute.Component<'common.statistic', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsSymptomsSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_symptoms_sections';
   info: {
@@ -441,6 +634,44 @@ export interface SectionsTestimonials extends Struct.ComponentSchema {
       'oneToMany',
       'api::testimonial.testimonial'
     >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsTreatmentBenefitsSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_treatment_benefits_sections';
+  info: {
+    displayName: 'Treatment Benefits Section';
+  };
+  attributes: {
+    benefits_item: Schema.Attribute.Component<'common.approach-card', true>;
+    description: Schema.Attribute.Blocks;
+    featured_image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsTreatmentCtaSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_treatment_cta_sections';
+  info: {
+    displayName: 'Treatment CTA Section';
+  };
+  attributes: {
+    button_label: Schema.Attribute.String;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsTreatmentListingSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_treatment_listing_sections';
+  info: {
+    displayName: 'Treatment Listing Section';
+  };
+  attributes: {
+    short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
 }
@@ -479,45 +710,101 @@ export interface SectionsTreatments extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsTreatmentsIncludedSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_treatments_included_sections';
+  info: {
+    displayName: ' Treatments Included Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsWhatIsSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_what_is_sections';
+  info: {
+    displayName: 'What Is Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    featured_image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsWhoIsThisForSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_who_is_this_for_sections';
+  info: {
+    displayName: 'Who Is This For Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'common.approach-card': CommonApproachCard;
       'common.certification-card': CommonCertificationCard;
       'common.company-motto': CommonCompanyMotto;
+      'common.faq-item': CommonFaqItem;
       'common.feature': CommonFeature;
       'common.lifestyle-card': CommonLifestyleCard;
+      'common.ritual-experience-item': CommonRitualExperienceItem;
       'common.seo': CommonSeo;
       'common.service-card': CommonServiceCard;
       'common.service-specifications': CommonServiceSpecifications;
+      'common.specialities-item': CommonSpecialitiesItem;
       'common.statistic': CommonStatistic;
       'navigation.button': NavigationButton;
       'navigation.navigation': NavigationNavigation;
       'sections.about': SectionsAbout;
       'sections.about-section': SectionsAboutSection;
+      'sections.benefits-section': SectionsBenefitsSection;
       'sections.blog-listing-section': SectionsBlogListingSection;
       'sections.blogs': SectionsBlogs;
       'sections.certifications-section': SectionsCertificationsSection;
       'sections.clinic-environment-section': SectionsClinicEnvironmentSection;
       'sections.contact-section': SectionsContactSection;
+      'sections.cta-specialities-section': SectionsCtaSpecialitiesSection;
       'sections.expert-cta': SectionsExpertCta;
+      'sections.faq-section': SectionsFaqSection;
       'sections.gallery-list-section': SectionsGalleryListSection;
       'sections.healing-approach-section': SectionsHealingApproachSection;
       'sections.hero': SectionsHero;
+      'sections.included-treatments-section': SectionsIncludedTreatmentsSection;
       'sections.inner-hero': SectionsInnerHero;
+      'sections.introduction-section': SectionsIntroductionSection;
       'sections.legal-section': SectionsLegalSection;
       'sections.lifestyle-section': SectionsLifestyleSection;
       'sections.members': SectionsMembers;
       'sections.members-section': SectionsMembersSection;
+      'sections.package-durations-section': SectionsPackageDurationsSection;
+      'sections.package-listing-section': SectionsPackageListingSection;
       'sections.packages': SectionsPackages;
       'sections.recommended-treatments-section': SectionsRecommendedTreatmentsSection;
+      'sections.related-treatments': SectionsRelatedTreatments;
+      'sections.right-for-you-section': SectionsRightForYouSection;
+      'sections.ritual-experience-section': SectionsRitualExperienceSection;
       'sections.root-cause-section': SectionsRootCauseSection;
       'sections.services-section': SectionsServicesSection;
       'sections.specialities': SectionsSpecialities;
+      'sections.specialities-listing-section': SectionsSpecialitiesListingSection;
+      'sections.statistics-section': SectionsStatisticsSection;
       'sections.symptoms-section': SectionsSymptomsSection;
       'sections.testimonials': SectionsTestimonials;
+      'sections.treatment-benefits-section': SectionsTreatmentBenefitsSection;
+      'sections.treatment-cta-section': SectionsTreatmentCtaSection;
+      'sections.treatment-listing-section': SectionsTreatmentListingSection;
       'sections.treatment-section': SectionsTreatmentSection;
       'sections.treatments': SectionsTreatments;
+      'sections.treatments-included-section': SectionsTreatmentsIncludedSection;
+      'sections.what-is-section': SectionsWhatIsSection;
+      'sections.who-is-this-for-section': SectionsWhoIsThisForSection;
     }
   }
 }

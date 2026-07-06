@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_who_is_this_for_sections",
+  "info": {
+    "displayName": "Who Is This For Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

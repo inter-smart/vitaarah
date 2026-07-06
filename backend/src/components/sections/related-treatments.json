@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_related_treatments",
+  "info": {
+    "displayName": "Related Treatments"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "related_treatments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::treatment.treatment"
+    }
+  },
+  "config": {}
+}

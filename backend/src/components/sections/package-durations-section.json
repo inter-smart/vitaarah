@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_package_durations_sections",
+  "info": {
+    "displayName": "Package Durations Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

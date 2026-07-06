@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_benefits_sections",
+  "info": {
+    "displayName": "Benefits Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

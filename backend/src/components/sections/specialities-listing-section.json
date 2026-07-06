@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_specialities_listing_sections",
+  "info": {
+    "displayName": "Specialities Listing Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "specialities_item": {
+      "type": "component",
+      "component": "common.specialities-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

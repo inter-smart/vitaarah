@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "available_durations",
+  "info": {
+    "singularName": "available-duration",
+    "pluralName": "available-durations",
+    "displayName": "Available Duration"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "duration": {
+      "type": "integer"
+    },
+    "label": {
+      "type": "string"
+    },
+    "available": {
+      "type": "boolean"
+    }
+  }
+}

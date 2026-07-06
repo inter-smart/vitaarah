@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_right_for_you_sections",
+  "info": {
+    "displayName": "Right for You Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "right_for_you_item": {
+      "type": "component",
+      "component": "common.ritual-experience-item",
+      "repeatable": true
+    },
+    "sub_title": {
+      "type": "string"
+    },
+    "button_label": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

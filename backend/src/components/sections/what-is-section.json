@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_what_is_sections",
+  "info": {
+    "displayName": "What Is Section"
+  },
+  "options": {},
+  "attributes": {
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

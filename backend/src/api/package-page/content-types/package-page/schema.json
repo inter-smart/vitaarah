@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "package_pages",
+  "info": {
+    "singularName": "package-page",
+    "pluralName": "package-pages",
+    "displayName": "Package Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "component": "common.seo",
+      "repeatable": false
+    },
+    "hero": {
+      "type": "component",
+      "component": "sections.inner-hero",
+      "repeatable": false
+    },
+    "statistics_section": {
+      "type": "component",
+      "component": "sections.statistics-section",
+      "repeatable": false
+    },
+    "package_listing_section": {
+      "type": "component",
+      "component": "sections.package-listing-section",
+      "repeatable": false
+    },
+    "package_duration_section": {
+      "type": "component",
+      "component": "sections.package-durations-section",
+      "repeatable": false
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_treatment_cta_sections",
+  "info": {
+    "displayName": "Treatment CTA Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "button_label": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

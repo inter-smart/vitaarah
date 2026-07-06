@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_ritual_experience_sections",
+  "info": {
+    "displayName": "Ritual Experience Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "ritual_experience_item": {
+      "type": "component",
+      "component": "common.ritual-experience-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "specialities_pages",
+  "info": {
+    "singularName": "specialities-page",
+    "pluralName": "specialities-pages",
+    "displayName": "Specialities Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "component": "common.seo",
+      "repeatable": false
+    },
+    "hero": {
+      "type": "component",
+      "component": "sections.inner-hero",
+      "repeatable": false
+    },
+    "specialities_listing_section": {
+      "type": "component",
+      "component": "sections.specialities-listing-section",
+      "repeatable": false
+    },
+    "cta_specialities_section": {
+      "type": "component",
+      "component": "sections.cta-specialities-section",
+      "repeatable": false
+    }
+  }
+}

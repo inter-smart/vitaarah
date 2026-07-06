@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_common_specialities_items",
+  "info": {
+    "displayName": "Specialities Item"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "treatment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::treatment.treatment"
+    }
+  },
+  "config": {}
+}

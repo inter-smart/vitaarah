@@ -18,18 +18,70 @@
       "type": "uid",
       "targetField": "title"
     },
-    "featured_image": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "short_description": {
       "type": "text"
+    },
+    "duration_info": {
+      "type": "text"
+    },
+    "sessions_info": {
+      "type": "text"
+    },
+    "fequency_info": {
+      "type": "text"
+    },
+    "best_time_info": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "component": "common.seo",
+      "repeatable": false
+    },
+    "hero": {
+      "type": "component",
+      "component": "sections.inner-hero",
+      "repeatable": false
+    },
+    "what_is_section": {
+      "type": "component",
+      "component": "sections.what-is-section",
+      "repeatable": false
+    },
+    "ritual_experience_section": {
+      "type": "component",
+      "component": "sections.ritual-experience-section",
+      "repeatable": false
+    },
+    "treatment_benefits_section": {
+      "type": "component",
+      "component": "sections.treatment-benefits-section",
+      "repeatable": false
+    },
+    "right_for_you_section": {
+      "type": "component",
+      "component": "sections.right-for-you-section",
+      "repeatable": false
+    },
+    "faq_section": {
+      "type": "component",
+      "component": "sections.faq-section",
+      "repeatable": false
+    },
+    "related_treatments": {
+      "type": "component",
+      "component": "sections.related-treatments",
+      "repeatable": false
+    },
+    "cta_treatment_section": {
+      "type": "component",
+      "component": "sections.treatment-cta-section",
+      "repeatable": false
+    },
+    "conditions_treated": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::condition.condition"
     }
   }
 }

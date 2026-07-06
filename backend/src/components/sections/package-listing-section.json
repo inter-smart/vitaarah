@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sections_package_listing_sections",
+  "info": {
+    "displayName": "Package Listing Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

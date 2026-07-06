@@ -490,6 +490,37 @@ export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiAvailableDurationAvailableDuration
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'available_durations';
+  info: {
+    displayName: 'Available Duration';
+    pluralName: 'available-durations';
+    singularName: 'available-duration';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    available: Schema.Attribute.Boolean;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    duration: Schema.Attribute.Integer;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::available-duration.available-duration'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBlogPageBlogPage extends Struct.SingleTypeSchema {
   collectionName: 'blog_pages';
   info: {
@@ -876,6 +907,47 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPackagePagePackagePage extends Struct.SingleTypeSchema {
+  collectionName: 'package_pages';
+  info: {
+    displayName: 'Package Page';
+    pluralName: 'package-pages';
+    singularName: 'package-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hero: Schema.Attribute.Component<'sections.inner-hero', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::package-page.package-page'
+    > &
+      Schema.Attribute.Private;
+    package_duration_section: Schema.Attribute.Component<
+      'sections.package-durations-section',
+      false
+    >;
+    package_listing_section: Schema.Attribute.Component<
+      'sections.package-listing-section',
+      false
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'common.seo', false>;
+    statistics_section: Schema.Attribute.Component<
+      'sections.statistics-section',
+      false
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
   collectionName: 'packages';
   info: {
@@ -950,9 +1022,27 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    available_durationss: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::available-duration.available-duration'
+    >;
+    benefits_section: Schema.Attribute.Component<
+      'sections.benefits-section',
+      false
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    faq_section: Schema.Attribute.Component<'sections.faq-section', false>;
+    hero: Schema.Attribute.Component<'sections.inner-hero', false>;
+    Included_treatments_section: Schema.Attribute.Component<
+      'sections.included-treatments-section',
+      false
+    >;
+    introduction_section: Schema.Attribute.Component<
+      'sections.introduction-section',
+      false
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -960,9 +1050,19 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+    treatments_included_section: Schema.Attribute.Component<
+      'sections.treatments-included-section',
+      false
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    who_is_this_for_section: Schema.Attribute.Component<
+      'sections.who-is-this-for-section',
+      false
+    >;
   };
 }
 
@@ -1019,6 +1119,44 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSpecialitiesPageSpecialitiesPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'specialities_pages';
+  info: {
+    displayName: 'Specialities Page';
+    pluralName: 'specialities-pages';
+    singularName: 'specialities-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cta_specialities_section: Schema.Attribute.Component<
+      'sections.cta-specialities-section',
+      false
+    >;
+    hero: Schema.Attribute.Component<'sections.inner-hero', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::specialities-page.specialities-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'common.seo', false>;
+    specialities_listing_section: Schema.Attribute.Component<
+      'sections.specialities-listing-section',
+      false
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1132,6 +1270,79 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTreatmentCategoryTreatmentCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'treatment_categories';
+  info: {
+    displayName: 'Treatment Category';
+    pluralName: 'treatment-categories';
+    singularName: 'treatment-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    featured_image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::treatment-category.treatment-category'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    short_description: Schema.Attribute.Text;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String;
+    treatments: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::treatment.treatment'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTreatmentPageTreatmentPage extends Struct.SingleTypeSchema {
+  collectionName: 'treatment_pages';
+  info: {
+    displayName: 'Treatment Page';
+    pluralName: 'treatment-pages';
+    singularName: 'treatment-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hero: Schema.Attribute.Component<'sections.inner-hero', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::treatment-page.treatment-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'common.seo', false>;
+    treatment_cta_section: Schema.Attribute.Component<
+      'sections.treatment-cta-section',
+      false
+    >;
+    treatment_listing_section: Schema.Attribute.Component<
+      'sections.treatment-listing-section',
+      false
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTreatmentVideoTreatmentVideo
   extends Struct.CollectionTypeSchema {
   collectionName: 'treatment_videos';
@@ -1178,12 +1389,22 @@ export interface ApiTreatmentTreatment extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    best_time_info: Schema.Attribute.Text;
+    conditions_treated: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::condition.condition'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    featured_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
+    cta_treatment_section: Schema.Attribute.Component<
+      'sections.treatment-cta-section',
+      false
     >;
+    duration_info: Schema.Attribute.Text;
+    faq_section: Schema.Attribute.Component<'sections.faq-section', false>;
+    fequency_info: Schema.Attribute.Text;
+    hero: Schema.Attribute.Component<'sections.inner-hero', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1191,12 +1412,34 @@ export interface ApiTreatmentTreatment extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    related_treatments: Schema.Attribute.Component<
+      'sections.related-treatments',
+      false
+    >;
+    right_for_you_section: Schema.Attribute.Component<
+      'sections.right-for-you-section',
+      false
+    >;
+    ritual_experience_section: Schema.Attribute.Component<
+      'sections.ritual-experience-section',
+      false
+    >;
+    seo: Schema.Attribute.Component<'common.seo', false>;
+    sessions_info: Schema.Attribute.Text;
     short_description: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
+    treatment_benefits_section: Schema.Attribute.Component<
+      'sections.treatment-benefits-section',
+      false
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    what_is_section: Schema.Attribute.Component<
+      'sections.what-is-section',
+      false
+    >;
   };
 }
 
@@ -1712,6 +1955,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about-page.about-page': ApiAboutPageAboutPage;
+      'api::available-duration.available-duration': ApiAvailableDurationAvailableDuration;
       'api::blog-page.blog-page': ApiBlogPageBlogPage;
       'api::blog.blog': ApiBlogBlog;
       'api::condition-page.condition-page': ApiConditionPageConditionPage;
@@ -1723,14 +1967,18 @@ declare module '@strapi/strapi' {
       'api::header.header': ApiHeaderHeader;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::member.member': ApiMemberMember;
+      'api::package-page.package-page': ApiPackagePagePackagePage;
       'api::package.package': ApiPackagePackage;
       'api::privacy-page.privacy-page': ApiPrivacyPagePrivacyPage;
       'api::program.program': ApiProgramProgram;
       'api::root-cause.root-cause': ApiRootCauseRootCause;
       'api::site-setting.site-setting': ApiSiteSettingSiteSetting;
+      'api::specialities-page.specialities-page': ApiSpecialitiesPageSpecialitiesPage;
       'api::specialty.specialty': ApiSpecialtySpecialty;
       'api::terms-page.terms-page': ApiTermsPageTermsPage;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
+      'api::treatment-category.treatment-category': ApiTreatmentCategoryTreatmentCategory;
+      'api::treatment-page.treatment-page': ApiTreatmentPageTreatmentPage;
       'api::treatment-video.treatment-video': ApiTreatmentVideoTreatmentVideo;
       'api::treatment.treatment': ApiTreatmentTreatment;
       'plugin::content-releases.release': PluginContentReleasesRelease;

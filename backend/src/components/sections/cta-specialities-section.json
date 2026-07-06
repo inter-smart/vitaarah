@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_cta_specialities_sections",
+  "info": {
+    "displayName": "Cta Specialities Section"
+  },
+  "options": {},
+  "attributes": {
+    "short_description": {
+      "type": "text"
+    },
+    "botton_label": {
+      "type": "string"
+    },
+    "whatsapp_number": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
