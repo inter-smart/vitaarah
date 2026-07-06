@@ -1,4 +1,3 @@
- "use client"
 import AboutIntelligence from "@/components/blocks/about/about-intelligence";
 import AboutGuidence from "@/components/blocks/about/about-guidence";
 import AboutClinic from "@/components/blocks/about/about-clinic";
@@ -7,8 +6,6 @@ import AboutCredibility from "@/components/blocks/about/about-credibility";
 import AboutMoto from "@/components/blocks/about/about-moto";
 import HomeAbout from "@/components/blocks/home/home-about";
 import InnerHero from "@/components/common/InnerHero";
-import { motion } from "framer-motion";
-import { use } from "react";
 
 const local_data = {
   id: 24,
@@ -490,46 +487,88 @@ const local_data = {
   },
 };
 
-export default function About() {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 60, scale: 0.96 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1,
-      transition: { 
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
-        mass: 0.8,
-      } 
-    }
-  };
+const aboutPageQuery = buildQuery({
+  seo: { populate: { ogImage: true } },
+  hero: {
+    populate: {
+      heroMedia: true,
+      primaryButton: { populate: { icon: true } },
+      secondaryButton: { populate: { icon: true } },
+    },
+  },
+  about: {
+    populate: {
+      mainImage: true,
+      secondaryImage: true,
+      button: { populate: { icon: true } },
+      aboutStatistic: true,
+    },
+  },
+  specialities: {
+    populate: {
+      specialties: { populate: { icon: true, featuredImage: true } },
+    },
+  },
+  treatments: {
+    populate: {
+      treatments: { populate: { featuredImage: true } },
+    },
+  },
+  packages: {
+    populate: {
+      packages: {
+        populate: {
+          featuredImage: true,
+          features: { populate: { icon: true } },
+        },
+      },
+    },
+  },
+  testimonials: {
+    populate: {
+      testimonials: { populate: { authorImage: true, videoTestimonial: true } },
+    },
+  },
+  members: {
+    populate: {
+      members: { populate: { thumbnailImage: true, featuredImage: true } },
+    },
+  },
+  blogs: {
+    populate: {
+      blogs: { populate: { featuredImage: true } },
+    },
+  },
+});
 
+// exambles= http://localhost:1337/api/home-page?populate[seo][populate][ogImage]=true&populate[hero][populate][heroMedia]=true&populate[hero][populate][primaryButton][populate][icon]=true&populate[hero][populate][secondaryButton][populate][icon]=true&populate[about][populate][mainImage]=true&populate[about][populate][secondaryImage]=true&populate[about][populate][button][populate][icon]=true&populate[about][populate][aboutStatistic]=true&populate[specialities][populate][specialties][populate][icon]=true&populate[specialities][populate][specialties][populate][featuredImage]=true&populate[treatments][populate][treatments][populate][featuredImage]=true&populate[packages][populate][packages][populate][featuredImage]=true&populate[packages][populate][packages][populate][features][populate][icon]=true&populate[testimonials][populate][testimonials][populate][authorImage]=true&populate[testimonials][populate][testimonials][populate][videoTestimonial]=true&populate[members][populate][members][populate][thumbnailImage]=true&populate[members][populate][members][populate][featuredImage]=true&populate[blogs][populate][blogs][populate][featuredImage]=true
+
+export default async function AboutPage() {
+  const res = await fetchAPI(`/api/about-page?${aboutPageQuery}`);
+  const data = res?.data ?? null;
+
+  if (!data?.hero && !data?.about) return null;
+
+  const {
+    hero,
+    about,
+    specialities,
+    treatments,
+    packages,
+    testimonials,
+    blogs,
+    members,
+  } = data;
   return (
     <>
       <InnerHero data={local_data.hero} />
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <HomeAbout data={local_data.about} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <AboutMoto data={local_data.about} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <AboutIntelligence data={local_data.services} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <AboutGuidence data={local_data.members} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <AboutCredibility data={local_data.certifications} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <AboutClinic data={local_data.clinicEnvironment} />
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={fadeInUp}>
-        <AboutApproach data={local_data.approach} />
-      </motion.div>
+      <HomeAbout data={local_data.about} />
+      <AboutMoto data={local_data.about} />
+      <AboutIntelligence data={local_data.services} />
+      <AboutGuidence data={local_data.members} />
+      <AboutCredibility data={local_data.certifications} />
+      <AboutClinic data={local_data.clinicEnvironment} />
+      <AboutApproach data={local_data.approach} />
     </>
-  )
+  );
 }

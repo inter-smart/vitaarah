@@ -5,23 +5,20 @@
   },
   "options": {},
   "attributes": {
-    "metaTitle": {
+    "meta_title": {
       "type": "string"
     },
-    "metaDescription": {
+    "meta_description": {
       "type": "text"
     },
-    "ogImage": {
+    "og_image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
-    "canonicalUrl": {
+    "canonical_url": {
       "type": "string"
     }
   },

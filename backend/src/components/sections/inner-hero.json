@@ -12,7 +12,7 @@
     "description": {
       "type": "text"
     },
-    "heroMedia": {
+    "hero_media": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -22,7 +22,7 @@
         "audios"
       ]
     },
-    "primaryButton": {
+    "primary_button": {
       "type": "component",
       "component": "navigation.button",
       "repeatable": false

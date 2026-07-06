@@ -85,10 +85,10 @@ export interface CommonSeo extends Struct.ComponentSchema {
     displayName: 'Seo';
   };
   attributes: {
-    canonicalUrl: Schema.Attribute.String;
-    metaDescription: Schema.Attribute.Text;
-    metaTitle: Schema.Attribute.String;
-    ogImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    canonical_url: Schema.Attribute.String;
+    meta_description: Schema.Attribute.Text;
+    meta_title: Schema.Attribute.String;
+    og_image: Schema.Attribute.Media<'images'>;
   };
 }
 
@@ -115,7 +115,7 @@ export interface CommonServiceSpecifications extends Struct.ComponentSchema {
     displayName: 'Service Specifications';
   };
   attributes: {
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -140,8 +140,8 @@ export interface CommonStatistic extends Struct.ComponentSchema {
   };
   attributes: {
     label: Schema.Attribute.String;
-    valueCount: Schema.Attribute.String;
-    valueSuffix: Schema.Attribute.String;
+    value_count: Schema.Attribute.String;
+    value_suffix: Schema.Attribute.String;
   };
 }
 
@@ -164,7 +164,7 @@ export interface NavigationNavigation extends Struct.ComponentSchema {
     displayName: 'Navigation';
   };
   attributes: {
-    isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    is_external: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     label: Schema.Attribute.String;
     url: Schema.Attribute.String;
   };
@@ -379,8 +379,10 @@ export interface SectionsInnerHero extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
-    heroMedia: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    primaryButton: Schema.Attribute.Component<'navigation.button', false>;
+    hero_media: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    primary_button: Schema.Attribute.Component<'navigation.button', false>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
