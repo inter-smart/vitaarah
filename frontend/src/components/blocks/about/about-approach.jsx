@@ -18,7 +18,7 @@ export default function AboutApproach({ data }) {
           </div>
           <div className="w-full lg:w-1/2">
             <div className="flex flex-wrap relative before:absolute before:content-[''] before:top-0 before:h-[20px] before:xl:h-[30px] before:2xl:h-[40px] before:3xl:h-[50px] before:w-full before:bg-white before:left-0 before:z-1 after:absolute after:top after:content-['] after:left-0 after:w-full after:h-full after:bg-transparent after:border after:border-white">
-              {data?.approachs.map((item, id) => (
+              {(data?.approach_card || data?.approachs || []).map((item, id) => (
                 <div
                   className={`w-1/2  border border-b-1 border-black/10 border-r-1 block flex-grow-1 relative                                        
                                         ${id % 2 === 0 ? "" : "pb-0 not-last-of-type:pb-[25px]  not-last-of-type:xl:pb-[35px] not-last-of-type:2xl:pb-[45px] not-last-of-type:3xl:pb-[55px] pl-[25px] sm:pl-[65px] lg:pl-[35px] xl:pl-[45px] 2xl:pl-[55px] 3xl:pl-[65px] pt-[25px] xl:pt-[35px] 2xl:pt-[45px] 3xl:pt-[55px]"}
@@ -40,7 +40,7 @@ export default function AboutApproach({ data }) {
                       {item.title}
                     </div>
                     <div className="text_3 max-w-[150px] xl:max-w-[185px] 2xl:max-w-[210px] 3xl:max-w-[255px] font-light">
-                      {item.shortDescription}
+                      {item.short_description || item.shortDescription}
                     </div>
                   </div>
 

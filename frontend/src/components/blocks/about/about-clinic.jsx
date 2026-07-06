@@ -3,7 +3,11 @@ import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function AboutClinic({ data }) {
-    const isVideo = data?.heroMedia?.mime?.includes("video");
+    const isVideo = data?.featured_image?.mime?.includes("video") || data?.featuredImage?.mime?.includes("video");
+    const imgUrl = data?.featured_image?.url || data?.featuredImage?.url;
+    const imgAlt = data?.featured_image?.alternativeText || data?.featuredImage?.alternativeText || data?.title;
+    const imgMime = data?.featured_image?.mime || data?.featuredImage?.mime;
+    
     return (
         <section className="relative bg-[#FFF9EB] py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[110px]">
             <div className="container">
@@ -15,12 +19,12 @@ export default function AboutClinic({ data }) {
                                 <video autoPlay muted loop playsInline className="h-full w-full object-cover"
                                 >
                                     <source
-                                        src={data?.featuredImage?.url}
-                                        type={data?.featuredImage?.mime}
+                                        src={imgUrl}
+                                        type={imgMime}
                                     />
                                 </video>
                             ) : (
-                                <Image src={data?.featuredImage?.url} alt={data?.featuredImage?.alternativeText || data?.title} width="580" height="440" className="w-full h-full object-cover"
+                                <Image src={imgUrl} alt={imgAlt} width="580" height="440" className="w-full h-full object-cover"
                                 />
                             )}
                         </div>

@@ -46,8 +46,6 @@ export default function Footer({
   copyrightText,
   socialLinks = defaultSocialLinks,
 }) {
-  console.log(data, "footer data");
-
   return (
     <footer className="[--top-box:60px] sm:[--top-box:72px] xl:[--top-box:90px] 2xl:[--top-box:102px] 3xl:[--top-box:124px] w-full block bg-[#faf7ed] sm:pt-[60px] xl:pt-[73px] 2xl:pt-[80px] 3xl:pt-[100px] sm:mt-[calc(var(--top-box)/2)] relative z-0">
       <div className="w-full h-[calc(var(--top-box)/2)] bg-white sm:bg-[#faf7ed] max-sm:absolute -z-1 top-0 inset-x-0 pointer-events-none"></div>

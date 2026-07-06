@@ -1,9 +1,10 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 export default function InnerHero({ data }) {
-  const isVideo = data?.heroMedia?.mime?.includes("video");
+  const isVideo = data?.hero_media?.mime?.includes("video");
 
   return (
     <section className="w-full block relative">
@@ -18,12 +19,18 @@ export default function InnerHero({ data }) {
               playsInline
               className="absolute inset-0 h-full w-full object-cover"
             >
-              <source src={data?.heroMedia?.url} type={data?.heroMedia?.mime} />
+              <source
+                src={getStrapiMediaUrl(data?.hero_media?.url)}
+                type={data?.hero_media?.mime}
+              />
             </video>
           ) : (
             <Image
-              src={data?.heroMedia?.url}
-              alt={data?.heroMedia?.alternativeText || data?.title}
+              src={
+                getStrapiMediaUrl(data?.hero_media?.url) ||
+                "/images/placeholder.jpg"
+              }
+              alt={data?.hero_media?.alternativeText || data?.title}
               fill
               priority
               className="object-cover"
@@ -41,14 +48,14 @@ export default function InnerHero({ data }) {
                 {data?.description}
               </p>
             )}
-            {data?.button?.label && (
+            {data?.primary_button?.label && (
               <Link
-                href={`/${data.button.slug}`}
-                className="group relative overflow-hidden  bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3] text-white font-medium inline-flex items-center justify-center px-[8px] min-w-[120px] xl:min-w-[150px] 2xl:min-w-[170px] 3xl:min-w-[205px] h-[32px] 2xl:h-[37px] 3xl:h-[45px] mt-[15px] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03] hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)]"
+                href={`/${data?.primary_button?.url || "#"}`}
+                className="group relative overflow-hidden bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3] text-white font-medium inline-flex items-center justify-center px-[8px] min-w-[120px] xl:min-w-[150px] 2xl:min-w-[170px] 3xl:min-w-[205px] h-[32px] 2xl:h-[37px] 3xl:h-[45px] mt-[15px] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03] hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)]"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r  from-transparent  via-white/30 to-transparent skew-x-12  transition-transform  duration-700   group-hover:translate-x-[250%]" />
                 <span className="text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] relative z-10">
-                  {data.button.label}
+                  {data?.primary_button?.label}
                 </span>
               </Link>
             )}

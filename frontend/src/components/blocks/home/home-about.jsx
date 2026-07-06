@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { getStrapiMediaUrl } from "@/lib/strapi";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 import { Fragment } from "react";
 // -mr-[100px] sm:-mr-[115px] xl:-mr-[130px] 2xl:-mr-[160px]
@@ -46,30 +45,40 @@ export default function HomeAbout({ data }) {
                 </span>
               </a>
               <div className={ElementStyle} />
-              {data?.secondaryImage?.url && (
-                <div className={ElementStyle}>
-                  <Image
-                    src={getStrapiMediaUrl(data.secondaryImage.url)}
-                    alt={data.secondaryImage.alternativeText || "home about 1"}
-                    width={300}
-                    height={300}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                    unoptimized
-                  />
-                </div>
-              )}
-              {data?.mainImage?.url && (
-                <div className={ElementStyle}>
-                  <Image
-                    src={getStrapiMediaUrl(data.mainImage.url)}
-                    alt={data.mainImage.alternativeText || "home about 2"}
-                    width={300}
-                    height={300}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                    unoptimized
-                  />
-                </div>
-              )}
+              {(() => {
+                const secondaryImgUrl = data?.secondaryImage?.url || data?.about_media?.[1]?.url;
+                const secondaryImgAlt = data?.secondaryImage?.alternativeText || data?.about_media?.[1]?.alternativeText || "home about 1";
+                if (!secondaryImgUrl) return null;
+                return (
+                  <div className={ElementStyle}>
+                    <Image
+                      src={getStrapiMediaUrl(secondaryImgUrl)}
+                      alt={secondaryImgAlt}
+                      width={300}
+                      height={300}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      unoptimized
+                    />
+                  </div>
+                );
+              })()}
+              {(() => {
+                const mainImgUrl = data?.mainImage?.url || data?.about_media?.[0]?.url;
+                const mainImgAlt = data?.mainImage?.alternativeText || data?.about_media?.[0]?.alternativeText || "home about 2";
+                if (!mainImgUrl) return null;
+                return (
+                  <div className={ElementStyle}>
+                    <Image
+                      src={getStrapiMediaUrl(mainImgUrl)}
+                      alt={mainImgAlt}
+                      width={300}
+                      height={300}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      unoptimized
+                    />
+                  </div>
+                );
+              })()}
             </div>
 
             {data?.aboutStatistic?.length > 0 && (
@@ -99,11 +108,19 @@ export default function HomeAbout({ data }) {
                 {data.title}
               </h2>
             )}
-            {data.description && (
-              <div className="text_3 font-normal text-black mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
-                <BlocksRenderer content={data.description} />
-              </div>
-            )}
+            {(() => {
+              const description = data?.description || data?.short_description;
+              if (!description) return null;
+              return (
+                <div className="text_3 font-normal text-black mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
+                  {typeof description === 'string' ? (
+                    <p>{description}</p>
+                  ) : (
+                    <BlocksRenderer content={description} />
+                  )}
+                </div>
+              );
+            })()}
             {data?.button && (
               <Button as="a" href={data.button.url}>
                 {data.button.label}
