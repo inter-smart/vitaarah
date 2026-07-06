@@ -11,10 +11,10 @@
     "short_description": {
       "type": "text"
     },
-    "service": {
-      "type": "component",
-      "component": "common.service-card",
-      "repeatable": true
+    "root_causes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::root-cause.root-cause"
     }
   },
   "config": {}

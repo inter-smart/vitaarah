@@ -562,7 +562,10 @@ export interface SectionsServicesSection extends Struct.ComponentSchema {
     displayName: 'Services Section';
   };
   attributes: {
-    service: Schema.Attribute.Component<'common.service-card', true>;
+    root_causes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::root-cause.root-cause'
+    >;
     short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
@@ -575,10 +578,6 @@ export interface SectionsSpecialities extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Blocks;
-    specialties: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::specialty.specialty'
-    >;
     title: Schema.Attribute.String;
   };
 }

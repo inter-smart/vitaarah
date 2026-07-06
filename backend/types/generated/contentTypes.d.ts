@@ -1088,7 +1088,12 @@ export interface ApiRootCauseRootCause extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    service_specification: Schema.Attribute.Component<
+      'common.service-specifications',
+      true
+    >;
     short_description: Schema.Attribute.Text;
+    sub_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1157,40 +1162,6 @@ export interface ApiSpecialitiesPageSpecialitiesPage
       'sections.specialities-listing-section',
       false
     >;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiSpecialtySpecialty extends Struct.CollectionTypeSchema {
-  collectionName: 'specialties';
-  info: {
-    displayName: 'temp Specialty';
-    pluralName: 'specialties';
-    singularName: 'specialty';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    featuredImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::specialty.specialty'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    shortDescription: Schema.Attribute.Text;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1974,7 +1945,6 @@ declare module '@strapi/strapi' {
       'api::root-cause.root-cause': ApiRootCauseRootCause;
       'api::site-setting.site-setting': ApiSiteSettingSiteSetting;
       'api::specialities-page.specialities-page': ApiSpecialitiesPageSpecialitiesPage;
-      'api::specialty.specialty': ApiSpecialtySpecialty;
       'api::terms-page.terms-page': ApiTermsPageTermsPage;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'api::treatment-category.treatment-category': ApiTreatmentCategoryTreatmentCategory;

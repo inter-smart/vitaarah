@@ -10,11 +10,6 @@
     },
     "description": {
       "type": "blocks"
-    },
-    "specialties": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::specialty.specialty"
     }
   },
   "config": {}

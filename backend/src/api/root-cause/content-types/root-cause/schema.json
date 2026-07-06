@@ -23,6 +23,14 @@
     },
     "short_description": {
       "type": "text"
+    },
+    "sub_title": {
+      "type": "string"
+    },
+    "service_specification": {
+      "type": "component",
+      "component": "common.service-specifications",
+      "repeatable": true
     }
   }
 }
