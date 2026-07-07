@@ -46,8 +46,12 @@ export default function HomeAbout({ data }) {
               </a>
               <div className={ElementStyle} />
               {(() => {
-                const secondaryImgUrl = data?.secondaryImage?.url || data?.about_media?.[1]?.url;
-                const secondaryImgAlt = data?.secondaryImage?.alternativeText || data?.about_media?.[1]?.alternativeText || "home about 1";
+                const secondaryImgUrl =
+                  data?.secondaryImage?.url || data?.about_media?.[1]?.url;
+                const secondaryImgAlt =
+                  data?.secondaryImage?.alternativeText ||
+                  data?.about_media?.[1]?.alternativeText ||
+                  "home about 1";
                 if (!secondaryImgUrl) return null;
                 return (
                   <div className={ElementStyle}>
@@ -63,8 +67,12 @@ export default function HomeAbout({ data }) {
                 );
               })()}
               {(() => {
-                const mainImgUrl = data?.mainImage?.url || data?.about_media?.[0]?.url;
-                const mainImgAlt = data?.mainImage?.alternativeText || data?.about_media?.[0]?.alternativeText || "home about 2";
+                const mainImgUrl =
+                  data?.mainImage?.url || data?.about_media?.[0]?.url;
+                const mainImgAlt =
+                  data?.mainImage?.alternativeText ||
+                  data?.about_media?.[0]?.alternativeText ||
+                  "home about 2";
                 if (!mainImgUrl) return null;
                 return (
                   <div className={ElementStyle}>
@@ -108,19 +116,11 @@ export default function HomeAbout({ data }) {
                 {data.title}
               </h2>
             )}
-            {(() => {
-              const description = data?.description || data?.short_description;
-              if (!description) return null;
-              return (
-                <div className="text_3 font-normal text-black mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
-                  {typeof description === 'string' ? (
-                    <p>{description}</p>
-                  ) : (
-                    <BlocksRenderer content={description} />
-                  )}
-                </div>
-              );
-            })()}
+            {data?.short_description && (
+              <div className="text_3 font-normal text-black mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
+                {data?.short_description}
+              </div>
+            )}
             {data?.button && (
               <Button as="a" href={data.button.url}>
                 {data.button.label}

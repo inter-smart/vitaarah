@@ -508,7 +508,12 @@ const aboutPageQuery = buildQuery({
   },
   services_section: {
     populate: {
-      root_causes: { populate: "*" },
+      root_causes: {
+        populate: {
+          icon: true,
+          service_specification: true,
+        },
+      },
     },
   },
   members_section: {
@@ -549,7 +554,7 @@ export default async function AboutPage() {
     clinic_environment_section,
     healing_approach_section,
   } = data;
-
+  
   return (
     <>
       {hero && <InnerHero data={hero} />}

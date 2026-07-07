@@ -1034,7 +1034,8 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     faq_section: Schema.Attribute.Component<'sections.faq-section', false>;
-    hero: Schema.Attribute.Component<'sections.inner-hero', false>;
+    hero_media: Schema.Attribute.Media<'images'>;
+    hero_title: Schema.Attribute.String;
     Included_treatments_section: Schema.Attribute.Component<
       'sections.included-treatments-section',
       false

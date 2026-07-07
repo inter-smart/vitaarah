@@ -11,7 +11,17 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "hero_media": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "title": {
+      "type": "string"
+    },
+    "hero_title": {
       "type": "string"
     },
     "short_description": {
@@ -21,11 +31,6 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::available-duration.available-duration"
-    },
-    "hero": {
-      "type": "component",
-      "component": "sections.inner-hero",
-      "repeatable": false
     },
     "introduction_section": {
       "type": "component",

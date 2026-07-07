@@ -125,6 +125,7 @@ export interface CommonSpecialitiesItem extends Struct.ComponentSchema {
     displayName: 'Specialities Item';
   };
   attributes: {
+    conditions_treated_title: Schema.Attribute.String;
     icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     treatment: Schema.Attribute.Relation<
       'oneToOne',

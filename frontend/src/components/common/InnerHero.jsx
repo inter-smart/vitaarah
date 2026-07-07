@@ -32,6 +32,7 @@ export default function InnerHero({ data }) {
               }
               alt={data?.hero_media?.alternativeText || data?.title}
               fill
+              sizes="100vw"
               priority
               className="object-cover"
             />

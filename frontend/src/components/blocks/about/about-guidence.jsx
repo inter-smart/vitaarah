@@ -61,12 +61,10 @@ export default function AboutGuidence({ data }) {
                     <div className="w-full md:w-[190px] xl:w-[230px] 2xl:w-[260px] 3xl:w-[320px] flex items-end h-full max-md:hidden">
                       <div className="relative w-full h-auto flex items-end  after:absolute after:top-[35px] after:content-[''] after:right-0 after:left-0 after:m-auto after:w-[190px] xl:after:w-[230px] 2xl:after:w-[260px] 3xl:after:w-[320px] after:h-[190px] xl:after:h-[230px] 2xl:after:h-[260px] 3xl:after:h-[320px] after:bg-[url('/images/globe-line.svg')] after:pointer-events-none after:bg-contain after:bg-no-repeat">
                         <Image
-                          src={
-                            item?.featured_image?.url
-                              ? getStrapiMediaUrl(item?.featured_image?.url)
-                              : "/images/placeholder.jpg"
+                          src={getStrapiMediaUrl(item?.featured_image?.url)}
+                          alt={
+                            item?.featured_image?.alternativeText || "members"
                           }
-                          alt={item.name || "members"}
                           width="320"
                           height="430"
                           className="w-full h-full object-contain relative z-10"
