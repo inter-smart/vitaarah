@@ -13,7 +13,7 @@ const packagePageQuery = buildQuery({
   },
   statistics_section: {
     populate: {
-      Statistics: true,
+      statistics: true,
     },
   },
   package_listing_section: true,
@@ -25,7 +25,7 @@ const packagesQuery = buildQuery({
     featured_image: true,
     programs: {
       populate: {
-        available_durationss: true,
+        available_durations: true,
       },
     },
   },
@@ -56,9 +56,6 @@ export default async function PackagesPage() {
         packages: packagesData,
       }
     : null;
-
-  console.log("PackagesListing", listingData);
-  console.log("Packages", listingData.packages);
 
   return (
     <>

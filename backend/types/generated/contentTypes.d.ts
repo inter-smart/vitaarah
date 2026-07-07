@@ -1033,6 +1033,10 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    duration_info_section: Schema.Attribute.Component<
+      'sections.treatments-included-section',
+      false
+    >;
     faq_section: Schema.Attribute.Component<'sections.faq-section', false>;
     hero_media: Schema.Attribute.Media<'images'>;
     hero_title: Schema.Attribute.String;
@@ -1053,10 +1057,6 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
-    treatments_included_section: Schema.Attribute.Component<
-      'sections.treatments-included-section',
-      false
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

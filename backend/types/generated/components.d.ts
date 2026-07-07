@@ -608,7 +608,7 @@ export interface SectionsStatisticsSection extends Struct.ComponentSchema {
   };
   attributes: {
     short_description: Schema.Attribute.Text;
-    Statistics: Schema.Attribute.Component<'common.statistic', true>;
+    statistics: Schema.Attribute.Component<'common.statistic', true>;
     title: Schema.Attribute.String;
   };
 }
@@ -716,7 +716,7 @@ export interface SectionsTreatmentsIncludedSection
   extends Struct.ComponentSchema {
   collectionName: 'components_sections_treatments_included_sections';
   info: {
-    displayName: ' Treatments Included Section';
+    displayName: 'Duration Info Section';
   };
   attributes: {
     description: Schema.Attribute.Blocks;

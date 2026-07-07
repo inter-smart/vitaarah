@@ -11,7 +11,7 @@
     "short_description": {
       "type": "text"
     },
-    "Statistics": {
+    "statistics": {
       "type": "component",
       "component": "common.statistic",
       "repeatable": true

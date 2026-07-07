@@ -52,7 +52,7 @@
       "component": "sections.who-is-this-for-section",
       "repeatable": false
     },
-    "treatments_included_section": {
+    "duration_info_section": {
       "type": "component",
       "component": "sections.treatments-included-section",
       "repeatable": false
