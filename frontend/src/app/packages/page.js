@@ -42,7 +42,7 @@ export default async function PackagesPage() {
     (a, b) => {
       const getDays = (label) => Number(label?.match(/\d+/)?.[0] || 0);
       return getDays(a.label) - getDays(b.label);
-    }
+    },
   );
   // const fullProgramsData = programsRes?.data ?? [];
 
@@ -63,10 +63,6 @@ export default async function PackagesPage() {
         durations: availableDurationsData,
       }
     : null;
-
-  console.log("pageData", pageData);
-  console.log("packagesData", packagesData);
-  console.log("availableDurationsData", availableDurationsData);
 
   return (
     <>

@@ -1,25 +1,26 @@
 import { cn } from "@/lib/utils";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
-export default function PackagesDetail({ data, availableDurations }) {
+export default function ProgramDetail({ data, availableDurations }) {
   const sections = [
-    data?.benefitsTitle
-      ? { title: data.benefitsTitle, description: data.benefitsDescription }
+    data?.benefits_section?.title
+      ? { title: data.benefits_section.title, description: data.benefits_section.description }
       : null,
-    data?.includedTreatmentsTitle
+    data?.Included_treatments_section?.title
       ? {
-          title: data.includedTreatmentsTitle,
-          description: data.includedTreatmentsDescription,
+          title: data.Included_treatments_section.title,
+          description: data.Included_treatments_section.description,
         }
       : null,
-    data?.whoThisForTitle
-      ? { title: data.whoThisForTitle, description: data.whoThisForDescription }
+    data?.who_is_this_for_section?.title
+      ? { title: data.who_is_this_for_section.title, description: data.who_is_this_for_section.description }
       : null,
-    data?.packageIncludedTitle
+    data?.duration_info_section?.title
       ? {
-          title: data.packageIncludedTitle,
-          description: data.packageIncludedDescription,
+          title: data.duration_info_section.title,
+          description: data.duration_info_section.description,
           availableDurations,
         }
       : null,
@@ -45,14 +46,14 @@ export default function PackagesDetail({ data, availableDurations }) {
         className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 top-[42%] left-0 -translate-x-1/2"
       />
       <div className="container">
-        {data.label && (
+        {data.title && (
           <h2 className="heading_1 leading-tight text-center text-[#1f1f1f] mb-[2px] xl:mb-[2px] 2xl:mb-[2px]">
-            {data.label}
+            {data.title}
           </h2>
         )}
-        {data.description && (
+        {data.short_description && (
           <div className="text_3 text-center font-normal text-black mb-[15px] xl:mb-[26px] 2xl:mb-[30px] 3xl:mb-[36px]">
-            {data.description}
+            {data.short_description}
           </div>
         )}
         {availableDurations && (
@@ -65,8 +66,8 @@ export default function PackagesDetail({ data, availableDurations }) {
           <div className="w-[268px] sm:w-[268px] lg:w-[458px] xl:w-[565.3px] 2xl:w-[640.9px] 3xl:w-[777.5px] mx-auto">
             <div className="w-full aspect-[777/406] overflow-hidden">
               <Image
-                src={data?.introductionImage?.url}
-                alt={data?.introductionImage?.alternativeText || "home about 1"}
+                src={getStrapiMediaUrl(data?.introduction_section?.introduction_image)}
+                alt={data?.introduction_section?.introduction_image?.alternativeText || data?.title || "Program image"}
                 width={777}
                 height={406}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform"
@@ -74,14 +75,14 @@ export default function PackagesDetail({ data, availableDurations }) {
             </div>
           </div>
           <div className="flex-auto sm:flex-1">
-            {data.introductionTitle && (
+            {data?.introduction_section?.title && (
               <div className="text-[14px] lg:text-[19.8px] xl:text-[24.5px] 2xl:text-[27.8px] 3xl:text-[33.7px] leading-normal font-normal font-helvetica text-center sm:text-start text-[#a14962] mb-[2px] xl:mb-[4px] 2xl:mb-[6px] 3xl:mb-[10px]">
-                {data.introductionTitle}
+                {data.introduction_section.title}
               </div>
             )}
-            {data.introductionDescription && (
+            {data?.introduction_section?.description && (
               <div className="text_3 font-normal text-center sm:text-start text-black xl:max-w-[90%]">
-                <BlocksRenderer content={data.introductionDescription} />
+                <BlocksRenderer content={data.introduction_section.description} />
               </div>
             )}
           </div>

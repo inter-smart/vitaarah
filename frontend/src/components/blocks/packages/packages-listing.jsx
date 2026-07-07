@@ -31,7 +31,6 @@ export default function PackagesListing({ data }) {
 
           <div className="flex flex-wrap justify-center -mx-2.5 xl:-mx-[14px] 2xl:-mx-[16px] 3xl:-mx-[20px]">
             {data?.packages?.map((item, idx) => {
-              
               return (
                 <div
                   key={"packages" + idx}
@@ -78,7 +77,7 @@ export default function PackagesListing({ data }) {
                             {item?.programs?.map((program, pIdx) => (
                               <Link
                                 key={"program" + pIdx}
-                                href={`/packages/${program?.slug}`}
+                                href={`/programs/${program?.slug}`}
                                 className="group/includedTreatments flex gap-x-[8px] lg:gap-x-[11px] 2xl:gap-x-[12px] 3xl:gap-x-[15px] p-[4px_4px] sm:p-[6px_5px] xl:p-[7px_8.5px] 2xl:p-[8px_9.5px] 3xl:p-[10px_11.5px] hover:bg-[#d9d9d9]/20 transition-all duration-300"
                               >
                                 <Image

@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils";
 
-export default function PackagesDurations({ data, packageDetail, availableDurationsData }) {
+export default function PackagesDurations({
+  data,
+  packageDetail,
+  availableDurationsData,
+}) {
   return (
     <section
       id="PackagesDurations"
@@ -20,8 +24,6 @@ export default function PackagesDurations({ data, packageDetail, availableDurati
 
         <div className="flex flex-wrap justify-center -mx-4 sm:-mx-2.5 xl:-mx-[14px] 2xl:-mx-[16px] 3xl:-mx-[20px]">
           {packageDetail?.map((item, idx) => {
-
-
             return (
               <div
                 key={"packageDetail" + idx}
@@ -29,7 +31,10 @@ export default function PackagesDurations({ data, packageDetail, availableDurati
               >
                 <div className="flex flex-col sm:flex-row justify-between gap-1.5 mb-[10px] xl:mb-[12px] 2xl:mb-[14px] 3xl:mb-[18px]">
                   <div className="text_3 font-normal uppercase text-[#a14962]">
-                    {idx + 1} {item?.title} {item?.short_description ? `- ${item.short_description}` : ''}
+                    {idx + 1} {item?.title}{" "}
+                    {item?.short_description
+                      ? `- ${item.short_description}`
+                      : ""}
                   </div>
                   <div className="flex gap-[15px] xl:gap-[22px] 2xl:gap-[25px] 3xl:gap-[31px] ml-auto">
                     {["Available", "Not available"].map((statusLabel, sIdx) => {
@@ -78,9 +83,10 @@ export default function PackagesDurations({ data, packageDetail, availableDurati
                           </div>
                           {availableDurationsData?.map(
                             (durationItem, colIdx) => {
-                              const isAvailable = program?.available_durationss?.some(
-                                (d) => d.id === durationItem.id
-                              );
+                              const isAvailable =
+                                program?.available_durationss?.some(
+                                  (d) => d.id === durationItem.id,
+                                );
 
                               return (
                                 <div
@@ -90,9 +96,7 @@ export default function PackagesDurations({ data, packageDetail, availableDurati
                                   <span
                                     className={cn(
                                       "w-[8.8px] 2xl:w-[10px] 3xl:w-[12px] h-[8.8px] 2xl:h-[10px] 3xl:h-[12px] aspect-square border border-[#a14962] rounded-full inline-block mx-auto",
-                                      isAvailable
-                                        ? "bg-[#a14962]"
-                                        : "bg-white",
+                                      isAvailable ? "bg-[#a14962]" : "bg-white",
                                     )}
                                   />
                                 </div>

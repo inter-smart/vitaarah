@@ -46,7 +46,7 @@ export default function TreatmentFaq({ data }) {
         >
           <div className="heading_1 mb-[0px]">{data?.title}</div>
 
-          <div className="text_3 font-light">{data?.subtitle}</div>
+          <div className="text_3 font-light">{data?.short_description}</div>
         </motion.div>
 
         <motion.div
@@ -58,9 +58,9 @@ export default function TreatmentFaq({ data }) {
           <Accordion
             type="single"
             collapsible
-            defaultValue={`item-${data?.faqs?.[0]?.id || 0}`}
+            defaultValue={`item-${data?.faq_item?.[0]?.id || 0}`}
           >
-            {data?.faqs?.map((item, id) => (
+            {data?.faq_item?.map((item, id) => (
               <motion.div key={id} variants={itemVariants}>
                 <AccordionItem
                   value={`item-${item?.id || id}`}
@@ -87,7 +87,7 @@ export default function TreatmentFaq({ data }) {
                                         after:text-[#1C1C1C]
                                         data-[state=open]:after:content-['−']"
                   >
-                    {item?.question}
+                    {item?.title}
                   </AccordionTrigger>
 
                   <AccordionContent>
@@ -97,7 +97,11 @@ export default function TreatmentFaq({ data }) {
                       transition={{ duration: 0.3 }}
                       className="text-[11px] xl:text-[12px] 2xl:text-[15px] 3xl:text-[16px] font-light [&>p:not(:last-child)]:mb-[15px] 3xl:max-w-[1024px] pb-[10px]"
                     >
-                      <BlocksRenderer content={item?.answer} />
+                      {typeof item?.short_description === "string" ? (
+                        <p>{item?.short_description}</p>
+                      ) : (
+                        <BlocksRenderer content={item?.short_description} />
+                      )}
                     </motion.div>
                   </AccordionContent>
                 </AccordionItem>
