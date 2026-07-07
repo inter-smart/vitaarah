@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export default function PackagesDurations({ data, packageDetail }) {
+export default function PackagesDurations({ data, packageDetail, availableDurationsData }) {
   return (
     <section
       id="PackagesDurations"
@@ -20,19 +20,7 @@ export default function PackagesDurations({ data, packageDetail }) {
 
         <div className="flex flex-wrap justify-center -mx-4 sm:-mx-2.5 xl:-mx-[14px] 2xl:-mx-[16px] 3xl:-mx-[20px]">
           {packageDetail?.map((item, idx) => {
-            // Extract unique available durations from the programs for the columns
-            const availableDurationsMap = new Map();
-            item?.programs?.forEach((program) => {
-              program?.available_durationss?.forEach((durationObj) => {
-                if (durationObj?.duration) {
-                  availableDurationsMap.set(durationObj.duration, durationObj.label);
-                }
-              });
-            });
-            // Sort them to display in order (e.g. 3 Days, 7 Days, etc)
-            const sortedDurations = Array.from(availableDurationsMap.entries())
-              .sort((a, b) => a[0] - b[0])
-              .map(([duration, label]) => ({ duration, label }));
+
 
             return (
               <div
@@ -67,7 +55,7 @@ export default function PackagesDurations({ data, packageDetail }) {
                     <div className="text_3 leading-tight font-normal text-[#a14962] w-[30%] py-[6px] xl:py-[7px] 2xl:py-[8px] 3xl:py-[10px]">
                       Pathway / Program
                     </div>
-                    {sortedDurations?.map((durationItem, dIdx) => {
+                    {availableDurationsData?.map((durationItem, dIdx) => {
                       return (
                         <div
                           key={"availableDurations" + dIdx}
@@ -82,18 +70,17 @@ export default function PackagesDurations({ data, packageDetail }) {
                     {item?.programs?.map((program, pIdx) => {
                       return (
                         <div
-                          key={"includedTreatment" + pIdx}
+                          key={"programs" + pIdx}
                           className={cn("flex flex-wrap items-center")}
                         >
                           <div className="text_3 leading-tight font-normal text-[#a14962] w-[30%] py-[6px] xl:py-[7px] 2xl:py-[8px] 3xl:py-[10px]">
                             {program?.title}
                           </div>
-                          {sortedDurations?.map(
+                          {availableDurationsData?.map(
                             (durationItem, colIdx) => {
-                              const match = program?.available_durationss?.find(
-                                (d) => d.duration === durationItem.duration
+                              const isAvailable = program?.available_durationss?.some(
+                                (d) => d.id === durationItem.id
                               );
-                              const isAvailable = match?.available === true;
 
                               return (
                                 <div

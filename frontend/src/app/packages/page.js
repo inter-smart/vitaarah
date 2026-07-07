@@ -21,24 +21,30 @@ const packagePageQuery = buildQuery({
 });
 
 const packagesQuery = buildQuery({
-  populate: {
-    featured_image: true,
-    programs: {
-      populate: {
-        available_durations: true,
-      },
+  featured_image: true,
+  programs: {
+    populate: {
+      available_durationss: true,
     },
   },
 });
 
 export default async function PackagesPage() {
-  const [pageRes, packagesRes] = await Promise.all([
-    fetchAPI(`/api/package-page?${packagePageQuery}`),
-    fetchAPI(`/api/packages?${packagesQuery}`),
+  const [pageRes, packagesRes, availableDurationsRes] = await Promise.all([
+    fetchAPI(`/api/package-page?${packagePageQuery}`).catch(() => null),
+    fetchAPI(`/api/packages?${packagesQuery}`).catch(() => null),
+    fetchAPI(`/api/available-durations`).catch(() => null),
   ]);
 
   const pageData = pageRes?.data ?? null;
   const packagesData = packagesRes?.data ?? [];
+  const availableDurationsData = [...(availableDurationsRes?.data || [])].sort(
+    (a, b) => {
+      const getDays = (label) => Number(label?.match(/\d+/)?.[0] || 0);
+      return getDays(a.label) - getDays(b.label);
+    }
+  );
+  // const fullProgramsData = programsRes?.data ?? [];
 
   if (!pageData) return null;
 
@@ -54,8 +60,13 @@ export default async function PackagesPage() {
     ? {
         ...package_listing_section,
         packages: packagesData,
+        durations: availableDurationsData,
       }
     : null;
+
+  console.log("pageData", pageData);
+  console.log("packagesData", packagesData);
+  console.log("availableDurationsData", availableDurationsData);
 
   return (
     <>
@@ -66,6 +77,7 @@ export default async function PackagesPage() {
         <PackagesDurations
           data={package_duration_section}
           packageDetail={packagesData}
+          availableDurationsData={availableDurationsData}
         />
       )}
     </>

@@ -4,8 +4,6 @@ import Link from "next/link";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 
 export default function PackagesListing({ data }) {
-  console.log("PackagesListing" , data);
-  
   return (
     <>
       <style>{`
@@ -33,25 +31,7 @@ export default function PackagesListing({ data }) {
 
           <div className="flex flex-wrap justify-center -mx-2.5 xl:-mx-[14px] 2xl:-mx-[16px] 3xl:-mx-[20px]">
             {data?.packages?.map((item, idx) => {
-              // Extract unique available durations from the programs
-              const availableDurationsMap = new Map();
-              item?.programs?.forEach((program) => {
-                program?.available_durationss?.forEach((durationObj) => {
-                  if (durationObj?.available && durationObj?.duration) {
-                    availableDurationsMap.set(
-                      durationObj.duration,
-                      durationObj.label,
-                    );
-                  }
-                });
-              });
-              // Sort them to display in order (e.g. 3 Days, 7 Days, etc)
-              const sortedDurations = Array.from(
-                availableDurationsMap.entries(),
-              )
-                .sort((a, b) => a[0] - b[0])
-                .map(([duration, label]) => ({ duration, label }));
-
+              
               return (
                 <div
                   key={"packages" + idx}
@@ -66,14 +46,10 @@ export default function PackagesListing({ data }) {
                   >
                     <div className="w-[90px] sm:w-[100px] lg:w-[129px] xl:w-[160px] 2xl:w-[180.3px] 3xl:w-[218.7px] aspect-[218/436] rounded-[482px] xl:rounded-[482px] 2xl:rounded-[180.3px] 3xl:rounded-[482px] bg-black relative z-0 overflow-hidden">
                       <Image
-                        src={
-                          item?.featured_image?.url
-                            ? getStrapiMediaUrl(item.featured_image.url)
-                            : "/images/placeholder.jpg"
-                        }
+                        src={getStrapiMediaUrl(item?.featured_image)}
                         alt={
-                          item.featured_image.alternativeText ||
-                          item.title ||
+                          item?.featured_image?.alternativeText ||
+                          item?.title ||
                           "Package image"
                         }
                         width={336}
@@ -128,9 +104,9 @@ export default function PackagesListing({ data }) {
                         </>
                       )}
 
-                      {sortedDurations?.length > 0 && (
+                      {data?.durations?.length > 0 && (
                         <div className="flex flex-wrap gap-[4px] sm:gap-[6px] xl:gap-[7.6px] 2xl:gap-[8.6px] 3xl:gap-[10.5px]">
-                          {sortedDurations?.map((availableDuration, dIdx) => (
+                          {data?.durations?.map((availableDuration, dIdx) => (
                             <div
                               key={"availableDurations" + dIdx}
                               className="text-[9px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[13px] leading-tight font-helvetica text-black p-[8px_10px] xl:p-[10px_12px] 2xl:p-[12px_14px] 3xl:p-[14px_16px] bg-[#E6C6A0]/20 rounded-full backdrop-blur-lg shadow-[-1px_-1px_0px_rgba(255,255,255,0.4)] inset-shadow-[-1px_-1px_0px_0px_rgba(255,255,255,0.4)] transition-all duration-300 group-hover/packages:bg-[#E6C6A0]/20 group-hover/packages:text-white"

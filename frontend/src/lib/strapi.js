@@ -32,8 +32,10 @@ export async function fetchAPI(endpoint, options = {}) {
   }
 }
 
-export function getStrapiMediaUrl(url) {
-  if (!url) return null;
+export function getStrapiMediaUrl(media) {
+  if (!media) return "/images/placeholder.jpg";
+  const url = typeof media === "string" ? media : media.url;
+  if (!url) return "/images/placeholder.jpg";
   if (url.startsWith("http")) return url;
   return `${STRAPI_URL}${url}`;
 }

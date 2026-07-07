@@ -34,6 +34,9 @@ export default async function SpecialityPage() {
 
   const { hero, specialities_listing_section, cta_specialities_section } = data;
 
+  console.log("specialities_listing_section", specialities_listing_section);
+  
+
   return (
     <>
       {hero && <InnerHero data={hero} />}

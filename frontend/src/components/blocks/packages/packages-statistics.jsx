@@ -25,9 +25,9 @@ export default function PackagesStatistics({ data }) {
             {data.short_description}
           </div>
         )}
-        {data?.Statistics?.length > 0 && (
+        {data?.statistics?.length > 0 && (
           <div className="w-full flex flex-wrap items-center justify-center gap-[15px] sm:gap-[40px] xl:gap-[80px] 2xl:gap-[90px] 3xl:gap-[100px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
-            {data.Statistics.map((stat, index) => (
+            {data.statistics.map((stat, index) => (
               <Fragment key={stat.label}>
                 <div className="max-sm:w-[130px]">
                   <h3 className="text-[18px] sm:text-[26.6px] xl:text-[32.9px] 2xl:text-[37.3px] 3xl:text-[45.2px] leading-normal font-normal font-things max-sm:text-center text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[6px]">
@@ -38,7 +38,7 @@ export default function PackagesStatistics({ data }) {
                     {stat.label}
                   </p>
                 </div>
-                {index < data.Statistics.length - 1 && (
+                {index < data.statistics.length - 1 && (
                   <div className="w-[1px] h-[91px] 2xl:h-[110px] 3xl:h-[130px] bg-[#ECE7D7] max-sm:hidden" />
                 )}
               </Fragment>
