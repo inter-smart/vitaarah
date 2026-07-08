@@ -12,7 +12,9 @@ export default function ConditionRootCause({ data }) {
       <div className="container">
         <div className="max-w-[440px] xl:max-w-[540px] 2xl:max-w-[610px] 3xl:max-w-[740px] text-center m-auto mb-[10px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]">
           <div className="heading_1 mb-[10px] sm:mb-[0px]">{data?.title}</div>
-          <div className="text_3 font-helvetica-light">{data?.short_description}</div>
+          <div className="text_3 font-helvetica-light">
+            {data?.short_description}
+          </div>
         </div>
         <Swiper
           modules={[Autoplay]}
@@ -58,10 +60,10 @@ export default function ConditionRootCause({ data }) {
                         ? getStrapiMediaUrl(item.icon.url)
                         : "/images/placeholder.jpg"
                     }
+                    alt={item?.title || "Icon"}
                     width="52"
                     height="52"
                     className="w-full h-full object-contain"
-                    alt={item?.title || "Icon"}
                   />
                 </div>
                 <div className="text-[15px] lg:text-[17px] xl:text-[21px] 2xl:text-[23px] 3xl:text-[28px] text-[#A14962] mb-[10px]">

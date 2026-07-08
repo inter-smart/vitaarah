@@ -105,7 +105,7 @@ export default function ConditionSymtoms({ data }) {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <div className="overflow-hidden w-full h-full rounded-[20px] lg:rounded-[120px]">
+            <div className="overflow-hidden w-full h-auto aspect-[567/260] rounded-[20px] lg:rounded-[120px]">
               <Image
                 src={
                   data?.symptoms_image?.url
@@ -115,7 +115,7 @@ export default function ConditionSymtoms({ data }) {
                 alt={data?.symptoms_image?.alternativeText || "Symptoms"}
                 width={520}
                 height={300}
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
           </motion.div>

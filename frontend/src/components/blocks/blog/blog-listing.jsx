@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import FallbackImage from "@/components/common/FallbackImage";
 import BlogCard from "./blog-card";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 const WORDS_PER_MINUTE = 200;
 
@@ -28,7 +30,7 @@ function BlogSpecItem({ src, alt, children }) {
   );
 }
 
-export default function BlogListing({ data }) {
+export default function BlogListing({ data, blogs }) {
   return (
     <section
       id="BlogListing"
@@ -56,7 +58,7 @@ export default function BlogListing({ data }) {
         )}
 
         <div className="flex flex-wrap justify-center -mx-2.5 lg:-mx-[9px] xl:-mx-[11.5px] xl:-mx-[11.5px] 2xl:-mx-[13px] 3xl:-mx-[16px] lg:-my-[30px] xl:-my-[35.5px] xl:-my-[35.5px] 2xl:-my-[42px] 3xl:-my-[50px]">
-          {data?.blogs?.map((item, idx) => {
+          {blogs?.map((item, idx) => {
             return idx === 0 ? (
               <div
                 key={"blogs" + idx}
@@ -65,13 +67,13 @@ export default function BlogListing({ data }) {
                 )}
               >
                 <Link
-                  href={`/blog/${item?.slug}`}
+                  href={`/blogs/${item?.slug}`}
                   className="w-full flex flex-wrap items-center bg-[#fff9eb] sm:gap-[25px] lg:gap-[32px] xl:gap-[40px] 2xl:gap-[45px] 3xl:gap-[60px] transition-all duration-500"
                 >
                   <div className="w-full sm:w-[268px] md:w-[320px] lg:w-[528px] xl:w-[652px] 2xl:w-[740px] 3xl:w-[897px] aspect-[897/450] overflow-hidden">
-                    <Image
-                      src={item.featuredImage.url}
-                      alt={item.featuredImage.alternativeText || "Blog"}
+                    <FallbackImage
+                      src={getStrapiMediaUrl(item?.featured_image?.url)}
+                      alt={item?.featured_image?.alternativeText || item?.title || "Blog"}
                       width={897}
                       height={450}
                       className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
@@ -83,22 +85,22 @@ export default function BlogListing({ data }) {
                       {item?.title}
                     </div>
                     <div className="text_3 leading-relaxed line-clamp-3 text-black mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[22px]">
-                      {item?.shortDescription || "-"}
+                      {item?.short_description || "-"}
                     </div>
                     <div className="max-w-11/12 flex justify-between gap-2 mb-[10px] sm:mb-[15px] xl:mb-[26px] 2xl:mb-[30px] 3xl:mb-[36px]">
                       <BlogSpecItem
                         src="/images/icon-clock.svg"
                         alt="icon-clock"
                       >
-                        {calculateReadTime(item?.shortDescription || "")} min
+                        {calculateReadTime(item?.short_description || "")} min
                         read
                       </BlogSpecItem>
                       <BlogSpecItem
                         src="/images/icon-calcu.svg"
                         alt="icon-calcu"
                       >
-                        {item?.publishedDate
-                          ? new Date(item.publishedDate).toLocaleDateString(
+                        {item?.published_date
+                          ? new Date(item.published_date).toLocaleDateString(
                               "en-US",
                               { month: "long", year: "numeric" },
                             )

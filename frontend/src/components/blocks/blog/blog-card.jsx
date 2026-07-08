@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import FallbackImage from "@/components/common/FallbackImage";
 import Link from "next/link";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 const WORDS_PER_MINUTE = 200;
 
@@ -28,14 +30,15 @@ function BlogSpecItem({ src, alt, children }) {
 
 export default function BlogCard({ data }) {
   return (
-    <Link href={`/blog/${data?.slug}`} className="w-full h-full flex flex-col">
+    <Link href={`/blogs/${data?.slug}`} className="w-full h-full flex flex-col">
       <div className="w-full aspect-[502/403] overflow-hidden mb-[10px] sm:mb-[15px] xl:mb-[37px] 2xl:mb-[42px] 3xl:mb-[51px]">
-        <Image
-          src={data.featuredImage.url || "/images/placeholder.jpg"}
-          alt={data.featuredImage.alternativeText || data.title || "Blog"}
+        <FallbackImage
+          src={getStrapiMediaUrl(data?.featured_image?.url)}
+          alt={data?.featured_image?.alternativeText || data?.title || "Blog"}
           width={502}
           height={403}
           className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+          unoptimized
         />
       </div>
       <div className="flex-1 flex flex-col justify-between gap-[10px] lg:gap-[18px] xl:gap-[22px] 2xl:gap-[26px] 3xl:gap-[31px]">
@@ -44,15 +47,15 @@ export default function BlogCard({ data }) {
             {data?.title}
           </div>
           <div className="text_3 leading-relaxed line-clamp-2 text-black mb-[10px] xl:mb-[14px] 2xl:mb-[16px] 3xl:mb-[20px]">
-            {data?.shortDescription || "-"}
+            {data?.short_description || "-"}
           </div>
           <div className="max-w-11/12 flex justify-between gap-2">
             <BlogSpecItem src="/images/icon-clock.svg" alt="icon-clock">
-              {calculateReadTime(data?.shortDescription || "")} min read
+              {calculateReadTime(data?.short_description || "")} min read
             </BlogSpecItem>
             <BlogSpecItem src="/images/icon-calcu.svg" alt="icon-calcu">
-              {data?.publishedDate
-                ? new Date(data.publishedDate).toLocaleDateString("en-US", {
+              {data?.published_date
+                ? new Date(data.published_date).toLocaleDateString("en-US", {
                     month: "long",
                     year: "numeric",
                   })

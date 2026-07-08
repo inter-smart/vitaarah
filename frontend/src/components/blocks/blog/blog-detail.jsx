@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
+import FallbackImage from "@/components/common/FallbackImage";
 import BlogCard from "./blog-card";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 const WORDS_PER_MINUTE = 200;
 
@@ -27,7 +29,7 @@ function BlogSpecItem({ src, alt, children }) {
   );
 }
 
-export default function BlogDetail({ data }) {
+export default function BlogDetail({ data, relatedBlogs }) {
   return (
     <section
       id="BlogDetail"
@@ -48,9 +50,9 @@ export default function BlogDetail({ data }) {
             </div>
             <div className="w-full bg-[#fff9eb]">
               <div className="w-full aspect-[897/450] overflow-hidden">
-                <Image
-                  src={data.featuredImage.url}
-                  alt={data.featuredImage.alternativeText || "Blog"}
+                <FallbackImage
+                  src={getStrapiMediaUrl(data?.featured_image?.url)}
+                  alt={data?.featured_image?.alternativeText || data?.title || "Blog"}
                   width={897}
                   height={450}
                   className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
@@ -68,11 +70,11 @@ export default function BlogDetail({ data }) {
                 )}
                 <div className="max-w-11/12 flex flex-wrap gap-4 sm:gap-[30px] xl:gap-[70px] 2xl:gap-[77px] 3xl:gap-[93px]">
                   <BlogSpecItem src="/images/icon-clock.svg" alt="icon-clock">
-                    {calculateReadTime(data?.shortDescription || "")} min read
+                    {calculateReadTime(data?.short_description || "")} min read
                   </BlogSpecItem>
                   <BlogSpecItem src="/images/icon-calcu.svg" alt="icon-calcu">
-                    {data?.publishedDate
-                      ? new Date(data?.publishedDate).toLocaleDateString(
+                    {data?.published_date
+                      ? new Date(data.published_date).toLocaleDateString(
                           "en-US",
                           {
                             month: "long",
@@ -93,7 +95,7 @@ export default function BlogDetail({ data }) {
               Recent Blogs
             </div>
             <div className="flex flex-wrap -mx-[15px] lg:m-0 [&>div]:p-[15px] lg:[&>div]:p-0 lg:space-y-[20px] xl:space-y-[48px] 2xl:space-y-[55px] 3xl:space-y-[67px]">
-              {data?.blogs
+              {relatedBlogs
                 ?.filter((b) => b.slug !== data.slug)
                 .slice(0, 2)
                 .map((item, idx) => {

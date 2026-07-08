@@ -4,6 +4,7 @@ import { getStrapiMediaUrl } from "@/lib/strapi";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import FallbackImage from "@/components/common/FallbackImage";
 
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -69,13 +70,13 @@ export default function HomeBlogs({ data }) {
                     <div className="text_4 line-clamp-2 mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px]">
                       {item?.title}
                     </div>
-                    {item?.featuredImage?.url && (
+                    {item?.featured_image?.url && (
                       <div className="w-full aspect-square overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
-                        <Image
-                          src={getStrapiMediaUrl(item.featuredImage.url)}
+                        <FallbackImage
+                          src={getStrapiMediaUrl(item?.featured_image?.url)}
                           alt={
-                            item.featuredImage.alternativeText ||
-                            item.title ||
+                            item?.featured_image?.alternativeText ||
+                            item?.title ||
                             "Blog"
                           }
                           width={52}
@@ -88,7 +89,7 @@ export default function HomeBlogs({ data }) {
                   </div>
 
                   <Link
-                    href={`/blog/${item?.slug}`}
+                    href={`/blogs/${item?.slug}`}
                     className={cn("mt-auto", "transition-all duration-500")}
                   >
                     <div
@@ -103,15 +104,15 @@ export default function HomeBlogs({ data }) {
                         {item?.title}
                       </div>
                       <div className="text_3 leading-relaxed line-clamp-2 text-black mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px]">
-                        {item?.shortDescription || "-"}
+                        {item?.short_description || "-"}
                       </div>
                       <div className="flex justify-between gap-2">
                         <div className="text_3 text-center text-[#a14962] underline underline-offset-4 hover:text-black">
                           Read More
                         </div>
                         <div className="text_3 text-center text-[#a14962]">
-                          {item?.publishedDate
-                            ? new Date(item.publishedDate).toLocaleDateString(
+                          {item?.published_date
+                            ? new Date(item.published_date).toLocaleDateString(
                                 "de-DE",
                                 {
                                   day: "2-digit",
@@ -123,11 +124,11 @@ export default function HomeBlogs({ data }) {
                         </div>
                       </div>
                       <div className="w-full aspect-[373/473] overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
-                        <Image
-                          src={getStrapiMediaUrl(item.featuredImage.url)}
+                        <FallbackImage
+                          src={getStrapiMediaUrl(item?.featured_image?.url)}
                           alt={
-                            item.featuredImage.alternativeText ||
-                            item.title ||
+                            item?.featured_image?.alternativeText ||
+                            item?.title ||
                             "Blog"
                           }
                           width={52}

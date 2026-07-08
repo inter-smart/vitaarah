@@ -5,8 +5,9 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 import Image from "next/image";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
-export default function GalleryTreatmentVideos({ data }) {
+export default function GalleryTreatmentVideos({ data, videos }) {
   const [emblaRef] = useEmblaCarousel(
     {
       loop: false,
@@ -33,15 +34,15 @@ export default function GalleryTreatmentVideos({ data }) {
                 {data.title}
               </h2>
             )}
-            {data.description && (
+            {data.short_description && (
               <div className="text_3 text-center font-normal text-black">
-                {data.description}
+                {data.short_description}
               </div>
             )}
           </div>
           <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
             <div className="flex touch-pan-y touch-pinch-zoom -mx-[6px] sm:-mx-[11px] xl:-mx-[14px] 2xl:-mx-[15px] 3xl:-mx-[18px]">
-              {data?.treatmentVideos?.map((item, idx) => (
+              {videos?.map((item, idx) => (
                 <div
                   key={"treatmentVideos" + idx}
                   className={cn(
@@ -54,7 +55,7 @@ export default function GalleryTreatmentVideos({ data }) {
                     )}
                   >
                     <video
-                      src={item.galleryMedia.url}
+                      src={getStrapiMediaUrl(item?.treatment_video?.url)}
                       className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
                       muted
                       loop
@@ -68,7 +69,7 @@ export default function GalleryTreatmentVideos({ data }) {
                       }}
                     />
                     <Link
-                      href={item.slug}
+                      href={item?.instagram_post_url || "#"}
                       target="_blank"
                       className="absolute z-0 bottom-[10px]  lg:bottom-[18px] 2xl:bottom-[21px] 3xl:bottom-[26px] right-[10px] lg:right-[12px] 2xl:right-[14px] 3xl:right-[17px] block hover:scale-105 transition-all duration-500"
                     >
@@ -99,24 +100,26 @@ export default function GalleryTreatmentVideos({ data }) {
         <div className="container">
           <div className="flex flex-wrap items-center justify-center lg:justify-between gap-6 lg:gap-[76px] xl:gap-[94px] 2xl:gap-[107px] 3xl:gap-[130px]">
             <div className="flex-auto lg:flex-1 flex flex-col lg:flex-row lg:items-end gap-2 lg:gap-[48px] xl:gap-[59px] 2xl:gap-[68px] 3xl:gap-[82px]">
-              {data.subTitle && (
-                <h2 className="heading_1 leading-none text-center lg:text-start text-[#1f1f1f]">{data.subTitle}</h2>
+              {data.sub_title && (
+                <h2 className="heading_1 leading-none text-center lg:text-start text-[#1f1f1f]">
+                  {data.sub_title}
+                </h2>
               )}
-              {data.subDescription && (
+              {data.sub_description && (
                 <div className="text_3 font-normal text-center lg:text-start text-black  mb-[2px] xl:mb-[4px] 2xl:mb-[6px]">
-                  {data.subDescription}
+                  {data.sub_description}
                 </div>
               )}
             </div>
             <div className="flex flex-col items-center lg:items-end">
-              {data.instaUsername && (
+              {data.instagram_username && (
                 <div className="text_3 text-center font-normal text-[#a14962] mb-[10px] xl:mb-[12px] 2xl:mb-[14px] 3xl:mb-[17px]">
-                  {data.instaUsername}
+                  {data.instagram_username}
                 </div>
               )}
-              {data.instaUrl && (
+              {data.instagram_url && (
                 <Link
-                  href={data.instaUrl}
+                  href={data.instagram_url}
                   target="_blank"
                   className="text_3 leading-none font-normal text-white w-full min-w-[185px] xl:min-w-[230px] 2xl:min-w-[260px] 3xl:min-w-[315px] h-[50px] xl:h-[62px] 2xl:h-[70px] 3xl:h-[85px] bg-linear-to-l from-[#e9cba3] to-[#a14962] flex items-center justify-center gap-[10px] xl:gap-[12px] 2xl:gap-[14px] 3xl:gap-[17px] hover:scale-105 transition-all duration-500"
                 >

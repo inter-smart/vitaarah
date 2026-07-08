@@ -16,7 +16,7 @@ export async function fetchAPI(endpoint, options = {}) {
       headers: TOKEN
         ? { Authorization: `Bearer ${TOKEN}` }
         : undefined,
-      next: { revalidate: 3600 },
+      next: { revalidate: 0 },
       ...options,
     });
 

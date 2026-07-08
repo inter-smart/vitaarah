@@ -4,15 +4,26 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
-export default function GalleryListing({ data }) {
+export default function GalleryListing({ images }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const slides = data?.galleryList?.map((item) => ({
-    src: item.galleryMedia.url,
-    alt: item.galleryMedia.alternativeText || "gallery Media",
-  })) || [];
+  const allImages =
+    images?.flatMap((item) => {
+      if (!item?.media) return [];
+      const mediaArray = Array.isArray(item.media) ? item.media : [item.media];
+      return mediaArray
+        .filter((m) => m.mime?.startsWith("image/"))
+        .map((m) => ({ media: m, title: item.title }));
+    }) || [];
+
+  const slides =
+    allImages.map((img) => ({
+      src: getStrapiMediaUrl(img?.media?.url) || "/images/placeholder.jpg",
+      alt: img?.title || img?.media?.alternativeText || "Gallery Image",
+    })) || [];
 
   return (
     <section
@@ -35,7 +46,7 @@ export default function GalleryListing({ data }) {
       />
       <div className="container">
         <div className="flex flex-wrap justify-center -mx-1 sm:-mx-[14px] xl:-mx-[18px] 2xl:-mx-[20px] 3xl:-mx-[24.5px]">
-          {data?.galleryList?.map((item, idx) => {
+          {allImages.map((item, idx) => {
             return (
               <div
                 key={"galleryList" + idx}
@@ -51,16 +62,31 @@ export default function GalleryListing({ data }) {
               >
                 <button
                   className="w-full h-full overflow-hidden cursor-pointer text-left"
-                  onClick={() => { setIndex(idx); setOpen(true); }}
+                  onClick={() => {
+                    setIndex(idx);
+                    setOpen(true);
+                  }}
                   type="button"
                 >
                   <Image
-                    src={item.galleryMedia.url}
-                    alt={item.galleryMedia.alternativeText || "gallery Media"}
+                    src={
+                      getStrapiMediaUrl(item?.media?.url) ||
+                      "/images/placeholder.jpg"
+                    }
+                    alt={
+                      item?.title ||
+                      item?.media?.alternativeText ||
+                      "Gallery Image"
+                    }
                     width={622}
                     height={450}
                     className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
                     unoptimized
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.srcset = "";
+                      e.currentTarget.src = "/images/placeholder.jpg";
+                    }}
                   />
                 </button>
               </div>
