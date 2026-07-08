@@ -21,37 +21,37 @@
       "component": "sections.hero",
       "repeatable": false
     },
-    "about": {
+    "home_about_section": {
       "type": "component",
       "component": "sections.about",
       "repeatable": false
     },
-    "specialities": {
+    "home_conditions_section": {
       "type": "component",
       "component": "sections.specialities",
       "repeatable": false
     },
-    "treatments": {
+    "home_packages_section": {
       "type": "component",
       "component": "sections.treatments",
       "repeatable": false
     },
-    "packages": {
+    "home_program_section": {
       "type": "component",
       "component": "sections.packages",
       "repeatable": false
     },
-    "testimonials": {
+    "home_testimonials_section": {
       "type": "component",
       "component": "sections.testimonials",
       "repeatable": false
     },
-    "members": {
+    "home_members_section": {
       "type": "component",
       "component": "sections.members",
       "repeatable": false
     },
-    "blogs": {
+    "home_blogs_section": {
       "type": "component",
       "component": "sections.blogs",
       "repeatable": false

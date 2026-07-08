@@ -34,6 +34,22 @@ export interface CommonCompanyMotto extends Struct.ComponentSchema {
   };
 }
 
+export interface CommonConditionItem extends Struct.ComponentSchema {
+  collectionName: 'components_common_condition_items';
+  info: {
+    displayName: 'Condition Item';
+  };
+  attributes: {
+    condition: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::condition.condition'
+    >;
+    icon: Schema.Attribute.Media<'images'>;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface CommonFaqItem extends Struct.ComponentSchema {
   collectionName: 'components_common_faq_items';
   info: {
@@ -471,11 +487,11 @@ export interface SectionsPackageListingSection extends Struct.ComponentSchema {
 export interface SectionsPackages extends Struct.ComponentSchema {
   collectionName: 'components_sections_packages';
   info: {
-    displayName: 'Packages';
+    displayName: 'Home Program Section';
   };
   attributes: {
-    description: Schema.Attribute.Blocks;
-    packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
+    programs: Schema.Attribute.Relation<'oneToMany', 'api::program.program'>;
+    short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
 }
@@ -577,10 +593,11 @@ export interface SectionsServicesSection extends Struct.ComponentSchema {
 export interface SectionsSpecialities extends Struct.ComponentSchema {
   collectionName: 'components_sections_specialities';
   info: {
-    displayName: 'Specialities';
+    displayName: 'Home Conditions';
   };
   attributes: {
-    description: Schema.Attribute.Blocks;
+    condition_item: Schema.Attribute.Component<'common.condition-item', true>;
+    short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
 }
@@ -700,15 +717,12 @@ export interface SectionsTreatmentSection extends Struct.ComponentSchema {
 export interface SectionsTreatments extends Struct.ComponentSchema {
   collectionName: 'components_sections_treatments';
   info: {
-    displayName: 'Treatments';
+    displayName: 'Home Packages';
   };
   attributes: {
-    description: Schema.Attribute.Blocks;
+    packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
+    short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
-    treatments: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::treatment.treatment'
-    >;
   };
 }
 
@@ -753,6 +767,7 @@ declare module '@strapi/strapi' {
       'common.approach-card': CommonApproachCard;
       'common.certification-card': CommonCertificationCard;
       'common.company-motto': CommonCompanyMotto;
+      'common.condition-item': CommonConditionItem;
       'common.faq-item': CommonFaqItem;
       'common.feature': CommonFeature;
       'common.lifestyle-card': CommonLifestyleCard;

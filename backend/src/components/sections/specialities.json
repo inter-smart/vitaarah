@@ -1,15 +1,20 @@
 {
   "collectionName": "components_sections_specialities",
   "info": {
-    "displayName": "Specialities"
+    "displayName": "Home Conditions"
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "blocks"
+    "short_description": {
+      "type": "text"
+    },
+    "condition_item": {
+      "type": "component",
+      "component": "common.condition-item",
+      "repeatable": true
     }
   },
   "config": {}

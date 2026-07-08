@@ -1,12 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { getStrapiMediaUrl } from "@/lib/strapi";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
 // -mr-[100px] sm:-mr-[115px] xl:-mr-[130px] 2xl:-mr-[160px]
 const ElementStyle =
   "group w-[140px] sm:w-[180px] lg:w-[200px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[90px] lg:-mr-[100px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1";
 
 export default function HomeAbout({ data }) {
+  console.log("HomeAbout", data);
+
   return (
     <section
       id="About"
@@ -95,8 +99,8 @@ export default function HomeAbout({ data }) {
                   <Fragment key={stat.label}>
                     <div>
                       <h3 className="text-[18px] sm:text-[26.6px] xl:text-[32.9px] 2xl:text-[37.3px] 3xl:text-[45.2px] leading-normal font-normal font-helvetica text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[6px]">
-                        {stat.valueCount}
-                        {stat.valueSuffix || ""}
+                        {stat.value_count}
+                        {stat.value_suffix || ""}
                       </h3>
                       <p className="text_3 !leading-tight text-black xl:max-w-[80%]">
                         {stat.label}
@@ -116,14 +120,14 @@ export default function HomeAbout({ data }) {
                 {data.title}
               </h2>
             )}
-            {data?.short_description && (
+            {data?.description && (
               <div className="text_3 font-normal text-black mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
-                {data?.short_description}
+                <BlocksRenderer content={data.description} />
               </div>
             )}
             {data?.button && (
-              <Button as="a" href={data.button.url}>
-                {data.button.label}
+              <Button asChild>
+                <Link href={data?.button?.url}>{data?.button?.label}</Link>
               </Button>
             )}
           </div>

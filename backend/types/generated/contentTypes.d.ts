@@ -849,25 +849,37 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    about: Schema.Attribute.Component<'sections.about', false>;
-    blogs: Schema.Attribute.Component<'sections.blogs', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     hero: Schema.Attribute.Component<'sections.hero', false>;
+    home_about_section: Schema.Attribute.Component<'sections.about', false>;
+    home_blogs_section: Schema.Attribute.Component<'sections.blogs', false>;
+    home_conditions_section: Schema.Attribute.Component<
+      'sections.specialities',
+      false
+    >;
+    home_members_section: Schema.Attribute.Component<'sections.members', false>;
+    home_packages_section: Schema.Attribute.Component<
+      'sections.treatments',
+      false
+    >;
+    home_program_section: Schema.Attribute.Component<
+      'sections.packages',
+      false
+    >;
+    home_testimonials_section: Schema.Attribute.Component<
+      'sections.testimonials',
+      false
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::home-page.home-page'
     > &
       Schema.Attribute.Private;
-    members: Schema.Attribute.Component<'sections.members', false>;
-    packages: Schema.Attribute.Component<'sections.packages', false>;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
-    specialities: Schema.Attribute.Component<'sections.specialities', false>;
-    testimonials: Schema.Attribute.Component<'sections.testimonials', false>;
-    treatments: Schema.Attribute.Component<'sections.treatments', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

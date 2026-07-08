@@ -7,7 +7,7 @@ export default function LegalContent({ data }) {
   return (
     <section
       id="LegalContent"
-      className="w-full bg-white py-[15px_50px] lg:py-[20px_60px] xl:py-[25px_70px] 2xl:py-[30px_90px] 3xl:py-[35px_110px] overflow-hidden relative z-0"
+      className="w-full block bg-white py-[15px_50px] lg:py-[20px_60px] xl:py-[25px_70px] 2xl:py-[30px_90px] 3xl:py-[35px_110px] overflow-hidden relative z-0"
     >
       <Image
         src="/images/home-about-elmt-1.svg"
@@ -33,10 +33,13 @@ export default function LegalContent({ data }) {
           </p>
         )}
         {description && (
-          // <div className="text_3 font-normal font-helvetica text-black mb-[20px] xl:mb-[28px] 2xl:mb-[30px] 3xl:mb-[38px]">
-
+          // <div className="prose prose-sm sm:prose lg:prose-xl xl:prose-2xl 2xl:prose-3xl max-w-none text-[#875849]">
           <div className="prose prose-sm sm:prose lg:prose-xl xl:prose-2xl 2xl:prose-3xl max-w-none text-[#875849]">
-            <BlocksRenderer content={description} />
+            {Array.isArray(description) ? (
+              <BlocksRenderer content={description} />
+            ) : (
+              <p>{description}</p>
+            )}
           </div>
         )}
       </div>

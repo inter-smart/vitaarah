@@ -52,7 +52,11 @@ export default function BlogDetail({ data, relatedBlogs }) {
               <div className="w-full aspect-[897/450] overflow-hidden">
                 <FallbackImage
                   src={getStrapiMediaUrl(data?.featured_image?.url)}
-                  alt={data?.featured_image?.alternativeText || data?.title || "Blog"}
+                  alt={
+                    data?.featured_image?.alternativeText ||
+                    data?.title ||
+                    "Blog"
+                  }
                   width={897}
                   height={450}
                   className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
@@ -104,68 +108,6 @@ export default function BlogDetail({ data, relatedBlogs }) {
                       key={"blogs" + idx}
                       className="w-full sm:w-1/2 lg:w-full"
                     >
-                      {/* <Link
-                        href={`/blog/${item?.slug}`}
-                        className="w-full h-full flex flex-col"
-                      >
-                        <div className="w-full aspect-[502/403] overflow-hidden mb-[10px] sm:mb-[15px] xl:mb-[37px] 2xl:mb-[42px] 3xl:mb-[51px]">
-                          <Image
-                            src={item.featuredImage.url}
-                            alt={
-                              item.featuredImage.alternativeText ||
-                              item.title ||
-                              "Blog"
-                            }
-                            width={502}
-                            height={403}
-                            className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                            unoptimized
-                          />
-                        </div>
-                        <div className="flex-1 flex flex-col justify-between gap-[10px] lg:gap-[18px] xl:gap-[22px] 2xl:gap-[26px] 3xl:gap-[31px]">
-                          <div>
-                            <div className="text-[15px] lg:text-[19.8px] xl:text-[24.5px] 2xl:text-[27.8px] 3xl:text-[33.7px] leading-normal font-helvetica line-clamp-2 text-[#a14962] mb-[10px] xl:mb-[14px] 2xl:mb-[16px] 3xl:mb-[20px]">
-                              {item?.title}
-                            </div>
-                            <div className="text_3 leading-relaxed line-clamp-2 text-black mb-[10px] xl:mb-[14px] 2xl:mb-[16px] 3xl:mb-[20px]">
-                              {item?.shortDescription || "-"}
-                            </div>
-                            <div className="max-w-11/12 flex justify-between gap-2">
-                              <BlogSpecItem
-                                src="/images/icon-clock.svg"
-                                alt="icon-clock"
-                              >
-                                {calculateReadTime(
-                                  item?.shortDescription || "",
-                                )}{" "}
-                                min read
-                              </BlogSpecItem>
-                              <BlogSpecItem
-                                src="/images/icon-calcu.svg"
-                                alt="icon-calcu"
-                              >
-                                {item?.publishedDate
-                                  ? new Date(
-                                      item.publishedDate,
-                                    ).toLocaleDateString("en-US", {
-                                      month: "long",
-                                      year: "numeric",
-                                    })
-                                  : ""}
-                              </BlogSpecItem>
-                              <BlogSpecItem
-                                src="/images/icon-views.svg"
-                                alt="icon-views"
-                              >
-                                {item?.viewCount || 0} Views
-                              </BlogSpecItem>
-                            </div>
-                          </div>
-                          <div>
-                            <Button>Read More</Button>
-                          </div>
-                        </div>
-                      </Link> */}
                       <BlogCard data={item} />
                     </div>
                   );

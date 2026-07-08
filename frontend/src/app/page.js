@@ -2014,7 +2014,7 @@ const LOCAL_DATA = {
 // [local-data-end]
 
 const homePageQuery = buildQuery({
-  seo: { populate: { ogImage: true } },
+  seo: { populate: { og_image: true } },
   hero: {
     populate: {
       heroMedia: true,
@@ -2030,39 +2030,34 @@ const homePageQuery = buildQuery({
       aboutStatistic: true,
     },
   },
-  specialities: {
-    populate: {
-      specialties: { populate: { icon: true, featuredImage: true } },
-    },
-  },
+  specialities: true,
   treatments: {
     populate: {
-      treatments: { populate: { featuredImage: true } },
+      treatments: true,
     },
   },
   packages: {
     populate: {
       packages: {
         populate: {
-          featuredImage: true,
-          features: { populate: { icon: true } },
+          featured_image: true,
         },
       },
     },
   },
   testimonials: {
     populate: {
-      testimonials: { populate: { authorImage: true, videoTestimonial: true } },
+      testimonials: { populate: { author_image: true, video_testimonial: true } },
     },
   },
   members: {
     populate: {
-      members: { populate: { thumbnailImage: true, featuredImage: true } },
+      members: { populate: { thumbnail_image: true, featured_image: true } },
     },
   },
   blogs: {
     populate: {
-      blogs: { populate: { featuredImage: true } },
+      blogs: { populate: { featured_image: true } },
     },
   },
 });

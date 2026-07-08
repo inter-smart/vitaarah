@@ -67,7 +67,7 @@ export default function BlogCard({ data }) {
           </div>
         </div>
         <div>
-          <Button>Read More</Button>
+          <Button className="cursor-pointer">Read More</Button>
         </div>
       </div>
     </Link>

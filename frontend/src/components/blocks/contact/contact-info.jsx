@@ -2,6 +2,8 @@ import RequestQuoteForm from "@/components/form/request-quote-form";
 import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
+import FallbackImage from "@/components/common/FallbackImage";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function ContactInfo({ data }) {
   return (
@@ -85,27 +87,16 @@ export default function ContactInfo({ data }) {
                 )}
               </div>
 
-              <div className="w-full bg-[#fff9eb] p-[15px_20px] xl:p-[23px_25px] 2xl:p-[25px_28px] 3xl:p-[30px_34px] mt-[30px] sm:mt-[38px] xl:mt-[49px] 2xl:mt-[54px] 3xl:mt-[65px]">
-                <div className="text_5 leading-none text-[#a14962] mb-[15px] xl:mb-[18px] 2xl:mb-[21px] 3xl:mb-[25px]">
-                  Working Hours
-                </div>
-                <div className="flex justify-between my-[11px] 2xl:my-[13px] 3xl:my-[15px]">
-                  <div className="text_3 text-[#875846]">Monday - Friday</div>
-                  <div className="text_3 text-[#875846]">
-                    09:00 AM - 06:00 PM
+              {data?.workingHour && (
+                <div className="w-full bg-[#fff9eb] p-[15px_20px] xl:p-[23px_25px] 2xl:p-[25px_28px] 3xl:p-[30px_34px] mt-[30px] sm:mt-[38px] xl:mt-[49px] 2xl:mt-[54px] 3xl:mt-[65px]">
+                  <div className="text_5 leading-none text-[#a14962] mb-[15px] xl:mb-[18px] 2xl:mb-[21px] 3xl:mb-[25px]">
+                    Working Hours
+                  </div>
+                  <div className="[&_p]:flex [&_p]:justify-between [&_p]:my-[11px] 2xl:[&_p]:my-[13px] 3xl:[&_p]:my-[15px] [&_p]:text_3 [&_p]:text-[#875846]">
+                    <BlocksRenderer content={data.workingHour} />
                   </div>
                 </div>
-                <div className="flex justify-between my-[11px] 2xl:my-[13px] 3xl:my-[15px]">
-                  <div className="text_3 text-[#875846]">Saturday</div>
-                  <div className="text_3 text-[#875846]">
-                    10:00 AM - 04:00 PM
-                  </div>
-                </div>
-                <div className="flex justify-between my-[11px] 2xl:my-[13px] 3xl:my-[15px]">
-                  <div className="text_3 text-[#875846]">Sunday</div>
-                  <div className="text_3 text-[#875846]">Closed</div>
-                </div>
-              </div>
+              )}
             </div>
             <div className="w-full sm:w-[349px] xl:w-[447px] 2xl:w-[489px] 3xl:w-[593.5px]">
               <RequestQuoteForm />
@@ -136,12 +127,13 @@ function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
   return (
     <div className="flex gap-2.5 xl:gap-[12px] 2xl:gap-[14px] 3xl:gap-[17px]">
       <div className="w-[20px] sm:w-[30px] xl:w-[35px] 2xl:w-[40px] 3xl:w-[48px]">
-        <Image
+        <FallbackImage
           src={url}
           alt={alternativeText}
           width={48}
           height={48}
           className="w-full h-full block"
+          unoptimized
         />
       </div>
       <div>

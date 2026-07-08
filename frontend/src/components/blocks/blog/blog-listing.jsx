@@ -73,7 +73,11 @@ export default function BlogListing({ data, blogs }) {
                   <div className="w-full sm:w-[268px] md:w-[320px] lg:w-[528px] xl:w-[652px] 2xl:w-[740px] 3xl:w-[897px] aspect-[897/450] overflow-hidden">
                     <FallbackImage
                       src={getStrapiMediaUrl(item?.featured_image?.url)}
-                      alt={item?.featured_image?.alternativeText || item?.title || "Blog"}
+                      alt={
+                        item?.featured_image?.alternativeText ||
+                        item?.title ||
+                        "Blog"
+                      }
                       width={897}
                       height={450}
                       className="w-full h-full object-cover hover:scale-105 transition-all duration-500"

@@ -1,20 +1,20 @@
 {
   "collectionName": "components_sections_treatments",
   "info": {
-    "displayName": "Treatments"
+    "displayName": "Home Packages"
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "blocks"
+    "short_description": {
+      "type": "text"
     },
-    "treatments": {
+    "packages": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::treatment.treatment"
+      "target": "api::package.package"
     }
   },
   "config": {}
