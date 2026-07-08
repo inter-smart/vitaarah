@@ -1,16 +1,17 @@
 import React from 'react'
 import Image from "next/image";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 export default function ConditionLifestyle({ data }) {
     return (
         <section className='relative bg-[#FFF9EB] py-[40px] md:py-[50px] lg:py-[70px_90px] xl:py-[88px_110px] 2xl:py-[100px_130px] 3xl:py-[120px_165px]'>
             <div className="container">
                 <div className="max-w-[440px] xl:max-w-[540px] 2xl:max-w-[610px] 3xl:max-w-[740px] text-center m-auto mb-[10px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]">
                     <div className="heading_1 mb-[10px] sm:mb-[0px]">{data?.title}</div>
-                    <div className="text_3 font-light">
-                        {data.description}
+                    <div className="text_3 font-helvetica-light">
+                        {data?.short_description}
                     </div>
                 </div>
-                {data?.cards?.map((item, idx) => (
+                {(data?.lifestyle_card || []).map((item, idx) => (
                     <div
                         key={idx}
                         className={`w-full h-full bg-white p-[15px] lg:p-[18px] xl:p-[22px] 2xl:p-[25px] 3xl:p-[32px] flex flex-wrap mb-[20px] lg:mb-[25px] xl:mb-[35px] 2xl:mb-[45px] 3xl:mb-[55px] last:mb-0 ${idx % 2 !== 0 ? "sm:flex-row-reverse" : ""
@@ -19,11 +20,11 @@ export default function ConditionLifestyle({ data }) {
                         {/* Image */}
                         <div className="w-full sm:w-[220px] md:w-[280px] lg:w-[330px] xl:w-[420px] 2xl:w-[475px] 3xl:w-[595px] max-sm:mb-[15px]">
                             <Image
-                                src={item?.image?.url}
+                                src={item?.featured_image?.url ? getStrapiMediaUrl(item.featured_image.url) : "/images/placeholder.jpg"}
                                 className="w-full h-full object-cover"
                                 width={595}
                                 height={340}
-                                alt={item?.image?.alternativeText}
+                                alt={item?.featured_image?.alternativeText || "Lifestyle"}
                             />
                         </div>
                         {/* Content */}
@@ -38,10 +39,10 @@ export default function ConditionLifestyle({ data }) {
                                     {item?.title}
                                 </div>
                                 <ul>
-                                    {item?.content?.children?.map((contentItem, id) => (
+                                    {(item?.description?.[0]?.children || []).map((contentItem, id) => (
                                         <li
                                             key={id}
-                                            className="text_3 font-light relative flex items-center gap-[10px] before:content-[''] before:p-[2px] before:2xl:p-[3px] before:block before:w-[2px] before:h-[2px] before:bg-black before:rounded-full"
+                                            className="text_3 font-helvetica-light relative flex items-center gap-[10px] before:content-[''] before:p-[2px] before:2xl:p-[3px] before:block before:w-[2px] before:h-[2px] before:bg-black before:rounded-full"
                                         >
                                             {contentItem?.children?.[0]?.text}
                                         </li>

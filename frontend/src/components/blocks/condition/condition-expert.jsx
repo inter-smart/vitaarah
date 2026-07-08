@@ -102,12 +102,12 @@ export default function ConditionExpert({ data }) {
               <div className="heading_1 mb-[15px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[35px]">
                 {data.title}
               </div>
-              <div className="text_3 font-light mb-[25px] xl:mb-[35px] 2xl:mb-[45px] 3xl:mb-[55px]">
-                {data.description}
+              <div className="text_3 font-helvetica-light mb-[25px] xl:mb-[35px] 2xl:mb-[45px] 3xl:mb-[55px]">
+                {data?.short_description}
               </div>
 
               <a
-                href={`/${data?.whatsappButton?.slug}`}
+                href={data?.whatsappUrl || "/"}
                 className="group relative overflow-hidden  bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3]
                                 text-white font-medium flex items-center justify-start gap-[5px] 3xl:gap-[10px] w-fit
                                px-[4px_8px] 3xl:px-[8px] min-w-[120px] xl:min-w-[150px] 2xl:min-w-[170px] 3xl:min-w-[215px] h-[32px] 2xl:h-[37px]
@@ -118,7 +118,7 @@ export default function ConditionExpert({ data }) {
                   className="w-[25px] 2xl:w-[27px] 3xl:w-[35px] h-[25px] 2xl:h-[27px]
                                 3xl:h-[35px] flex items-center justify-center bg-[#00A85A] transition-all duration-500 ease-out 
                                 "
-                  aria_label={data?.whatsapp?.label}
+                  aria-label="Whatsapp"
                 >
                   <div className="w-[15px] 3xl:w-[18px] h-[15px] 3xl:h-[18px] flex">
                     <svg
@@ -149,7 +149,7 @@ export default function ConditionExpert({ data }) {
                                         skew-x-12  transition-transform  duration-700   group-hover:translate-x-[250%] "
                 />
                 <span className="text_3  relative z-10">
-                  {data?.whatsappButton?.label}
+                  Whats App Now
                 </span>
               </a>
             </div>

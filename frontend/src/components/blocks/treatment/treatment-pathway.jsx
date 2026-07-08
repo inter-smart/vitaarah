@@ -89,7 +89,7 @@ export default function TreatmentPathway({ data }) {
         >
           <div className="heading_1 mb-[0px]">{data?.title}</div>
 
-          <div className="text_3 font-light text-black">
+          <div className="text_3 font-helvetica-light text-black">
             {data?.short_description}
           </div>
         </motion.div>
@@ -137,7 +137,7 @@ export default function TreatmentPathway({ data }) {
                       {item.title}
                     </div>
 
-                    <div className="text_3 font-light text-black">
+                    <div className="text_3 font-helvetica-light text-black">
                       {item.short_description}
                     </div>
                     {item?.treatments?.map((treatment, treatmentIdx) => (
@@ -145,7 +145,7 @@ export default function TreatmentPathway({ data }) {
                         <Link
                           key={"treatment-" + treatmentIdx}
                           href={`/treatment/${treatment.slug}`}
-                          className="text_3 font-light text-black"
+                          className="text_3 font-helvetica-light text-black"
                         >
                           {treatment.title}
                         </Link>

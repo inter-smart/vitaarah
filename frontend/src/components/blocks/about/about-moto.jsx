@@ -59,7 +59,7 @@ export default function AboutMoto({ data }) {
                     <div className="text-[16px] lg:text-[19px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[33px] text-[#A14962] mb-[12px] xl:mb-[15px] 2xl:mb-[25px] 3xl:mb-[33px]">
                       {item?.title}
                     </div>
-                    <div className="text_3 font-light">
+                    <div className="text_3 font-helvetica-light">
                       {typeof item.description === 'string' ? <p>{item.description}</p> : <BlocksRenderer content={item.description} />}
                     </div>
                   </div>

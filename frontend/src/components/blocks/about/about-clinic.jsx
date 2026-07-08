@@ -32,7 +32,7 @@ export default function AboutClinic({ data }) {
                   <BlocksRenderer content={data?.description} />
                 </div>
               )}
-              {/* <div className="text_3 font-light">
+              {/* <div className="text_3 font-helvetica-light">
                 <BlocksRenderer
                   content={data?.description?.filter(
                     (item) => item.type === "paragraph",
@@ -45,7 +45,7 @@ export default function AboutClinic({ data }) {
                   ?.children?.map((item, id) => (
                     <li
                       key={id}
-                      className="text_3 text-[#A14962] font-light not-last-of-type:mb-[15px] not-last-of-type:lg:mb-[20px] not-last-of-type:xl:mb-[25px] not-last-of-type:2xl:mb-[30px] not-last-of-type:3xl:mb-[35px] relative flex items-start gap-[10px] 2xl:gap-[15px] 3xl:gap-[20px] before:relative before:content-[''] before:block before:w-[10px] before:xl:w-[12px] before:h-[10px] before:xl:h-[12px] before:top-[4px] before:xl:top-[6px] before:bg-[url('/images/dotList.svg')] before:bg-cover before:bg-no-repeat before:p-[5px]"
+                      className="text_3 text-[#A14962] font-helvetica-light not-last-of-type:mb-[15px] not-last-of-type:lg:mb-[20px] not-last-of-type:xl:mb-[25px] not-last-of-type:2xl:mb-[30px] not-last-of-type:3xl:mb-[35px] relative flex items-start gap-[10px] 2xl:gap-[15px] 3xl:gap-[20px] before:relative before:content-[''] before:block before:w-[10px] before:xl:w-[12px] before:h-[10px] before:xl:h-[12px] before:top-[4px] before:xl:top-[6px] before:bg-[url('/images/dotList.svg')] before:bg-cover before:bg-no-repeat before:p-[5px]"
                     >
                       {item.children?.[0]?.text}
                     </li>

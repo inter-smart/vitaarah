@@ -19,10 +19,10 @@ export default function ConditionTab({ data }) {
 
         const pathSegments = pathname.split("/");
         const lastSegment = pathSegments[pathSegments.length - 1];
-        if (lastSegment && lastSegment !== "condition" && lastSegment !== "") {
+        if (lastSegment && lastSegment !== "conditions" && lastSegment !== "") {
             return lastSegment;
         }
-        return "hair-loss"; 
+        return ""; 
     };
     const activeTab = getActiveTab();
     return (        
@@ -80,14 +80,14 @@ export default function ConditionTab({ data }) {
                                 return (
                                     <SwiperSlide key={id} className="!h-auto" >
                                         <Link
-                                            href={`/condition?tab=${item.slug}`}
+                                            href={`/conditions/${item.slug}`}
                                             className={`text-[13px] lg:text-[14px] xl:text-[17px] 2xl:text-[18px] 3xl:text-[23px] font-normal flex flex-col items-center m-auto w-fit justify-center 
                                                 transition-all duration-300 pb-2 border-b-2 ${isActive
                                                     ? "text-[#A14962] border-[#A14962]"
                                                     : "text-black border-transparent hover:text-[#A14962]/70"
                                                 }`}
                                         >
-                                            {item?.label}
+                                            {item?.title}
                                         </Link>
                                     </SwiperSlide>
                                 );

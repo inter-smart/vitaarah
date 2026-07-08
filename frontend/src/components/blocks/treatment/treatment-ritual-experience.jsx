@@ -64,7 +64,7 @@ export default function TreatmentRitualExperience({ data }) {
         >
           <div className="heading_1 mb-[0px]">{data?.title}</div>
           {data?.short_description && (
-            <div className="text_3 font-light">{data?.short_description}</div>
+            <div className="text_3 font-helvetica-light">{data?.short_description}</div>
           )}
         </motion.div>
 
@@ -193,7 +193,7 @@ export default function TreatmentRitualExperience({ data }) {
                 </motion.div>
 
                 <div
-                  className={`text_3 font-light
+                  className={`text_3 font-helvetica-light
                                     [&>p:not(:last-child)]:mb-[20px]
                                     mb-[20px] md:mb-[30px]
                                     lg:mb-[35px]

@@ -32,7 +32,7 @@ export default function SpecialityPathway({ data }) {
           <div className="heading_1 mb-[0px] ">
             {specialities_listing_section?.title}
           </div>
-          <div className="text_3 font-light [&>p]:mb-[15px]">
+          <div className="text_3 font-helvetica-light [&>p]:mb-[15px]">
             {specialities_listing_section?.short_description}
           </div>
         </div>
@@ -65,12 +65,12 @@ export default function SpecialityPathway({ data }) {
                   {item?.treatment?.title}
                 </div>
                 {item?.treatment?.short_description && (
-                  <p className="text_3 font-light mb-[25px] md:mb-[40px] lg:mb-[70px] xl:mb-[85px] 2xl:mb-[100px] 3xl:mb-[130px] max-w-[215px] xl:max-w-[257px] 2xl:max-w-[290px] 3xl:max-w-[372px]">
+                  <p className="text_3 font-helvetica-light mb-[25px] md:mb-[40px] lg:mb-[70px] xl:mb-[85px] 2xl:mb-[100px] 3xl:mb-[130px] max-w-[215px] xl:max-w-[257px] 2xl:max-w-[290px] 3xl:max-w-[372px]">
                     {item.treatment.short_description}
                   </p>
                 )}
                 <div className="w-full">
-                  <div className="text_3 font-light text-black mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+                  <div className="text_3 font-helvetica-light text-black mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                     {item?.conditions_treated_title}
                   </div>
                   <div className="flex flex-wrap gap-[5px] md:gap-[10px] 2xl:gap-[13px]">
@@ -78,7 +78,7 @@ export default function SpecialityPathway({ data }) {
                       (condition, id) => (
                         <div
                           key={id}
-                          className="text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[16px] bg-[rgba(230,198,160,0.2)] font-light flex items-center justify-center rounded-[30px] p-[10px] xl:p-[11px] 2xl:px-[12px] 3xl:px-[15px] h-[30px] xl:h-[35px] 2xl:h-[40px] 3xl:h-[45px]"
+                          className="text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[16px] bg-[rgba(230,198,160,0.2)] font-helvetica-light flex items-center justify-center rounded-[30px] p-[10px] xl:p-[11px] 2xl:px-[12px] 3xl:px-[15px] h-[30px] xl:h-[35px] 2xl:h-[40px] 3xl:h-[45px]"
                         >
                           {condition?.title}
                         </div>

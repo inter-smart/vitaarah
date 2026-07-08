@@ -14,7 +14,7 @@ export default function AboutGuidence({ data }) {
       <div className="container">
         <div className="max-w-[522px] xl:max-w-[644px] 2xl:max-w-[730px] 3xl:max-w-[887px] text-center m-auto mb-[25px] lg:mb-[35px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
           <div className="heading_1 mb-[20px]">{data?.title}</div>
-          <div className="text_3 font-light">{data.description}</div>
+          <div className="text_3 font-helvetica-light">{data.description}</div>
         </div>
 
         <div className="w-full h-full relative  ">
@@ -91,21 +91,21 @@ export default function AboutGuidence({ data }) {
                             <div className="text-[13px] md:text-[15px] lg:text-[19px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[33px] text-[#FBAAC1] font-normal mb-[5px]">
                               {item?.name}
                             </div>
-                            <div className="text_3 text-white font-light">
+                            <div className="text_3 text-white font-helvetica-light">
                               {item?.designation}
                             </div>
                           </div>
                         </div>
                         <div className="w-full mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">
-                          <div className="text_3 text-white font-light mb-[5px]">
+                          <div className="text_3 text-white font-helvetica-light mb-[5px]">
                             {item?.expirence}
                           </div>
-                          <div className="text_3 text-white font-light">
+                          <div className="text_3 text-white font-helvetica-light">
                             {item?.specialisation}
                           </div>
                         </div>
                         <div className="w-full pr-[20px]">
-                          <div className="text_3 text-white font-light relative after:absolute after:bottom-[-20px] after:content-[''] after:right-0 after:w-[30px] after:h-[17px] after:bg-[url('/images/quote.svg')] after:bg-contain after:bg-no-repeat">
+                          <div className="text_3 text-white font-helvetica-light relative after:absolute after:bottom-[-20px] after:content-[''] after:right-0 after:w-[30px] after:h-[17px] after:bg-[url('/images/quote.svg')] after:bg-contain after:bg-no-repeat">
                             {item?.description}
                           </div>
                         </div>

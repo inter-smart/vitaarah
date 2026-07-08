@@ -46,7 +46,7 @@ export default function TreatmentRight({ data, commitmentDetails }) {
         >
           <div className="heading_1 mb-[0px] ">{data?.title}</div>
 
-          <div className="text_3 font-light">{data?.subtitle}</div>
+          <div className="text_3 font-helvetica-light">{data?.subtitle}</div>
         </motion.div>
 
         <motion.div
@@ -138,7 +138,7 @@ export default function TreatmentRight({ data, commitmentDetails }) {
                       duration: 0.6,
                       delay: id * 0.12,
                     }}
-                    className="text-[15px] lg:text-[17px] xl:text-[21px] 2xl:text-[23px] 3xl:text-[30px] text-white font-light flex items-center pb-[20px] lg:pb-[25px] xl:pb-[30px] 2xl:pb-[40px] 3xl:pb-[50px] last-of-type:pb-0 border-white border-b last-of-type:border-0 mb-[15px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px] last-of-type:mb-0"
+                    className="text-[15px] lg:text-[17px] xl:text-[21px] 2xl:text-[23px] 3xl:text-[30px] text-white font-helvetica-light flex items-center pb-[20px] lg:pb-[25px] xl:pb-[30px] 2xl:pb-[40px] 3xl:pb-[50px] last-of-type:pb-0 border-white border-b last-of-type:border-0 mb-[15px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px] last-of-type:mb-0"
                   >
                     <span className="w-[40%]">{item?.label}</span>
                     <span>{item?.value}</span>

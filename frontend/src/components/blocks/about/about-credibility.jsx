@@ -73,7 +73,7 @@ export default function AboutCredibility({ data }) {
                       height="150"
                     />
                   </div>
-                  <div className="text_3 font-light">{item.title}</div>
+                  <div className="text_3 font-helvetica-light">{item.title}</div>
                 </div>
               </SwiperSlide>
             ),

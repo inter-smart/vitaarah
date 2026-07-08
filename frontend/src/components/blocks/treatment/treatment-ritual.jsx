@@ -13,7 +13,7 @@ export default function TreatmentRitual({ data }) {
             </div>
 
             <div className="w-full lg:w-4/12">
-              <div className="text_3 font-light mb-0 [&>p]:mb-[0px] lg:pl-[10px]">
+              <div className="text_3 font-helvetica-light mb-0 [&>p]:mb-[0px] lg:pl-[10px]">
                 {data?.short_description}
               </div>
             </div>

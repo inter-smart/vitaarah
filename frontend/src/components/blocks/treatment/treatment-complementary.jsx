@@ -55,7 +55,7 @@ export default function TreatmentComplementary({ data }) {
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="heading_1 mb-[0px]">{data?.title}</div>
-          <div className="text_3 font-light text-black">
+          <div className="text_3 font-helvetica-light text-black">
             {data?.short_description}
           </div>
         </motion.div>
@@ -181,7 +181,7 @@ export default function TreatmentComplementary({ data }) {
                                                     xl:p-[12px_15px]
                                                     3xl:p-[16px_20px]"
                         >
-                          <div className="text_3 font-light">
+                          <div className="text_3 font-helvetica-light">
                             {item?.duration_info}
                           </div>
 
@@ -200,7 +200,7 @@ export default function TreatmentComplementary({ data }) {
                             {item.title}
                           </div>
 
-                          <div className="text_3 font-light text-black">
+                          <div className="text_3 font-helvetica-light text-black">
                             <p>{item.short_description}</p>
                           </div>
                         </div>

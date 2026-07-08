@@ -19,10 +19,10 @@ export default function SpecialityDetail({ data }) {
       <div className="container">
         <div className="w-full text-center m-auto lg:max-w-[510px] xl:max-w-[630px] 2xl:max-w-[720px] 3xl:max-w-[850px] mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
           <div className="heading_1 mb-[0px] ">{data.title}</div>
-          <div className="text_3 font-light mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
+          <div className="text_3 font-helvetica-light mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
             {data.subtitle}
           </div>
-          <div className="text_3 font-light [&>p]:mb-[30px]">
+          <div className="text_3 font-helvetica-light [&>p]:mb-[30px]">
             <BlocksRenderer content={data.description} />
           </div>
         </div>
@@ -37,7 +37,7 @@ export default function SpecialityDetail({ data }) {
                   {data?.contentSection?.conditions.map((item, idx) => (
                     <li
                       key={idx}
-                      className="text_3 font-light relative flex items-center gap-[10px] before:content-[''] before:p-[2px] before:2xl:p-[3px] before:block before:w-[2px] before:h-[2px] before:bg-black before:rounded-full "
+                      className="text_3 font-helvetica-light relative flex items-center gap-[10px] before:content-[''] before:p-[2px] before:2xl:p-[3px] before:block before:w-[2px] before:h-[2px] before:bg-black before:rounded-full "
                     >
                       {item.title}
                     </li>
@@ -59,7 +59,7 @@ export default function SpecialityDetail({ data }) {
           </div>
         </div>
         <div className="flex flex-wrap justify-between items-center gap-[15px]">
-          <div className="text_3 font-light mb-0">
+          <div className="text_3 font-helvetica-light mb-0">
             {data?.ctaSection?.footerText}
           </div>
           <div className="flex items-center gap-[10px]">

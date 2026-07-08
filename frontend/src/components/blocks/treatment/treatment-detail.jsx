@@ -90,7 +90,7 @@ export default function TreatmentDetail({ data }) {
         >
           <div className="heading_1 mb-[0px]">{data?.title}</div>
           {data?.short_description && (
-            <div className="text_3 font-light text-black">
+            <div className="text_3 font-helvetica-light text-black">
               {data?.short_description}
             </div>
           )}
@@ -136,7 +136,7 @@ export default function TreatmentDetail({ data }) {
 
               {data?.what_is_section?.description && (
                 <div
-                  className="text_3 font-light [&>p:not(:last-child)]:mb-[20px]
+                  className="text_3 font-helvetica-light [&>p:not(:last-child)]:mb-[20px]
                 mb-[20px] md:mb-[30px] lg:mb-[35px]
                 xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]"
                 >
@@ -167,7 +167,7 @@ export default function TreatmentDetail({ data }) {
                     }}
                     className="text_3 text-[#A14962]
                     bg-[rgba(230,198,160,0.2)]
-                    font-light flex items-center justify-center
+                    font-helvetica-light flex items-center justify-center
                     rounded-[30px]
                     p-[10px]
                     xl:p-[11px]

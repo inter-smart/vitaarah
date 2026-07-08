@@ -32,7 +32,7 @@ export default function AboutIntelligence({ data }) {
       <div className="container">
         <div className="max-w-[440px] xl:max-w-[540px] 2xl:max-w-[610px] 3xl:max-w-[740px] text-center m-auto mb-[25px] lg:mb-[35px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
           <div className="heading_1 mb-[10px] sm:mb-[20px]">{data?.title}</div>
-          <div className="text_3 font-light">{data?.short_description}</div>
+          <div className="text_3 font-helvetica-light">{data?.short_description}</div>
         </div>
         {/* intelligence slider */}
 
@@ -95,14 +95,14 @@ export default function AboutIntelligence({ data }) {
                 <div className="text_3 text-[#000000] mb-[12px] lg:mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[33px]">
                   {item?.sub_title}
                 </div>
-                <div className="text_3 text-[#000000] font-light mb-[12px] lg:mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[33px]">
+                <div className="text_3 text-[#000000] font-helvetica-light mb-[12px] lg:mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[33px]">
                   {item?.short_description}
                 </div>
                 <div className="flex flex-wrap gap-[7px] xl:gap-[9px] 2xl:gap-[11px] 3xl:gap-[13px]">
                   {item?.service_specification?.map((spec, id) => (
                     <div
                       key={id}
-                      className="text_3 text-[#B88190] text-center font-light flex-grow-1 rounded-[50px] bg-[rgba(230,198,160,0.2)] flex items-center justify-center h-[25px] xl:h-[30px] 2xl:h-[35px] 3xl:h-[42px] px-[8px] xl:px-[10px] 2xl:px-[12px] 3xl:px-[15px]"
+                      className="text_3 text-[#B88190] text-center font-helvetica-light flex-grow-1 rounded-[50px] bg-[rgba(230,198,160,0.2)] flex items-center justify-center h-[25px] xl:h-[30px] 2xl:h-[35px] 3xl:h-[42px] px-[8px] xl:px-[10px] 2xl:px-[12px] 3xl:px-[15px]"
                     >
                       {spec.title}
                     </div>

@@ -45,7 +45,7 @@ export default function TreatmentFaq({ data }) {
           className="max-w-[522px] xl:max-w-[644px] 2xl:max-w-[730px] 3xl:max-w-[887px] text-center m-auto mb-[25px] lg:mb-[35px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]"
         >
           <div className="heading_1 mb-[0px]">{data?.title}</div>
-          <div className="text_3 font-light">{data?.short_description}</div>
+          <div className="text_3 font-helvetica-light">{data?.short_description}</div>
         </motion.div>
 
         <motion.div
@@ -74,7 +74,7 @@ export default function TreatmentFaq({ data }) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="text-[11px] xl:text-[12px] 2xl:text-[15px] 3xl:text-[16px] font-light [&>p:not(:last-child)]:mb-[15px] 3xl:max-w-[1024px] pb-[10px]"
+                      className="text-[11px] xl:text-[12px] 2xl:text-[15px] 3xl:text-[16px] font-helvetica-light [&>p:not(:last-child)]:mb-[15px] 3xl:max-w-[1024px] pb-[10px]"
                     >
                       {typeof item?.short_description === "string" ? (
                         <p>{item?.short_description}</p>

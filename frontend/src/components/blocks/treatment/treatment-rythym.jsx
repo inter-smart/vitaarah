@@ -49,7 +49,7 @@ export default function TreatmentRythym({ data }) {
             {data?.title}
           </motion.div>
           <motion.div
-            className="text_3 font-light mb-[15px]"
+            className="text_3 font-helvetica-light mb-[15px]"
             variants={itemVariants}
           >
             {data?.short_description}

@@ -13,7 +13,7 @@ export default function AboutApproach({ data }) {
               <div className="text_2  mb-[20px] lg:max-w-[280px] xl:max-w-[340px] 2xl:max-w-[385px] 3xl:max-w-[470px]">
                 {data?.title}
               </div>
-              <div className="text_3 font-light [&>p]:mb-[15px]">
+              <div className="text_3 font-helvetica-light [&>p]:mb-[15px]">
                 <BlocksRenderer content={data.description} />
               </div>
             </div>
@@ -51,7 +51,7 @@ export default function AboutApproach({ data }) {
                       <div className="text-[14px] sm:text-[17px] xl:text-[21px] 2xl:text-[23px] 3xl:text-[28px] text-[#A14962] mb-[10px] md:mb-[15px]">
                         {item.title}
                       </div>
-                      <div className="text_3 max-w-[150px] xl:max-w-[185px] 2xl:max-w-[210px] 3xl:max-w-[255px] font-light">
+                      <div className="text_3 max-w-[150px] xl:max-w-[185px] 2xl:max-w-[210px] 3xl:max-w-[255px] font-helvetica-light">
                         {item.short_description || item.shortDescription}
                       </div>
                     </div>

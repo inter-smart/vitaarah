@@ -24,7 +24,8 @@
   --header-y-3xl: 150px;
 
   --font-helvetica: "Helvetica Neue", Arial, sans-serif;
-  --font-helvetica-light: "Helvetica Light", Arial, sans-serif;
+  --font-helvetica-light: "Helvetica Neue", Arial, sans-serif;
+  /* --font-helvetica-light: "Helvetica Light", Arial, sans-serif; */
   --font-things: "Things", sans-serif;
 
   --color-background: var(--background);
@@ -125,7 +126,7 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@font-face {
+/* @font-face {
   font-family: "Helvetica Light";
   src: url("/fonts/helvetica-light-regular.woff2") format("woff2");
   font-weight: 400;
@@ -135,7 +136,7 @@
 
 .font-helvetica-light {
   font-family: "Helvetica Light", Arial, Helvetica, sans-serif;
-}
+} */
 
 @layer base {
   html {
