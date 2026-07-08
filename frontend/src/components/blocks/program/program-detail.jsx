@@ -6,7 +6,10 @@ import { getStrapiMediaUrl } from "@/lib/strapi";
 export default function ProgramDetail({ data, availableDurations }) {
   const sections = [
     data?.benefits_section?.title
-      ? { title: data.benefits_section.title, description: data.benefits_section.description }
+      ? {
+          title: data.benefits_section.title,
+          description: data.benefits_section.description,
+        }
       : null,
     data?.Included_treatments_section?.title
       ? {
@@ -15,7 +18,10 @@ export default function ProgramDetail({ data, availableDurations }) {
         }
       : null,
     data?.who_is_this_for_section?.title
-      ? { title: data.who_is_this_for_section.title, description: data.who_is_this_for_section.description }
+      ? {
+          title: data.who_is_this_for_section.title,
+          description: data.who_is_this_for_section.description,
+        }
       : null,
     data?.duration_info_section?.title
       ? {
@@ -66,8 +72,15 @@ export default function ProgramDetail({ data, availableDurations }) {
           <div className="w-[268px] sm:w-[268px] lg:w-[458px] xl:w-[565.3px] 2xl:w-[640.9px] 3xl:w-[777.5px] mx-auto">
             <div className="w-full aspect-[777/406] overflow-hidden">
               <Image
-                src={getStrapiMediaUrl(data?.introduction_section?.introduction_image)}
-                alt={data?.introduction_section?.introduction_image?.alternativeText || data?.title || "Program image"}
+                src={getStrapiMediaUrl(
+                  data?.introduction_section?.introduction_image,
+                )}
+                alt={
+                  data?.introduction_section?.introduction_image
+                    ?.alternativeText ||
+                  data?.title ||
+                  "Program image"
+                }
                 width={777}
                 height={406}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform"
@@ -82,7 +95,9 @@ export default function ProgramDetail({ data, availableDurations }) {
             )}
             {data?.introduction_section?.description && (
               <div className="text_3 font-normal text-center sm:text-start text-black xl:max-w-[90%]">
-                <BlocksRenderer content={data.introduction_section.description} />
+                <BlocksRenderer
+                  content={data.introduction_section.description}
+                />
               </div>
             )}
           </div>
@@ -96,7 +111,8 @@ export default function ProgramDetail({ data, availableDurations }) {
                   className={cn(
                     "w-full h-full p-[15px_20px] sm:p-[20px_25px] lg:p-[30px_36px] xl:p-[37px_44px] 2xl:p-[42px_50px] 3xl:p-[51px_61px] border-[#c3c3c3]",
                     idx === 0 && "border",
-                    idx === 1 && "border-y border-r max-sm:border-t-0 max-sm:border-l",
+                    idx === 1 &&
+                      "border-y border-r max-sm:border-t-0 max-sm:border-l",
                     idx === 2 && "border-x border-b",
                     idx === 3 && "border-b border-r max-sm:border-l",
                   )}

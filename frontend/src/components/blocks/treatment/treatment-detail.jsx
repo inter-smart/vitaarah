@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import React from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 const fadeUp = {
   hidden: {
@@ -33,7 +33,7 @@ const staggerContainer = {
 export default function TreatmentDetail({ data }) {
   return (
     <motion.section
-      className="relative py-[40px] lg:py-[40px_70px] xl:py-[50px_100px] 2xl:py-[55px_120px] 3xl:py-[70px_160px] overflow-hidden"
+      className="w-full block relative py-[40px] lg:py-[40px_70px] xl:py-[50px_100px] 2xl:py-[55px_120px] 3xl:py-[70px_160px] overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
@@ -88,34 +88,36 @@ export default function TreatmentDetail({ data }) {
           variants={fadeUp}
           className="w-full text-center m-auto lg:max-w-[450px] xl:max-w-[580px] 2xl:max-w-[630px] 3xl:max-w-[790px] mb-[20px] md:mb-[30px] xl:mb-[40px] 2xl:mb-[55px] 3xl:mb-[72px]"
         >
-          <div className="heading_1 mb-[0px]">
-            {data?.title}
-          </div>
-
-          <div className="text_3 font-light">
-            <BlocksRenderer content={data?.description} />
-          </div>
+          <div className="heading_1 mb-[0px]">{data?.title}</div>
+          {data?.short_description && (
+            <div className="text_3 font-light text-black">
+              {data?.short_description}
+            </div>
+          )}
         </motion.div>
 
         <motion.div
           variants={staggerContainer}
           className="flex flex-wrap max-md:gap-[15px]"
         >
-          <motion.div
-            variants={fadeUp}
-            className="w-full md:w-7/12"
-          >
+          <motion.div variants={fadeUp} className="w-full md:w-7/12">
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
-              className="w-full h-full overflow-hidden md:max-w-[90%] group"
+              className="w-full h-auto aspect-[874/620] overflow-hidden md:max-w-[90%] group"
             >
               <Image
-                src={data?.aboutSection?.image?.url}
+                src={
+                  data?.featured_image?.url
+                    ? getStrapiMediaUrl(data.featured_image.url)
+                    : "/images/placeholder.jpg"
+                }
+                alt={
+                  data?.featured_image?.alternativeText || "Treatment Details"
+                }
                 className="w-full h-full object-cover transition-all duration-300 ease-in group-hover:scale-110"
                 width={875}
                 height={620}
-                alt={data?.aboutSection?.image?.alternativeText}
               />
             </motion.div>
           </motion.div>
@@ -129,19 +131,21 @@ export default function TreatmentDetail({ data }) {
                 className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px]
                 text-[#A14962] font-normal mb-[8px] xl:mb-[10px] 2xl:mb-[15px]"
               >
-                {data?.aboutSection?.title}
+                {data?.what_is_section?.title}
               </div>
 
-              <div
-                className="text_3 font-light [&>p:not(:last-child)]:mb-[20px]
+              {data?.what_is_section?.description && (
+                <div
+                  className="text_3 font-light [&>p:not(:last-child)]:mb-[20px]
                 mb-[20px] md:mb-[30px] lg:mb-[35px]
                 xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]"
-              >
-                <BlocksRenderer content={data?.aboutSection?.description} />
-              </div>
+                >
+                  <BlocksRenderer content={data.what_is_section.description} />
+                </div>
+              )}
 
               <ul className="flex flex-wrap gap-[5px] md:gap-[10px] 2xl:gap-[13px]">
-                {data?.aboutSection?.tags.map((item, idx) => (
+                {(data?.tags || []).map((item, idx) => (
                   <motion.li
                     key={idx}
                     initial={{
@@ -174,7 +178,7 @@ export default function TreatmentDetail({ data }) {
                     2xl:h-[40px]
                     3xl:h-[45px]"
                   >
-                    {item.title}
+                    {item}
                   </motion.li>
                 ))}
               </ul>

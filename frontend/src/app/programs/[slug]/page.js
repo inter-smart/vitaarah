@@ -28,7 +28,7 @@ export async function generateMetadata(props) {
   const slug = params?.slug;
 
   const res = await fetchAPI(
-    `/api/programs?filters[slug][$eq]=${slug}&${programQuery}`
+    `/api/programs?filters[slug][$eq]=${slug}&${programQuery}`,
   ).catch(() => null);
 
   const program = res?.data?.[0];
@@ -65,7 +65,7 @@ export default async function ProgramPage(props) {
   const slug = params?.slug;
 
   const res = await fetchAPI(
-    `/api/programs?filters[slug][$eq]=${slug}&${programQuery}`
+    `/api/programs?filters[slug][$eq]=${slug}&${programQuery}`,
   ).catch(() => null);
 
   const program = res?.data?.[0];
@@ -79,7 +79,7 @@ export default async function ProgramPage(props) {
     (a, b) => {
       const getDays = (label) => Number(label?.match(/\d+/)?.[0] || 0);
       return getDays(a.label) - getDays(b.label);
-    }
+    },
   );
 
   return (
@@ -90,12 +90,8 @@ export default async function ProgramPage(props) {
           hero_media: program.hero_media,
         }}
       />
-      <ProgramDetail
-        data={program}
-        availableDurations={availableDurations}
-      />
+      <ProgramDetail data={program} availableDurations={availableDurations} />
       <TreatmentFaq data={program.faq_section} />
     </>
   );
 }
-

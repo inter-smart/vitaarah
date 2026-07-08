@@ -35,7 +35,7 @@ export default function TreatmentFaq({ data }) {
   };
 
   return (
-    <section className="relative py-[25px] lg:py-[30px] xl:py-[40px] 2xl:py-[50px] 3xl:py-[60px]">
+    <section className="w-full block relative py-[25px] lg:py-[30px] xl:py-[40px] 2xl:py-[50px] 3xl:py-[60px]">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,7 +45,6 @@ export default function TreatmentFaq({ data }) {
           className="max-w-[522px] xl:max-w-[644px] 2xl:max-w-[730px] 3xl:max-w-[887px] text-center m-auto mb-[25px] lg:mb-[35px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]"
         >
           <div className="heading_1 mb-[0px]">{data?.title}</div>
-
           <div className="text_3 font-light">{data?.short_description}</div>
         </motion.div>
 
@@ -66,27 +65,7 @@ export default function TreatmentFaq({ data }) {
                   value={`item-${item?.id || id}`}
                   className="mb-[15px] border border-[#E4E4E4] transition-all duration-300 data-[state=open]:bg-[#FFF9EB] data-[state=open]:border-[#FFF9EB] px-[10px] lg:px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px]"
                 >
-                  <AccordionTrigger
-                    className="text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[22px] text-[#1C1C1C] font-normal relative py-[15px] xl:py-[18px] 2xl:py-[22px] 3xl:py-[25px] cursor-pointer hover:no-underline data-[state=open]:pb-[15px]
-                                        [&>svg]:!hidden
-                                        after:absolute
-                                        after:content-['+']
-                                        after:w-[15px]
-                                        after:h-[15px]
-                                        after:flex
-                                        after:items-center
-                                        after:justify-center
-                                        after:top-0
-                                        after:bottom-0
-                                        after:m-auto
-                                        after:text-[13px]
-                                        xl:after:text-[15px]
-                                        2xl:after:text-[18px]
-                                        3xl:after:text-[22px]
-                                        after:right-0
-                                        after:text-[#1C1C1C]
-                                        data-[state=open]:after:content-['−']"
-                  >
+                  <AccordionTrigger className="text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[22px] text-[#1C1C1C] font-normal relative py-[15px] xl:py-[18px] 2xl:py-[22px] 3xl:py-[25px] cursor-pointer hover:no-underline data-[state=open]:pb-[15px] [&>svg]:!hidden after:absolute after:content-['+'] after:w-[15px] after:h-[15px] after:flex after:items-center after:justify-center after:top-0 after:bottom-0 after:m-auto after:text-[13px] xl:after:text-[15px] 2xl:after:text-[18px] 3xl:after:text-[22px] after:right-0 after:text-[#1C1C1C] data-[state=open]:after:content-['−']">
                     {item?.title}
                   </AccordionTrigger>
 
