@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_home_program_items",
+  "info": {
+    "displayName": "Home Program Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "related_program": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::program.program"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "program_attractions": {
+      "type": "component",
+      "component": "common.feature",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

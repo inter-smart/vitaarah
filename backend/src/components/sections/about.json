@@ -11,24 +11,18 @@
     "description": {
       "type": "blocks"
     },
-    "mainImage": {
+    "main_image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
-    "secondaryImage": {
+    "secondary_image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "button": {
@@ -36,7 +30,7 @@
       "component": "navigation.button",
       "repeatable": false
     },
-    "aboutStatistic": {
+    "about_statistic": {
       "type": "component",
       "component": "common.statistic",
       "repeatable": true

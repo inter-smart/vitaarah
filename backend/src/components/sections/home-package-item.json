@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_home_package_items",
+  "info": {
+    "displayName": "Home Package Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "related_package": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::package.package"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "background_video": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    }
+  },
+  "config": {}
+}

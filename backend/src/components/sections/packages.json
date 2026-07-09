@@ -11,10 +11,10 @@
     "short_description": {
       "type": "text"
     },
-    "programs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::program.program"
+    "home_program_item": {
+      "type": "component",
+      "component": "sections.home-program-item",
+      "repeatable": true
     }
   },
   "config": {}

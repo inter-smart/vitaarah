@@ -40,13 +40,14 @@ export interface CommonConditionItem extends Struct.ComponentSchema {
     displayName: 'Condition Item';
   };
   attributes: {
-    condition: Schema.Attribute.Relation<
+    background_video: Schema.Attribute.Media<'videos'>;
+    icon: Schema.Attribute.Media<'images'>;
+    related_condition: Schema.Attribute.Relation<
       'oneToOne',
       'api::condition.condition'
     >;
-    icon: Schema.Attribute.Media<'images'>;
     short_description: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -169,7 +170,7 @@ export interface NavigationButton extends Struct.ComponentSchema {
     icon: 'link';
   };
   attributes: {
-    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    icon: Schema.Attribute.Media<'images'>;
     label: Schema.Attribute.String;
     url: Schema.Attribute.String;
   };
@@ -193,13 +194,11 @@ export interface SectionsAbout extends Struct.ComponentSchema {
     displayName: 'About';
   };
   attributes: {
-    aboutStatistic: Schema.Attribute.Component<'common.statistic', true>;
+    about_statistic: Schema.Attribute.Component<'common.statistic', true>;
     button: Schema.Attribute.Component<'navigation.button', false>;
     description: Schema.Attribute.Blocks;
-    mainImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    secondaryImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
+    main_image: Schema.Attribute.Media<'images'>;
+    secondary_image: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String;
   };
 }
@@ -369,11 +368,43 @@ export interface SectionsHero extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Blocks;
-    heroMedia: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    primaryButton: Schema.Attribute.Component<'navigation.button', false>;
-    secondaryButton: Schema.Attribute.Component<'navigation.button', false>;
-    smallHeading: Schema.Attribute.String;
+    hero_media: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    primary_button: Schema.Attribute.Component<'navigation.button', false>;
+    secondary_button: Schema.Attribute.Component<'navigation.button', false>;
+    small_heading: Schema.Attribute.String;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsHomePackageItem extends Struct.ComponentSchema {
+  collectionName: 'components_sections_home_package_items';
+  info: {
+    displayName: 'Home Package Item';
+  };
+  attributes: {
+    background_video: Schema.Attribute.Media<'videos'>;
+    related_package: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::package.package'
+    >;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsHomeProgramItem extends Struct.ComponentSchema {
+  collectionName: 'components_sections_home_program_items';
+  info: {
+    displayName: 'Home Program Item';
+  };
+  attributes: {
+    program_attractions: Schema.Attribute.Component<'common.feature', true>;
+    related_program: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::program.program'
+    >;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -490,7 +521,10 @@ export interface SectionsPackages extends Struct.ComponentSchema {
     displayName: 'Home Program Section';
   };
   attributes: {
-    programs: Schema.Attribute.Relation<'oneToMany', 'api::program.program'>;
+    home_program_item: Schema.Attribute.Component<
+      'sections.home-program-item',
+      true
+    >;
     short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
@@ -720,7 +754,10 @@ export interface SectionsTreatments extends Struct.ComponentSchema {
     displayName: 'Home Packages';
   };
   attributes: {
-    packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
+    home_package_item: Schema.Attribute.Component<
+      'sections.home-package-item',
+      true
+    >;
     short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
@@ -793,6 +830,8 @@ declare module '@strapi/strapi' {
       'sections.gallery-list-section': SectionsGalleryListSection;
       'sections.healing-approach-section': SectionsHealingApproachSection;
       'sections.hero': SectionsHero;
+      'sections.home-package-item': SectionsHomePackageItem;
+      'sections.home-program-item': SectionsHomeProgramItem;
       'sections.included-treatments-section': SectionsIncludedTreatmentsSection;
       'sections.inner-hero': SectionsInnerHero;
       'sections.introduction-section': SectionsIntroductionSection;

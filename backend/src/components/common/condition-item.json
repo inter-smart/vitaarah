@@ -12,23 +12,24 @@
         "images"
       ]
     },
-    "title": {
-      "type": "string"
-    },
-    "short_description": {
-      "type": "text"
-    },
-    "condition": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::condition.condition"
-    },
     "background_video": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
         "videos"
       ]
+    },
+    "related_condition": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::condition.condition"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "short_description": {
+      "type": "text"
     }
   },
   "config": {}

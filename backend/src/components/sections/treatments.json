@@ -11,10 +11,10 @@
     "short_description": {
       "type": "text"
     },
-    "packages": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::package.package"
+    "home_package_item": {
+      "type": "component",
+      "component": "sections.home-package-item",
+      "repeatable": true
     }
   },
   "config": {}

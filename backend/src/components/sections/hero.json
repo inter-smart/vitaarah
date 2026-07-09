@@ -5,7 +5,7 @@
   },
   "options": {},
   "attributes": {
-    "smallHeading": {
+    "small_heading": {
       "type": "string"
     },
     "title": {
@@ -14,22 +14,21 @@
     "description": {
       "type": "blocks"
     },
-    "heroMedia": {
+    "hero_media": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
         "images",
         "files",
-        "videos",
-        "audios"
+        "videos"
       ]
     },
-    "primaryButton": {
+    "primary_button": {
       "type": "component",
       "component": "navigation.button",
       "repeatable": false
     },
-    "secondaryButton": {
+    "secondary_button": {
       "type": "component",
       "component": "navigation.button",
       "repeatable": false
