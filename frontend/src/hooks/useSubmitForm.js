@@ -27,15 +27,19 @@ export function useSubmitForm(apiSubmitFunction, options = {}) {
       const meta = getCurrentPageMeta();
 
       // 2. Prepare final payload with auto-populated hidden fields
-      const payload = {
+      const rawPayload = {
         ...formData,
         page_url: meta.page_url,
         page_title: meta.page_title,
         slug: formData.selected_slug || meta.slug, // Use formData's slug if provided (for consultation auto-detect)
         page_type: formData.page_type || meta.page_type,
-        submitted_at: new Date().toISOString(),
         user_agent: typeof window !== "undefined" ? window.navigator.userAgent : "Unknown",
       };
+
+      // Remove undefined, null, or empty string values from payload
+      const payload = Object.fromEntries(
+        Object.entries(rawPayload).filter(([_, v]) => v !== undefined && v !== null && v !== "")
+      );
 
       // 3. Execute API call
       await apiSubmitFunction(payload);
