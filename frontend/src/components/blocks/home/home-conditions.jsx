@@ -8,7 +8,7 @@ import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
-export default function HomeSpecialities({ data }) {
+export default function HomeConditions({ data }) {
   const [emblaRef] = useEmblaCarousel(
     {
       loop: false,
@@ -43,25 +43,25 @@ export default function HomeSpecialities({ data }) {
             {data.title}
           </h2>
         )}
-        {data.description && (
+        {data.short_description && (
           <div className="text_3 text-center mb-[20px] xl:mb-[38px] 2xl:mb-[43px] 3xl:mb-[52px]">
-            {data.description}
+            {data.short_description}
           </div>
         )}
         <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
           <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
-            {data?.specialties?.map((item, idx) => (
+            {data?.condition_item?.map((item, idx) => (
               <div
-                key={"specialties" + idx}
+                key={"condition" + idx}
                 className={cn(
                   "flex-[0_0_180px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-1 xl:px-2.5",
                 )}
               >
                 <Link
-                  href={`/conditions/${item?.slug}`}
+                  href={item?.related_condition?.slug ? `/conditions/${item.related_condition.slug}` : "#"}
                   className="group w-full h-[240px] lg:h-[270px] xl:h-[332px] 2xl:h-[376px] 3xl:h-[456px] block p-[30px_10px_35px] xl:p-[38px_14px_45px] 2xl:p-[48px_18px_57px] relative z-0"
                 >
-                  {item?.featuredImage?.mime?.startsWith("video/") ? (
+                  {item?.background_video?.url ? (
                     <video
                       autoPlay
                       muted
@@ -69,30 +69,17 @@ export default function HomeSpecialities({ data }) {
                       className="w-full h-full object-cover absolute z-0 inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     >
                       <source
-                        src={getStrapiMediaUrl(item.featuredImage.url)}
-                        type={item.featuredImage.mime}
+                        src={getStrapiMediaUrl(item.background_video.url)}
+                        type={item.background_video.mime || "video/mp4"}
                       />
                     </video>
-                  ) : (
-                    <Image
-                      src={getStrapiMediaUrl(item.featuredImage.url)}
-                      alt={
-                        item.featuredImage.alternativeText ||
-                        item.title ||
-                        "Specialty"
-                      }
-                      fill
-                      sizes="(max-width: 640px) 220px, (max-width: 1024px) 33vw, 25vw"
-                      className="object-cover absolute z-0 inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      unoptimized
-                    />
-                  )}
+                  ) : null}
                   {item?.icon?.url && (
                     <div className="w-[60px] sm:w-[96px] xl:w-[118px] 2xl:w-[134px] 3xl:w-[162px] aspect-square rounded-full flex items-center justify-center transition-all duration-300 mx-auto bg-linear-to-b from-[#ecd6d0] to-[#fff9eb] mb-[15px] xl:mb-[20px] 2xl:mb-[24px]">
                       <Image
                         src={getStrapiMediaUrl(item.icon.url)}
                         alt={
-                          item.icon.alternativeText || item.title || "Specialty"
+                          item.icon.alternativeText || item.title || "Condition"
                         }
                         width={90}
                         height={90}
@@ -105,7 +92,7 @@ export default function HomeSpecialities({ data }) {
                     {item?.title}
                   </div>
                   <div className="text_3 text-center text-black mx-auto xl:max-w-[80%] group-hover:text-white relative z-1">
-                    {item?.shortDescription}
+                    {item?.short_description}
                   </div>
                 </Link>
               </div>

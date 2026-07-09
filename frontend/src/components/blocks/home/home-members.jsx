@@ -132,9 +132,9 @@ export default function HomeMembers({ data }) {
                           )}
                         >
                           <Image
-                            src={getStrapiMediaUrl(item.thumbnailImage.url)}
+                            src={getStrapiMediaUrl(item.thumbnail_image.url)}
                             alt={
-                              item.thumbnailImage.alternativeText ||
+                              item.thumbnail_image.alternativeText ||
                               item.name ||
                               "Team member"
                             }
@@ -173,9 +173,9 @@ export default function HomeMembers({ data }) {
                 unoptimized
               />
               <Image
-                src={getStrapiMediaUrl(data?.members?.[1]?.featuredImage?.url)}
+                src={getStrapiMediaUrl(data?.members?.[selectedIdx]?.featured_image?.url)}
                 alt={
-                  data?.members?.[1]?.featuredImage?.alternativeText ||
+                  data?.members?.[selectedIdx]?.featured_image?.alternativeText ||
                   "Team member"
                 }
                 width={552}

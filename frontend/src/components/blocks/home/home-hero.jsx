@@ -9,9 +9,9 @@ export default function HomeHero({ data }) {
       <div className="container mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[55]">
         <div className="flex flex-wrap">
           <div className="w-full sm:w-[45%]">
-            {data.smallHeading && (
+            {data.small_heading && (
               <div className="text_1 font-normal tracking-wide text-[#a14962] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
-                {data.smallHeading}
+                {data.small_heading}
               </div>
             )}
             {data.title && (
@@ -36,23 +36,27 @@ export default function HomeHero({ data }) {
               </a>
               {data.description && (
                 <div className="text_3 font-normal text-[#1f1f1f] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px] 3xl:mt-[60px] mb-[20px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
-                  <BlocksRenderer content={data.description} />
+                  {Array.isArray(data.description) ? (
+                    <BlocksRenderer content={data.description} />
+                  ) : (
+                    <p>{data.description}</p>
+                  )}
                 </div>
               )}
-              {(data.primaryButton || data.secondaryButton) && (
+              {(data.primary_button || data.secondary_button) && (
                 <div className="flex items-center gap-[4px] xl:gap-[6px] 2xl:gap-[8px]">
-                  {data.primaryButton && (
-                    <Button as="a" href={data.primaryButton.url}>
-                      {data.primaryButton.label}
+                  {data.primary_button && (
+                    <Button as="a" href={data.primary_button.url}>
+                      {data.primary_button.label}
                     </Button>
                   )}
-                  {data.secondaryButton && (
+                  {data.secondary_button && (
                     <Button
                       as="a"
                       variant="outline"
-                      href={data.secondaryButton.url}
+                      href={data.secondary_button.url}
                     >
-                      {data.secondaryButton.label}
+                      {data.secondary_button.label}
                     </Button>
                   )}
                 </div>
@@ -68,8 +72,8 @@ export default function HomeHero({ data }) {
         className="w-full max-w-[1920px] h-auto mx-auto aspect-[1024/420] object-cover"
       >
         <source
-          src={getStrapiMediaUrl(data?.heroMedia.url)}
-          type={data.heroMedia.mime}
+          src={data?.hero_media?.url ? getStrapiMediaUrl(data.hero_media.url) : ""}
+          type={data?.hero_media?.mime || "video/mp4"}
         />
       </video>
     </section>

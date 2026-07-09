@@ -51,9 +51,9 @@ export default function HomeAbout({ data }) {
               <div className={ElementStyle} />
               {(() => {
                 const secondaryImgUrl =
-                  data?.secondaryImage?.url || data?.about_media?.[1]?.url;
+                  data?.secondary_image?.url || data?.about_media?.[1]?.url;
                 const secondaryImgAlt =
-                  data?.secondaryImage?.alternativeText ||
+                  data?.secondary_image?.alternativeText ||
                   data?.about_media?.[1]?.alternativeText ||
                   "home about 1";
                 if (!secondaryImgUrl) return null;
@@ -72,9 +72,9 @@ export default function HomeAbout({ data }) {
               })()}
               {(() => {
                 const mainImgUrl =
-                  data?.mainImage?.url || data?.about_media?.[0]?.url;
+                  data?.main_image?.url || data?.about_media?.[0]?.url;
                 const mainImgAlt =
-                  data?.mainImage?.alternativeText ||
+                  data?.main_image?.alternativeText ||
                   data?.about_media?.[0]?.alternativeText ||
                   "home about 2";
                 if (!mainImgUrl) return null;
@@ -93,9 +93,9 @@ export default function HomeAbout({ data }) {
               })()}
             </div>
 
-            {data?.aboutStatistic?.length > 0 && (
+            {data?.about_statistic?.length > 0 && (
               <div className="lg:max-w-[403px] xl:max-w-[497px] 2xl:max-w-[563px] 3xl:max-w-[685px] flex items-center justify-between gap-[10px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[25px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
-                {data?.aboutStatistic.map((stat, index) => (
+                {data?.about_statistic.map((stat, index) => (
                   <Fragment key={stat.label}>
                     <div>
                       <h3 className="text-[18px] sm:text-[26.6px] xl:text-[32.9px] 2xl:text-[37.3px] 3xl:text-[45.2px] leading-normal font-normal font-helvetica text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[6px]">
@@ -106,7 +106,7 @@ export default function HomeAbout({ data }) {
                         {stat.label}
                       </p>
                     </div>
-                    {index < data.aboutStatistic.length - 1 && (
+                    {index < data.about_statistic.length - 1 && (
                       <div className="w-[1px] h-[91px] 2xl:h-[110px] 3xl:h-[130px] bg-[#ECE7D7]" />
                     )}
                   </Fragment>
@@ -122,7 +122,11 @@ export default function HomeAbout({ data }) {
             )}
             {data?.description && (
               <div className="text_3 font-normal text-black mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
-                <BlocksRenderer content={data.description} />
+                {Array.isArray(data.description) ? (
+                  <BlocksRenderer content={data.description} />
+                ) : (
+                  <p>{data.description}</p>
+                )}
               </div>
             )}
             {data?.button && (

@@ -111,17 +111,21 @@ export default function HomeTestimonials({ data }) {
                     />
                     {item?.review && (
                       <div className="text_3 font-normal leading-normal text-black h-[100px] xl:h-[115px] 2xl:h-[130px] 3xl:h-[150px] overflow-y-auto my-[20px] lg:my-[30px] xl:my-[43px] 2xl:my-[52px] 3xl:my-[52px] pr-4 xl:pr-5 2xl:pr-6 3xl:pr-8 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] scrollbar-none">
-                        <BlocksRenderer content={item.review} />
+                        {Array.isArray(item.review) ? (
+                          <BlocksRenderer content={item.review} />
+                        ) : (
+                          <p>{item.review}</p>
+                        )}
                       </div>
                     )}
                     <div className="flex items-center gap-[10px] lg:gap-[18px] xl:gap-[22px] 2xl:gap-[25px] 3xl:gap-[30px]">
-                      {item?.authorImage && (
+                      {item?.author_image && (
                         <div className="w-[40px] lg:w-[56px] xl:w-[69px] 2xl:w-[78px] 3xl:w-[95px] aspect-square rounded-full overflow-hidden">
                           <Image
-                            src={getStrapiMediaUrl(item.authorImage.url)}
+                            src={getStrapiMediaUrl(item.author_image.url)}
                             alt={
-                              item.authorImage.alternativeText ||
-                              item.authorName
+                              item.author_image.alternativeText ||
+                              item.author_name
                             }
                             width={95}
                             height={95}
@@ -131,14 +135,14 @@ export default function HomeTestimonials({ data }) {
                         </div>
                       )}
                       <div className="flex-1">
-                        {item?.authorName && (
+                        {item?.author_name && (
                           <div className="text_4 leading-none text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[6px]">
-                            {item?.authorName}
+                            {item?.author_name}
                           </div>
                         )}
-                        {item?.authorDesignation && (
+                        {item?.author_designation && (
                           <div className="text_3 leading-none text-black mb-[2px] 2xl:mb-[4px] 3xl:mb-[10px]">
-                            {item.authorDesignation}
+                            {item.author_designation}
                           </div>
                         )}
                         <div className="flex gap-0.5 xl:gap-1">
