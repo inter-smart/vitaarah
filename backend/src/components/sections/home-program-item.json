@@ -14,6 +14,14 @@
       "relation": "oneToOne",
       "target": "api::program.program"
     },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "short_description": {
       "type": "text"
     },

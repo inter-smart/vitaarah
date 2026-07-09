@@ -399,6 +399,8 @@ export interface SectionsHomeProgramItem extends Struct.ComponentSchema {
     displayName: 'Home Program Item';
   };
   attributes: {
+    featured_image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
     program_attractions: Schema.Attribute.Component<'common.feature', true>;
     related_program: Schema.Attribute.Relation<
       'oneToOne',
