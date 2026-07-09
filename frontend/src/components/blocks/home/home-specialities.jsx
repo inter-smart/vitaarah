@@ -21,7 +21,7 @@ export default function HomeSpecialities({ data }) {
   return (
     <section
       id="Specialities"
-      className="w-full bg-[#fff9eb] py-[35px] sm:py-[50px] xl:py-[63px] 2xl:py-[72px] 3xl:py-[87px] overflow-hidden relative z-0"
+      className="w-full block bg-[#fff9eb] py-[35px] sm:py-[50px] xl:py-[63px] 2xl:py-[72px] 3xl:py-[87px] overflow-hidden relative z-0"
     >
       <Image
         src="/images/home-about-elmt-2.svg"
@@ -45,7 +45,7 @@ export default function HomeSpecialities({ data }) {
         )}
         {data.description && (
           <div className="text_3 text-center mb-[20px] xl:mb-[38px] 2xl:mb-[43px] 3xl:mb-[52px]">
-            <BlocksRenderer content={data.description} />
+            {data.description}
           </div>
         )}
         <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
