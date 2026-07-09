@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
-import FallbackImage from "@/components/common/FallbackImage";
 import BlogCard from "./blog-card";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 
@@ -50,8 +49,12 @@ export default function BlogDetail({ data, relatedBlogs }) {
             </div>
             <div className="w-full bg-[#fff9eb]">
               <div className="w-full aspect-[897/450] overflow-hidden">
-                <FallbackImage
-                  src={getStrapiMediaUrl(data?.featured_image?.url)}
+                <Image
+                  src={
+                    data?.featured_image?.url
+                      ? getStrapiMediaUrl(data.featured_image.url)
+                      : "/images/placeholder.jpg"
+                  }
                   alt={
                     data?.featured_image?.alternativeText ||
                     data?.title ||

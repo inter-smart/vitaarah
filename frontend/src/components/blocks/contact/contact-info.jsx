@@ -2,7 +2,6 @@ import RequestQuoteForm from "@/components/form/request-quote-form";
 import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
-import FallbackImage from "@/components/common/FallbackImage";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function ContactInfo({ data }) {
@@ -127,8 +126,8 @@ function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
   return (
     <div className="flex gap-2.5 xl:gap-[12px] 2xl:gap-[14px] 3xl:gap-[17px]">
       <div className="w-[20px] sm:w-[30px] xl:w-[35px] 2xl:w-[40px] 3xl:w-[48px]">
-        <FallbackImage
-          src={url}
+        <Image
+          src={url ? url : "/images/placeholder.jpg"}
           alt={alternativeText}
           width={48}
           height={48}

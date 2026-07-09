@@ -4,7 +4,6 @@ import { getStrapiMediaUrl } from "@/lib/strapi";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import FallbackImage from "@/components/common/FallbackImage";
 
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -72,8 +71,12 @@ export default function HomeBlogs({ data }) {
                     </div>
                     {item?.featured_image?.url && (
                       <div className="w-full aspect-square overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
-                        <FallbackImage
-                          src={getStrapiMediaUrl(item?.featured_image?.url)}
+                        <Image
+                          src={
+                            item?.featured_image?.url
+                              ? getStrapiMediaUrl(item.featured_image.url)
+                              : "/images/placeholder.jpg"
+                          }
                           alt={
                             item?.featured_image?.alternativeText ||
                             item?.title ||
@@ -124,8 +127,12 @@ export default function HomeBlogs({ data }) {
                         </div>
                       </div>
                       <div className="w-full aspect-[373/473] overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
-                        <FallbackImage
-                          src={getStrapiMediaUrl(item?.featured_image?.url)}
+                        <Image
+                          src={
+                            item?.featured_image?.url
+                              ? getStrapiMediaUrl(item.featured_image.url)
+                              : "/images/placeholder.jpg"
+                          }
                           alt={
                             item?.featured_image?.alternativeText ||
                             item?.title ||

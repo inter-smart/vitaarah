@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import FallbackImage from "@/components/common/FallbackImage";
 import Link from "next/link";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 
@@ -32,8 +31,12 @@ export default function BlogCard({ data }) {
   return (
     <Link href={`/blogs/${data?.slug}`} className="w-full h-full flex flex-col">
       <div className="w-full aspect-[502/403] overflow-hidden mb-[10px] sm:mb-[15px] xl:mb-[37px] 2xl:mb-[42px] 3xl:mb-[51px]">
-        <FallbackImage
-          src={getStrapiMediaUrl(data?.featured_image?.url)}
+        <Image
+          src={
+            data?.featured_image?.url
+              ? getStrapiMediaUrl(data.featured_image.url)
+              : "/images/placeholder.jpg"
+          }
           alt={data?.featured_image?.alternativeText || data?.title || "Blog"}
           width={502}
           height={403}

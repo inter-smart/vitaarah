@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import FallbackImage from "@/components/common/FallbackImage";
 import BlogCard from "./blog-card";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 
@@ -71,8 +70,12 @@ export default function BlogListing({ data, blogs }) {
                   className="w-full flex flex-wrap items-center bg-[#fff9eb] sm:gap-[25px] lg:gap-[32px] xl:gap-[40px] 2xl:gap-[45px] 3xl:gap-[60px] transition-all duration-500"
                 >
                   <div className="w-full sm:w-[268px] md:w-[320px] lg:w-[528px] xl:w-[652px] 2xl:w-[740px] 3xl:w-[897px] aspect-[897/450] overflow-hidden">
-                    <FallbackImage
-                      src={getStrapiMediaUrl(item?.featured_image?.url)}
+                    <Image
+                      src={
+                        item?.featured_image?.url
+                          ? getStrapiMediaUrl(item.featured_image.url)
+                          : "/images/placeholder.jpg"
+                      }
                       alt={
                         item?.featured_image?.alternativeText ||
                         item?.title ||

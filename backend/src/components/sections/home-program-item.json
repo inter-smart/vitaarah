@@ -9,11 +9,6 @@
       "type": "string",
       "required": true
     },
-    "related_program": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::program.program"
-    },
     "featured_image": {
       "type": "media",
       "multiple": false,
@@ -21,6 +16,11 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "related_program": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::program.program"
     },
     "short_description": {
       "type": "text"
