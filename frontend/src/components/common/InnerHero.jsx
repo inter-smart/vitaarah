@@ -30,7 +30,7 @@ export default function InnerHero({ data }) {
                 getStrapiMediaUrl(data?.hero_media?.url) ||
                 "/images/placeholder.jpg"
               }
-              alt={data?.hero_media?.alternativeText || data?.title}
+              alt={(data?.hero_media?.alternativeText || data?.title) || "Image"}
               fill
               sizes="100vw"
               priority

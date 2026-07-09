@@ -63,11 +63,9 @@ export default function AboutCredibility({ data }) {
                   <div className="max-w-[40px] md:max-w-[90px] lg:max-w-[95px] xl:max-w-[100px] 2xl:max-w-[120px] 3xl:max-w-[150px] w-full aspect-square m-auto mb-[8px] flex items-center justify-center">
                     <Image
                       src={getStrapiMediaUrl(item?.certification_media?.url)}
-                      alt={
-                        item?.certification_media?.alternativeText ||
+                      alt={(item?.certification_media?.alternativeText ||
                         item?.title ||
-                        "certification"
-                      }
+                        "certification") || "Image"}
                       className="w-full object-contain"
                       width="150"
                       height="150"

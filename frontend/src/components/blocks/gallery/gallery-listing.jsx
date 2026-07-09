@@ -73,11 +73,9 @@ export default function GalleryListing({ images }) {
                       getStrapiMediaUrl(item?.media?.url) ||
                       "/images/placeholder.jpg"
                     }
-                    alt={
-                      item?.title ||
+                    alt={(item?.title ||
                       item?.media?.alternativeText ||
-                      "Gallery Image"
-                    }
+                      "Gallery Image") || "Image"}
                     width={622}
                     height={450}
                     className="w-full h-full object-cover hover:scale-105 transition-all duration-300"

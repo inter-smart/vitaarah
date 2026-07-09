@@ -11,11 +11,9 @@ export default function AboutClinic({ data }) {
             <div className="w-full h-full overflow-hidden relative">
               <Image
                 src={getStrapiMediaUrl(data?.featured_image?.url)}
-                alt={
-                  data?.featured_image?.alternativeText ||
+                alt={(data?.featured_image?.alternativeText ||
                   data?.title ||
-                  "clinic"
-                }
+                  "clinic") || "Image"}
                 className="w-full h-full object-cover"
                 width="830"
                 height="630"

@@ -76,11 +76,9 @@ export default function HomeBlogs({ data }) {
                             ? getStrapiMediaUrl(item.featured_image.url)
                             : "/images/placeholder.jpg"
                         }
-                        alt={
-                          item?.featured_image?.alternativeText ||
+                        alt={(item?.featured_image?.alternativeText ||
                           item?.title ||
-                          "Blog"
-                        }
+                          "Blog") || "Image"}
                         width={52}
                         height={52}
                         className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
@@ -131,11 +129,9 @@ export default function HomeBlogs({ data }) {
                               ? getStrapiMediaUrl(item.featured_image.url)
                               : "/images/placeholder.jpg"
                           }
-                          alt={
-                            item?.featured_image?.alternativeText ||
+                          alt={(item?.featured_image?.alternativeText ||
                             item?.title ||
-                            "Blog"
-                          }
+                            "Blog") || "Image"}
                           width={52}
                           height={52}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-500"

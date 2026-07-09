@@ -50,11 +50,9 @@ export default function SpecialityPathway({ data }) {
                   <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[85px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] bg-white rounded-full border border-[#A7546C] overflow-hidden p-[10px] xl:p-[12px] 2xl:p-[15px] 3xl:p-[20px] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                     <Image
                       src={getStrapiMediaUrl(item.icon.url)}
-                      alt={
-                        item.icon.alternativeText ||
+                      alt={(item.icon.alternativeText ||
                         item.treatment?.title ||
-                        "Speciality icon"
-                      }
+                        "Speciality icon") || "Image"}
                       width={25}
                       height={25}
                       className="w-full h-full object-contain"

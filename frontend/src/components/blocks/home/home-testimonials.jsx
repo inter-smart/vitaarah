@@ -121,21 +121,23 @@ export default function HomeTestimonials({ data }) {
                       )}
                     </div>
                     <div className="mt-auto flex items-center gap-[10px] lg:gap-[18px] xl:gap-[22px] 2xl:gap-[25px] 3xl:gap-[30px]">
-                      {item?.author_image && (
-                        <div className="w-[40px] lg:w-[56px] xl:w-[69px] 2xl:w-[78px] 3xl:w-[95px] aspect-square rounded-full overflow-hidden">
-                          <Image
-                            src={getStrapiMediaUrl(item.author_image.url)}
-                            alt={
-                              item.author_image.alternativeText ||
-                              item.author_name
-                            }
-                            width={95}
-                            height={95}
-                            className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
-                            unoptimized
-                          />
-                        </div>
-                      )}
+                      <div className="w-[40px] lg:w-[56px] xl:w-[69px] 2xl:w-[78px] 3xl:w-[95px] aspect-square rounded-full overflow-hidden">
+                        <Image
+                          src={
+                            item.author_image
+                              ? getStrapiMediaUrl(item.author_image.url)
+                              : "/images/placeholder.jpg"
+                          }
+                          alt={(item?.author_image?.alternativeText ||
+                            item?.author_name ||
+                            item?.name ||
+                            item?.title ||
+                            "Testimonial author") || "Image"}
+                          width={95}
+                          height={95}
+                          className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
+                        />
+                      </div>
                       <div className="flex-1">
                         {item?.author_name && (
                           <div className="text_4 leading-none text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[6px]">

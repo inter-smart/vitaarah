@@ -214,7 +214,7 @@ function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
       <div className="w-[20px] sm:w-[30px] xl:w-[35px] 2xl:w-[40px] 3xl:w-[48px]">
         <Image
           src={url}
-          alt={alternativeText}
+          alt={alternativeText || "Image"}
           width={48}
           height={48}
           className="w-full h-full block"

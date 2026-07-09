@@ -52,7 +52,7 @@ export default function SpecialityDetail({ data }) {
                   className="w-full h-full object-cover"
                   width={1640}
                   height={460}
-                  alt={data?.contentSection?.image?.alternativeText}
+                  alt={(data?.contentSection?.image?.alternativeText) || "Image"}
                 />
               </div>
             </div>

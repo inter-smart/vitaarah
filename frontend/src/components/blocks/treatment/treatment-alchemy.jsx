@@ -86,11 +86,9 @@ export default function TreatmentAlchemy({ data }) {
                       ? getStrapiMediaUrl(data.featured_image.url)
                       : "/images/placeholder.jpg"
                   }
-                  alt={
-                    data?.featured_image?.alternativeText ||
+                  alt={(data?.featured_image?.alternativeText ||
                     data?.title ||
-                    "Benefits"
-                  }
+                    "Benefits") || "Image"}
                   className="w-full h-full object-cover transition-all duration-300 ease-in-out group-hover:scale-105"
                   width={578}
                   height={478}

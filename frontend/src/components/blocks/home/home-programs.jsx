@@ -141,11 +141,9 @@ export default function HomePrograms({ data }) {
                               ? getStrapiMediaUrl(item.featured_image.url)
                               : "/images/placeholder.jpg"
                           }
-                          alt={
-                            item.featured_image.alternativeText ||
+                          alt={item.featured_image.alternativeText ||
                             item.title ||
-                            "Program"
-                          }
+                            "Program" || "Image"}
                           width={336}
                           height={262}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
@@ -154,7 +152,7 @@ export default function HomePrograms({ data }) {
                       </div>
                       <div className="w-full p-[12px] sm:p-[16px] xl:p-[20px] 2xl:p-[22px] 3xl:p-[27px]">
                         <div className="text_5 text-black mb-[8px] xl:mb-[12px] 2xl:mb-[16px] 3xl:mb-[20px]">
-                          {item?.days} days
+                          {item?.related_program?.related_package?.title || ""}
                         </div>
                         {item?.title && (
                           <div className="text_4 text-[#a14962] mb-[4px] 2xl:mb-[6px] 3xl:mb-[8px]">
@@ -174,11 +172,9 @@ export default function HomePrograms({ data }) {
                                 {feature?.icon ? (
                                   <Image
                                     src={getStrapiMediaUrl(feature?.icon?.url)}
-                                    alt={
-                                      feature?.icon?.alternativeText ||
+                                    alt={(feature?.icon?.alternativeText ||
                                       feature?.title ||
-                                      "features"
-                                    }
+                                      "features") || "Image"}
                                     width={14}
                                     height={14}
                                     className="w-[13px] 3xl:w-[14px] aspect-square object-contain"
@@ -187,11 +183,9 @@ export default function HomePrograms({ data }) {
                                 ) : (
                                   <Image
                                     src="/images/package-feature-list.svg"
-                                    alt={
-                                      feature?.icon?.alternativeText ||
+                                    alt={(feature?.icon?.alternativeText ||
                                       feature?.title ||
-                                      "features"
-                                    }
+                                      "features") || "Image"}
                                     width={14}
                                     height={14}
                                     className="w-[14px] aspect-square object-contain"

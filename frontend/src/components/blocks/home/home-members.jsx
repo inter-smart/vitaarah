@@ -133,11 +133,9 @@ export default function HomeMembers({ data }) {
                         >
                           <Image
                             src={getStrapiMediaUrl(item.thumbnail_image.url)}
-                            alt={
-                              item.thumbnail_image.alternativeText ||
+                            alt={item.thumbnail_image.alternativeText ||
                               item.name ||
-                              "Team member"
-                            }
+                              "Team member" || "Image"}
                             width={82}
                             height={82}
                             className="w-full h-full object-cover hover:scale-105"
@@ -174,10 +172,8 @@ export default function HomeMembers({ data }) {
               />
               <Image
                 src={getStrapiMediaUrl(data?.members?.[selectedIdx]?.featured_image?.url)}
-                alt={
-                  data?.members?.[selectedIdx]?.featured_image?.alternativeText ||
-                  "Team member"
-                }
+                alt={(data?.members?.[selectedIdx]?.featured_image?.alternativeText ||
+                  "Team member") || "Image"}
                 width={552}
                 height={775}
                 className="w-full h-full object-cover"

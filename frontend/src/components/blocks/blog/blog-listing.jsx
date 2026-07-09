@@ -18,7 +18,7 @@ function BlogSpecItem({ src, alt, children }) {
     <div className="text_3 max-[376px]:text-[10px] text-black flex gap-[6.3px] 2xl:gap-[7px] 3xl:gap-[8.6px]">
       <Image
         src={src}
-        alt={alt}
+        alt={alt || "Image"}
         width={12}
         height={12}
         className="w-[10px] 2xl:w-[11px] 3xl:w-[13.4px]"
@@ -76,11 +76,9 @@ export default function BlogListing({ data, blogs }) {
                           ? getStrapiMediaUrl(item.featured_image.url)
                           : "/images/placeholder.jpg"
                       }
-                      alt={
-                        item?.featured_image?.alternativeText ||
+                      alt={(item?.featured_image?.alternativeText ||
                         item?.title ||
-                        "Blog"
-                      }
+                        "Blog") || "Image"}
                       width={897}
                       height={450}
                       className="w-full h-full object-cover hover:scale-105 transition-all duration-500"

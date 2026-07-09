@@ -91,8 +91,9 @@ const homePageQuery = buildQuery({
     populate: {
       home_program_item: {
         populate: {
+          featured_image: true,
           program_attractions: { populate: { icon: true } },
-          related_program: { populate: { hero_media: true } },
+          related_program: { populate: { hero_media: true, related_package: true } },
         },
       },
     },

@@ -38,11 +38,9 @@ export default function AboutApproach({ data }) {
                       <div className="h-[27px] xl:h-[33px] 2xl:w-[38px] 3xl:w-[46px] w-[27px] xl:h-[33px] 2xl:h-[38px] 3xl:h-[46px] flex mb-[12px] xl:mb-[15px] 2xl:mb-[18px] 3xl:mb-[22px]">
                         <Image
                           src={getStrapiMediaUrl(item?.icon?.url)}
-                          alt={
-                            item?.icon?.alternativeText ||
+                          alt={(item?.icon?.alternativeText ||
                             item?.title ||
-                            "approach icon"
-                          }
+                            "approach icon") || "Image"}
                           className="w-auto object-contain"
                           width="46"
                           height="46"

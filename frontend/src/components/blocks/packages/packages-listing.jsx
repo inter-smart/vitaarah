@@ -46,11 +46,9 @@ export default function PackagesListing({ data }) {
                     <div className="w-[90px] sm:w-[100px] lg:w-[129px] xl:w-[160px] 2xl:w-[180.3px] 3xl:w-[218.7px] aspect-[218/436] rounded-[482px] xl:rounded-[482px] 2xl:rounded-[180.3px] 3xl:rounded-[482px] bg-black relative z-0 overflow-hidden">
                       <Image
                         src={getStrapiMediaUrl(item?.featured_image)}
-                        alt={
-                          item?.featured_image?.alternativeText ||
+                        alt={(item?.featured_image?.alternativeText ||
                           item?.title ||
-                          "Package image"
-                        }
+                          "Package image") || "Image"}
                         width={336}
                         height={262}
                         className="w-full h-full object-cover hover:scale-105 transition-all duration-300"

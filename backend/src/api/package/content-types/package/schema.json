@@ -33,10 +33,11 @@
     "short_description": {
       "type": "text"
     },
-    "programs": {
+    "related_programs": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::program.program"
+      "target": "api::program.program",
+      "mappedBy": "related_package"
     }
   }
 }

@@ -75,12 +75,10 @@ export default function ProgramDetail({ data, availableDurations }) {
                 src={getStrapiMediaUrl(
                   data?.introduction_section?.introduction_image,
                 )}
-                alt={
-                  data?.introduction_section?.introduction_image
+                alt={(data?.introduction_section?.introduction_image
                     ?.alternativeText ||
                   data?.title ||
-                  "Program image"
-                }
+                  "Program image") || "Image"}
                 width={777}
                 height={406}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform"

@@ -61,7 +61,7 @@ export default function HomeAbout({ data }) {
                   <div className={ElementStyle}>
                     <Image
                       src={getStrapiMediaUrl(secondaryImgUrl)}
-                      alt={secondaryImgAlt}
+                      alt={secondaryImgAlt || "Image"}
                       width={300}
                       height={300}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform"
@@ -82,7 +82,7 @@ export default function HomeAbout({ data }) {
                   <div className={ElementStyle}>
                     <Image
                       src={getStrapiMediaUrl(mainImgUrl)}
-                      alt={mainImgAlt}
+                      alt={mainImgAlt || "Image"}
                       width={300}
                       height={300}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform"
