@@ -50,6 +50,8 @@ export default function HomePrograms({ data }) {
     };
   }, [emblaApi]);
 
+  console.log("HomePrograms", data);
+
   return (
     <section
       id="Packages"
@@ -127,29 +129,29 @@ export default function HomePrograms({ data }) {
                           : "sm:scale-90",
                       )}
                     >
-                      {item?.related_program?.hero_media && (
-                        <div className="w-full aspect-[336/262] bg-black relative z-0 overflow-hidden mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[24px]">
-                          {item?.badgeType && (
-                            <div className="absolute z-1 top-[10px] xl:top-[12px] 2xl:top-[13px] 3xl:top-[16px] right-[10px] xl:right-[12px] 2xl:right-[13px] 3xl:right-[16px] text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-tight font-normal tracking-wider font-things text-[#a14962] h-[24px] xl:h-[30px] 2xl:h-[34px] 3xl:h-[40px] bg-[#fff9eb] px-[6px] xl:px-[8px] 2xl:px-[10px] 3xl:px-[12px] flex items-center">
-                              {item?.badgeType}
-                            </div>
-                          )}
-                          <Image
-                            src={getStrapiMediaUrl(
-                              item.related_program.hero_media.url,
-                            )}
-                            alt={
-                              item.related_program.hero_media.alternativeText ||
-                              item.title ||
-                              "Program"
-                            }
-                            width={336}
-                            height={262}
-                            className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
-                            unoptimized
-                          />
-                        </div>
-                      )}
+                      <div className="w-full aspect-[336/262] bg-black relative z-0 overflow-hidden mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[24px]">
+                        {item?.badgeType && (
+                          <div className="absolute z-1 top-[10px] xl:top-[12px] 2xl:top-[13px] 3xl:top-[16px] right-[10px] xl:right-[12px] 2xl:right-[13px] 3xl:right-[16px] text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-tight font-normal tracking-wider font-things text-[#a14962] h-[24px] xl:h-[30px] 2xl:h-[34px] 3xl:h-[40px] bg-[#fff9eb] px-[6px] xl:px-[8px] 2xl:px-[10px] 3xl:px-[12px] flex items-center">
+                            {item?.badgeType}
+                          </div>
+                        )}
+                        <Image
+                          src={
+                            item?.featured_image?.url
+                              ? getStrapiMediaUrl(item.featured_image.url)
+                              : "/images/placeholder.jpg"
+                          }
+                          alt={
+                            item.featured_image.alternativeText ||
+                            item.title ||
+                            "Program"
+                          }
+                          width={336}
+                          height={262}
+                          className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
+                          unoptimized
+                        />
+                      </div>
                       <div className="w-full p-[12px] sm:p-[16px] xl:p-[20px] 2xl:p-[22px] 3xl:p-[27px]">
                         <div className="text_5 text-black mb-[8px] xl:mb-[12px] 2xl:mb-[16px] 3xl:mb-[20px]">
                           {item?.days} days

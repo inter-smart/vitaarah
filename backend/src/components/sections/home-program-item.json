@@ -29,6 +29,15 @@
       "type": "component",
       "component": "common.feature",
       "repeatable": true
+    },
+    "badgeType": {
+      "type": "enumeration",
+      "enum": [
+        "Best Seller",
+        "New",
+        "Featured",
+        "Offer"
+      ]
     }
   },
   "config": {}

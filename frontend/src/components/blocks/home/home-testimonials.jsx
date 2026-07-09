@@ -98,27 +98,29 @@ export default function HomeTestimonials({ data }) {
                 >
                   <div
                     className={cn(
-                      "w-full border-[#83394e] p-[15px_20px] sm:p-[20px_20px] xl:p-[30px_40px] 2xl:p-[35px_45px] 3xl:p-[42px_55px]",
+                      "w-full h-full border-[#83394e] flex flex-col p-[15px_20px] sm:p-[20px_20px] xl:p-[30px_40px] 2xl:p-[35px_45px] 3xl:p-[42px_55px]",
                       idx === 0 ? "border" : "border-y-1 border-r-1",
                     )}
                   >
-                    <Image
-                      src="/images/icon-testimonials.svg"
-                      alt="icon-testimonials"
-                      width={64}
-                      height={38}
-                      className="w-[37px] xl:w-[46px] 2xl:w-[52px] 3xl:w-[64px] object-contain"
-                    />
-                    {item?.review && (
-                      <div className="text_3 font-normal leading-normal text-black h-[100px] xl:h-[115px] 2xl:h-[130px] 3xl:h-[150px] overflow-y-auto my-[20px] lg:my-[30px] xl:my-[43px] 2xl:my-[52px] 3xl:my-[52px] pr-4 xl:pr-5 2xl:pr-6 3xl:pr-8 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] scrollbar-none">
-                        {Array.isArray(item.review) ? (
-                          <BlocksRenderer content={item.review} />
-                        ) : (
-                          <p>{item.review}</p>
-                        )}
-                      </div>
-                    )}
-                    <div className="flex items-center gap-[10px] lg:gap-[18px] xl:gap-[22px] 2xl:gap-[25px] 3xl:gap-[30px]">
+                    <div>
+                      <Image
+                        src="/images/icon-testimonials.svg"
+                        alt="icon-testimonials"
+                        width={64}
+                        height={38}
+                        className="w-[37px] xl:w-[46px] 2xl:w-[52px] 3xl:w-[64px] object-contain"
+                      />
+                      {item?.review && (
+                        <div className="text_3 font-normal leading-normal text-black h-[100px] xl:h-[115px] 2xl:h-[130px] 3xl:h-[150px] overflow-y-auto my-[20px] lg:my-[30px] xl:my-[43px] 2xl:my-[52px] 3xl:my-[52px] pr-4 xl:pr-5 2xl:pr-6 3xl:pr-8 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] scrollbar-none">
+                          {Array.isArray(item.review) ? (
+                            <BlocksRenderer content={item.review} />
+                          ) : (
+                            <p>{item.review}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <div className="mt-auto flex items-center gap-[10px] lg:gap-[18px] xl:gap-[22px] 2xl:gap-[25px] 3xl:gap-[30px]">
                       {item?.author_image && (
                         <div className="w-[40px] lg:w-[56px] xl:w-[69px] 2xl:w-[78px] 3xl:w-[95px] aspect-square rounded-full overflow-hidden">
                           <Image
@@ -141,7 +143,7 @@ export default function HomeTestimonials({ data }) {
                           </div>
                         )}
                         {item?.author_designation && (
-                          <div className="text_3 leading-none text-black mb-[2px] 2xl:mb-[4px] 3xl:mb-[10px]">
+                          <div className="text_3 leading-none text-black mb-[4px] 2xl:mb-[6px] 3xl:mb-[10px]">
                             {item.author_designation}
                           </div>
                         )}

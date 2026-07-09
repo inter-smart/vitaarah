@@ -399,6 +399,9 @@ export interface SectionsHomeProgramItem extends Struct.ComponentSchema {
     displayName: 'Home Program Item';
   };
   attributes: {
+    badgeType: Schema.Attribute.Enumeration<
+      ['Best Seller', 'New', 'Featured', 'Offer']
+    >;
     featured_image: Schema.Attribute.Media<'images'> &
       Schema.Attribute.Required;
     program_attractions: Schema.Attribute.Component<'common.feature', true>;

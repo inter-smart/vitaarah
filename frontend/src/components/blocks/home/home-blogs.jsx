@@ -69,26 +69,24 @@ export default function HomeBlogs({ data }) {
                     <div className="text_4 line-clamp-2 mb-[15px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px]">
                       {item?.title}
                     </div>
-                    {item?.featured_image?.url && (
-                      <div className="w-full aspect-square overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
-                        <Image
-                          src={
-                            item?.featured_image?.url
-                              ? getStrapiMediaUrl(item.featured_image.url)
-                              : "/images/placeholder.jpg"
-                          }
-                          alt={
-                            item?.featured_image?.alternativeText ||
-                            item?.title ||
-                            "Blog"
-                          }
-                          width={52}
-                          height={52}
-                          className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                          unoptimized
-                        />
-                      </div>
-                    )}
+                    <div className="w-full aspect-square overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
+                      <Image
+                        src={
+                          item?.featured_image?.url
+                            ? getStrapiMediaUrl(item.featured_image.url)
+                            : "/images/placeholder.jpg"
+                        }
+                        alt={
+                          item?.featured_image?.alternativeText ||
+                          item?.title ||
+                          "Blog"
+                        }
+                        width={52}
+                        height={52}
+                        className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                        unoptimized
+                      />
+                    </div>
                   </div>
 
                   <Link
