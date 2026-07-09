@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
+import { useSubmitForm } from "@/hooks/useSubmitForm";
+import { submitQuote } from "@/lib/forms/form-api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -37,9 +39,6 @@ const textareaBase =
   "text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal font-normal text-[#875849] placeholder:text-[#875849] w-full bg-transparent border-b border-black/15 focus:outline-none focus:ring-0 focus:border-black disabled:opacity-60 resize-none";
 
 export default function RequestQuoteForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
   const form = useForm({
     defaultValues: {
       name: "",
@@ -52,34 +51,14 @@ export default function RequestQuoteForm() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      setIsSubmitting(true);
-      try {
-        const payload = {
-          data: {
-            name: value.name,
-            phone: value.phone,
-            email: value.email || undefined,
-            treatment: value.treatment,
-            message: value.message || undefined,
-          },
-        };
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/consultations`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          },
-        );
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        setIsSuccess(true);
-        form.reset();
-      } catch (error) {
-        console.error("Consultation submission error:", error);
-      } finally {
-        setIsSubmitting(false);
-      }
+      await submit(value);
     },
+  });
+
+  const { submit, isSubmitting, isSuccess, error, reset } = useSubmitForm(submitQuote, {
+    onSuccess: () => {
+      form.reset();
+    }
   });
 
   return (
@@ -95,7 +74,7 @@ export default function RequestQuoteForm() {
           </p>
           <Button
             variant="outline"
-            onClick={handleDialogClose}
+            onClick={reset}
             className="border-white bg-[#a14962] text-white hover:bg-[#7a273f]"
           >
             Close
@@ -240,10 +219,11 @@ export default function RequestQuoteForm() {
               )}
             </form.Field>
 
-            <div className="w-full flex items-end">
+            <div className="w-full flex flex-col items-end">
               <Button type="submit" disabled={isSubmitting} className="w-full">
                 {isSubmitting ? "Submitting..." : "Send Inquiry"}
               </Button>
+              {error && <div className="text-red-500 text-xs mt-2 w-full text-center">{error}</div>}
             </div>
           </form>
         </>

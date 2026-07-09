@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "consultations",
+  "info": {
+    "singularName": "consultation",
+    "pluralName": "consultations",
+    "displayName": "Form Book Consultation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "treatment": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    },
+    "page_url": {
+      "type": "string",
+      "private": true
+    },
+    "page_title": {
+      "type": "string",
+      "private": true
+    },
+    "slug": {
+      "type": "string",
+      "private": true
+    },
+    "page_type": {
+      "type": "string",
+      "private": true
+    },
+    "user_agent": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

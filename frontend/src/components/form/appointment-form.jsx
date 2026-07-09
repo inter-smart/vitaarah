@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
+import { useSubmitForm } from "@/hooks/useSubmitForm";
+import { submitAppointment } from "@/lib/forms/form-api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -31,9 +33,6 @@ const formSchema = z.object({
 // const inputStyle = cn("w-full bg-none border-");
 
 export default function AppointmentForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
   const form = useForm({
     defaultValues: {
       name: "",
@@ -44,33 +43,18 @@ export default function AppointmentForm() {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      setIsSubmitting(true);
-      try {
-        const payload = {
-          data: {
-            name: value.name,
-            phone: value.phone,
-            treatment: value.treatment,
-          },
-        };
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/appointments`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          },
-        );
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        setIsSuccess(true);
-        form.reset();
-      } catch (error) {
-        console.error("Appointment submission error:", error);
-      } finally {
-        setIsSubmitting(false);
-      }
+      await submit(value);
     },
   });
+
+  const { submit, isSubmitting, isSuccess, error, reset } = useSubmitForm(
+    submitAppointment,
+    {
+      onSuccess: () => {
+        form.reset();
+      },
+    },
+  );
 
   if (isSuccess) {
     return (
@@ -85,7 +69,7 @@ export default function AppointmentForm() {
           </div>
           <button
             type="button"
-            onClick={() => setIsSuccess(false)}
+            onClick={reset}
             className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[17px] text-white underline mt-4"
           >
             Book Another
@@ -173,7 +157,7 @@ export default function AppointmentForm() {
               }}
             </form.Field>
 
-            <form.Field name="treatment">
+            <form.Field name="email">
               {(field) => {
                 const isInvalid =
                   field.state.meta.isTouched && !field.state.meta.isValid;
@@ -183,34 +167,20 @@ export default function AppointmentForm() {
                     className="flex-1 sm:flex-1"
                   >
                     <FieldLabel htmlFor="treatment-select" className="sr-only">
-                      Treatment Interest*
+                      Email*
                     </FieldLabel>
-                    <Select
+                    <Input
+                      id={field.name}
                       name={field.name}
+                      type="email"
                       value={field.state.value}
-                      onValueChange={field.handleChange}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      aria-invalid={isInvalid || undefined}
+                      placeholder="Email*"
+                      autoComplete="email"
                       disabled={isSubmitting}
-                    >
-                      <SelectTrigger
-                        id="treatment-select"
-                        aria-invalid={isInvalid || undefined}
-                      >
-                        <SelectValue placeholder="Treatment Interest*" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="hair-transplant">
-                          Hair Transplant
-                        </SelectItem>
-                        <SelectItem value="skin-treatment">
-                          Skin Treatment
-                        </SelectItem>
-                        <SelectItem value="dental-care">Dental Care</SelectItem>
-                        <SelectItem value="laser-therapy">
-                          Laser Therapy
-                        </SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    />
                     {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />
                     )}
@@ -228,6 +198,11 @@ export default function AppointmentForm() {
               >
                 {isSubmitting ? "Submitting..." : "Book Consultation"}
               </Button>
+              {error && (
+                <div className="text-white text-xs mt-2 text-center">
+                  {error}
+                </div>
+              )}
             </div>
           </FieldGroup>
         </form>

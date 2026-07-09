@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
+import { useSubmitForm } from "@/hooks/useSubmitForm";
+import { submitConsultation } from "@/lib/forms/form-api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -47,24 +49,32 @@ const formSchema = z.object({
   message: z.string().optional(),
 });
 
-const inputStyle =
+const inputStyleDefault =
   "text-[#875849] placeholder:text-[#875849] border-black/15 focus:border-black bg-transparent font-helvetica";
+const inputStyleExpert =
+  "text-[#875849] placeholder:text-[#875849] border-black/20 focus:border-black";
 
-const textareaBase =
+const textareaBaseDefault =
   "text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal font-normal text-[#875849] placeholder:text-[#875849] w-full bg-transparent border-b border-black/15 focus:outline-none focus:ring-0 focus:border-black disabled:opacity-60 resize-none";
+const textareaBaseExpert =
+  "text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal font-normal text-[#875849] placeholder:text-[#875849] w-full bg-none border-b border-black/20 focus:outline-none focus:ring-0 focus:border-black disabled:opacity-60 resize-none";
 
 export default function ConsultationForm({
   triggerLabel = "Request a Consultation",
   className,
   children,
   childern,
+  inline = false,
+  variant = "default", // 'default' or 'expert'
+  source,
+  conditionName,
+  conditionSlug,
 }) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [open, setOpen] = useState(false);
-
   const activeTrigger = children || childern;
 
+  const inputStyle = variant === "expert" ? inputStyleExpert : inputStyleDefault;
+  const textareaBase = variant === "expert" ? textareaBaseExpert : textareaBaseDefault;
   const form = useForm({
     defaultValues: {
       name: "",
@@ -77,87 +87,54 @@ export default function ConsultationForm({
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      setIsSubmitting(true);
-      try {
-        const payload = {
-          data: {
-            name: value.name,
-            phone: value.phone,
-            email: value.email || undefined,
-            treatment: value.treatment,
-            message: value.message || undefined,
-          },
-        };
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/consultations`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          },
-        );
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        setIsSuccess(true);
-        form.reset();
-      } catch (error) {
-        console.error("Consultation submission error:", error);
-      } finally {
-        setIsSubmitting(false);
-      }
+      // Pass extra metadata if provided
+      const payload = {
+        ...value,
+        source: source || undefined,
+        condition_name: conditionName || undefined,
+        condition_slug: conditionSlug || undefined,
+      };
+      await submit(payload);
     },
+  });
+
+  const { submit, isSubmitting, isSuccess, error, reset } = useSubmitForm(submitConsultation, {
+    onSuccess: () => {
+      form.reset();
+    }
   });
 
   const handleDialogClose = () => {
     setOpen(false);
     setTimeout(() => {
-      setIsSuccess(false);
+      reset();
       form.reset();
     }, 300);
   };
 
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        {activeTrigger ? (
-          activeTrigger
-        ) : (
-          <Button className={className}>{triggerLabel}</Button>
-        )}
-      </DialogTrigger>
-      <DialogContent
-        showCloseButton={false}
-        className="rounded-none sm:max-w-sm xl:max-w-[705px] 2xl:max-w-[798px] 3xl:max-w-[968px] p-[20px_30px] lg:p-[25px_40px] xl:p-[30px_60px] 2xl:p-[35px_67px] 3xl:p-[40px_80px]"
-      >
-        <DialogClose asChild>
-          <Button
-            variant="none"
-            size="none"
-            type="button"
-            className="text-[12px] xl:[&_svg]:size-[25px] absolute top-[15px] xl:top-[24px] 2xl:top-[28px] 3xl:top-[34px] right-[20px] xl:right-[27px] 2xl:right-[31px] 3xl:right-[38px]"
-          >
-            <XIcon />
-            <span className="sr-only">Close</span>
-          </Button>
-        </DialogClose>
-
-        {isSuccess ? (
-          <div className="flex flex-col items-center justify-center py-8 text-center">
-            <div className="text-[13px] md:text-[15px] lg:text-[19px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[33px] font-normal leading-normal font-helvetica-light text-[#a14962] mb-1 xl:mb-2.5">
-              Form submitted successfully!
-            </div>
-            <div className="text_3 font-normal font-helvetica-light text-center text-[#515151] mb-2 sm:mb-3 2xl:mb-5 xl:max-w-[480px]">
-              Thank you! The form has been submitted successfully. We will reply
-              to you soon!
-            </div>
+  const formContent = (
+    <>
+      {isSuccess ? (
+        <div className="flex flex-col items-center justify-center py-8 text-center">
+          <div className="text-[13px] md:text-[15px] lg:text-[19px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[33px] font-normal leading-normal font-helvetica-light text-[#a14962] mb-1 xl:mb-2.5">
+            Form submitted successfully!
+          </div>
+          <div className="text_3 font-normal font-helvetica-light text-center text-[#515151] mb-2 sm:mb-3 2xl:mb-5 xl:max-w-[480px]">
+            Thank you! The form has been submitted successfully. We will reply
+            to you soon!
+          </div>
+          {!inline && (
             <Button
               className="min-w-[90px] xl:min-w-[100px] 3xl:min-w-[130px]"
               onClick={handleDialogClose}
             >
               Close
             </Button>
-          </div>
-        ) : (
-          <>
+          )}
+        </div>
+      ) : (
+        <>
+          {!inline && (
             <DialogHeader>
               <DialogTitle className="text-[30px] lg:text-[45px] xl:text-[56px] 2xl:text-[63px] 3xl:text-[77px] leading-tight font-normal font-things text-[#1f1f1f]">
                 Request a Consultation
@@ -166,12 +143,17 @@ export default function ConsultationForm({
                 Fill out the form below and we&apos;ll get back to you shortly.
               </DialogDescription>
             </DialogHeader>
+          )}
             <form
               onSubmit={(e) => {
                 e.preventDefault();
                 form.handleSubmit();
               }}
-              className="flex flex-wrap -mx-2.5 xl:-mx-[10px] 2xl:-mx-[15px] 3xl:-mx-[20px] [&>*]:p-2.5 xl:[&>*]:p-[15px_10px] 2xl:[&>*]:p-[20px_15px] 3xl:[&>*]:p-[25px_20px]"
+              className={
+                variant === "expert"
+                  ? "flex flex-wrap -mx-4 xl:-mx-5 2xl:-mx-6 3xl:-mx-8 [&>*]:p-4 xl:[&>*]:p-5 2xl:[&>*]:p-6 3xl:[&>*]:p-8"
+                  : "flex flex-wrap -mx-2.5 xl:-mx-[10px] 2xl:-mx-[15px] 3xl:-mx-[20px] [&>*]:p-2.5 xl:[&>*]:p-[15px_10px] 2xl:[&>*]:p-[20px_15px] 3xl:[&>*]:p-[25px_20px]"
+              }
             >
               <form.Field name="name">
                 {(field) => {
@@ -180,7 +162,7 @@ export default function ConsultationForm({
                   return (
                     <Field
                       data-invalid={isInvalid || undefined}
-                      className="w-full sm:w-1/2"
+                      className={variant === "expert" ? "w-full sm:w-1/2 flex" : "w-full sm:w-1/2"}
                     >
                       <FieldLabel className="sr-only" htmlFor={field.name}>
                         Name*
@@ -188,7 +170,7 @@ export default function ConsultationForm({
                       <Input
                         id={field.name}
                         name={field.name}
-                        value={field.state.value}
+                        value={field.state.value ?? ""}
                         onBlur={field.handleBlur}
                         onChange={(e) => field.handleChange(e.target.value)}
                         aria-invalid={isInvalid || undefined}
@@ -212,7 +194,7 @@ export default function ConsultationForm({
                   return (
                     <Field
                       data-invalid={isInvalid || undefined}
-                      className="w-full sm:w-1/2"
+                      className={variant === "expert" ? "w-full sm:w-1/2 flex" : "w-full sm:w-1/2"}
                     >
                       <FieldLabel className="sr-only" htmlFor={field.name}>
                         Email*
@@ -221,7 +203,7 @@ export default function ConsultationForm({
                         id={field.name}
                         name={field.name}
                         type="email"
-                        value={field.state.value}
+                        value={field.state.value ?? ""}
                         onBlur={field.handleBlur}
                         onChange={(e) => field.handleChange(e.target.value)}
                         aria-invalid={isInvalid || undefined}
@@ -245,13 +227,13 @@ export default function ConsultationForm({
                   return (
                     <Field
                       data-invalid={isInvalid || undefined}
-                      className="w-full sm:w-1/2"
+                      className={variant === "expert" ? "w-full sm:w-1/2 flex justify-end" : "w-full sm:w-1/2"}
                     >
                       <FieldLabel className="sr-only" htmlFor={field.name}>
                         Phone*
                       </FieldLabel>
                       <PhoneInput
-                        value={field.state.value}
+                        value={field.state.value ?? ""}
                         onChange={(phone) => field.handleChange(phone)}
                         defaultCountry="ae"
                         disabled={isSubmitting}
@@ -263,13 +245,17 @@ export default function ConsultationForm({
                           placeholder: "Phone*",
                           autoComplete: "tel",
                         }}
-                        className={cn(
-                          inputStyle,
-                          "w-full h-[35px] xl:h-[40px] 2xl:h-[45px] 3xl:h-[55px] flex items-center bg-transparent border-b border-black/15 focus-within:border-black pb-1",
-                          "[&_.react-international-phone-input]:!border-0 [&_.react-international-phone-input]:!bg-transparent [&_.react-international-phone-input]:flex-1 [&_.react-international-phone-input]:!text-[#875849] [&_.react-international-phone-input]:placeholder:text-[#875849] [&_.react-international-phone-input]:h-[30px] xl:[&_.react-international-phone-input]:h-[35px] 2xl:[&_.react-international-phone-input]:h-[40px] 3xl:[&_.react-international-phone-input]:h-[50px] [&_.react-international-phone-input]:!font-helvetica [&_.react-international-phone-input]:!text-[11px] lg:[&_.react-international-phone-input]:!text-[11.3px] xl:[&_.react-international-phone-input]:!text-[14px] 2xl:[&_.react-international-phone-input]:!text-[15.8px] 3xl:[&_.react-international-phone-input]:!text-[19.2px]",
-                          "[&_.react-international-phone-country-selector-button]:!bg-transparent [&_.react-international-phone-country-selector-button]:!border-0 [&_.react-international-phone-country-selector-button]:!p-0 [&_.react-international-phone-country-selector-button]:mr-3 [&_.react-international-phone-country-selector-button]:mb-0 [&_.react-international-phone-country-selector-button-active]:!bg-transparent",
-                          "[&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:!border-t-black/60 [&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:border-t-4",
-                        )}
+                        className={
+                          variant === "expert"
+                            ? "text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:!text-[15.8px] 3xl:!text-[19.2px] leading-normal !bg-transparent phone-input font-normal text-black placeholder:text-black w-full bg-none border-b border-black/20 focus:outline-none focus:ring-0 focus:border-black disabled:opacity-60 resize-none"
+                            : cn(
+                                inputStyle,
+                                "w-full h-[35px] xl:h-[40px] 2xl:h-[45px] 3xl:h-[55px] flex items-center bg-transparent border-b border-black/15 focus-within:border-black pb-1",
+                                "[&_.react-international-phone-input]:!border-0 [&_.react-international-phone-input]:!bg-transparent [&_.react-international-phone-input]:flex-1 [&_.react-international-phone-input]:!text-[#875849] [&_.react-international-phone-input]:placeholder:text-[#875849] [&_.react-international-phone-input]:h-[30px] xl:[&_.react-international-phone-input]:h-[35px] 2xl:[&_.react-international-phone-input]:h-[40px] 3xl:[&_.react-international-phone-input]:h-[50px] [&_.react-international-phone-input]:!font-helvetica [&_.react-international-phone-input]:!text-[11px] lg:[&_.react-international-phone-input]:!text-[11.3px] xl:[&_.react-international-phone-input]:!text-[14px] 2xl:[&_.react-international-phone-input]:!text-[15.8px] 3xl:[&_.react-international-phone-input]:!text-[19.2px]",
+                                "[&_.react-international-phone-country-selector-button]:!bg-transparent [&_.react-international-phone-country-selector-button]:!border-0 [&_.react-international-phone-country-selector-button]:!p-0 [&_.react-international-phone-country-selector-button]:mr-3 [&_.react-international-phone-country-selector-button]:mb-0 [&_.react-international-phone-country-selector-button-active]:!bg-transparent",
+                                "[&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:!border-t-black/60 [&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:border-t-4",
+                              )
+                        }
                       />
                       {isInvalid && (
                         <FieldError errors={field.state.meta.errors} />
@@ -286,17 +272,17 @@ export default function ConsultationForm({
                   return (
                     <Field
                       data-invalid={isInvalid || undefined}
-                      className="w-full sm:w-1/2"
+                      className={variant === "expert" ? "w-full sm:w-1/2 flex" : "w-full sm:w-1/2"}
                     >
                       <FieldLabel
                         className="sr-only"
                         htmlFor="treatment-select"
                       >
-                        Treatment Interest*
+                        {variant === "expert" ? "Primary Concern*" : "Treatment Interest*"}
                       </FieldLabel>
                       <Select
                         name={field.name}
-                        value={field.state.value}
+                        value={field.state.value ?? ""}
                         onValueChange={field.handleChange}
                         disabled={isSubmitting}
                       >
@@ -308,7 +294,7 @@ export default function ConsultationForm({
                             "[&_svg]:text-black/80 flex items-center justify-between",
                           )}
                         >
-                          <SelectValue placeholder="Treatment*" />
+                          <SelectValue placeholder={variant === "expert" ? "Your Primary concern*" : "Treatment*"} />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="hair-transplant">
@@ -336,14 +322,14 @@ export default function ConsultationForm({
 
               <form.Field name="message">
                 {(field) => (
-                  <Field className="w-full sm:w-1/2">
+                  <Field className={variant === "expert" ? "w-full sm:w-4/7 flex" : "w-full sm:w-1/2"}>
                     <FieldLabel className="sr-only" htmlFor={field.name}>
                       Message
                     </FieldLabel>
                     <textarea
                       id={field.name}
                       name={field.name}
-                      value={field.state.value}
+                      value={field.state.value ?? ""}
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
                       placeholder="Brief Message (optional)"
@@ -355,18 +341,51 @@ export default function ConsultationForm({
                 )}
               </form.Field>
 
-              <div className="w-full sm:w-1/2 flex items-end">
+              <div className={variant === "expert" ? "w-full sm:w-3/7 flex flex-col items-end" : "w-full sm:w-1/2 flex flex-col items-end"}>
                 <Button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full"
                 >
-                  {isSubmitting ? "Submitting..." : "Request Free Consultation"}
+                  {isSubmitting ? "Submitting..." : (variant === "expert" ? "Submit Request" : "Request Free Consultation")}
                 </Button>
+                {error && <div className="text-red-500 text-xs mt-2 w-full text-center">{error}</div>}
               </div>
             </form>
           </>
         )}
+    </>
+  );
+
+  if (inline) {
+    return formContent;
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        {activeTrigger ? (
+          activeTrigger
+        ) : (
+          <Button className={className}>{triggerLabel}</Button>
+        )}
+      </DialogTrigger>
+      <DialogContent
+        showCloseButton={false}
+        className="rounded-none sm:max-w-sm xl:max-w-[705px] 2xl:max-w-[798px] 3xl:max-w-[968px] p-[20px_30px] lg:p-[25px_40px] xl:p-[30px_60px] 2xl:p-[35px_67px] 3xl:p-[40px_80px]"
+      >
+        <DialogClose asChild>
+          <Button
+            variant="none"
+            size="none"
+            type="button"
+            className="text-[12px] xl:[&_svg]:size-[25px] absolute top-[15px] xl:top-[24px] 2xl:top-[28px] 3xl:top-[34px] right-[20px] xl:right-[27px] 2xl:right-[31px] 3xl:right-[38px]"
+          >
+            <XIcon />
+            <span className="sr-only">Close</span>
+          </Button>
+        </DialogClose>
+        {formContent}
       </DialogContent>
     </Dialog>
   );

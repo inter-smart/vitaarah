@@ -490,6 +490,46 @@ export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiAppointmentFormAppointmentForm
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'appointment_forms';
+  info: {
+    displayName: 'Form Appointment';
+    pluralName: 'appointment-forms';
+    singularName: 'appointment-form';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.String;
+    email: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::appointment-form.appointment-form'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+    page_title: Schema.Attribute.String & Schema.Attribute.Private;
+    page_type: Schema.Attribute.String & Schema.Attribute.Private;
+    page_url: Schema.Attribute.String & Schema.Attribute.Private;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String & Schema.Attribute.Private;
+    time: Schema.Attribute.String;
+    treatment: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_agent: Schema.Attribute.String & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAvailableDurationAvailableDuration
   extends Struct.CollectionTypeSchema {
   collectionName: 'available_durations';
@@ -664,6 +704,82 @@ export interface ApiConditionCondition extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiConsultationConsultation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'consultations';
+  info: {
+    displayName: 'Form Book Consultation';
+    pluralName: 'consultations';
+    singularName: 'consultation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::consultation.consultation'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+    page_title: Schema.Attribute.String & Schema.Attribute.Private;
+    page_type: Schema.Attribute.String & Schema.Attribute.Private;
+    page_url: Schema.Attribute.String & Schema.Attribute.Private;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String & Schema.Attribute.Private;
+    treatment: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_agent: Schema.Attribute.String & Schema.Attribute.Private;
+  };
+}
+
+export interface ApiContactEnquiryContactEnquiry
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'contact_enquiries';
+  info: {
+    displayName: 'Form Contact Page';
+    pluralName: 'contact-enquiries';
+    singularName: 'contact-enquiry';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-enquiry.contact-enquiry'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+    page_title: Schema.Attribute.String & Schema.Attribute.Private;
+    page_type: Schema.Attribute.String & Schema.Attribute.Private;
+    page_url: Schema.Attribute.String & Schema.Attribute.Private;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String & Schema.Attribute.Private;
+    subject: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_agent: Schema.Attribute.String & Schema.Attribute.Private;
   };
 }
 
@@ -919,6 +1035,37 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiNewsletterSubscriptionNewsletterSubscription
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'newsletter_subscriptions';
+  info: {
+    displayName: 'Form Newsletter Subscription';
+    pluralName: 'newsletter-subscriptions';
+    singularName: 'newsletter-subscription';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::newsletter-subscription.newsletter-subscription'
+    > &
+      Schema.Attribute.Private;
+    page_url: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_agent: Schema.Attribute.String;
+  };
+}
+
 export interface ApiPackagePagePackagePage extends Struct.SingleTypeSchema {
   collectionName: 'package_pages';
   info: {
@@ -1023,6 +1170,46 @@ export interface ApiPrivacyPagePrivacyPage extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProgramEnquiryProgramEnquiry
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'program_enquiries';
+  info: {
+    displayName: 'From Request Quote';
+    pluralName: 'program-enquiries';
+    singularName: 'program-enquiry';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    country: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::program-enquiry.program-enquiry'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+    page_title: Schema.Attribute.String & Schema.Attribute.Private;
+    page_type: Schema.Attribute.String;
+    page_url: Schema.Attribute.String & Schema.Attribute.Private;
+    phone: Schema.Attribute.String;
+    preferred_date: Schema.Attribute.Date;
+    program: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String & Schema.Attribute.Private;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_agent: Schema.Attribute.String;
   };
 }
 
@@ -1947,11 +2134,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about-page.about-page': ApiAboutPageAboutPage;
+      'api::appointment-form.appointment-form': ApiAppointmentFormAppointmentForm;
       'api::available-duration.available-duration': ApiAvailableDurationAvailableDuration;
       'api::blog-page.blog-page': ApiBlogPageBlogPage;
       'api::blog.blog': ApiBlogBlog;
       'api::condition-page.condition-page': ApiConditionPageConditionPage;
       'api::condition.condition': ApiConditionCondition;
+      'api::consultation.consultation': ApiConsultationConsultation;
+      'api::contact-enquiry.contact-enquiry': ApiContactEnquiryContactEnquiry;
       'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::footer.footer': ApiFooterFooter;
       'api::gallery-image.gallery-image': ApiGalleryImageGalleryImage;
@@ -1959,9 +2149,11 @@ declare module '@strapi/strapi' {
       'api::header.header': ApiHeaderHeader;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::member.member': ApiMemberMember;
+      'api::newsletter-subscription.newsletter-subscription': ApiNewsletterSubscriptionNewsletterSubscription;
       'api::package-page.package-page': ApiPackagePagePackagePage;
       'api::package.package': ApiPackagePackage;
       'api::privacy-page.privacy-page': ApiPrivacyPagePrivacyPage;
+      'api::program-enquiry.program-enquiry': ApiProgramEnquiryProgramEnquiry;
       'api::program.program': ApiProgramProgram;
       'api::root-cause.root-cause': ApiRootCauseRootCause;
       'api::site-setting.site-setting': ApiSiteSettingSiteSetting;
