@@ -24,6 +24,9 @@ export default function HomePackages({ data }) {
     },
     [Autoplay({ delay: 5000, stopOnInteraction: true, pauseOnHover: true })],
   );
+
+  console.log(treatments);
+  
   return (
     <section
       id="Treatments"
@@ -38,9 +41,7 @@ export default function HomePackages({ data }) {
               key={"treatments-bg" + idx}
               className={cn(
                 "absolute z-0 inset-0 transition-all duration-700 ease-in-out",
-                isActive
-                  ? "opacity-100 scale-100"
-                  : "opacity-0 scale-105",
+                isActive ? "opacity-100 scale-100" : "opacity-0 scale-105",
               )}
             >
               {item?.background_video?.mime?.startsWith("video/") ? (
@@ -91,7 +92,7 @@ export default function HomePackages({ data }) {
           </div>
         )}
         <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
-          <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
+          <div className="flex justify-center touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
             {treatments.map((item, idx) => (
               <div
                 key={"treatments" + idx}
@@ -100,7 +101,11 @@ export default function HomePackages({ data }) {
                 )}
               >
                 <Link
-                  href={item?.related_package?.slug ? `/packages/${item.related_package.slug}` : "#"}
+                  href={
+                    item?.related_package?.slug
+                      ? `/packages/${item.related_package.slug}`
+                      : "#"
+                  }
                   className={cn(
                     "group w-full h-[268px] lg:h-[358px] xl:h-[442px] 2xl:h-[500px] 3xl:h-[610px] block flex flex-col justify-end p-[20px_10px] sm:p-[34px_15px] xl:p-[42px_20px] 2xl:p-[47px_25px] 3xl:p-[57px_30px] overflow-hidden transition-all duration-300",
                     idx === activeIdx

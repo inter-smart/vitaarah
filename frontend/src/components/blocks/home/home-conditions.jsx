@@ -49,7 +49,7 @@ export default function HomeConditions({ data }) {
           </div>
         )}
         <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
-          <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
+          <div className="flex justify-center touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
             {data?.condition_item?.map((item, idx) => (
               <div
                 key={"condition" + idx}

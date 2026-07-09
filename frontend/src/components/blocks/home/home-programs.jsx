@@ -102,9 +102,10 @@ export default function HomePrograms({ data }) {
             />
           </button>
           <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
-            <div className="flex sm:items-center touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5">
+            <div className="flex sm:items-center justify-center touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5">
               {data?.home_program_item?.map((item, idx) => {
-                const centerIdx = (selectedIdx + 1) % (data?.home_program_item?.length || 1);
+                const centerIdx =
+                  (selectedIdx + 1) % (data?.home_program_item?.length || 1);
                 const isCenter = idx === centerIdx;
                 return (
                   <div
@@ -114,7 +115,11 @@ export default function HomePrograms({ data }) {
                     )}
                   >
                     <Link
-                      href={item?.related_program?.slug ? `/programs/${item.related_program.slug}` : "#"}
+                      href={
+                        item?.related_program?.slug
+                          ? `/programs/${item.related_program.slug}`
+                          : "#"
+                      }
                       className={cn(
                         "group w-full h-full block border border-[#b1b1b1] bg-white transition-all duration-500 transform",
                         isCenter
@@ -130,7 +135,9 @@ export default function HomePrograms({ data }) {
                             </div>
                           )}
                           <Image
-                            src={getStrapiMediaUrl(item.related_program.hero_media.url)}
+                            src={getStrapiMediaUrl(
+                              item.related_program.hero_media.url,
+                            )}
                             alt={
                               item.related_program.hero_media.alternativeText ||
                               item.title ||
@@ -156,40 +163,42 @@ export default function HomePrograms({ data }) {
                           {item?.short_description}
                         </div>
                         <div className="flex flex-col space-y-[10px] 2xl:space-y-[12px] 3xl:space-y-[14px] mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
-                          {item?.program_attractions?.map((feature, featureIdx) => (
-                            <div
-                              key={"features" + featureIdx}
-                              className="flex gap-x-[5px] sm:gap-x-[8px] xl:gap-x-[14px] 2xl:gap-x-[16px] 3xl:gap-x-[18px] text_3 leading-tight text-black"
-                            >
-                              {feature?.icon ? (
-                                <Image
-                                  src={getStrapiMediaUrl(feature?.icon?.url)}
-                                  alt={
-                                    feature?.icon?.alternativeText ||
-                                    feature?.title ||
-                                    "features"
-                                  }
-                                  width={14}
-                                  height={14}
-                                  className="w-[13px] 3xl:w-[14px] aspect-square object-contain"
-                                  unoptimized
-                                />
-                              ) : (
-                                <Image
-                                  src="/images/package-feature-list.svg"
-                                  alt={
-                                    feature?.icon?.alternativeText ||
-                                    feature?.title ||
-                                    "features"
-                                  }
-                                  width={14}
-                                  height={14}
-                                  className="w-[14px] aspect-square object-contain"
-                                />
-                              )}
-                              <span className="flex-1">{feature?.title}</span>
-                            </div>
-                          ))}
+                          {item?.program_attractions?.map(
+                            (feature, featureIdx) => (
+                              <div
+                                key={"features" + featureIdx}
+                                className="flex gap-x-[5px] sm:gap-x-[8px] xl:gap-x-[14px] 2xl:gap-x-[16px] 3xl:gap-x-[18px] text_3 leading-tight text-black"
+                              >
+                                {feature?.icon ? (
+                                  <Image
+                                    src={getStrapiMediaUrl(feature?.icon?.url)}
+                                    alt={
+                                      feature?.icon?.alternativeText ||
+                                      feature?.title ||
+                                      "features"
+                                    }
+                                    width={14}
+                                    height={14}
+                                    className="w-[13px] 3xl:w-[14px] aspect-square object-contain"
+                                    unoptimized
+                                  />
+                                ) : (
+                                  <Image
+                                    src="/images/package-feature-list.svg"
+                                    alt={
+                                      feature?.icon?.alternativeText ||
+                                      feature?.title ||
+                                      "features"
+                                    }
+                                    width={14}
+                                    height={14}
+                                    className="w-[14px] aspect-square object-contain"
+                                  />
+                                )}
+                                <span className="flex-1">{feature?.title}</span>
+                              </div>
+                            ),
+                          )}
                         </div>
                         {item?.related_program?.slug && (
                           <Button

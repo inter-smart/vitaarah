@@ -20,20 +20,25 @@ export async function generateMetadata() {
     if (!seo) {
       return {
         title: "Vitaarah | The Art of Living Well",
-        description: "Discover a digital sanctuary where heritage meets luxury.",
+        description:
+          "Discover a digital sanctuary where heritage meets luxury.",
       };
     }
 
     return {
       title: seo.meta_title || "Vitaarah | The Art of Living Well",
-      description: seo.meta_description || "Discover a digital sanctuary where heritage meets luxury.",
+      description:
+        seo.meta_description ||
+        "Discover a digital sanctuary where heritage meets luxury.",
       alternates: {
         canonical: seo.canonical_url || "/",
       },
       openGraph: {
         title: seo.meta_title,
         description: seo.meta_description,
-        images: seo.og_image?.url ? [process.env.NEXT_PUBLIC_STRAPI_API_URL + seo.og_image.url] : [],
+        images: seo.og_image?.url
+          ? [process.env.NEXT_PUBLIC_STRAPI_API_URL + seo.og_image.url]
+          : [],
       },
     };
   } catch (error) {
@@ -63,32 +68,40 @@ const homePageQuery = buildQuery({
   },
   home_conditions_section: {
     populate: {
-      condition_item: { populate: { icon: true, background_video: true, related_condition: true } },
+      condition_item: {
+        populate: {
+          icon: true,
+          background_video: true,
+          related_condition: true,
+        },
+      },
     },
   },
   home_packages_section: {
     populate: {
-      home_package_item: { 
-        populate: { 
-          background_video: true, 
-          related_package: { populate: { featured_image: true } } 
-        } 
+      home_package_item: {
+        populate: {
+          background_video: true,
+          related_package: { populate: { featured_image: true } },
+        },
       },
     },
   },
   home_program_section: {
     populate: {
-      home_program_item: { 
-        populate: { 
-          program_attractions: { populate: { icon: true } }, 
-          related_program: { populate: { hero_media: true } } 
-        } 
+      home_program_item: {
+        populate: {
+          program_attractions: { populate: { icon: true } },
+          related_program: { populate: { hero_media: true } },
+        },
       },
     },
   },
   home_testimonials_section: {
     populate: {
-      testimonials: { populate: { author_image: true, video_testimonial: true } },
+      testimonials: {
+        populate: { author_image: true, video_testimonial: true },
+      },
     },
   },
   home_members_section: {

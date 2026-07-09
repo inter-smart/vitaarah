@@ -199,7 +199,7 @@ export interface SectionsAbout extends Struct.ComponentSchema {
     description: Schema.Attribute.Blocks;
     main_image: Schema.Attribute.Media<'images'>;
     secondary_image: Schema.Attribute.Media<'images'>;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -367,12 +367,13 @@ export interface SectionsHero extends Struct.ComponentSchema {
     displayName: 'Hero';
   };
   attributes: {
-    description: Schema.Attribute.Blocks;
-    hero_media: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    hero_media: Schema.Attribute.Media<'images' | 'files' | 'videos'> &
+      Schema.Attribute.Required;
     primary_button: Schema.Attribute.Component<'navigation.button', false>;
     secondary_button: Schema.Attribute.Component<'navigation.button', false>;
     small_heading: Schema.Attribute.String;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 

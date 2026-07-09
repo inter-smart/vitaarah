@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomeHero({ data }) {
+  const isVideo = data?.hero_media?.mime?.includes("video");
   return (
     <section className="w-full pt-[25px] xl:pt-[29px] 2xl:pt-[33px] 3xl:pt-[40px]">
       <div className="container mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[55]">
@@ -15,7 +17,9 @@ export default function HomeHero({ data }) {
               </div>
             )}
             {data.title && (
-              <h1 className="text_2 tracking-wide mb-[10px] lg:mb-0">{data.title}</h1>
+              <h1 className="text_2 tracking-wide mb-[10px] lg:mb-0">
+                {data.title}
+              </h1>
             )}
           </div>
           <div className="w-full sm:w-[55%]">
@@ -29,7 +33,7 @@ export default function HomeHero({ data }) {
                     src="/images/icon-arrow.svg"
                     alt="icon arrow"
                     width={16}
-                    height={7} 
+                    height={7}
                     className="w-2 2xl:w-2.5 3xl:w-3 block group-hover:translate-y-1 transition-transform duration-300"
                   />
                 </span>
@@ -51,12 +55,10 @@ export default function HomeHero({ data }) {
                     </Button>
                   )}
                   {data.secondary_button && (
-                    <Button
-                      as="a"
-                      variant="outline"
-                      href={data.secondary_button.url}
-                    >
-                      {data.secondary_button.label}
+                    <Button variant="outline" asChild>
+                      <Link href={data.secondary_button.url}>
+                        {data.secondary_button.label}
+                      </Link>
                     </Button>
                   )}
                 </div>
@@ -65,17 +67,32 @@ export default function HomeHero({ data }) {
           </div>
         </div>
       </div>
-      <video
-        autoPlay
-        muted
-        loop
-        className="w-full max-w-[1920px] h-auto mx-auto aspect-[1024/420] object-cover"
-      >
-        <source
-          src={data?.hero_media?.url ? getStrapiMediaUrl(data.hero_media.url) : ""}
-          type={data?.hero_media?.mime || "video/mp4"}
+      {isVideo ? (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full max-w-[1920px] h-auto mx-auto aspect-[1024/420] object-cover"
+        >
+          <source
+            src={getStrapiMediaUrl(data?.hero_media?.url)}
+            type={data?.hero_media?.mime || "video/mp4"}
+          />
+        </video>
+      ) : (
+        <Image
+          src={
+            getStrapiMediaUrl(data?.hero_media?.url) ||
+            "/images/placeholder.jpg"
+          }
+          alt={data?.hero_media?.alternativeText || "hero media"}
+          fill
+          sizes="100vw"
+          priority
+          className="w-full max-w-[1920px] h-auto mx-auto aspect-[1024/420] object-cover"
         />
-      </video>
+      )}
     </section>
   );
 }
