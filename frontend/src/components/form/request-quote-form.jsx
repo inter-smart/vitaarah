@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 import { useSubmitForm } from "@/hooks/useSubmitForm";
-import { submitQuote } from "@/lib/forms/form-api";
+import { submitContact } from "@/lib/forms/form-api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -23,12 +23,7 @@ const formSchema = z.object({
     .string()
     .min(1, "Phone number is required")
     .regex(/^[+]?[\d\s()-]{7,20}$/, "Please enter a valid phone number"),
-  email: z
-    .string()
-    .email("Please enter a valid email")
-    .optional()
-    .or(z.literal("")),
-  treatment: z.string().min(1, "Please select a treatment"),
+  email: z.string().min(1, "Email is required").email("Please enter a valid email"),
   message: z.string().optional(),
 });
 
@@ -44,7 +39,6 @@ export default function RequestQuoteForm() {
       name: "",
       phone: "",
       email: "",
-      treatment: "",
       message: "",
     },
     validators: {
@@ -55,7 +49,7 @@ export default function RequestQuoteForm() {
     },
   });
 
-  const { submit, isSubmitting, isSuccess, error, reset } = useSubmitForm(submitQuote, {
+  const { submit, isSubmitting, isSuccess, error, reset } = useSubmitForm(submitContact, {
     onSuccess: () => {
       form.reset();
     }
@@ -64,18 +58,18 @@ export default function RequestQuoteForm() {
   return (
     <div className="w-full bg-[#fff9eb] p-[20px_25px] sm:p-[32px_34px] xl:p-[42px_44px] 2xl:p-[45px_46px] 3xl:p-[55px_58px]">
       {isSuccess ? (
-        <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
-          <div className="text-[18px] lg:text-[24px] xl:text-[30px] 2xl:text-[34px] 3xl:text-[40px] leading-normal font-normal font-things text-white">
+        <div className="flex flex-col items-center justify-center gap-0.1 py-4 text-center">
+          <div className="text-[18px] lg:text-[24px] xl:text-[30px] 2xl:text-[34px] 3xl:text-[40px] leading-normal font-normal font-things text-black">
             Thank You!
           </div>
-          <p className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[17px] text-white/80">
+          <p className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[17px] text-black/80">
             Your consultation request has been received. We will contact you
             shortly.
           </p>
           <Button
             variant="outline"
             onClick={reset}
-            className="border-white bg-[#a14962] text-white hover:bg-[#7a273f]"
+            className="border-white bg-[#a14962] text-white hover:bg-[#7a273f] mt-4"
           >
             Close
           </Button>
@@ -124,39 +118,6 @@ export default function RequestQuoteForm() {
               }}
             </form.Field>
 
-            <form.Field name="email">
-              {(field) => {
-                const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
-                return (
-                  <Field
-                    data-invalid={isInvalid || undefined}
-                    className="w-full"
-                  >
-                    <FieldLabel className="sr-only" htmlFor={field.name}>
-                      Email
-                    </FieldLabel>
-                    <Input
-                      id={field.name}
-                      name={field.name}
-                      type="email"
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      aria-invalid={isInvalid || undefined}
-                      placeholder="Your Email"
-                      autoComplete="email"
-                      disabled={isSubmitting}
-                      className={cn(inputStyle)}
-                    />
-                    {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
-                    )}
-                  </Field>
-                );
-              }}
-            </form.Field>
-
             <form.Field name="phone">
               {(field) => {
                 const isInvalid =
@@ -170,7 +131,7 @@ export default function RequestQuoteForm() {
                       Phone*
                     </FieldLabel>
                     <PhoneInput
-                      value={field.state.value}
+                      value={field.state.value ?? ""}
                       onChange={(phone) => field.handleChange(phone)}
                       defaultCountry="ae"
                       disabled={isSubmitting}
@@ -189,6 +150,39 @@ export default function RequestQuoteForm() {
                         "[&_.react-international-phone-country-selector-button]:!bg-transparent [&_.react-international-phone-country-selector-button]:!border-0 [&_.react-international-phone-country-selector-button]:!p-0 [&_.react-international-phone-country-selector-button]:mr-3 [&_.react-international-phone-country-selector-button]:mb-0 [&_.react-international-phone-country-selector-button-active]:!bg-transparent",
                         "[&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:!border-t-black/60 [&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:border-t-4",
                       )}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+            </form.Field>
+
+            <form.Field name="email">
+              {(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field
+                    data-invalid={isInvalid || undefined}
+                    className="w-full"
+                  >
+                    <FieldLabel className="sr-only" htmlFor={field.name}>
+                      Email*
+                    </FieldLabel>
+                    <Input
+                      id={field.name}
+                      name={field.name}
+                      type="email"
+                      value={field.state.value ?? ""}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      aria-invalid={isInvalid || undefined}
+                      placeholder="Your Email*"
+                      autoComplete="email"
+                      disabled={isSubmitting}
+                      className={cn(inputStyle)}
                     />
                     {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />

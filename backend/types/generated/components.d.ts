@@ -73,6 +73,17 @@ export interface CommonFeature extends Struct.ComponentSchema {
   };
 }
 
+export interface CommonGalleryVideos extends Struct.ComponentSchema {
+  collectionName: 'components_common_gallery_videos';
+  info: {
+    displayName: 'Gallery Videos';
+  };
+  attributes: {
+    instagram_post_url: Schema.Attribute.String;
+    video: Schema.Attribute.Media<'videos'>;
+  };
+}
+
 export interface CommonLifestyleCard extends Struct.ComponentSchema {
   collectionName: 'components_common_lifestyle_cards';
   info: {
@@ -734,6 +745,7 @@ export interface SectionsTreatmentSection extends Struct.ComponentSchema {
     displayName: 'Treatment Section';
   };
   attributes: {
+    gallery_videos: Schema.Attribute.Component<'common.gallery-videos', true>;
     instagram_url: Schema.Attribute.String;
     instagram_username: Schema.Attribute.String;
     short_description: Schema.Attribute.Text;
@@ -813,6 +825,7 @@ declare module '@strapi/strapi' {
       'common.condition-item': CommonConditionItem;
       'common.faq-item': CommonFaqItem;
       'common.feature': CommonFeature;
+      'common.gallery-videos': CommonGalleryVideos;
       'common.lifestyle-card': CommonLifestyleCard;
       'common.ritual-experience-item': CommonRitualExperienceItem;
       'common.seo': CommonSeo;

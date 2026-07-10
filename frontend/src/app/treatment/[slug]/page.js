@@ -1,3 +1,4 @@
+import { getTreatmentDetailQuery } from "@/lib/queries";
 import TreatmentAlchemy from "@/components/blocks/treatment/treatment-alchemy";
 import TreatmentComplementary from "@/components/blocks/treatment/treatment-complementary";
 import TreatmentDetail from "@/components/blocks/treatment/treatment-detail";
@@ -7,108 +8,28 @@ import TreatmentRitualExperience from "@/components/blocks/treatment/treatment-r
 import TreatmentRythym from "@/components/blocks/treatment/treatment-rythym";
 import InnerHero from "@/components/common/InnerHero";
 import { notFound } from "next/navigation";
-import { fetchAPI, buildQuery, getStrapiMediaUrl } from "@/lib/strapi";
-
-const treatmentQuery = buildQuery({
-  hero: {
-    populate: {
-      hero_media: true,
-      primary_button: true,
-    },
-  },
-  what_is_section: {
-    populate: {
-      featured_image: true,
-    },
-  },
-  ritual_experience_section: {
-    populate: {
-      ritual_experience_item: true,
-    },
-  },
-  treatment_benefits_section: {
-    populate: {
-      featured_image: true,
-      benefits_item: {
-        populate: {
-          icon: true,
-        },
-      },
-    },
-  },
-  right_for_you_section: {
-    populate: {
-      right_for_you_item: true,
-    },
-  },
-  faq_section: {
-    populate: {
-      faq_item: true,
-    },
-  },
-  related_treatments: {
-    populate: {
-      related_treatments: {
-        populate: {
-          hero: {
-            populate: {
-              hero_media: true,
-            },
-          },
-        },
-      },
-    },
-  },
-  cta_treatment_section: true,
-  seo: {
-    populate: {
-      og_image: true,
-    },
-  },
-});
+import { fetchAPI, buildQuery } from "@/lib/strapi";
+import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const res = await fetchAPI(
-    `/api/treatments?filters[slug][$eq]=${slug}&${buildQuery({ seo: { populate: { og_image: true } }, hero: { populate: { hero_media: true } } })}`,
-  ).catch(() => null);
+  const url = `/api/treatments?filters[slug][$eq]=${slug}&${getTreatmentDetailQuery()}`;
+  const res = await fetchAPI(url);
 
   const treatment = res?.data?.[0];
 
-  if (!treatment) {
-    return {};
-  }
-
-  const seo = treatment?.seo || {};
-  const metaTitle = seo?.meta_title || treatment?.title || "Treatment";
-  const metaDescription =
-    seo?.meta_description || treatment?.short_description || "";
-  const ogImage = seo?.og_image
-    ? getStrapiMediaUrl(seo.og_image)
-    : treatment?.hero?.hero_media
-      ? getStrapiMediaUrl(treatment.hero.hero_media)
-      : "/images/placeholder.jpg";
-
-  return {
-    title: metaTitle,
-    description: metaDescription,
-    keywords: seo?.keywords || "",
-    alternates: {
-      canonical: seo?.canonical_url || "",
-    },
-    openGraph: {
-      title: metaTitle,
-      description: metaDescription,
-      images: [{ url: ogImage }],
-    },
-  };
+  return buildMetadata(treatment?.seo, {
+    title: treatment?.title || "Treatment",
+    description: treatment?.short_description,
+    image: treatment?.hero?.hero_media?.url,
+  });
 }
 
 export default async function TreatmentDetails({ params }) {
   const { slug } = await params;
-  const url = `/api/treatments?filters[slug][$eq]=${slug}&${treatmentQuery}`;
+  const url = `/api/treatments?filters[slug][$eq]=${slug}&${getTreatmentDetailQuery()}`;
 
-  const res = await fetchAPI(url).catch(() => null);
+  const res = await fetchAPI(url);
   const treatment = res?.data?.[0];
 
   if (!treatment) {

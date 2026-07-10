@@ -10,19 +10,12 @@ export default function GalleryListing({ images }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const allImages =
-    images?.flatMap((item) => {
-      if (!item?.media) return [];
-      const mediaArray = Array.isArray(item.media) ? item.media : [item.media];
-      return mediaArray
-        .filter((m) => m.mime?.startsWith("image/"))
-        .map((m) => ({ media: m, title: item.title }));
-    }) || [];
+  const allImages = images?.filter((m) => m?.mime?.startsWith("image/")) || [];
 
   const slides =
     allImages.map((img) => ({
-      src: getStrapiMediaUrl(img?.media?.url) || "/images/placeholder.jpg",
-      alt: img?.title || img?.media?.alternativeText || "Gallery Image",
+      src: getStrapiMediaUrl(img?.url) || "/images/placeholder.jpg",
+      alt: img?.alternativeText || "Gallery Image",
     })) || [];
 
   return (
@@ -70,12 +63,10 @@ export default function GalleryListing({ images }) {
                 >
                   <Image
                     src={
-                      getStrapiMediaUrl(item?.media?.url) ||
+                      getStrapiMediaUrl(item?.url) ||
                       "/images/placeholder.jpg"
                     }
-                    alt={(item?.title ||
-                      item?.media?.alternativeText ||
-                      "Gallery Image") || "Image"}
+                    alt={item?.alternativeText || "Gallery Image"}
                     width={622}
                     height={450}
                     className="w-full h-full object-cover hover:scale-105 transition-all duration-300"

@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 
-export default function ConditionTreatment({ data }) {
+export default function ConditionTreatment({ data, treatments }) {
   return (
     <section className="relative py-[45px] md:py-[50px_60px] lg:py-[55px_70px] xl:py-[65px_90px] 2xl:py-[75px_100px] 3xl:py-[95px_135px]">
       <div className="container">
@@ -41,7 +41,7 @@ export default function ConditionTreatment({ data }) {
           }}
           className="relative z-20"
         >
-          {(data?.treatments || []).map((item, index) => (
+          {(treatments || []).map((item, index) => (
             <SwiperSlide
               key={index}
               className="!h-auto group  border border-[#C3C3C3] not-first-of-type:!border-l-0 "

@@ -1,43 +1,24 @@
+import { getBlogDetailQuery, getActiveBlogQuery } from "@/lib/queries";
 import { notFound } from "next/navigation";
 import Herosection from "@/components/common/InnerHero";
 import BlogDetail from "@/components/blocks/blog/blog-detail";
-import { fetchAPI, buildQuery, getStrapiMediaUrl } from "@/lib/strapi";
-
-const blogPageQuery = buildQuery({
-  innerHero: {
-    populate: {
-      hero_media: true,
-      primary_button: { populate: { icon: true } },
-    },
-  },
-});
+import { fetchAPI, buildQuery } from "@/lib/strapi";
+import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
 
   const blogRes = await fetchAPI(
-    `/api/blogs?filters[slug][$eq]=${slug}&${buildQuery({ featured_image: true })}`,
-  ).catch(() => null);
+    `/api/blogs?filters[slug][$eq]=${slug}&${getActiveBlogQuery()}`,
+  );
 
   const blog = blogRes?.data?.[0];
 
-  if (!blog) return { title: "Blog Not Found" };
-
-  const metaTitle = blog.title || "Blog";
-  const metaDescription = blog.short_description || "";
-  const ogImage = blog.featured_image
-    ? getStrapiMediaUrl(blog.featured_image.url)
-    : "/images/placeholder.jpg";
-
-  return {
-    title: metaTitle,
-    description: metaDescription,
-    openGraph: {
-      title: metaTitle,
-      description: metaDescription,
-      images: [{ url: ogImage }],
-    },
-  };
+  return buildMetadata(blog?.seo, {
+    title: blog?.title || "Blog",
+    description: blog?.short_description,
+    image: blog?.featured_image?.url,
+  });
 }
 
 export async function generateStaticParams() {
@@ -50,9 +31,9 @@ export default async function BlogDetailPage({ params }) {
   const { slug } = await params;
 
   const [pageRes, activeBlogRes, recentBlogsRes] = await Promise.all([
-    fetchAPI(`/api/blog-page?${blogPageQuery}`),
+    fetchAPI(`/api/blog-page?${getBlogDetailQuery()}`),
     fetchAPI(
-      `/api/blogs?filters[slug][$eq]=${slug}&${buildQuery({ featured_image: true })}`,
+      `/api/blogs?filters[slug][$eq]=${slug}&${getActiveBlogQuery()}`,
     ),
     fetchAPI(
       `/api/blogs?${buildQuery({ featured_image: true })}&pagination[page]=1&pagination[pageSize]=3&sort=published_date:desc`,

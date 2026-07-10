@@ -1,4 +1,7 @@
+import { getAboutPageQuery } from "@/lib/queries";
 import { fetchAPI, buildQuery } from "@/lib/strapi";
+import { notFound } from "next/navigation";
+import { buildMetadata } from "@/lib/seo";
 import AboutIntelligence from "@/components/blocks/about/about-intelligence";
 import AboutGuidence from "@/components/blocks/about/about-guidence";
 import AboutClinic from "@/components/blocks/about/about-clinic";
@@ -488,62 +491,22 @@ import InnerHero from "@/components/common/InnerHero";
 //   },
 // };
 
-const aboutPageQuery = buildQuery({
-  seo: {
-    populate: {
-      og_image: true,
-    },
-  },
-  hero: {
-    populate: {
-      hero_media: true,
-      primary_button: { populate: "*" },
-    },
-  },
-  about_section: {
-    populate: {
-      about_media: true,
-      company_motto: { populate: "*" },
-    },
-  },
-  services_section: {
-    populate: {
-      root_causes: {
-        populate: {
-          icon: true,
-          service_specification: true,
-        },
-      },
-    },
-  },
-  members_section: {
-    populate: {
-      members: { populate: "*" },
-    },
-  },
-  certifications_section: {
-    populate: {
-      statistic: true,
-      certification_card: { populate: "*" },
-    },
-  },
-  clinic_environment_section: {
-    populate: {
-      featured_image: true,
-    },
-  },
-  healing_approach_section: {
-    populate: {
-      approach_card: { populate: "*" },
-    },
-  },
-});
+export async function generateMetadata() {
+  const res = await fetchAPI(`/api/about-page?${getAboutPageQuery()}`);
+  const data = res?.data;
+  return buildMetadata(data?.seo, {
+    title: data?.hero?.title,
+    description: data?.hero?.description,
+  });
+}
 
 export default async function AboutPage() {
-  const res = await fetchAPI(`/api/about-page?${aboutPageQuery}`);
-  const data = res?.data ?? null;
+  const res = await fetchAPI(`/api/about-page?${getAboutPageQuery()}`);
+  const data = res?.data;
 
-  if (!data) return null;
+  if (!data) {
+    notFound();
+  }
 
   const {
     hero,

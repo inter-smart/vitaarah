@@ -1126,7 +1126,7 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    available_durationss: Schema.Attribute.Relation<
+    available_durations: Schema.Attribute.Relation<
       'oneToMany',
       'api::available-duration.available-duration'
     >;

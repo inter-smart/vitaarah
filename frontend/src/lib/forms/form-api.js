@@ -6,11 +6,9 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:133
 
 // Define allowed fields based on actual Strapi schemas
 const SCHEMAS = {
-  "/api/appointment-forms": ["name", "email", "phone", "treatment", "date", "time", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
-  "/api/contact-enquiries": ["name", "email", "phone", "subject", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
-  "/api/program-enquiries": ["name", "email", "phone", "country", "preferred_date", "program", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
-  "/api/consultations": ["name", "phone", "email", "treatment", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
-  "/api/newsletter-subscriptions": ["email", "page_url", "user_agent"]
+  "/api/appointment-forms": ["name", "email", "phone", "page_url", "page_title", "slug", "page_type", "user_agent"],
+  "/api/consultations": ["name", "phone", "email", "requested_treatment", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
+  "/api/contact-enquiries": ["name", "email", "phone", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
 };
 
 /**
@@ -103,7 +101,7 @@ export async function postForm(endpoint, rawData) {
 
 /**
  * Submits the Appointment Form
- * @param {import('../../types/forms').AppointmentFormData} data
+ * @param {Object} data
  */
 export async function submitAppointment(data) {
   return postForm("/api/appointment-forms", data);
@@ -111,32 +109,46 @@ export async function submitAppointment(data) {
 
 /**
  * Submits the Contact Form
- * @param {import('../../types/forms').ContactFormData} data
+ * @param {Object} data
  */
 export async function submitContact(data) {
   return postForm("/api/contact-enquiries", data);
 }
 
 /**
- * Submits the Request Quote Form
- * @param {import('../../types/forms').QuoteFormData} data
- */
-export async function submitQuote(data) {
-  return postForm("/api/program-enquiries", data);
-}
-
-/**
  * Submits the Book Consultation Form
- * @param {import('../../types/forms').ConsultationFormData} data
+ * @param {Object} data
  */
 export async function submitConsultation(data) {
   return postForm("/api/consultations", data);
 }
 
 /**
- * Submits the Newsletter Form
- * @param {import('../../types/forms').NewsletterFormData} data
+ * Fetches dynamic treatments for the consultation form.
+ * Only retrieves documentId and title to optimize payload size.
+ * @returns {Promise<Array>} Array of treatments
  */
-export async function submitNewsletter(data) {
-  return postForm("/api/newsletter-subscriptions", data);
+export async function getTreatments() {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/api/treatments?fields[0]=title&fields[1]=documentId`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      console.error(`Failed to fetch treatments: ${response.statusText}`);
+      return [];
+    }
+
+    const json = await response.json();
+    return json?.data || [];
+  } catch (error) {
+    console.error("Error fetching treatments:", error);
+    return [];
+  }
 }

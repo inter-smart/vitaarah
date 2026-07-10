@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 
-export default function GalleryTreatmentVideos({ data, videos }) {
+export default function GalleryTreatmentVideos({ data }) {
   const [emblaRef] = useEmblaCarousel(
     {
       loop: false,
@@ -29,12 +29,12 @@ export default function GalleryTreatmentVideos({ data, videos }) {
         />
         <div className="container">
           <div className="flex flex-wrap flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 mb-[15px] sm:mb-[27px] xl:mb-[34px] 2xl:mb-[40px] 3xl:mb-[47px]">
-            {data.title && (
+            {data?.title && (
               <h2 className="heading_1 text-center text-[#1f1f1f] lg:mb-0">
                 {data.title}
               </h2>
             )}
-            {data.short_description && (
+            {data?.short_description && (
               <div className="text_3 text-center font-normal text-black">
                 {data.short_description}
               </div>
@@ -42,7 +42,7 @@ export default function GalleryTreatmentVideos({ data, videos }) {
           </div>
           <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
             <div className="flex touch-pan-y touch-pinch-zoom -mx-[6px] sm:-mx-[11px] xl:-mx-[14px] 2xl:-mx-[15px] 3xl:-mx-[18px]">
-              {videos?.map((item, idx) => (
+              {data?.gallery_video?.map((item, idx) => (
                 <div
                   key={"treatmentVideos" + idx}
                   className={cn(
@@ -55,7 +55,7 @@ export default function GalleryTreatmentVideos({ data, videos }) {
                     )}
                   >
                     <video
-                      src={getStrapiMediaUrl(item?.treatment_video?.url)}
+                      src={getStrapiMediaUrl(item?.video?.url)}
                       className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
                       muted
                       loop
@@ -100,26 +100,26 @@ export default function GalleryTreatmentVideos({ data, videos }) {
         <div className="container">
           <div className="flex flex-wrap items-center justify-center lg:justify-between gap-6 lg:gap-[76px] xl:gap-[94px] 2xl:gap-[107px] 3xl:gap-[130px]">
             <div className="flex-auto lg:flex-1 flex flex-col lg:flex-row lg:items-end gap-2 lg:gap-[48px] xl:gap-[59px] 2xl:gap-[68px] 3xl:gap-[82px]">
-              {data.sub_title && (
+              {data?.sub_title && (
                 <h2 className="heading_1 leading-none text-center lg:text-start text-[#1f1f1f]">
                   {data.sub_title}
                 </h2>
               )}
-              {data.sub_description && (
+              {data?.sub_description && (
                 <div className="text_3 font-normal text-center lg:text-start text-black  mb-[2px] xl:mb-[4px] 2xl:mb-[6px]">
                   {data.sub_description}
                 </div>
               )}
             </div>
             <div className="flex flex-col items-center lg:items-end">
-              {data.instagram_username && (
+              {data?.instagram_username && (
                 <div className="text_3 text-center font-normal text-[#a14962] mb-[10px] xl:mb-[12px] 2xl:mb-[14px] 3xl:mb-[17px]">
                   {data.instagram_username}
                 </div>
               )}
-              {data.instagram_url && (
+              {data?.background_url && (
                 <Link
-                  href={data.instagram_url}
+                  href={data.background_url}
                   target="_blank"
                   className="text_3 leading-none font-normal text-white w-full min-w-[185px] xl:min-w-[230px] 2xl:min-w-[260px] 3xl:min-w-[315px] h-[50px] xl:h-[62px] 2xl:h-[70px] 3xl:h-[85px] bg-linear-to-l from-[#e9cba3] to-[#a14962] flex items-center justify-center gap-[10px] xl:gap-[12px] 2xl:gap-[14px] 3xl:gap-[17px] hover:scale-105 transition-all duration-500"
                 >

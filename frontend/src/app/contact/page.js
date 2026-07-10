@@ -1,54 +1,27 @@
+import { getContactPageQuery } from "@/lib/queries";
 import Herosection from "@/components/common/InnerHero";
 import ContactInfo from "@/components/blocks/contact/contact-info";
-import { fetchAPI, buildQuery, getStrapiMediaUrl } from "@/lib/strapi";
-
-const contactPageQuery = buildQuery({
-  seo: { populate: { og_image: true } },
-  hero: {
-    populate: {
-      hero_media: true,
-      primary_button: { populate: { icon: true } },
-    },
-  },
-  contactSection: true,
-});
+import { fetchAPI, buildQuery } from "@/lib/strapi";
+import { notFound } from "next/navigation";
+import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata() {
-  const res = await fetchAPI(`/api/contact-page?${contactPageQuery}`).catch(
-    () => null,
-  );
-  const pageData = res?.data || {};
-  const seo = pageData?.seo || {};
-
-  const metaTitle =
-    seo?.meta_title || pageData?.hero?.title || "Contact Us | Vitaarah";
-  const metaDescription = seo?.meta_description || "";
-  const ogImage = seo?.og_image
-    ? getStrapiMediaUrl(seo.og_image)
-    : pageData?.hero?.hero_media
-      ? getStrapiMediaUrl(pageData.hero.hero_media)
-      : "/images/placeholder.jpg";
-
-  return {
-    title: metaTitle,
-    description: metaDescription,
-    keywords: seo?.keywords || "",
-    alternates: {
-      canonical: seo?.canonical_url || "",
-    },
-    openGraph: {
-      title: metaTitle,
-      description: metaDescription,
-      images: [{ url: ogImage }],
-    },
-  };
+  const res = await fetchAPI(`/api/contact-page?${getContactPageQuery()}`);
+  const data = res?.data;
+  return buildMetadata(data?.seo, {
+    title: data?.hero?.title || "Contact Us | Vitaarah",
+    description: "Contact us to start your healing journey.",
+    image: data?.hero?.hero_media?.url,
+  });
 }
 
 export default async function ContactPage() {
-  const pageRes = await fetchAPI(`/api/contact-page?${contactPageQuery}`);
-  const pageData = pageRes?.data ?? null;
+  const pageRes = await fetchAPI(`/api/contact-page?${getContactPageQuery()}`);
+  const pageData = pageRes?.data;
 
-  if (!pageData) return null;
+  if (!pageData) {
+    notFound();
+  }
 
   return (
     <>

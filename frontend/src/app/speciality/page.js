@@ -1,41 +1,29 @@
+import { getSpecialitiesPageQuery } from "@/lib/queries";
 import { fetchAPI, buildQuery } from "@/lib/strapi";
+import { notFound } from "next/navigation";
+import { buildMetadata } from "@/lib/seo";
 import InnerHero from "@/components/common/InnerHero";
 import SpecialityPathway from "@/components/blocks/speciality/speciality-pathway";
 
-const specialitiesPageQuery = buildQuery({
-  hero: {
-    populate: {
-      hero_media: true,
-      primary_button: true,
-    },
-  },
-  specialities_listing_section: {
-    populate: {
-      specialities_item: {
-        populate: {
-          icon: true,
-          treatment: {
-            populate: {
-              conditions_treated: true,
-            },
-          },
-        },
-      },
-    },
-  },
-  cta_specialities_section: true,
-});
+export async function generateMetadata() {
+  const res = await fetchAPI(`/api/specialities-page?${getSpecialitiesPageQuery()}`);
+  const data = res?.data;
+  return buildMetadata(data?.seo, {
+    title: data?.hero?.title || "Specialities | Vitaarah",
+    description: data?.hero?.description,
+    image: data?.hero?.hero_media?.url,
+  });
+}
 
 export default async function SpecialityPage() {
-  const res = await fetchAPI(`/api/specialities-page?${specialitiesPageQuery}`);
-  const data = res?.data ?? null;
+  const res = await fetchAPI(`/api/specialities-page?${getSpecialitiesPageQuery()}`);
+  const data = res?.data;
 
-  if (!data) return null;
+  if (!data) {
+    notFound();
+  }
 
   const { hero, specialities_listing_section, cta_specialities_section } = data;
-
-  console.log("specialities_listing_section", specialities_listing_section);
-  
 
   return (
     <>

@@ -22,6 +22,11 @@
     },
     "instagram_username": {
       "type": "string"
+    },
+    "gallery_videos": {
+      "type": "component",
+      "component": "common.gallery-videos",
+      "repeatable": true
     }
   },
   "config": {}

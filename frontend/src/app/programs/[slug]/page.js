@@ -1,63 +1,26 @@
-import { fetchAPI, buildQuery, getStrapiMediaUrl } from "@/lib/strapi";
+import { getProgramQuery } from "@/lib/queries";
+import { fetchAPI, buildQuery } from "@/lib/strapi";
 import { notFound } from "next/navigation";
+import { buildMetadata } from "@/lib/seo";
 import InnerHero from "@/components/common/InnerHero";
 import TreatmentFaq from "@/components/blocks/treatment/treatment-faq";
 import ProgramDetail from "@/components/blocks/program/program-detail";
-
-const programQuery = buildQuery({
-  hero_media: true,
-  available_durationss: true,
-  introduction_section: {
-    populate: {
-      introduction_image: true,
-    },
-  },
-  benefits_section: true,
-  Included_treatments_section: true,
-  who_is_this_for_section: true,
-  duration_info_section: true,
-  faq_section: {
-    populate: {
-      faq_item: true,
-    },
-  },
-});
 
 export async function generateMetadata(props) {
   const params = await props.params;
   const slug = params?.slug;
 
   const res = await fetchAPI(
-    `/api/programs?filters[slug][$eq]=${slug}&${programQuery}`,
-  ).catch(() => null);
+    `/api/programs?filters[slug][$eq]=${slug}&${getProgramQuery()}`,
+  );
 
   const program = res?.data?.[0];
 
-  if (!program) {
-    return {};
-  }
-
-  const seo = program?.seo || {};
-  const metaTitle = seo?.metaTitle || program?.title || "Program Details";
-  const metaDescription =
-    seo?.metaDescription ||
-    program?.short_description ||
-    "Discover our holistic and comprehensive programs.";
-  const ogImage = seo?.metaImage
-    ? getStrapiMediaUrl(seo.metaImage)
-    : program?.hero_media
-      ? getStrapiMediaUrl(program.hero_media)
-      : "/images/placeholder.jpg";
-
-  return {
-    title: metaTitle,
-    description: metaDescription,
-    openGraph: {
-      title: metaTitle,
-      description: metaDescription,
-      images: [{ url: ogImage }],
-    },
-  };
+  return buildMetadata(program?.seo, {
+    title: program?.title || "Program Details",
+    description: program?.short_description || "Discover our holistic and comprehensive programs.",
+    image: program?.hero_media?.url,
+  });
 }
 
 export default async function ProgramPage(props) {
@@ -65,7 +28,7 @@ export default async function ProgramPage(props) {
   const slug = params?.slug;
 
   const res = await fetchAPI(
-    `/api/programs?filters[slug][$eq]=${slug}&${programQuery}`,
+    `/api/programs?filters[slug][$eq]=${slug}&${getProgramQuery()}`,
   ).catch(() => null);
 
   const program = res?.data?.[0];
@@ -75,7 +38,7 @@ export default async function ProgramPage(props) {
   }
 
   // Use the same numeric sort pattern adopted globally
-  const availableDurations = [...(program?.available_durationss || [])].sort(
+  const availableDurations = [...(program?.available_durations || [])].sort(
     (a, b) => {
       const getDays = (label) => Number(label?.match(/\d+/)?.[0] || 0);
       return getDays(a.label) - getDays(b.label);

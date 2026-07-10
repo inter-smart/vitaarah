@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_common_gallery_videos",
+  "info": {
+    "displayName": "Gallery Videos"
+  },
+  "options": {},
+  "attributes": {
+    "instagram_post_url": {
+      "type": "string"
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    }
+  },
+  "config": {}
+}

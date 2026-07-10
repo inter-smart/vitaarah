@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 
-export default function ConditionRootCause({ data }) {
+export default function ConditionRootCause({ data, rootCauses }) {
   return (
     <section className="relative bg-[#FFF9EB] py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[100px] overflow-hidden">
       <div className="container">
@@ -46,7 +46,7 @@ export default function ConditionRootCause({ data }) {
           }}
           className="relative z-20"
         >
-          {(data?.root_causes || []).map((item, index) => (
+          {(rootCauses || []).map((item, index) => (
             <SwiperSlide key={index} className="!h-auto group transition-all ">
               <div
                 key={"services" + index}

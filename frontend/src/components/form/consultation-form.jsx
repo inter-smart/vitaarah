@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 import { useSubmitForm } from "@/hooks/useSubmitForm";
-import { submitConsultation } from "@/lib/forms/form-api";
+import { submitConsultation, getTreatments } from "@/lib/forms/form-api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -45,7 +45,7 @@ const formSchema = z.object({
     .email("Please enter a valid email")
     .optional()
     .or(z.literal("")),
-  treatment: z.string().min(1, "Please select a treatment"),
+  requested_treatment: z.string().min(1, "Please select a treatment"),
   message: z.string().optional(),
 });
 
@@ -71,16 +71,30 @@ export default function ConsultationForm({
   conditionSlug,
 }) {
   const [open, setOpen] = useState(false);
+  const [treatments, setTreatments] = useState([]);
+  const [loadingTreatments, setLoadingTreatments] = useState(true);
+
+  useEffect(() => {
+    async function fetchTreatments() {
+      const data = await getTreatments();
+      setTreatments(data);
+      setLoadingTreatments(false);
+    }
+    fetchTreatments();
+  }, []);
+
   const activeTrigger = children || childern;
 
-  const inputStyle = variant === "expert" ? inputStyleExpert : inputStyleDefault;
-  const textareaBase = variant === "expert" ? textareaBaseExpert : textareaBaseDefault;
+  const inputStyle =
+    variant === "expert" ? inputStyleExpert : inputStyleDefault;
+  const textareaBase =
+    variant === "expert" ? textareaBaseExpert : textareaBaseDefault;
   const form = useForm({
     defaultValues: {
       name: "",
       phone: "",
       email: "",
-      treatment: "",
+      requested_treatment: "",
       message: "",
     },
     validators: {
@@ -92,11 +106,14 @@ export default function ConsultationForm({
     },
   });
 
-  const { submit, isSubmitting, isSuccess, error, reset } = useSubmitForm(submitConsultation, {
-    onSuccess: () => {
-      form.reset();
-    }
-  });
+  const { submit, isSubmitting, isSuccess, error, reset } = useSubmitForm(
+    submitConsultation,
+    {
+      onSuccess: () => {
+        form.reset();
+      },
+    },
+  );
 
   const handleDialogClose = () => {
     setOpen(false);
@@ -138,216 +155,211 @@ export default function ConsultationForm({
               </DialogDescription>
             </DialogHeader>
           )}
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                form.handleSubmit();
-              }}
-              className={
-                variant === "expert"
-                  ? "flex flex-wrap -mx-4 xl:-mx-5 2xl:-mx-6 3xl:-mx-8 [&>*]:p-4 xl:[&>*]:p-5 2xl:[&>*]:p-6 3xl:[&>*]:p-8"
-                  : "flex flex-wrap -mx-2.5 xl:-mx-[10px] 2xl:-mx-[15px] 3xl:-mx-[20px] [&>*]:p-2.5 xl:[&>*]:p-[15px_10px] 2xl:[&>*]:p-[20px_15px] 3xl:[&>*]:p-[25px_20px]"
-              }
-            >
-              <form.Field name="name">
-                {(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field
-                      data-invalid={isInvalid || undefined}
-                      className={variant === "expert" ? "w-full sm:w-1/2 flex" : "w-full sm:w-1/2"}
-                    >
-                      <FieldLabel className="sr-only" htmlFor={field.name}>
-                        Name*
-                      </FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value ?? ""}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        aria-invalid={isInvalid || undefined}
-                        placeholder="Name*"
-                        autoComplete="name"
-                        disabled={isSubmitting}
-                        className={cn(inputStyle)}
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-
-              <form.Field name="email">
-                {(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field
-                      data-invalid={isInvalid || undefined}
-                      className={variant === "expert" ? "w-full sm:w-1/2 flex" : "w-full sm:w-1/2"}
-                    >
-                      <FieldLabel className="sr-only" htmlFor={field.name}>
-                        Email*
-                      </FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        type="email"
-                        value={field.state.value ?? ""}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        aria-invalid={isInvalid || undefined}
-                        placeholder="Email*"
-                        autoComplete="email"
-                        disabled={isSubmitting}
-                        className={cn(inputStyle)}
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-
-              <form.Field name="phone">
-                {(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field
-                      data-invalid={isInvalid || undefined}
-                      className={variant === "expert" ? "w-full sm:w-1/2 flex justify-end" : "w-full sm:w-1/2"}
-                    >
-                      <FieldLabel className="sr-only" htmlFor={field.name}>
-                        Phone*
-                      </FieldLabel>
-                      <PhoneInput
-                        value={field.state.value ?? ""}
-                        onChange={(phone) => field.handleChange(phone)}
-                        defaultCountry="ae"
-                        disabled={isSubmitting}
-                        inputProps={{
-                          id: field.name,
-                          name: field.name,
-                          onBlur: field.handleBlur,
-                          "aria-invalid": isInvalid || undefined,
-                          placeholder: "Phone*",
-                          autoComplete: "tel",
-                        }}
-                        className={
-                          variant === "expert"
-                            ? "text-[11px] lg:text-[11.3px] xl:text-[14px] 2xl:!text-[15.8px] 3xl:!text-[19.2px] leading-normal !bg-transparent phone-input font-normal text-black placeholder:text-black w-full bg-none border-b border-black/20 focus:outline-none focus:ring-0 focus:border-black disabled:opacity-60 resize-none"
-                            : cn(
-                                inputStyle,
-                                "w-full h-[35px] xl:h-[40px] 2xl:h-[45px] 3xl:h-[55px] flex items-center bg-transparent border-b border-black/15 focus-within:border-black pb-1",
-                                "[&_.react-international-phone-input]:!border-0 [&_.react-international-phone-input]:!bg-transparent [&_.react-international-phone-input]:flex-1 [&_.react-international-phone-input]:!text-[#875849] [&_.react-international-phone-input]:placeholder:text-[#875849] [&_.react-international-phone-input]:h-[30px] xl:[&_.react-international-phone-input]:h-[35px] 2xl:[&_.react-international-phone-input]:h-[40px] 3xl:[&_.react-international-phone-input]:h-[50px] [&_.react-international-phone-input]:!font-helvetica [&_.react-international-phone-input]:!text-[11px] lg:[&_.react-international-phone-input]:!text-[11.3px] xl:[&_.react-international-phone-input]:!text-[14px] 2xl:[&_.react-international-phone-input]:!text-[15.8px] 3xl:[&_.react-international-phone-input]:!text-[19.2px]",
-                                "[&_.react-international-phone-country-selector-button]:!bg-transparent [&_.react-international-phone-country-selector-button]:!border-0 [&_.react-international-phone-country-selector-button]:!p-0 [&_.react-international-phone-country-selector-button]:mr-3 [&_.react-international-phone-country-selector-button]:mb-0 [&_.react-international-phone-country-selector-button-active]:!bg-transparent",
-                                "[&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:!border-t-black/60 [&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:border-t-4",
-                              )
-                        }
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-
-              <form.Field name="treatment">
-                {(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field
-                      data-invalid={isInvalid || undefined}
-                      className={variant === "expert" ? "w-full sm:w-1/2 flex" : "w-full sm:w-1/2"}
-                    >
-                      <FieldLabel
-                        className="sr-only"
-                        htmlFor="treatment-select"
-                      >
-                        {variant === "expert" ? "Primary Concern*" : "Treatment Interest*"}
-                      </FieldLabel>
-                      <Select
-                        name={field.name}
-                        value={field.state.value ?? ""}
-                        onValueChange={field.handleChange}
-                        disabled={isSubmitting}
-                      >
-                        <SelectTrigger
-                          id="treatment-select"
-                          aria-invalid={isInvalid || undefined}
-                          className={cn(
-                            inputStyle,
-                            "[&_svg]:text-black/80 flex items-center justify-between",
-                          )}
-                        >
-                          <SelectValue placeholder={variant === "expert" ? "Your Primary concern*" : "Treatment*"} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="hair-transplant">
-                            Hair Transplant
-                          </SelectItem>
-                          <SelectItem value="skin-treatment">
-                            Skin Treatment
-                          </SelectItem>
-                          <SelectItem value="dental-care">
-                            Dental Care
-                          </SelectItem>
-                          <SelectItem value="laser-therapy">
-                            Laser Therapy
-                          </SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-
-              <form.Field name="message">
-                {(field) => (
-                  <Field className={variant === "expert" ? "w-full sm:w-4/7 flex" : "w-full sm:w-1/2"}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              form.handleSubmit();
+            }}
+            className="flex flex-wrap -mx-2.5 xl:-mx-[10px] 2xl:-mx-[15px] 3xl:-mx-[20px] [&>*]:p-2.5 xl:[&>*]:p-[15px_10px] 2xl:[&>*]:p-[20px_15px] 3xl:[&>*]:p-[25px_20px]"
+          >
+            <form.Field name="name">
+              {(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field
+                    data-invalid={isInvalid || undefined}
+                    className="w-full sm:w-1/2"
+                  >
                     <FieldLabel className="sr-only" htmlFor={field.name}>
-                      Message
+                      Name*
                     </FieldLabel>
-                    <textarea
+                    <Input
                       id={field.name}
                       name={field.name}
                       value={field.state.value ?? ""}
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
-                      placeholder="Brief Message (optional)"
-                      rows={3}
+                      aria-invalid={isInvalid || undefined}
+                      placeholder="Name*"
+                      autoComplete="name"
                       disabled={isSubmitting}
-                      className={cn(textareaBase)}
+                      className={cn(inputStyle)}
                     />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
                   </Field>
-                )}
-              </form.Field>
+                );
+              }}
+            </form.Field>
 
-              <div className={variant === "expert" ? "w-full sm:w-3/7 flex flex-col items-end" : "w-full sm:w-1/2 flex flex-col items-end"}>
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full"
-                >
-                  {isSubmitting ? "Submitting..." : (variant === "expert" ? "Submit Request" : "Request Free Consultation")}
-                </Button>
-                {error && <div className="text-red-500 text-xs mt-2 w-full text-center">{error}</div>}
-              </div>
-            </form>
-          </>
-        )}
+            <form.Field name="email">
+              {(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field
+                    data-invalid={isInvalid || undefined}
+                    className="w-full sm:w-1/2"
+                  >
+                    <FieldLabel className="sr-only" htmlFor={field.name}>
+                      Email*
+                    </FieldLabel>
+                    <Input
+                      id={field.name}
+                      name={field.name}
+                      type="email"
+                      value={field.state.value ?? ""}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      aria-invalid={isInvalid || undefined}
+                      placeholder="Email*"
+                      autoComplete="email"
+                      disabled={isSubmitting}
+                      className={cn(inputStyle)}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+            </form.Field>
+
+            <form.Field name="phone">
+              {(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field
+                    data-invalid={isInvalid || undefined}
+                    className="w-full sm:w-1/2"
+                  >
+                    <FieldLabel className="sr-only" htmlFor={field.name}>
+                      Phone*
+                    </FieldLabel>
+                    <PhoneInput
+                      value={field.state.value ?? ""}
+                      onChange={(phone) => field.handleChange(phone)}
+                      defaultCountry="ae"
+                      disabled={isSubmitting}
+                      inputProps={{
+                        id: field.name,
+                        name: field.name,
+                        onBlur: field.handleBlur,
+                        "aria-invalid": isInvalid || undefined,
+                        placeholder: "Phone*",
+                        autoComplete: "tel",
+                      }}
+                      className={cn(
+                        inputStyle,
+                        "w-full h-[35px] xl:h-[40px] 2xl:h-[45px] 3xl:h-[55px] flex items-center bg-transparent border-b border-black/15 focus-within:border-black pb-1",
+                        "[&_.react-international-phone-input]:!border-0 [&_.react-international-phone-input]:!bg-transparent [&_.react-international-phone-input]:flex-1 [&_.react-international-phone-input]:!text-[#875849] [&_.react-international-phone-input]:placeholder:text-[#875849] [&_.react-international-phone-input]:h-[30px] xl:[&_.react-international-phone-input]:h-[35px] 2xl:[&_.react-international-phone-input]:h-[40px] 3xl:[&_.react-international-phone-input]:h-[50px] [&_.react-international-phone-input]:!font-helvetica [&_.react-international-phone-input]:!text-[11px] lg:[&_.react-international-phone-input]:!text-[11.3px] xl:[&_.react-international-phone-input]:!text-[14px] 2xl:[&_.react-international-phone-input]:!text-[15.8px] 3xl:[&_.react-international-phone-input]:!text-[19.2px]",
+                        "[&_.react-international-phone-country-selector-button]:!bg-transparent [&_.react-international-phone-country-selector-button]:!border-0 [&_.react-international-phone-country-selector-button]:!p-0 [&_.react-international-phone-country-selector-button]:mr-3 [&_.react-international-phone-country-selector-button]:mb-0 [&_.react-international-phone-country-selector-button-active]:!bg-transparent",
+                        "[&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:!border-t-black/60 [&_.react-international-phone-country-selector-button\_\_dropdown-arrow]:border-t-4",
+                      )}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+            </form.Field>
+
+            <form.Field name="requested_treatment">
+              {(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field
+                    data-invalid={isInvalid || undefined}
+                    className="w-full sm:w-1/2"
+                  >
+                    <FieldLabel className="sr-only" htmlFor="treatment-select">
+                      Treatment Interest
+                    </FieldLabel>
+                    <Select
+                      name={field.name}
+                      value={field.state.value ?? ""}
+                      onValueChange={field.handleChange}
+                      disabled={isSubmitting}
+                    >
+                      <SelectTrigger
+                        id="treatment-select"
+                        aria-invalid={isInvalid || undefined}
+                        className={cn(
+                          inputStyle,
+                          "[&_svg]:text-black/80 flex items-center justify-between",
+                        )}
+                      >
+                        <SelectValue placeholder="Treatment*" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {loadingTreatments ? (
+                          <SelectItem value="loading" disabled>
+                            Loading treatments...
+                          </SelectItem>
+                        ) : treatments.length > 0 ? (
+                          treatments.map((t) => (
+                            <SelectItem key={t.documentId} value={t.documentId}>
+                              {t.title}
+                            </SelectItem>
+                          ))
+                        ) : (
+                          <SelectItem value="none" disabled>
+                            No treatments available
+                          </SelectItem>
+                        )}
+                      </SelectContent>
+                    </Select>
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+            </form.Field>
+
+            <form.Field name="message">
+              {(field) => (
+                <Field className="w-full sm:w-1/2">
+                  <FieldLabel className="sr-only" htmlFor={field.name}>
+                    Message
+                  </FieldLabel>
+                  <textarea
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value ?? ""}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    placeholder="Message"
+                    rows={3}
+                    disabled={isSubmitting}
+                    className={cn(textareaBase)}
+                  />
+                </Field>
+              )}
+            </form.Field>
+
+            <div className="w-full sm:w-1/2 flex flex-col items-end">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full mt-auto"
+              >
+                {isSubmitting ? "Submitting..." : "Request Free Consultation"}
+              </Button>
+              {error && (
+                <div className="text-red-500 text-xs mt-2 w-full text-center">
+                  {error}
+                </div>
+              )}
+            </div>
+          </form>
+        </>
+      )}
     </>
   );
 

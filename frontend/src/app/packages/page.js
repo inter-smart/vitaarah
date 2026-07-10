@@ -1,42 +1,30 @@
+import { getPackagePageQuery, getPackageQuery } from "@/lib/queries";
 import { fetchAPI, buildQuery } from "@/lib/strapi";
+import { notFound } from "next/navigation";
+import { buildMetadata } from "@/lib/seo";
 import InnerHero from "@/components/common/InnerHero";
 import PackagesStatistics from "@/components/blocks/packages/packages-statistics";
 import PackagesListing from "@/components/blocks/packages/packages-listing";
 import PackagesDurations from "@/components/blocks/packages/packages-durations";
 
-const packagePageQuery = buildQuery({
-  hero: {
-    populate: {
-      hero_media: true,
-      primary_button: true,
-    },
-  },
-  statistics_section: {
-    populate: {
-      statistics: true,
-    },
-  },
-  package_listing_section: true,
-  package_duration_section: true,
-});
-
-const packagesQuery = buildQuery({
-  featured_image: true,
-  programs: {
-    populate: {
-      available_durationss: true,
-    },
-  },
-});
+export async function generateMetadata() {
+  const res = await fetchAPI(`/api/package-page?${getPackagePageQuery()}`);
+  const data = res?.data;
+  return buildMetadata(data?.seo, {
+    title: data?.hero?.title || "Packages | Vitaarah",
+    description: data?.hero?.description,
+    image: data?.hero?.hero_media?.url,
+  });
+}
 
 export default async function PackagesPage() {
   const [pageRes, packagesRes, availableDurationsRes] = await Promise.all([
-    fetchAPI(`/api/package-page?${packagePageQuery}`).catch(() => null),
-    fetchAPI(`/api/packages?${packagesQuery}`).catch(() => null),
-    fetchAPI(`/api/available-durations`).catch(() => null),
+    fetchAPI(`/api/package-page?${getPackagePageQuery()}`),
+    fetchAPI(`/api/packages?${getPackageQuery()}`),
+    fetchAPI(`/api/available-durations`),
   ]);
 
-  const pageData = pageRes?.data ?? null;
+  const pageData = pageRes?.data;
   const packagesData = packagesRes?.data ?? [];
   const availableDurationsData = [...(availableDurationsRes?.data || [])].sort(
     (a, b) => {
@@ -44,9 +32,10 @@ export default async function PackagesPage() {
       return getDays(a.label) - getDays(b.label);
     },
   );
-  // const fullProgramsData = programsRes?.data ?? [];
 
-  if (!pageData) return null;
+  if (!pageData) {
+    notFound();
+  }
 
   const {
     hero,
@@ -55,7 +44,6 @@ export default async function PackagesPage() {
     package_duration_section,
   } = pageData;
 
-  // Combine package_listing_section title/description with the actual packages
   const listingData = package_listing_section
     ? {
         ...package_listing_section,

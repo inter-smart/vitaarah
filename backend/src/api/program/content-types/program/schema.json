@@ -31,7 +31,7 @@
     "short_description": {
       "type": "text"
     },
-    "available_durationss": {
+    "available_durations": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::available-duration.available-duration"

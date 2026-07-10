@@ -72,7 +72,7 @@ export default function PackagesDurations({
                     })}
                   </div>
                   <div className="w-full bg-[#fff9eb] rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[9.6px] px-[12px] xl:px-[16px] 2xl:px-[18px] 3xl:px-[22px]">
-                    {item?.programs?.map((program, pIdx) => {
+                    {item?.related_programs?.map((program, pIdx) => {
                       return (
                         <div
                           key={"programs" + pIdx}
@@ -84,7 +84,7 @@ export default function PackagesDurations({
                           {availableDurationsData?.map(
                             (durationItem, colIdx) => {
                               const isAvailable =
-                                program?.available_durationss?.some(
+                                program?.available_durations?.some(
                                   (d) => d.id === durationItem.id,
                                 );
 
@@ -106,7 +106,7 @@ export default function PackagesDurations({
                           <hr
                             className={cn(
                               "w-full",
-                              pIdx !== item?.programs?.length - 1
+                              pIdx !== item?.related_programs?.length - 1
                                 ? "border-black/10"
                                 : "border-[#fff9eb]",
                             )}
