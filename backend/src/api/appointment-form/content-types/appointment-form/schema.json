@@ -20,18 +20,6 @@
     "phone": {
       "type": "string"
     },
-    "treatment": {
-      "type": "string"
-    },
-    "date": {
-      "type": "string"
-    },
-    "time": {
-      "type": "string"
-    },
-    "message": {
-      "type": "text"
-    },
     "page_url": {
       "type": "string",
       "private": true

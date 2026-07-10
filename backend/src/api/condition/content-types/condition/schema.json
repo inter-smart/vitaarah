@@ -44,6 +44,18 @@
       "type": "component",
       "component": "sections.lifestyle-section",
       "repeatable": false
+    },
+    "related_treatments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::treatment.treatment",
+      "inversedBy": "related_conditions"
+    },
+    "related_root_causes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::root-cause.root-cause",
+      "inversedBy": "related_conditions"
     }
   }
 }

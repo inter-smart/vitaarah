@@ -20,8 +20,10 @@
     "email": {
       "type": "string"
     },
-    "treatment": {
-      "type": "string"
+    "requested_treatment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::treatment.treatment"
     },
     "message": {
       "type": "text"

@@ -23,8 +23,10 @@
     "emailAddress": {
       "type": "email"
     },
-    "workingHour": {
-      "type": "blocks"
+    "working_time_info": {
+      "type": "component",
+      "component": "sections.working-time-info",
+      "repeatable": true
     }
   },
   "config": {}

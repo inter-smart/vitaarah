@@ -22,11 +22,6 @@
     },
     "instagram_username": {
       "type": "string"
-    },
-    "gallery_videos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::treatment-video.treatment-video"
     }
   },
   "config": {}

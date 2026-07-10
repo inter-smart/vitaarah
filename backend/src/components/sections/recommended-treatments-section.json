@@ -10,11 +10,6 @@
     },
     "short_description": {
       "type": "text"
-    },
-    "treatments": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::treatment.treatment"
     }
   },
   "config": {}

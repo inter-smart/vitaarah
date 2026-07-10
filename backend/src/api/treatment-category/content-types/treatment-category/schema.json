@@ -28,10 +28,11 @@
     "short_description": {
       "type": "text"
     },
-    "treatments": {
+    "related_treatments": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::treatment.treatment"
+      "target": "api::treatment.treatment",
+      "mappedBy": "related_treatment_category"
     }
   }
 }

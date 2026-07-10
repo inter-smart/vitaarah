@@ -13,13 +13,19 @@
         "images"
       ]
     },
+    "title": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "conditions_treated_title": {
+      "type": "string"
+    },
     "treatment": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::treatment.treatment"
-    },
-    "conditions_treated_title": {
-      "type": "string"
     }
   },
   "config": {}

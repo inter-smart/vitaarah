@@ -10,11 +10,6 @@
     },
     "short_description": {
       "type": "text"
-    },
-    "root_causes": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::root-cause.root-cause"
     }
   },
   "config": {}

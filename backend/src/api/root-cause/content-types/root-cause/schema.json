@@ -32,6 +32,12 @@
       "type": "component",
       "component": "common.service-specifications",
       "repeatable": true
+    },
+    "related_conditions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::condition.condition",
+      "mappedBy": "related_root_causes"
     }
   }
 }

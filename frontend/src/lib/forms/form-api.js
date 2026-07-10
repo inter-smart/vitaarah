@@ -4,15 +4,46 @@
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
+// Define allowed fields based on actual Strapi schemas
+const SCHEMAS = {
+  "/api/appointment-forms": ["name", "email", "phone", "treatment", "date", "time", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
+  "/api/contact-enquiries": ["name", "email", "phone", "subject", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
+  "/api/program-enquiries": ["name", "email", "phone", "country", "preferred_date", "program", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
+  "/api/consultations": ["name", "phone", "email", "treatment", "message", "page_url", "page_title", "slug", "page_type", "user_agent"],
+  "/api/newsletter-subscriptions": ["email", "page_url", "user_agent"]
+};
+
+/**
+ * Cleans the payload to ensure it exactly matches the Strapi schema
+ * @param {string} endpoint 
+ * @param {Object} data 
+ * @returns {Object} cleaned data
+ */
+function cleanPayload(endpoint, data) {
+  const allowedFields = SCHEMAS[endpoint];
+  if (!allowedFields) return data; // Fallback if endpoint not in list
+
+  const cleaned = {};
+  for (const key of Object.keys(data)) {
+    if (allowedFields.includes(key) && data[key] !== undefined && data[key] !== null && data[key] !== "") {
+      cleaned[key] = data[key];
+    }
+  }
+  return cleaned;
+}
+
 /**
  * Generic fetch wrapper for submitting Strapi forms
  * @param {string} endpoint - The API endpoint path (e.g., "/api/appointments")
- * @param {Object} data - The raw form data to submit
+ * @param {Object} rawData - The raw form data to submit
  * @returns {Promise<Object>} The JSON response from the server
  */
-export async function postForm(endpoint, data) {
+export async function postForm(endpoint, rawData) {
+  // Clean payload to match schema exactly
+  const cleanData = cleanPayload(endpoint, rawData);
+  
   // Wrap data as required by Strapi
-  const payload = { data };
+  const payload = { data: cleanData };
 
   try {
     // Add a reasonable timeout using AbortController
@@ -32,6 +63,8 @@ export async function postForm(endpoint, data) {
       body: JSON.stringify(payload),
       signal: controller.signal,
     });
+    
+    clearTimeout(timeoutId);
 
     const responseText = await response.text();
     let result = null;
@@ -43,14 +76,18 @@ export async function postForm(endpoint, data) {
     }
 
     if (!response.ok) {
+      console.error(`=== Form submission failed (${response.status}) ===`);
+      console.error("REQUEST PAYLOAD:", JSON.stringify(payload, null, 2));
+      console.error("RESPONSE BODY:", typeof result === "object" ? JSON.stringify(result, null, 2) : result);
+      
       const errorText = typeof result === "string" 
         ? result 
         : (result?.error?.message || JSON.stringify(result, null, 2));
 
-      console.error(`Form submission failed (${response.status}):`, errorText);
       throw new Error(errorText || "Request failed");
     }
 
+    console.log("=== FORM SUBMISSION SUCCESS ===");
     return result;
   } catch (error) {
     if (error.name === "AbortError") {
@@ -69,7 +106,7 @@ export async function postForm(endpoint, data) {
  * @param {import('../../types/forms').AppointmentFormData} data
  */
 export async function submitAppointment(data) {
-  return postForm("/api/appointments", data);
+  return postForm("/api/appointment-forms", data);
 }
 
 /**
@@ -93,7 +130,7 @@ export async function submitQuote(data) {
  * @param {import('../../types/forms').ConsultationFormData} data
  */
 export async function submitConsultation(data) {
-  return postForm("/api/consultations", data); // Endpoint guessed from common pattern, update if needed. Wait, let me check the prompt. The prompt didn't specify endpoint for consultation. I'll use /api/consultation-enquiries just in case, but let's stick to /api/consultations for now.
+  return postForm("/api/consultations", data);
 }
 
 /**

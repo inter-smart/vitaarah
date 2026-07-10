@@ -505,7 +505,6 @@ export interface ApiAppointmentFormAppointmentForm
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    date: Schema.Attribute.String;
     email: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -513,7 +512,6 @@ export interface ApiAppointmentFormAppointmentForm
       'api::appointment-form.appointment-form'
     > &
       Schema.Attribute.Private;
-    message: Schema.Attribute.Text;
     name: Schema.Attribute.String;
     page_title: Schema.Attribute.String & Schema.Attribute.Private;
     page_type: Schema.Attribute.String & Schema.Attribute.Private;
@@ -521,8 +519,6 @@ export interface ApiAppointmentFormAppointmentForm
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String & Schema.Attribute.Private;
-    time: Schema.Attribute.String;
-    treatment: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -691,6 +687,14 @@ export interface ApiConditionCondition extends Struct.CollectionTypeSchema {
       'sections.recommended-treatments-section',
       false
     >;
+    related_root_causes: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::root-cause.root-cause'
+    >;
+    related_treatments: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::treatment.treatment'
+    >;
     root_cause_section: Schema.Attribute.Component<
       'sections.root-cause-section',
       false
@@ -736,8 +740,11 @@ export interface ApiConsultationConsultation
     page_url: Schema.Attribute.String & Schema.Attribute.Private;
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    requested_treatment: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::treatment.treatment'
+    >;
     slug: Schema.Attribute.String & Schema.Attribute.Private;
-    treatment: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -775,7 +782,6 @@ export interface ApiContactEnquiryContactEnquiry
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String & Schema.Attribute.Private;
-    subject: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -847,39 +853,6 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     shortDescription: Schema.Attribute.Text;
     socialLinks: Schema.Attribute.Component<'navigation.button', true>;
     uaeAddress: Schema.Attribute.Text;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiGalleryImageGalleryImage
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'gallery_images';
-  info: {
-    displayName: 'Gallery Image';
-    pluralName: 'gallery-images';
-    singularName: 'gallery-image';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::gallery-image.gallery-image'
-    > &
-      Schema.Attribute.Private;
-    media: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1035,37 +1008,6 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiNewsletterSubscriptionNewsletterSubscription
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'newsletter_subscriptions';
-  info: {
-    displayName: 'Form Newsletter Subscription';
-    pluralName: 'newsletter-subscriptions';
-    singularName: 'newsletter-subscription';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.Email;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::newsletter-subscription.newsletter-subscription'
-    > &
-      Schema.Attribute.Private;
-    page_url: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    user_agent: Schema.Attribute.String;
-  };
-}
-
 export interface ApiPackagePagePackagePage extends Struct.SingleTypeSchema {
   collectionName: 'package_pages';
   info: {
@@ -1173,46 +1115,6 @@ export interface ApiPrivacyPagePrivacyPage extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiProgramEnquiryProgramEnquiry
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'program_enquiries';
-  info: {
-    displayName: 'From Request Quote';
-    pluralName: 'program-enquiries';
-    singularName: 'program-enquiry';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    country: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::program-enquiry.program-enquiry'
-    > &
-      Schema.Attribute.Private;
-    message: Schema.Attribute.Text;
-    name: Schema.Attribute.String;
-    page_title: Schema.Attribute.String & Schema.Attribute.Private;
-    page_type: Schema.Attribute.String;
-    page_url: Schema.Attribute.String & Schema.Attribute.Private;
-    phone: Schema.Attribute.String;
-    preferred_date: Schema.Attribute.Date;
-    program: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.String & Schema.Attribute.Private;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    user_agent: Schema.Attribute.String;
-  };
-}
-
 export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
   collectionName: 'programs';
   info: {
@@ -1296,6 +1198,10 @@ export interface ApiRootCauseRootCause extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    related_conditions: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::condition.condition'
+    >;
     service_specification: Schema.Attribute.Component<
       'common.service-specifications',
       true
@@ -1472,13 +1378,13 @@ export interface ApiTreatmentCategoryTreatmentCategory
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    short_description: Schema.Attribute.Text;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
-    treatments: Schema.Attribute.Relation<
+    related_treatments: Schema.Attribute.Relation<
       'oneToMany',
       'api::treatment.treatment'
     >;
+    short_description: Schema.Attribute.Text;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1522,41 +1428,6 @@ export interface ApiTreatmentPageTreatmentPage extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiTreatmentVideoTreatmentVideo
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'treatment_videos';
-  info: {
-    displayName: 'Gallery Video';
-    pluralName: 'treatment-videos';
-    singularName: 'treatment-video';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    instagram_post_url: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::treatment-video.treatment-video'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    title: Schema.Attribute.String;
-    treatment_video: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    > &
-      Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiTreatmentTreatment extends Struct.CollectionTypeSchema {
   collectionName: 'treatments';
   info: {
@@ -1569,10 +1440,6 @@ export interface ApiTreatmentTreatment extends Struct.CollectionTypeSchema {
   };
   attributes: {
     best_time_info: Schema.Attribute.Text;
-    conditions_treated: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::condition.condition'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1591,7 +1458,15 @@ export interface ApiTreatmentTreatment extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    related_treatments: Schema.Attribute.Component<
+    related_conditions: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::condition.condition'
+    >;
+    related_treatment_category: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::treatment-category.treatment-category'
+    >;
+    related_treatments_section: Schema.Attribute.Component<
       'sections.related-treatments',
       false
     >;
@@ -2144,16 +2019,13 @@ declare module '@strapi/strapi' {
       'api::contact-enquiry.contact-enquiry': ApiContactEnquiryContactEnquiry;
       'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::footer.footer': ApiFooterFooter;
-      'api::gallery-image.gallery-image': ApiGalleryImageGalleryImage;
       'api::gallery-page.gallery-page': ApiGalleryPageGalleryPage;
       'api::header.header': ApiHeaderHeader;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::member.member': ApiMemberMember;
-      'api::newsletter-subscription.newsletter-subscription': ApiNewsletterSubscriptionNewsletterSubscription;
       'api::package-page.package-page': ApiPackagePagePackagePage;
       'api::package.package': ApiPackagePackage;
       'api::privacy-page.privacy-page': ApiPrivacyPagePrivacyPage;
-      'api::program-enquiry.program-enquiry': ApiProgramEnquiryProgramEnquiry;
       'api::program.program': ApiProgramProgram;
       'api::root-cause.root-cause': ApiRootCauseRootCause;
       'api::site-setting.site-setting': ApiSiteSettingSiteSetting;
@@ -2162,7 +2034,6 @@ declare module '@strapi/strapi' {
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'api::treatment-category.treatment-category': ApiTreatmentCategoryTreatmentCategory;
       'api::treatment-page.treatment-page': ApiTreatmentPageTreatmentPage;
-      'api::treatment-video.treatment-video': ApiTreatmentVideoTreatmentVideo;
       'api::treatment.treatment': ApiTreatmentTreatment;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

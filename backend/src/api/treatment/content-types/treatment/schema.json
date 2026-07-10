@@ -68,7 +68,7 @@
       "component": "sections.faq-section",
       "repeatable": false
     },
-    "related_treatments": {
+    "related_treatments_section": {
       "type": "component",
       "component": "sections.related-treatments",
       "repeatable": false
@@ -78,10 +78,17 @@
       "component": "sections.treatment-cta-section",
       "repeatable": false
     },
-    "conditions_treated": {
+    "related_conditions": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::condition.condition"
+      "relation": "manyToMany",
+      "target": "api::condition.condition",
+      "mappedBy": "related_treatments"
+    },
+    "related_treatment_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::treatment-category.treatment-category",
+      "inversedBy": "related_treatments"
     }
   }
 }

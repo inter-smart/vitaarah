@@ -20,9 +20,6 @@
     "phone": {
       "type": "string"
     },
-    "subject": {
-      "type": "string"
-    },
     "message": {
       "type": "text"
     },

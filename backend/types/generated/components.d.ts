@@ -144,6 +144,8 @@ export interface CommonSpecialitiesItem extends Struct.ComponentSchema {
   attributes: {
     conditions_treated_title: Schema.Attribute.String;
     icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    short_description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
     treatment: Schema.Attribute.Relation<
       'oneToOne',
       'api::treatment.treatment'
@@ -292,7 +294,10 @@ export interface SectionsContactSection extends Struct.ComponentSchema {
     shortDescription: Schema.Attribute.Text;
     title: Schema.Attribute.String;
     uaeAddress: Schema.Attribute.Text;
-    workingHour: Schema.Attribute.Blocks;
+    working_time_info: Schema.Attribute.Component<
+      'sections.working-time-info',
+      true
+    >;
   };
 }
 
@@ -338,10 +343,6 @@ export interface SectionsGalleryListSection extends Struct.ComponentSchema {
     displayName: 'Gallery List Section';
   };
   attributes: {
-    gallery_images: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::gallery-image.gallery-image'
-    >;
     gallery_media: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -545,10 +546,6 @@ export interface SectionsRecommendedTreatmentsSection
   attributes: {
     short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
-    treatments: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::treatment.treatment'
-    >;
   };
 }
 
@@ -606,10 +603,6 @@ export interface SectionsRootCauseSection extends Struct.ComponentSchema {
     displayName: 'Root Cause Section';
   };
   attributes: {
-    root_causes: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::root-cause.root-cause'
-    >;
     short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
@@ -741,10 +734,6 @@ export interface SectionsTreatmentSection extends Struct.ComponentSchema {
     displayName: 'Treatment Section';
   };
   attributes: {
-    gallery_videos: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::treatment-video.treatment-video'
-    >;
     instagram_url: Schema.Attribute.String;
     instagram_username: Schema.Attribute.String;
     short_description: Schema.Attribute.Text;
@@ -801,6 +790,17 @@ export interface SectionsWhoIsThisForSection extends Struct.ComponentSchema {
   attributes: {
     description: Schema.Attribute.Blocks;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsWorkingTimeInfo extends Struct.ComponentSchema {
+  collectionName: 'components_sections_working_time_infos';
+  info: {
+    displayName: 'Working Time Info';
+  };
+  attributes: {
+    days: Schema.Attribute.String;
+    timings: Schema.Attribute.String;
   };
 }
 
@@ -867,6 +867,7 @@ declare module '@strapi/strapi' {
       'sections.treatments-included-section': SectionsTreatmentsIncludedSection;
       'sections.what-is-section': SectionsWhatIsSection;
       'sections.who-is-this-for-section': SectionsWhoIsThisForSection;
+      'sections.working-time-info': SectionsWorkingTimeInfo;
     }
   }
 }
