@@ -63,6 +63,11 @@
     },
     "facebook_pixel_id": {
       "type": "string"
+    },
+    "social_links": {
+      "type": "component",
+      "component": "navigation.button",
+      "repeatable": true
     }
   }
 }

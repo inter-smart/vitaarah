@@ -84,6 +84,9 @@ export default async function RootLayout({ children }) {
       }
     : {};
 
+    console.log("footerProps", footerProps);
+    
+
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <body className={cn("flex min-h-screen flex-col antialiased")}>

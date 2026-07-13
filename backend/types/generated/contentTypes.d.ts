@@ -1247,6 +1247,7 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     seo: Schema.Attribute.Component<'common.seo', false>;
     site_name: Schema.Attribute.String;
     site_url: Schema.Attribute.String;
+    social_links: Schema.Attribute.Component<'navigation.button', true>;
     social_share_image: Schema.Attribute.Media<'images'>;
     support_email: Schema.Attribute.Email;
     support_phone: Schema.Attribute.String;
