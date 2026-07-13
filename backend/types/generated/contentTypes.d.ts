@@ -1249,7 +1249,7 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     site_url: Schema.Attribute.String;
     social_share_image: Schema.Attribute.Media<'images'>;
     support_email: Schema.Attribute.Email;
-    support_phone: Schema.Attribute.Integer;
+    support_phone: Schema.Attribute.String;
     support_whatsapp_number: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

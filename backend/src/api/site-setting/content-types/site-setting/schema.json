@@ -46,11 +46,11 @@
       "component": "common.seo",
       "repeatable": false
     },
+    "support_phone": {
+      "type": "string"
+    },
     "support_email": {
       "type": "email"
-    },
-    "support_phone": {
-      "type": "integer"
     },
     "support_whatsapp_number": {
       "type": "string"
