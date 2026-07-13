@@ -1,40 +1,44 @@
 import Image from "next/image";
 import ConsultationForm from "../form/consultation-form";
 
-export default function FloatingActionButtons() {
+export default function FloatingActionButtons({ supportPhone, supportWhatsapp }) {
   return (
     <div className="fixed right-[2%] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[5.6px] 2xl:gap-[6.3px] 3xl:gap-[7.7px]">
       {/* Call Button */}
-      <a
-        href="tel:+971559068096"
-        className="size-[28px] xl:size-[32px] 2xl:size-[36px] 3xl:size-[44px] aspect-square bg-[#a14962] hover:-translate-x-0.5 transition-all duration-300 shadow-md"
-        aria-label="Call us"
-      >
-        <Image
-          src="/images/float-1.svg"
-          alt="Call icon"
-          width={24}
-          height={24}
-          className="w-full h-full object-contain block"
-        />
-      </a>
+      {supportPhone && (
+        <a
+          href={`tel:${supportPhone}`}
+          className="size-[28px] xl:size-[32px] 2xl:size-[36px] 3xl:size-[44px] aspect-square bg-[#a14962] hover:-translate-x-0.5 transition-all duration-300 shadow-md"
+          aria-label="Call us"
+        >
+          <Image
+            src="/images/float-1.svg"
+            alt="Call icon"
+            width={24}
+            height={24}
+            className="w-full h-full object-contain block"
+          />
+        </a>
+      )}
 
       {/* WhatsApp Button */}
-      <a
-        href="https://wa.me/971559068096"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="size-[28px] xl:size-[32px] 2xl:size-[36px] 3xl:size-[44px] aspect-square bg-[#a14962] hover:-translate-x-0.5 transition-all duration-300 shadow-md"
-        aria-label="Chat on WhatsApp"
-      >
-        <Image
-          src="/images/float-2.svg"
-          alt="WhatsApp icon"
-          width={24}
-          height={24}
-          className="w-full h-full object-contain block"
-        />
-      </a>
+      {supportWhatsapp && (
+        <a
+          href={`https://wa.me/${supportWhatsapp}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="size-[28px] xl:size-[32px] 2xl:size-[36px] 3xl:size-[44px] aspect-square bg-[#a14962] hover:-translate-x-0.5 transition-all duration-300 shadow-md"
+          aria-label="Chat on WhatsApp"
+        >
+          <Image
+            src="/images/float-2.svg"
+            alt="WhatsApp icon"
+            width={24}
+            height={24}
+            className="w-full h-full object-contain block"
+          />
+        </a>
+      )}
 
       <ConsultationForm>
         <div

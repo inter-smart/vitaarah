@@ -57,7 +57,7 @@ export default function ContactInfo({ data }) {
                     </div>
                   </div>
                   <div className="text_3 text-[#875849] hover:text-[#623628] w-full">
-                    {parse(data?.uaeAddress)}
+                    <div className="xl:w-[73%]">{parse(data?.uaeAddress)}</div>
                   </div>
                 </div>
               )}
@@ -86,14 +86,22 @@ export default function ContactInfo({ data }) {
                 )}
               </div>
 
-              {data?.workingHour && (
+              {data?.working_time_info && (
                 <div className="w-full bg-[#fff9eb] p-[15px_20px] xl:p-[23px_25px] 2xl:p-[25px_28px] 3xl:p-[30px_34px] mt-[30px] sm:mt-[38px] xl:mt-[49px] 2xl:mt-[54px] 3xl:mt-[65px]">
                   <div className="text_5 leading-none text-[#a14962] mb-[15px] xl:mb-[18px] 2xl:mb-[21px] 3xl:mb-[25px]">
                     Working Hours
                   </div>
-                  <div className="[&_p]:flex [&_p]:justify-between [&_p]:my-[11px] 2xl:[&_p]:my-[13px] 3xl:[&_p]:my-[15px] [&_p]:text_3 [&_p]:text-[#875846]">
-                    <BlocksRenderer content={data.workingHour} />
-                  </div>
+                  {data.working_time_info?.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex justify-between my-[11px] 2xl:my-[13px] 3xl:my-[15px] "
+                    >
+                      <div className="text_3 text-[#875846]">{item.days}</div>
+                      <div className="text_3 text-[#875846]">
+                        {item.timings}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

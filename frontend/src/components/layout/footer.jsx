@@ -1,37 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import AppointmentForm from "../form/appointment-form";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 const headStyle =
   "text-[13px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica text-[#a14962] mb-[10px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[30px] 3xl:mb-[30px]";
-
-const defaultSocialLinks = [
-  {
-    label: "Facebook",
-    url: "https://www.facebook.com/",
-    icon: "/images/social-fb.png",
-  },
-  {
-    label: "youtube",
-    url: "https://twitter.com/",
-    icon: "/images/icon-youtube.png",
-  },
-  {
-    label: "Instagram",
-    url: "https://www.instagram.com/",
-    icon: "/images/icon-insta.png",
-  },
-  {
-    label: "LinkedIn",
-    url: "https://www.linkedin.com/",
-    icon: "/images/icon-linked.png",
-  },
-  {
-    label: "Twitter",
-    url: "https://www.x.com/",
-    icon: "/images/icon-x.png",
-  },
-];
 
 export default function Footer({
   data,
@@ -44,7 +17,7 @@ export default function Footer({
   googleMapsUrl,
   shortDescription,
   copyrightText,
-  socialLinks = defaultSocialLinks,
+  socialLinks = [],
 }) {
   return (
     <footer className="[--top-box:60px] sm:[--top-box:72px] xl:[--top-box:90px] 2xl:[--top-box:102px] 3xl:[--top-box:124px] w-full block bg-[#faf7ed] sm:pt-[60px] xl:pt-[73px] 2xl:pt-[80px] 3xl:pt-[100px] sm:mt-[calc(var(--top-box)/2)] relative z-0">
@@ -59,8 +32,10 @@ export default function Footer({
             <div className="flex flex-col gap-[10px] lg:gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
               {quickLinks.map((link) => (
                 <Link
-                  key={link.label}
+                  key={link.url}
                   href={link.url}
+                  target={link.is_external ? "_blank" : undefined}
+                  rel={link.is_external ? "noopener noreferrer" : undefined}
                   className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
                 >
                   {link.label}
@@ -71,30 +46,25 @@ export default function Footer({
           <div className="w-[48%] sm:w-[30%] lg:w-[13%]">
             <div className={headStyle}>Follow Us</div>
             <div className="flex flex-col gap-[10px] lg:gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
-              {defaultSocialLinks.map((defaultLink) => {
-                const apiLink = socialLinks.find(
-                  (l) =>
-                    l.label?.toLowerCase() === defaultLink.label.toLowerCase(),
-                );
-                const link = apiLink || defaultLink;
-                return (
-                  <Link
-                    key={link.url}
-                    href={link.url}
-                    target="_blank"
-                    className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2"
-                  >
+              {socialLinks.map((link) => (
+                <Link
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2"
+                >
+                  {link.icon && (
                     <Image
-                      src={link.icon}
+                      src={getStrapiMediaUrl(link.icon.url)}
                       alt={link.label || "social"}
                       width={48}
                       height={48}
                       className="w-[10px] sm:w-[12px] xl:w-[16px] 2xl:w-[18px] 3xl:w-[22px] aspect-square object-contain block"
                     />
-                    <span>{link.label}</span>
-                  </Link>
-                );
-              })}
+                  )}
+                  <span>{link.label}</span>
+                </Link>
+              ))}
             </div>
           </div>
           <div className="w-[48%] sm:w-[30%] lg:w-[16%] xl:w-[18%]">
@@ -111,6 +81,8 @@ export default function Footer({
                   <Link
                     key={link.url}
                     href={link.url}
+                    target={link.is_external ? "_blank" : undefined}
+                    rel={link.is_external ? "noopener noreferrer" : undefined}
                     className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
                   >
                     {link.label}

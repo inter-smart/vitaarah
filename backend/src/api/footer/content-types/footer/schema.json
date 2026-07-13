@@ -11,7 +11,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "logo": {
+    "footer_logo": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -21,38 +21,33 @@
         "audios"
       ]
     },
-    "shortDescription": {
+    "short_description": {
       "type": "text"
     },
-    "quickLinks": {
+    "quick_links": {
       "type": "component",
       "component": "navigation.navigation",
       "repeatable": true
     },
-    "legalLinks": {
+    "legal_links": {
       "type": "component",
       "component": "navigation.navigation",
       "repeatable": true
     },
-    "emailAddress": {
+    "email_address": {
       "type": "email"
     },
-    "uaeAddress": {
+    "uae_address": {
       "type": "text"
     },
-    "copyrightText": {
+    "copyright_text": {
       "type": "string"
     },
-    "phoneNumber": {
+    "phone_number": {
       "type": "string"
     },
-    "googleMapsUrl": {
+    "google_maps_url": {
       "type": "string"
-    },
-    "socialLinks": {
-      "type": "component",
-      "component": "navigation.button",
-      "repeatable": true
     }
   }
 }

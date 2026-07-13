@@ -118,17 +118,6 @@ export const getConditionQuery = () => buildQuery({
   },
 });
 
-export const getContactPageQuery = () => buildQuery({
-  seo: { populate: { og_image: true } },
-  hero: {
-    populate: {
-      hero_media: true,
-      primary_button: true,
-    },
-  },
-  contactSection: true,
-});
-
 export const getGalleryPageQuery = () => buildQuery({
   seo: {
     populate: {

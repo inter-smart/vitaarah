@@ -833,26 +833,27 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    copyrightText: Schema.Attribute.String;
+    copyright_text: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    emailAddress: Schema.Attribute.Email;
-    googleMapsUrl: Schema.Attribute.String;
-    legalLinks: Schema.Attribute.Component<'navigation.navigation', true>;
+    email_address: Schema.Attribute.Email;
+    footer_logo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    google_maps_url: Schema.Attribute.String;
+    legal_links: Schema.Attribute.Component<'navigation.navigation', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::footer.footer'
     > &
       Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    phoneNumber: Schema.Attribute.String;
+    phone_number: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    quickLinks: Schema.Attribute.Component<'navigation.navigation', true>;
-    shortDescription: Schema.Attribute.Text;
-    socialLinks: Schema.Attribute.Component<'navigation.button', true>;
-    uaeAddress: Schema.Attribute.Text;
+    quick_links: Schema.Attribute.Component<'navigation.navigation', true>;
+    short_description: Schema.Attribute.Text;
+    uae_address: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -910,15 +911,16 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    ctaButton: Schema.Attribute.Component<'navigation.button', false>;
-    favicon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    cta_button: Schema.Attribute.Component<'navigation.button', false>;
+    header_logo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::header.header'
     > &
       Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     navigation: Schema.Attribute.Component<'navigation.navigation', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -1229,15 +1231,26 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    favicon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    facebook_pixel_id: Schema.Attribute.String;
+    favicon: Schema.Attribute.Media<'images'>;
+    google_analytics: Schema.Attribute.Text;
+    google_analytics_id: Schema.Attribute.String;
+    google_tag_manager_id: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::site-setting.site-setting'
     > &
       Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    logo: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'common.seo', false>;
+    site_name: Schema.Attribute.String;
+    site_url: Schema.Attribute.String;
+    social_share_image: Schema.Attribute.Media<'images'>;
+    support_email: Schema.Attribute.Email;
+    support_phone: Schema.Attribute.Integer;
+    support_whatsapp_number: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

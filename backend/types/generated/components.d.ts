@@ -114,6 +114,7 @@ export interface CommonSeo extends Struct.ComponentSchema {
   };
   attributes: {
     canonical_url: Schema.Attribute.String;
+    keywords: Schema.Attribute.Text;
     meta_description: Schema.Attribute.Text;
     meta_title: Schema.Attribute.String;
     og_image: Schema.Attribute.Media<'images'>;
