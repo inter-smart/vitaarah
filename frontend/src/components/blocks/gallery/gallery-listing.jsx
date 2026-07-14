@@ -44,7 +44,7 @@ export default function GalleryListing({ images }) {
               <div
                 key={"galleryList" + idx}
                 className={cn(
-                  "w-1/3 min-w-0 select-none p-1 sm:p-[12px_14px] xl:p-[15px_18px] 2xl:p-[16px_20px] 3xl:p-[20px_24.5px]",
+                  "w-1/4 min-w-0 select-none p-1 sm:p-[12px_14px] xl:p-[15px_18px] 2xl:p-[16px_20px] 3xl:p-[20px_24.5px]",
                   idx % 6 === 0 && "w-[43%]",
                   idx % 6 === 1 && "w-[33%]",
                   idx % 6 === 2 && "w-[24%]",

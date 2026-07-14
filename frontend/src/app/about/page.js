@@ -1,7 +1,5 @@
-import { getAboutPageQuery } from "@/lib/queries";
-import { fetchAPI, buildQuery } from "@/lib/strapi";
 import { notFound } from "next/navigation";
-import { buildMetadata } from "@/lib/seo";
+import { getAboutPage, getAboutMetadata } from "@/lib/api/about";
 import AboutIntelligence from "@/components/blocks/about/about-intelligence";
 import AboutGuidence from "@/components/blocks/about/about-guidence";
 import AboutClinic from "@/components/blocks/about/about-clinic";
@@ -12,17 +10,11 @@ import HomeAbout from "@/components/blocks/home/home-about";
 import InnerHero from "@/components/common/InnerHero";
 
 export async function generateMetadata() {
-  const res = await fetchAPI(`/api/about-page?${getAboutPageQuery()}`);
-  const data = res?.data;
-  return buildMetadata(data?.seo, {
-    title: data?.hero?.title,
-    description: data?.hero?.description,
-  });
+  return getAboutMetadata();
 }
 
 export default async function AboutPage() {
-  const res = await fetchAPI(`/api/about-page?${getAboutPageQuery()}`);
-  const data = res?.data;
+  const data = await getAboutPage();
 
   if (!data) {
     notFound();

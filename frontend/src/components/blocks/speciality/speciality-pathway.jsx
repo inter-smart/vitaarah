@@ -6,27 +6,21 @@ import { getStrapiMediaUrl } from "@/lib/strapi";
 export default function SpecialityPathway({ data }) {
   const { specialities_listing_section, cta_specialities_section } = data;
   return (
-    <section className="relative py-[30px_45px] lg:py-[30px_60px] xl:py-[45px_80px] 2xl:py-[55px_120px] 3xl:py-[70px_150px]">
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <div className="absolute left-[50px] bottom-[-65px] xl:bottom-[-105px] 2xl:bottom-[-120px] 3xl:bottom-[-145px] ">
-          <Image
-            src="/images/circle.svg"
-            alt="decorative circle"
-            className="w-full max-w-[87px]"
-            width="85"
-            height="85"
-          />
-        </div>
-        <div className="absolute right-[50px] top-[150px]  w-full max-w-[170px] xl:max-w-[210px] 2xl:max-w-[240px] 3xl:max-w-[290px] ">
-          <Image
-            src="/images/circle.svg"
-            alt="decorative circle"
-            className="w-full object-cover"
-            width="85"
-            height="85"
-          />
-        </div>
-      </div>
+    <section className="w-full block relative py-[30px_45px] lg:py-[30px_60px] xl:py-[45px_80px] 2xl:py-[55px_120px] 3xl:py-[70px_150px]">
+      <Image
+        src="/images/home-about-elmt-1.svg"
+        alt="home about element 1"
+        width={300}
+        height={300}
+        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[310px] translate-x-1/3 absolute -z-1 top-[10%] right-0"
+      />
+      <Image
+        src="/images/home-about-elmt-2.svg"
+        alt="home about element 2"
+        width={60}
+        height={60}
+        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[30%] left-[1%]"
+      />
       <div className="container">
         <div className="w-full text-center m-auto lg:max-w-[450px] xl:max-w-[550px] 2xl:max-w-[630px] 3xl:max-w-[790px] mb-[40px] xl:mb-[50px] 2xl:mb-[55px] 3xl:mb-[72px]">
           <div className="heading_1 mb-[0px] ">
@@ -36,11 +30,11 @@ export default function SpecialityPathway({ data }) {
             {specialities_listing_section?.short_description}
           </div>
         </div>
-        <div className="w-full flex flex-wrap border-t border-r border-[#C3C3C3] mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]">
+        <div className="w-full flex flex-wrap justify-center mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]">
           {specialities_listing_section?.specialities_item?.map((item, idx) => (
             <div
               key={"specialities_item" + idx}
-              className="w-full sm:w-1/2 md:w-1/3 border-b border-l border-[#C3C3C3]"
+              className="w-full sm:w-1/2 md:w-1/3 border border-[#C3C3C3]"
             >
               <Link
                 href={`/speciality/${item?.treatment?.slug}`}
@@ -50,9 +44,12 @@ export default function SpecialityPathway({ data }) {
                   <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[85px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] bg-white rounded-full border border-[#A7546C] overflow-hidden p-[10px] xl:p-[12px] 2xl:p-[15px] 3xl:p-[20px] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                     <Image
                       src={getStrapiMediaUrl(item.icon.url)}
-                      alt={(item.icon.alternativeText ||
+                      alt={
+                        item.icon.alternativeText ||
                         item.treatment?.title ||
-                        "Speciality icon") || "Image"}
+                        "Speciality icon" ||
+                        "Image"
+                      }
                       width={25}
                       height={25}
                       className="w-full h-full object-contain"
@@ -67,23 +64,25 @@ export default function SpecialityPathway({ data }) {
                     {item.treatment.short_description}
                   </p>
                 )}
-                <div className="w-full">
-                  <div className="text_3 font-helvetica-light text-black mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
-                    {item?.conditions_treated_title}
+                {item?.treatment?.conditions_treated?.length > 0 && (
+                  <div className="w-full">
+                    <div className="text_3 font-helvetica-light text-black mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+                      {item?.conditions_treated_title}
+                    </div>
+                    <div className="flex flex-wrap gap-[5px] md:gap-[10px] 2xl:gap-[13px]">
+                      {item?.treatment?.conditions_treated?.map(
+                        (condition, id) => (
+                          <div
+                            key={id}
+                            className="text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[16px] bg-[rgba(230,198,160,0.2)] font-helvetica-light flex items-center justify-center rounded-[30px] p-[10px] xl:p-[11px] 2xl:px-[12px] 3xl:px-[15px] h-[30px] xl:h-[35px] 2xl:h-[40px] 3xl:h-[45px]"
+                          >
+                            {condition?.title}
+                          </div>
+                        ),
+                      )}
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-[5px] md:gap-[10px] 2xl:gap-[13px]">
-                    {item?.treatment?.conditions_treated?.map(
-                      (condition, id) => (
-                        <div
-                          key={id}
-                          className="text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[16px] bg-[rgba(230,198,160,0.2)] font-helvetica-light flex items-center justify-center rounded-[30px] p-[10px] xl:p-[11px] 2xl:px-[12px] 3xl:px-[15px] h-[30px] xl:h-[35px] 2xl:h-[40px] 3xl:h-[45px]"
-                        >
-                          {condition?.title}
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </div>
+                )}
               </Link>
             </div>
           ))}
@@ -98,16 +97,9 @@ export default function SpecialityPathway({ data }) {
               {cta_specialities_section?.botton_label && (
                 <Link
                   href="/contact"
-                  className="group relative overflow-hidden  bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3]
-                                text-white font-medium inline-flex items-center justify-center 
-                               px-[8px] min-w-[120px] xl:min-w-[150px] 2xl:min-w-[170px] 3xl:min-w-[205px] h-[32px] 2xl:h-[37px]
-                                3xl:h-[45px]   transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03] 
-                                hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)]"
+                  className="group relative overflow-hidden  bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3] text-white font-medium inline-flex items-center justify-center px-[8px] min-w-[120px] xl:min-w-[150px] 2xl:min-w-[170px] 3xl:min-w-[205px] h-[32px] 2xl:h-[37px] 3xl:h-[45px] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]  hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)]"
                 >
-                  <span
-                    className="absolute inset-0 -translate-x-full bg-gradient-to-r  from-transparent  via-white/30 to-transparent
-                                        skew-x-12  transition-transform  duration-700   group-hover:translate-x-[250%] "
-                  />
+                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r  from-transparent  via-white/30 to-transparent skew-x-12  transition-transform  duration-700   group-hover:translate-x-[250%] " />
                   <span className="text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] relative z-10">
                     {cta_specialities_section.botton_label}
                   </span>

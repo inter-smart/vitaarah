@@ -9,7 +9,6 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import Link from "next/link";
 import { getStrapiMediaUrl } from "@/lib/strapi";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function TreatmentComplementary({ data }) {
   const fadeUp = {
@@ -78,6 +77,7 @@ export default function TreatmentComplementary({ data }) {
             loop={true}
             slidesPerView={1.5}
             spaceBetween={15}
+            centerInsufficientSlides={true}
             breakpoints={{
               578: {
                 slidesPerView: 2.5,

@@ -21,7 +21,7 @@ export default function ConditionRootCause({ data, rootCauses }) {
           autoplay={{ delay: 0, disableOnInteraction: false }}
           speed={4000}
           loop={true}
-          centeredSlides={true}
+          centerInsufficientSlides={true}
           slidesPerView={1.3}
           spaceBetween={25}
           breakpoints={{

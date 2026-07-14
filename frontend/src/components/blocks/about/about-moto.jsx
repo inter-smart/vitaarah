@@ -1,6 +1,4 @@
 "use client";
-// import Image from "next/image";
-import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -9,8 +7,10 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 
 export default function AboutMoto({ data }) {
+  console.log(data);
+  
   return (
-    <section className="relative pb-[30px] lg:pb-[50px] xl:pb-[70px] 2xl:pb-[100px] 3xl:pb-[120px]">
+    <section className="w-full block relative pb-[30px] lg:pb-[50px] xl:pb-[70px] 2xl:pb-[100px] 3xl:pb-[120px]">
       <div className="container">
         <Swiper
           modules={[Autoplay]}
@@ -48,7 +48,9 @@ export default function AboutMoto({ data }) {
           className="relative z-20 overflow-hidden"
         >
           {(() => {
-            const list = Array.isArray(data) ? data : (data?.company_motto || data?.companyMoto || []);
+            const list = Array.isArray(data)
+              ? data
+              : data?.company_motto || data?.companyMoto || [];
             return list.map((item, index) => (
               <SwiperSlide
                 key={"AboutMoto" + index}
@@ -60,7 +62,11 @@ export default function AboutMoto({ data }) {
                       {item?.title}
                     </div>
                     <div className="text_3 font-helvetica-light">
-                      {typeof item.description === 'string' ? <p>{item.description}</p> : <BlocksRenderer content={item.description} />}
+                      {typeof item.description === "string" ? (
+                        <p>{item.description}</p>
+                      ) : (
+                        <BlocksRenderer content={item.description} />
+                      )}
                     </div>
                   </div>
                 </div>

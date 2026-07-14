@@ -34,7 +34,7 @@ export default function LegalContent({ data }) {
         )}
         {description && (
           // <div className="prose prose-sm sm:prose lg:prose-xl xl:prose-2xl 2xl:prose-3xl max-w-none text-[#875849]">
-          <div className="prose prose-sm sm:prose lg:prose-xl xl:prose-2xl 2xl:prose-3xl max-w-none text-[#875849]">
+          <div dir="ltr" className="typography max-w-none text-[#875849]">
             {Array.isArray(description) ? (
               <BlocksRenderer content={description} />
             ) : (

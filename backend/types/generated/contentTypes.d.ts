@@ -921,6 +921,7 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
       'api::header.header'
     > &
       Schema.Attribute.Private;
+    mega_menu_image: Schema.Attribute.Media<'images'>;
     navigation: Schema.Attribute.Component<'navigation.navigation', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;

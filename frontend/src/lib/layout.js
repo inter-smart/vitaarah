@@ -1,23 +1,24 @@
 import { fetchAPI, buildQuery } from "@/lib/strapi";
+import { seoPopulate } from "@/lib/queries";
 
 const headerQuery = buildQuery({
-  logo: true,
+  header_logo: true,
   navigation: true,
-  ctaButton: { populate: { icon: true } },
+  cta_button: { populate: { icon: true } },
 });
 
 const footerQuery = buildQuery({
-  logo: true,
-  quickLinks: true,
-  legalLinks: true,
-  socialLinks: { populate: { icon: true } },
+  footer_logo: true,
+  quick_links: true,
+  legal_links: true,
 });
 
 const siteSettingQuery = buildQuery({
   logo: true,
   favicon: true,
   social_share_image: true,
-  seo: { populate: { og_image: true } },
+  seo: seoPopulate,
+  social_links: { populate: { icon: true } },
 });
 
 export async function getLayoutData() {

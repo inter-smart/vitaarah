@@ -18,6 +18,7 @@ export default function InnerHero({ data }) {
               loop
               playsInline
               className="absolute inset-0 h-full w-full object-cover"
+              poster="/images/placeholder.jpg"
             >
               <source
                 src={getStrapiMediaUrl(data?.hero_media?.url)}
@@ -30,7 +31,7 @@ export default function InnerHero({ data }) {
                 getStrapiMediaUrl(data?.hero_media?.url) ||
                 "/images/placeholder.jpg"
               }
-              alt={(data?.hero_media?.alternativeText || data?.title) || "Image"}
+              alt={data?.hero_media?.alternativeText || data?.title || "Image"}
               fill
               sizes="100vw"
               priority

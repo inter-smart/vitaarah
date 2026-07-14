@@ -69,8 +69,8 @@ export default async function TreatmentDetails({ params }) {
         />
       )}
       {treatment.faq_section && <TreatmentFaq data={treatment.faq_section} />}
-      {treatment.related_treatments && (
-        <TreatmentComplementary data={treatment.related_treatments} />
+      {treatment.related_treatments_section && (
+        <TreatmentComplementary data={treatment.related_treatments_section} />
       )}
       {treatment.cta_treatment_section && (
         <TreatmentRythym data={treatment.cta_treatment_section} />

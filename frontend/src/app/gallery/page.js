@@ -18,11 +18,15 @@ export default async function GalleryPage() {
   return (
     <>
       {pageData?.hero && <Herosection data={pageData.hero} />}
-      {pageData?.gallery_section?.gallery_media?.length > 0 && (
-        <GalleryListing images={pageData.gallery_section.gallery_media} />
+      {pageData?.galleryListSection?.gallery_media?.length > 0 && (
+        <GalleryListing images={pageData.galleryListSection.gallery_media} />
       )}
-      {pageData?.instagram_section && (
-        <GalleryTreatmentVideos data={pageData.instagram_section} />
+
+      {pageData?.treatment_video && (
+        <GalleryTreatmentVideos data={{
+          ...pageData.treatment_video,
+          gallery_video: pageData.treatment_video.gallery_videos
+        }} />
       )}
     </>
   );

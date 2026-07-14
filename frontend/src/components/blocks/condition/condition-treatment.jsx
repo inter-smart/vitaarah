@@ -20,7 +20,7 @@ export default function ConditionTreatment({ data, treatments }) {
           autoplay={{ delay: 0, disableOnInteraction: false }}
           speed={4000}
           loop={true}
-          centeredSlides={true}
+          centerInsufficientSlides={true}
           slidesPerView={1.3}
           spaceBetween={0}
           breakpoints={{

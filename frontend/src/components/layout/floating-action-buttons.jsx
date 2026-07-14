@@ -1,7 +1,10 @@
 import Image from "next/image";
 import ConsultationForm from "../form/consultation-form";
 
-export default function FloatingActionButtons({ supportPhone, supportWhatsapp }) {
+export default function FloatingActionButtons({
+  supportPhone,
+  supportWhatsapp,
+}) {
   return (
     <div className="fixed right-[2%] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[5.6px] 2xl:gap-[6.3px] 3xl:gap-[7.7px]">
       {/* Call Button */}

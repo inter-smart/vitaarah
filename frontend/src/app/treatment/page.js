@@ -1,4 +1,7 @@
-import { getTreatmentPageQuery, getTreatmentCategoriesQuery } from "@/lib/queries";
+import {
+  getTreatmentPageQuery,
+  getTreatmentCategoriesQuery,
+} from "@/lib/queries";
 import { fetchAPI, buildQuery } from "@/lib/strapi";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
@@ -11,7 +14,8 @@ export async function generateMetadata() {
   const data = res?.data;
   return buildMetadata(data?.seo, {
     title: data?.hero?.title || "Treatments",
-    description: data?.hero?.description || "Discover our dedicated treatment pathways.",
+    description:
+      data?.hero?.description || "Discover our dedicated treatment pathways.",
     image: data?.hero?.hero_media?.url,
   });
 }
@@ -23,7 +27,10 @@ export default async function TreatmentPage() {
   ]);
 
   const pageData = pageRes?.data;
-  const treatmentCategoriesData = categoriesRes?.data ?? [];
+  const treatmentCategoriesData = (categoriesRes?.data ?? []).map((cat) => ({
+    ...cat,
+    treatments: cat.related_treatments,
+  }));
 
   if (!pageData) {
     notFound();
@@ -42,7 +49,9 @@ export default async function TreatmentPage() {
     <>
       {hero && <InnerHero data={hero} />}
       {listingData && <TreatmentPathway data={listingData} />}
-      {treatment_cta_section && <TreatmentRitual data={treatment_cta_section} />}
+      {treatment_cta_section && (
+        <TreatmentRitual data={treatment_cta_section} />
+      )}
     </>
   );
 }

@@ -30,6 +30,13 @@
       "type": "component",
       "component": "navigation.button",
       "repeatable": false
+    },
+    "mega_menu_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

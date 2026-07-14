@@ -31,10 +31,10 @@ export default function SpecialityDetail({ data }) {
             <div className="w-full md:w-[calc(100%-380px)] lg:w-[calc(100%-520px)] xl:w-[calc(100%-640px)] 2xl:w-[calc(100%-725px)] 3xl:w-[calc(100%-920px)] flex items-center">
               <div className="w-full md:pl-[10px]">
                 <div className="text-[19px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-[12px] xl:mb-[15px] 2xl:mb-[18px] 3xl:mb-[22px]">
-                  {data?.contentSection?.title}
+                  {data?.content_section?.title}
                 </div>
                 <ul className="space-y-[5px]">
-                  {data?.contentSection?.conditions.map((item, idx) => (
+                  {data?.content_section?.conditions.map((item, idx) => (
                     <li
                       key={idx}
                       className="text_3 font-helvetica-light relative flex items-center gap-[10px] before:content-[''] before:p-[2px] before:2xl:p-[3px] before:block before:w-[2px] before:h-[2px] before:bg-black before:rounded-full "
@@ -48,11 +48,11 @@ export default function SpecialityDetail({ data }) {
             <div className="w-full md:w-[380px] lg:w-[520px] xl:w-[640px] 2xl:w-[725px] 3xl:w-[920px]">
               <div className="w-full">
                 <Image
-                  src={data?.contentSection?.image?.url}
+                  src={data?.content_section?.image?.url}
                   className="w-full h-full object-cover"
                   width={1640}
                   height={460}
-                  alt={(data?.contentSection?.image?.alternativeText) || "Image"}
+                  alt={(data?.content_section?.image?.alternativeText) || "Image"}
                 />
               </div>
             </div>
@@ -60,11 +60,11 @@ export default function SpecialityDetail({ data }) {
         </div>
         <div className="flex flex-wrap justify-between items-center gap-[15px]">
           <div className="text_3 font-helvetica-light mb-0">
-            {data?.ctaSection?.footerText}
+            {data?.cta_section?.footerText}
           </div>
           <div className="flex items-center gap-[10px]">
             <Link
-              href={`/${data?.ctaSection?.button?.slug}`}
+              href={`/${data?.cta_section?.button?.slug}`}
               className="group relative overflow-hidden  bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3]
                                 text-white font-medium inline-flex items-center justify-center 
                                px-[8px] min-w-[120px] xl:min-w-[150px] 2xl:min-w-[170px] 3xl:min-w-[205px] h-[32px] 2xl:h-[37px]
@@ -76,15 +76,15 @@ export default function SpecialityDetail({ data }) {
                                         skew-x-12  transition-transform  duration-700   group-hover:translate-x-[250%] "
               />
               <span className="text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] relative z-10">
-                {data?.ctaSection?.button?.label}
+                {data?.cta_section?.button?.label}
               </span>
             </Link>
             <a
-              href={data?.ctaSection?.whatsapp?.Url}
+              href={data?.cta_section?.whatsapp?.Url}
               className="w-[32px] 2xl:w-[37px] 3xl:w-[45px] h-[32px] 2xl:h-[37px]
                                 3xl:h-[45px] flex items-center justify-center bg-[#00A85A] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03] 
                                 hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)]"
-              aria_label={data?.ctaSection?.whatsapp?.label}
+              aria_label={data?.cta_section?.whatsapp?.label}
             >
               <div className="xl:p-[5px] 2xl:p-[8px] 3xl:p-[10px] flex">
                 <svg

@@ -9,8 +9,6 @@ const ElementStyle =
   "group w-[140px] sm:w-[180px] lg:w-[200px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[90px] lg:-mr-[100px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1";
 
 export default function HomeAbout({ data }) {
-  console.log("HomeAbout", data);
-
   return (
     <section
       id="About"
@@ -120,15 +118,22 @@ export default function HomeAbout({ data }) {
                 {data.title}
               </h2>
             )}
-            {data?.description && (
+            {data?.short_description ? (
               <div className="text_3 font-normal text-black mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
-                {Array.isArray(data.description) ? (
-                  <BlocksRenderer content={data.description} />
-                ) : (
-                  <p>{data.description}</p>
-                )}
+                <p>{data.short_description}</p>
               </div>
+            ) : (
+              data?.description && (
+                <div className="text_3 font-normal text-black mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
+                  {Array.isArray(data.description) ? (
+                    <BlocksRenderer content={data.description} />
+                  ) : (
+                    <p>{data.description}</p>
+                  )}
+                </div>
+              )
             )}
+            {}
             {data?.button && (
               <Button asChild>
                 <Link href={data?.button?.url}>{data?.button?.label}</Link>

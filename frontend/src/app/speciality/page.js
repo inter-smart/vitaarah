@@ -30,7 +30,19 @@ export default async function SpecialityPage() {
       {hero && <InnerHero data={hero} />}
       {specialities_listing_section && (
         <SpecialityPathway
-          data={{ specialities_listing_section, cta_specialities_section }}
+          data={{
+            specialities_listing_section: {
+              ...specialities_listing_section,
+              specialities_item: specialities_listing_section.specialities_item?.map(item => ({
+                ...item,
+                treatment: item.treatment ? {
+                  ...item.treatment,
+                  conditions_treated: item.treatment.related_conditions
+                } : null
+              }))
+            },
+            cta_specialities_section,
+          }}
         />
       )}
     </>

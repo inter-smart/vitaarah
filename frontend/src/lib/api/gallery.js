@@ -1,33 +1,28 @@
 import { fetchAPI, buildQuery, getStrapiMediaUrl } from "@/lib/strapi";
+import { seoPopulate } from "@/lib/queries";
 
 export const galleryPageQuery = buildQuery({
-  populate: {
-    seo: {
-      populate: {
-        og_image: true,
-      },
-    },
-    hero: {
-      populate: {
-        hero_media: true,
-        primary_button: {
-          populate: {
-            icon: true,
-          },
+  seo: seoPopulate,
+  hero: {
+    populate: {
+      hero_media: true,
+      primary_button: {
+        populate: {
+          icon: true,
         },
       },
     },
-    gallery_section: {
-      populate: {
-        gallery_media: true,
-      },
+  },
+  galleryListSection: {
+    populate: {
+      gallery_media: true,
     },
-    instagram_section: {
-      populate: {
-        gallery_video: {
-          populate: {
-            video: true,
-          },
+  },
+  treatment_video: {
+    populate: {
+      gallery_videos: {
+        populate: {
+          video: true,
         },
       },
     },

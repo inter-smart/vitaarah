@@ -1,4 +1,4 @@
-import { getPackagePageQuery, getPackageQuery } from "@/lib/queries";
+import { getPackagePageQuery, getPackageQuery, getProgramsListQuery } from "@/lib/queries";
 import { fetchAPI, buildQuery } from "@/lib/strapi";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
@@ -18,14 +18,31 @@ export async function generateMetadata() {
 }
 
 export default async function PackagesPage() {
-  const [pageRes, packagesRes, availableDurationsRes] = await Promise.all([
+  const [pageRes, packagesRes, availableDurationsRes, programsRes] = await Promise.all([
     fetchAPI(`/api/package-page?${getPackagePageQuery()}`),
     fetchAPI(`/api/packages?${getPackageQuery()}`),
     fetchAPI(`/api/available-durations`),
+    fetchAPI(`/api/programs?${getProgramsListQuery()}`),
   ]);
 
   const pageData = pageRes?.data;
-  const packagesData = packagesRes?.data ?? [];
+  const programsData = programsRes?.data || [];
+  
+  const packagesData = (packagesRes?.data ?? []).map((pkg) => {
+    // Find all programs that reference this package in their related_package field
+    const pkgPrograms = programsData.filter(
+      (prog) =>
+        prog?.related_package?.documentId === pkg?.documentId ||
+        prog?.related_package?.id === pkg?.id
+    );
+
+    return {
+      ...pkg,
+      programs: pkgPrograms,
+      related_programs: pkgPrograms,
+    };
+  });
+
   const availableDurationsData = [...(availableDurationsRes?.data || [])].sort(
     (a, b) => {
       const getDays = (label) => Number(label?.match(/\d+/)?.[0] || 0);

@@ -14,7 +14,7 @@ export default function AboutGuidence({ data }) {
       <div className="container">
         <div className="max-w-[522px] xl:max-w-[644px] 2xl:max-w-[730px] 3xl:max-w-[887px] text-center m-auto mb-[25px] lg:mb-[35px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
           <div className="heading_1 mb-[20px]">{data?.title}</div>
-          <div className="text_3 font-helvetica-light">{data.description}</div>
+          <div className="text_3 font-helvetica-light">{data.short_description}</div>
         </div>
 
         <div className="w-full h-full relative  ">

@@ -9,7 +9,14 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 
-export default function Header({ logo, navigation = [], ctaButton }) {
+export default function Header({
+  header_logo,
+  navigation = [],
+  cta_button,
+  support_phone,
+  support_email,
+  social_links = [],
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -38,14 +45,14 @@ export default function Header({ logo, navigation = [], ctaButton }) {
     <header className="w-full flex flex-col items-center relative z-50 bg-white">
       <div className="container">
         <div className="h-(--header-y-sm) xl:h-(--header-y-xl) 2xl:h-(--header-y-2xl) 3xl:h-(--header-y-3xl) flex flex-wrap items-center justify-between">
-          {logo ? (
+          {header_logo ? (
             <Link
               href="/"
               className="w-[120px] xl:w-[136px] 2xl:w-[170px] 3xl:w-[246px] flex items-center gap-2"
             >
               <Image
-                src={getStrapiMediaUrl(logo.url)}
-                alt={logo.alternativeText || "Vitaarah"}
+                src={getStrapiMediaUrl(header_logo.url)}
+                alt={header_logo.alternativeText || "Vitaarah"}
                 width={170}
                 height={44}
                 className="w-full h-full"
@@ -55,20 +62,20 @@ export default function Header({ logo, navigation = [], ctaButton }) {
             <div className="w-[120px] xl:w-[136px] 2xl:w-[170px] 3xl:w-[246px]" />
           )}
           <div className="flex items-center gap-[48px] 2xl:gap-[54px] 3xl:gap-[65px]">
-            {ctaButton && (
+            {cta_button?.url && (
               <Button
                 as="a"
                 variant="none"
                 size="none"
-                href={ctaButton.url}
-                target={ctaButton.is_external ? "_blank" : undefined}
-                rel={ctaButton.is_external ? "noopener noreferrer" : undefined}
+                href={cta_button.url}
+                target={cta_button.is_external ? "_blank" : undefined}
+                rel={cta_button.is_external ? "noopener noreferrer" : undefined}
                 className="max-sm:hidden text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none font-helvetica font-normal text-center text-[#1c1c1c] bg-white border-white flex items-center gap-2 hover:opacity-85 transition-opacity"
               >
-                {ctaButton.icon && (
+                {cta_button.icon && (
                   <span className="w-[11px] 2xl:w-[12px] 3xl:w-[14px]">
                     <Image
-                      src={getStrapiMediaUrl(ctaButton.icon.url)}
+                      src={getStrapiMediaUrl(cta_button.icon.url)}
                       alt="icon"
                       width={15}
                       height={15}
@@ -76,7 +83,7 @@ export default function Header({ logo, navigation = [], ctaButton }) {
                     />
                   </span>
                 )}
-                <span>{ctaButton.label}</span>
+                <span>{cta_button.label}</span>
               </Button>
             )}
 
@@ -132,8 +139,10 @@ export default function Header({ logo, navigation = [], ctaButton }) {
               >
                 <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[454/408] group max-lg:hidden">
                   <Image
-                    src="/images/mega-menu-spa.jpg"
-                    alt="Spa treatment"
+                    src={getStrapiMediaUrl(data?.mega_menu_image?.url)}
+                    alt={data?.mega_menu_image?.alternativeText || "Vitaarah"}
+                    // src="/images/mega-menu-spa.jpg"
+                    // alt="Spa treatment"
                     fill
                     sizes="576px"
                     className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
@@ -142,29 +151,87 @@ export default function Header({ logo, navigation = [], ctaButton }) {
 
                 <div className="flex flex-col justify-between h-full gap-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 lg:gap-x-[71px] xl:gap-x-[91px] 2xl:gap-x-[100px] 3xl:gap-x-[121px]">
-                    {navigation.map((link) => {
-                      const isActive = pathname === link.url;
-                      return (
-                        <Link
-                          key={link.url}
-                          href={link.url}
-                          target={link.is_external ? "_blank" : undefined}
-                          rel={
-                            link.is_external ? "noopener noreferrer" : undefined
-                          }
-                          onClick={() => !link.is_external && setIsOpen(false)}
-                          className={cn(
-                            "text-[14px] lg:text-[17px] xl:text-[21.3px] 2xl:text-[23.3px] 3xl:text-[28.9px] leading-tight font-helvetica py-3 lg:py-4 xl:py-[19px] 2xl:py-[21px] 3xl:py-[26px] transition-colors duration-200",
-                            "border-b border-black/10",
-                            isActive
-                              ? "text-[#a14962]"
-                              : "text-[#202020] hover:text-[#a14962]",
-                          )}
-                        >
-                          {link.label}
-                        </Link>
-                      );
-                    })}
+                    {navigation
+                      .filter((link) => link?.url)
+                      .map((link, idx) => {
+                        const isActive = pathname === link.url;
+                        return (
+                          <Link
+                            key={`${idx}-${link.url}`}
+                            href={link.url}
+                            target={link.is_external ? "_blank" : undefined}
+                            rel={
+                              link.is_external
+                                ? "noopener noreferrer"
+                                : undefined
+                            }
+                            onClick={() =>
+                              !link.is_external && setIsOpen(false)
+                            }
+                            className={cn(
+                              "text-[14px] lg:text-[17px] xl:text-[21.3px] 2xl:text-[23.3px] 3xl:text-[28.9px] leading-tight font-helvetica py-3 lg:py-4 xl:py-[19px] 2xl:py-[21px] 3xl:py-[26px] transition-colors duration-200",
+                              "border-b border-black/10",
+                              isActive
+                                ? "text-[#a14962]"
+                                : "text-[#202020] hover:text-[#a14962]",
+                            )}
+                          >
+                            {link.label}
+                          </Link>
+                        );
+                      })}
+                  </div>
+
+                  <div className="w-full bg-[#fff9eb] p-3 lg:p-[22px_10px] xl:p-[26px_13px] 2xl:p-[31px_15px] 3xl:p-[38px_18px] flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border border-[#f3ebda]">
+                    <div className="flex flex-col sm:flex-row gap-[15px] sm:gap-[20px] xl:gap-[25px] 2xl:gap-[28px] 3xl:gap-[34px]">
+                      {/* {support_phone from site settings and support_email from site settings */}
+                      {support_phone && (
+                        <ConnectCard
+                          url="/images/footer-address-icon.svg"
+                          alternativeText="footer-address-icon"
+                          label="Mobile"
+                          linkUrl={`tel:${support_phone}`}
+                          content={support_phone}
+                        />
+                      )}
+                      {support_email && (
+                        <ConnectCard
+                          url="/images/footer-mail-icon.svg"
+                          alternativeText="footer-mail-icon"
+                          label="Mail"
+                          linkUrl={`mailto:${support_email}`}
+                          content={support_email}
+                        />
+                      )}
+                    </div>
+                    {/* social_links && social_links.length > 0 &&  from site settings */}
+                    <div className="flex items-center gap-[15px] xl:gap-[20px] 2xl:gap-[25px] 3xl:gap-[30px]">
+                      <div className="text_3 leading-none font-helvetica-light text-black">
+                        Follow Us
+                      </div>
+                      <div className="flex items-center gap-[15px] xl:gap-[20px] 2xl:gap-[25px] 3xl:gap-[33px]">
+                        {social_links.map((link, idx) => (
+                          <Link
+                            key={idx + link.url}
+                            href={link.url}
+                            target="_blank"
+                            aria-label={link.label}
+                            className="flex gap-2"
+                          >
+                            <Image
+                              src={
+                                getStrapiMediaUrl(link.icon) ||
+                                "/images/placeholder.jpg"
+                              }
+                              alt={link.label || "social"}
+                              width={48}
+                              height={48}
+                              className="w-[10px] sm:w-[12px] xl:w-[13px] 2xl:w-[14px] 3xl:w-[16px] aspect-square object-contain block"
+                            />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -173,5 +240,32 @@ export default function Header({ logo, navigation = [], ctaButton }) {
         )}
       </AnimatePresence>
     </header>
+  );
+}
+
+function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
+  return (
+    <div className="flex gap-2.5 xl:gap-[12px] 2xl:gap-[13px] 3xl:gap-[15px]">
+      <div className="w-[20px] sm:w-[30px] xl:w-[35px] 2xl:w-[40px] 3xl:w-[48px]">
+        <Image
+          src={url}
+          alt={alternativeText || "Image"}
+          width={48}
+          height={48}
+          className="w-full h-full block"
+        />
+      </div>
+      <div>
+        <div className="text_3 leading-none font-helvetica-light text-[#875849] xl:mb-0.5 2xl:mb-1">
+          {label}
+        </div>
+        <Link
+          href={linkUrl}
+          className="text_3 leading-none text-[#875849] hover:text-[#623628]"
+        >
+          {content}
+        </Link>
+      </div>
+    </div>
   );
 }

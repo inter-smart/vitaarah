@@ -11,9 +11,12 @@ export default function AboutClinic({ data }) {
             <div className="w-full h-full overflow-hidden relative">
               <Image
                 src={getStrapiMediaUrl(data?.featured_image?.url)}
-                alt={(data?.featured_image?.alternativeText ||
+                alt={
+                  data?.featured_image?.alternativeText ||
                   data?.title ||
-                  "clinic") || "Image"}
+                  "clinic" ||
+                  "Image"
+                }
                 className="w-full h-full object-cover"
                 width="830"
                 height="630"
@@ -25,19 +28,19 @@ export default function AboutClinic({ data }) {
               <div className="heading_1 mb-[10px] sm:mb-[20px] !leading-[1.1]">
                 {data?.title}
               </div>
-              {data?.description && (
+              {/* {data?.description && (
                 <div className="text_3 font-normal text-black xl:max-w-[90%] [&_ul>li]:pl-[20px] xl:[&_ul>li]:pl-[30px] [&_ul>li]:relative [&_ul>li]:before:absolute [&_ul>li]:before:top-1/2 [&_ul>li]:before:left-0 [&_ul>li]:before:-translate-y-1/2 [&_ul>li]:before:size-[10px] xl:[&_ul>li]:before:size-[12px] [&_ul>li]:before:bg-[url('/images/includedTreatments-icon.svg')] [&_ul>li]:before:bg-no-repeat [&_ul>li]:before:bg-contain [&_ul>li]:before:bg-center *:not-last-of-type:mb-[10px]">
                   <BlocksRenderer content={data?.description} />
                 </div>
-              )}
-              {/* <div className="text_3 font-helvetica-light">
+              )} */}
+              <div className="text_3 font-helvetica-light text-black mb-[15px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[35px]">
                 <BlocksRenderer
                   content={data?.description?.filter(
                     (item) => item.type === "paragraph",
                   )}
                 />
               </div>
-              <ul className="mt-[20px]  ">
+              <ul className="">
                 {data?.description
                   ?.find((item) => item.type === "list")
                   ?.children?.map((item, id) => (
@@ -48,7 +51,7 @@ export default function AboutClinic({ data }) {
                       {item.children?.[0]?.text}
                     </li>
                   ))}
-              </ul> */}
+              </ul>
             </div>
           </div>
         </div>

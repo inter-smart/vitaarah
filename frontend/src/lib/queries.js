@@ -1,11 +1,13 @@
 import { buildQuery } from "./strapi";
 
+export const seoPopulate = { populate: { og_image: true } };
+
 export const getAboutPageQuery = () => buildQuery({
-  seo: { populate: { og_image: true } },
+  seo: seoPopulate,
   hero: {
     populate: {
       hero_media: true,
-      primary_button: true,
+      primary_button: { populate: { icon: true } },
     },
   },
   about_section: {
@@ -19,9 +21,9 @@ export const getAboutPageQuery = () => buildQuery({
       root_causes: {
         populate: {
           icon: true,
+          service_specification: true,
         },
       },
-      featuredImage: true,
     },
   },
   clinic_environment_section: {
@@ -38,10 +40,30 @@ export const getAboutPageQuery = () => buildQuery({
       },
     },
   },
+  members_section: {
+    populate: {
+      members: {
+        populate: {
+          thumbnail_image: true,
+          featured_image: true,
+        },
+      },
+    },
+  },
+  certifications_section: {
+    populate: {
+      statistic: true,
+      certification_card: {
+        populate: {
+          certification_media: true,
+        },
+      },
+    },
+  },
 });
 
 export const getBlogPageQuery = () => buildQuery({
-  Seo: { populate: { og_image: true } },
+  Seo: seoPopulate,
   innerHero: {
     populate: {
       hero_media: true,
@@ -62,11 +84,6 @@ export const getBlogDetailQuery = () => buildQuery({
 
 export const getActiveBlogQuery = () => buildQuery({
   featured_image: true,
-  seo: {
-    populate: {
-      og_image: true,
-    },
-  },
 });
 
 export const getConditionPageQuery = () => buildQuery({
@@ -77,11 +94,7 @@ export const getConditionPageQuery = () => buildQuery({
     },
   },
   expert_cta_section: true,
-  seo: {
-    populate: {
-      og_image: true,
-    },
-  },
+  seo: seoPopulate,
 });
 
 export const getConditionQuery = () => buildQuery({
@@ -119,11 +132,7 @@ export const getConditionQuery = () => buildQuery({
 });
 
 export const getGalleryPageQuery = () => buildQuery({
-  seo: {
-    populate: {
-      og_image: true,
-    },
-  },
+  seo: seoPopulate,
   hero: {
     populate: {
       hero_media: true,
@@ -135,7 +144,7 @@ export const getGalleryPageQuery = () => buildQuery({
 });
 
 export const getPackagePageQuery = () => buildQuery({
-  seo: { populate: { og_image: true } },
+  seo: seoPopulate,
   hero: {
     populate: {
       hero_media: true,
@@ -153,16 +162,15 @@ export const getPackagePageQuery = () => buildQuery({
 
 export const getPackageQuery = () => buildQuery({
   featured_image: true,
-  related_programs: {
-    populate: {
-      available_durations: true,
-      hero_media: true,
-    },
-  },
+});
+
+export const getProgramsListQuery = () => buildQuery({
+  related_package: true,
+  available_durations: true,
 });
 
 export const getHomePageQuery = () => buildQuery({
-  seo: { populate: { og_image: true } },
+  seo: seoPopulate,
   hero: {
     populate: {
       hero_media: true,
@@ -230,7 +238,7 @@ export const getHomePageQuery = () => buildQuery({
 });
 
 export const getPrivacyPageQuery = () => buildQuery({
-  seo: { populate: { og_image: true } },
+  seo: seoPopulate,
   privacySection: true,
 });
 
@@ -262,7 +270,11 @@ export const getSpecialitiesPageQuery = () => buildQuery({
   hero: {
     populate: {
       hero_media: true,
-      primary_button: true,
+      primary_button: {
+        populate: {
+          icon: true
+        }
+      }
     },
   },
   specialities_listing_section: {
@@ -272,7 +284,7 @@ export const getSpecialitiesPageQuery = () => buildQuery({
           icon: true,
           treatment: {
             populate: {
-              conditions_treated: true,
+              related_conditions: true,
             },
           },
         },
@@ -280,11 +292,7 @@ export const getSpecialitiesPageQuery = () => buildQuery({
     },
   },
   cta_specialities_section: true,
-  seo: {
-    populate: {
-      og_image: true,
-    },
-  },
+  seo: seoPopulate,
 });
 
 export const getSpecialityDetailQuery = () => buildQuery({
@@ -294,15 +302,15 @@ export const getSpecialityDetailQuery = () => buildQuery({
       primary_button: true,
     },
   },
-  detailSection: {
+  detail_section: {
     populate: {
-      contentSection: {
+      content_section: {
         populate: {
           conditions: true,
           image: true,
         },
       },
-      ctaSection: {
+      cta_section: {
         populate: {
           button: true,
           whatsapp: true,
@@ -310,15 +318,11 @@ export const getSpecialityDetailQuery = () => buildQuery({
       },
     },
   },
-  seo: {
-    populate: {
-      og_image: true,
-    },
-  },
+  seo: seoPopulate,
 });
 
 export const getTermsPageQuery = () => buildQuery({
-  seo: { populate: { og_image: true } },
+  seo: seoPopulate,
   termsSection: true,
 });
 
@@ -326,21 +330,21 @@ export const getTreatmentPageQuery = () => buildQuery({
   hero: {
     populate: {
       hero_media: true,
-      primary_button: true,
+      primary_button: {
+        populate: {
+          icon: true
+        }
+      }
     },
   },
   treatment_listing_section: true,
   treatment_cta_section: true,
-  seo: {
-    populate: {
-      og_image: true,
-    },
-  },
+  seo: seoPopulate,
 });
 
 export const getTreatmentCategoriesQuery = () => buildQuery({
   featured_image: true,
-  treatments: true,
+  related_treatments: true,
 });
 
 export const getTreatmentDetailQuery = () => buildQuery({
@@ -380,7 +384,7 @@ export const getTreatmentDetailQuery = () => buildQuery({
       faq_item: true,
     },
   },
-  related_treatments: {
+  related_treatments_section: {
     populate: {
       related_treatments: {
         populate: {
@@ -394,9 +398,5 @@ export const getTreatmentDetailQuery = () => buildQuery({
     },
   },
   cta_treatment_section: true,
-  seo: {
-    populate: {
-      og_image: true,
-    },
-  },
+  seo: seoPopulate,
 });

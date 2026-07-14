@@ -4,7 +4,8 @@ import Link from "next/link";
 import parse from "html-react-parser";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
-export default function ContactInfo({ data }) {
+export default function ContactInfo({ data, siteSettings }) {
+  console.log("ContactInfo data:", data?.working_time_info);
   return (
     <section
       id="ContactInfo"
@@ -26,14 +27,14 @@ export default function ContactInfo({ data }) {
       />
       <div className="container">
         <div className="w-full mx-auto xl:max-w-[992px] 2xl:max-w-[1087px] 3xl:!max-w-[1316px]">
-          {data.title && (
+          {data?.title && (
             <h2 className="heading_1 leading-tight text-center text-[#1f1f1f] mb-[4px] xl:mb-[6px] 2xl:mb-[10px]">
-              {data.title}
+              {data?.title}
             </h2>
           )}
-          {data.shortDescription && (
+          {data?.shortDescription && (
             <div className="text_3 text-center font-normal text-black mb-[51px] sm:mb-[51px] xl:mb-[66px] 2xl:mb-[73px] 3xl:mb-[87px] max-w-[320px] xl:max-w-[468px] 2xl:max-w-[651px] 3xl:max-w-[790px] mx-auto">
-              {data.shortDescription}
+              {data?.shortDescription}
             </div>
           )}
           <div className="flex flex-wrap gap-[30px] lg:gap-[95px] xl:gap-[122px] 2xl:gap-[135px] 3xl:gap-[162px]">
@@ -66,22 +67,22 @@ export default function ContactInfo({ data }) {
                 Connect with Us
               </div>
               <div className="flex flex-wrap justify-between gap-[30px] lg:gap-[33px] xl:gap-[42px] 2xl:gap-[46px] 3xl:gap-[56px]">
-                {data?.phoneNumber && (
+                {siteSettings?.support_phone && (
                   <ConnectCard
                     url="/images/footer-address-icon.svg"
                     alternativeText="footer-address-icon"
                     label="Mobile"
-                    linkUrl={`tel:${data?.phoneNumber}`}
-                    content={data?.phoneNumber}
+                    linkUrl={`tel:${siteSettings?.support_phone}`}
+                    content={siteSettings?.support_phone}
                   />
                 )}
-                {data?.emailAddress && (
+                {siteSettings?.support_email && (
                   <ConnectCard
                     url="/images/footer-mail-icon.svg"
                     alternativeText="footer-mail-icon"
                     label="Mail"
-                    linkUrl={`mailto:${data?.emailAddress}`}
-                    content={data?.emailAddress}
+                    linkUrl={`mailto:${siteSettings?.support_email}`}
+                    content={siteSettings?.support_email}
                   />
                 )}
               </div>
@@ -93,7 +94,7 @@ export default function ContactInfo({ data }) {
                   </div>
                   {data.working_time_info?.map((item, index) => (
                     <div
-                      key={index}
+                      key={index + item.days}
                       className="flex justify-between my-[11px] 2xl:my-[13px] 3xl:my-[15px] "
                     >
                       <div className="text_3 text-[#875846]">{item.days}</div>

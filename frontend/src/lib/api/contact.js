@@ -1,7 +1,8 @@
 import { fetchAPI, buildQuery, getStrapiMediaUrl } from "@/lib/strapi";
+import { seoPopulate } from "@/lib/queries";
 
 export const contactPageQuery = buildQuery({
-  seo: { populate: { og_image: true } },
+  seo: seoPopulate,
   hero: {
     populate: {
       hero_media: true,

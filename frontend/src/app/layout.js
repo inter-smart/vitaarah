@@ -58,42 +58,29 @@ export default async function RootLayout({ children }) {
   const headerProps = header
     ? {
         ...header,
-        logo: header.logo
+        header_logo: header.header_logo
           ? {
-              url: getStrapiMediaUrl(header.logo.url),
-              alternativeText: header.logo.alternativeText,
+              url: getStrapiMediaUrl(header.header_logo.url),
+              alternativeText: header.header_logo.alternativeText,
             }
           : null,
         navigation: header.navigation || [],
-        ctaButton: header.ctaButton || null,
+        cta_button: header.cta_button || null,
       }
     : {};
-
-  const footerProps = footer
-    ? {
-        ...footer,
-        logo: footer.logo
-          ? {
-              url: getStrapiMediaUrl(footer.logo.url),
-              alternativeText: footer.logo.alternativeText,
-            }
-          : null,
-        quickLinks: footer.quickLinks || [],
-        legalLinks: footer.legalLinks || [],
-        socialLinks: footer.socialLinks || [],
-      }
-    : {};
-
-    console.log("footerProps", footerProps);
-    
 
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <body className={cn("flex min-h-screen flex-col antialiased")}>
         <Providers>
-          <Header {...headerProps} />
+          <Header 
+            {...headerProps} 
+            support_phone={siteSetting?.support_phone}
+            support_email={siteSetting?.support_email}
+            social_links={siteSetting?.social_links}
+          />
           <main className="flex-1">{children}</main>
-          <Footer {...footerProps} data={footer} />
+          <Footer data={footer} siteSettings={siteSetting} />
           <FloatingActionButtons
             supportPhone={siteSetting?.support_phone}
             supportWhatsapp={siteSetting?.support_whatsapp_number}

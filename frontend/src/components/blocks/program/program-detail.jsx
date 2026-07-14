@@ -73,12 +73,15 @@ export default function ProgramDetail({ data, availableDurations }) {
             <div className="w-full aspect-[777/406] overflow-hidden">
               <Image
                 src={getStrapiMediaUrl(
-                  data?.introduction_section?.introduction_image,
+                  data?.introduction_section?.introduction_image?.url,
                 )}
-                alt={(data?.introduction_section?.introduction_image
+                alt={
+                  data?.introduction_section?.introduction_image
                     ?.alternativeText ||
                   data?.title ||
-                  "Program image") || "Image"}
+                  "Program image" ||
+                  "Image"
+                }
                 width={777}
                 height={406}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform"
@@ -87,7 +90,7 @@ export default function ProgramDetail({ data, availableDurations }) {
           </div>
           <div className="flex-auto sm:flex-1">
             {data?.introduction_section?.title && (
-              <div className="text-[14px] lg:text-[19.8px] xl:text-[24.5px] 2xl:text-[27.8px] 3xl:text-[33.7px] leading-normal font-normal font-helvetica text-center sm:text-start text-[#a14962] mb-[2px] xl:mb-[4px] 2xl:mb-[6px] 3xl:mb-[10px]">
+              <div className="text-[14px] lg:text-[19.8px] xl:text-[24.5px] 2xl:text-[27.8px] 3xl:text-[33.7px] leading-normal font-normal font-helvetica text-center sm:text-start text-[#a14962] mb-[5px] xl:mb-[8px] 2xl:mb-[10px] 3xl:mb-[15px]">
                 {data.introduction_section.title}
               </div>
             )}
