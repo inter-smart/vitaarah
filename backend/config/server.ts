@@ -8,6 +8,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Server =>
   },
   cron: { enabled: false },
   url: env('PUBLIC_URL', ''),
+  proxy: true,
 });
 
 export default config;
