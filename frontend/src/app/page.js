@@ -6,11 +6,11 @@ import Reveal from "@/components/ui/reveal";
 import HomeHero from "@/components/blocks/home/home-hero";
 import HomeAbout from "@/components/blocks/home/home-about";
 import HomeConditions from "@/components/blocks/home/home-conditions";
-import HomeTreatments from "@/components/blocks/home/home-packages";
 import HomePackages from "@/components/blocks/home/home-programs";
 import HomeTestimonials from "@/components/blocks/home/home-testimonials";
 import HomeBlogs from "@/components/blocks/home/home-blogs";
 import HomeMembers from "@/components/blocks/home/home-members";
+import HomeTreatments from "@/components/blocks/home/home-treatments";
 
 export async function generateMetadata() {
   const res = await fetchAPI(`/api/home-page?${getHomePageQuery()}`);
@@ -33,7 +33,7 @@ export default async function Home() {
     hero,
     home_about_section,
     home_conditions_section,
-    home_packages_section,
+    home_treatments_section,
     home_program_section,
     home_testimonials_section,
     home_blogs_section,
@@ -57,9 +57,9 @@ export default async function Home() {
           <HomeConditions data={home_conditions_section} />
         </Reveal>
       )}
-      {home_packages_section && (
+      {home_treatments_section && (
         <Reveal>
-          <HomeTreatments data={home_packages_section} />
+          <HomeTreatments data={home_treatments_section} />
         </Reveal>
       )}
       {home_program_section && (

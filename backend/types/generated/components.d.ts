@@ -393,13 +393,13 @@ export interface SectionsHero extends Struct.ComponentSchema {
 export interface SectionsHomePackageItem extends Struct.ComponentSchema {
   collectionName: 'components_sections_home_package_items';
   info: {
-    displayName: 'Home Package Item';
+    displayName: 'Home Treatment Item';
   };
   attributes: {
     background_video: Schema.Attribute.Media<'videos'>;
-    related_package: Schema.Attribute.Relation<
+    related_treatment_category: Schema.Attribute.Relation<
       'oneToOne',
-      'api::package.package'
+      'api::treatment-category.treatment-category'
     >;
     short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
@@ -759,10 +759,10 @@ export interface SectionsTreatmentSection extends Struct.ComponentSchema {
 export interface SectionsTreatments extends Struct.ComponentSchema {
   collectionName: 'components_sections_treatments';
   info: {
-    displayName: 'Home Packages';
+    displayName: 'Home Treatments';
   };
   attributes: {
-    home_package_item: Schema.Attribute.Component<
+    home_treatment_item: Schema.Attribute.Component<
       'sections.home-package-item',
       true
     >;

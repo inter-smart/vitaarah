@@ -37,7 +37,7 @@ export default function SpecialityPathway({ data }) {
               className="w-full sm:w-1/2 md:w-1/3 border border-[#C3C3C3]"
             >
               <Link
-                href={`/speciality/${item?.treatment?.slug}`}
+                href={`/treatment/${item?.treatment?.slug}`}
                 className=" relative z-1 w-full h-full block p-[20px] md:p-[20px_15px] xl:p-[30px_25px] 2xl:p-[40px_35px] 3xl:p-[50px_45px] bg-white transition-all hover:bg-[#FFF9EB]"
               >
                 {item?.icon?.url && (
@@ -71,9 +71,9 @@ export default function SpecialityPathway({ data }) {
                     </div>
                     <div className="flex flex-wrap gap-[5px] md:gap-[10px] 2xl:gap-[13px]">
                       {item?.treatment?.conditions_treated?.map(
-                        (condition, id) => (
+                        (condition, idx) => (
                           <div
-                            key={id}
+                            key={"condition" + idx}
                             className="text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[16px] bg-[rgba(230,198,160,0.2)] font-helvetica-light flex items-center justify-center rounded-[30px] p-[10px] xl:p-[11px] 2xl:px-[12px] 3xl:px-[15px] h-[30px] xl:h-[35px] 2xl:h-[40px] 3xl:h-[45px]"
                           >
                             {condition?.title}

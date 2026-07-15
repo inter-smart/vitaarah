@@ -4,6 +4,7 @@ import { seoPopulate } from "@/lib/queries";
 const headerQuery = buildQuery({
   header_logo: true,
   navigation: true,
+  mega_menu_image: true,
   cta_button: { populate: { icon: true } },
 });
 

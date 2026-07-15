@@ -1,7 +1,7 @@
 {
   "collectionName": "components_sections_treatments",
   "info": {
-    "displayName": "Home Packages"
+    "displayName": "Home Treatments"
   },
   "options": {},
   "attributes": {
@@ -11,7 +11,7 @@
     "short_description": {
       "type": "text"
     },
-    "home_package_item": {
+    "home_treatment_item": {
       "type": "component",
       "component": "sections.home-package-item",
       "repeatable": true

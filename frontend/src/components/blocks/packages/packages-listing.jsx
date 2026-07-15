@@ -55,7 +55,7 @@ export default function PackagesListing({ data }) {
                         unoptimized
                       />
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 flex flex-col">
                       {item?.title && (
                         <div className="heading_1 leading-tight text-[#1f1f1f] group-hover/packages:text-white mb-[1px] 3xl:mb-[2px] transition-colors duration-300">
                           {item?.title}
@@ -102,7 +102,7 @@ export default function PackagesListing({ data }) {
                       )}
 
                       {data?.durations?.length > 0 && (
-                        <div className="flex flex-wrap gap-[4px] sm:gap-[6px] xl:gap-[7.6px] 2xl:gap-[8.6px] 3xl:gap-[10.5px]">
+                        <div className="mt-auto mb-2 flex flex-wrap gap-[4px] sm:gap-[6px] xl:gap-[7.6px] 2xl:gap-[8.6px] 3xl:gap-[10.5px]">
                           {data?.durations?.map((availableDuration, dIdx) => (
                             <div
                               key={"availableDurations" + dIdx}

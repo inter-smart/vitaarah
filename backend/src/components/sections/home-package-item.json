@@ -1,18 +1,13 @@
 {
   "collectionName": "components_sections_home_package_items",
   "info": {
-    "displayName": "Home Package Item"
+    "displayName": "Home Treatment Item"
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
       "required": true
-    },
-    "related_package": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::package.package"
     },
     "short_description": {
       "type": "text"
@@ -23,6 +18,11 @@
       "allowedTypes": [
         "videos"
       ]
+    },
+    "related_treatment_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::treatment-category.treatment-category"
     }
   },
   "config": {}

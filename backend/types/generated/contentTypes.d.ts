@@ -952,16 +952,16 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
       false
     >;
     home_members_section: Schema.Attribute.Component<'sections.members', false>;
-    home_packages_section: Schema.Attribute.Component<
-      'sections.treatments',
-      false
-    >;
     home_program_section: Schema.Attribute.Component<
       'sections.packages',
       false
     >;
     home_testimonials_section: Schema.Attribute.Component<
       'sections.testimonials',
+      false
+    >;
+    home_treatments_section: Schema.Attribute.Component<
+      'sections.treatments',
       false
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

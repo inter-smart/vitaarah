@@ -31,7 +31,7 @@
       "component": "sections.specialities",
       "repeatable": false
     },
-    "home_packages_section": {
+    "home_treatments_section": {
       "type": "component",
       "component": "sections.treatments",
       "repeatable": false

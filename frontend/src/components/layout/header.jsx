@@ -12,6 +12,7 @@ import { getStrapiMediaUrl } from "@/lib/strapi";
 export default function Header({
   header_logo,
   navigation = [],
+  mega_menu_image,
   cta_button,
   support_phone,
   support_email,
@@ -40,6 +41,7 @@ export default function Header({
       document.body.style.overflow = "";
     }
   }, [isOpen]);
+  
 
   return (
     <header className="w-full flex flex-col items-center relative z-50 bg-white">
@@ -139,10 +141,8 @@ export default function Header({
               >
                 <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[454/408] group max-lg:hidden">
                   <Image
-                    src={getStrapiMediaUrl(data?.mega_menu_image?.url)}
-                    alt={data?.mega_menu_image?.alternativeText || "Vitaarah"}
-                    // src="/images/mega-menu-spa.jpg"
-                    // alt="Spa treatment"
+                    src={getStrapiMediaUrl(mega_menu_image?.url)}
+                    alt={mega_menu_image?.alternativeText || "Vitaarah"}
                     fill
                     sizes="576px"
                     className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"

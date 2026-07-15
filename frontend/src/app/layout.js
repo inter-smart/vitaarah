@@ -66,6 +66,12 @@ export default async function RootLayout({ children }) {
           : null,
         navigation: header.navigation || [],
         cta_button: header.cta_button || null,
+        mega_menu_image: header.mega_menu_image
+          ? {
+              url: getStrapiMediaUrl(header.mega_menu_image.url),
+              alternativeText: header.mega_menu_image.alternativeText,
+            }
+          : null,
       }
     : {};
 
@@ -73,8 +79,8 @@ export default async function RootLayout({ children }) {
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <body className={cn("flex min-h-screen flex-col antialiased")}>
         <Providers>
-          <Header 
-            {...headerProps} 
+          <Header
+            {...headerProps}
             support_phone={siteSetting?.support_phone}
             support_email={siteSetting?.support_email}
             social_links={siteSetting?.social_links}
