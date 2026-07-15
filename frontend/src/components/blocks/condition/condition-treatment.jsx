@@ -4,6 +4,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
+import Link from "next/link";
 
 export default function ConditionTreatment({ data, treatments }) {
   return (
@@ -43,11 +44,14 @@ export default function ConditionTreatment({ data, treatments }) {
         >
           {(treatments || []).map((item, index) => (
             <SwiperSlide
-              key={index}
-              className="!h-auto group  border border-[#C3C3C3] not-first-of-type:!border-l-0 "
+              key={"treatments" + index}
+              className="!h-auto group  border border-[#C3C3C3] not-first-of-type:!border-l-0"
             >
-              <div className="w-full h-full bg-wite p-[30px_15px] sm:p-[45px_25px] md:p-[50px_35px] lg:p-[60px_40px] xl:p-[70px_50px] 2xl:p-[75px_60px] 3xl:p-[75px_73px] text-center transition-all hover:bg-[#FFF9EB]">
-                <div className="text_3 text-[#5D5D5D] uppercase font-helvetica-light mb-[8px]">
+              <Link
+                href={`/treatments/${item?.slug}`}
+                className="w-full h-full block bg-wite p-[30px_15px] sm:p-[45px_25px] md:p-[50px_35px] lg:p-[60px_40px] xl:p-[70px_50px] 2xl:p-[75px_60px] 3xl:p-[75px_73px] text-center transition-all hover:bg-[#FFF9EB]"
+              >
+                <div className="text_3 uppercase font-helvetica-light text-[#5D5D5D] mb-[8px]">
                   {item?.duration_info}
                 </div>
                 <div className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-[8px] xl:mb-[10px] 2xl:mb-[15px]">
@@ -56,7 +60,7 @@ export default function ConditionTreatment({ data, treatments }) {
                 <div className="text_3 font-helvetica-light [&>p:not(:last-child)]:mb-[20px]">
                   <p>{item.short_description}</p>
                 </div>
-              </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

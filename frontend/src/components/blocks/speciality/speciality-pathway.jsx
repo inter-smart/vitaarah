@@ -2,11 +2,12 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { getStrapiMediaUrl } from "@/lib/strapi";
+import ConsultationForm from "@/components/form/consultation-form";
 
 export default function SpecialityPathway({ data }) {
   const { specialities_listing_section, cta_specialities_section } = data;
   return (
-    <section className="w-full block relative py-[30px_45px] lg:py-[30px_60px] xl:py-[45px_80px] 2xl:py-[55px_120px] 3xl:py-[70px_150px]">
+    <section className="w-full block overflow-hidden relative py-[30px_45px] lg:py-[30px_60px] xl:py-[45px_80px] 2xl:py-[55px_120px] 3xl:py-[70px_150px]">
       <Image
         src="/images/home-about-elmt-1.svg"
         alt="home about element 1"
@@ -37,7 +38,7 @@ export default function SpecialityPathway({ data }) {
               className="w-full sm:w-1/2 md:w-1/3 border border-[#C3C3C3]"
             >
               <Link
-                href={`/treatment/${item?.treatment?.slug}`}
+                href={`/treatments/${item?.treatment?.slug}`}
                 className=" relative z-1 w-full h-full block p-[20px] md:p-[20px_15px] xl:p-[30px_25px] 2xl:p-[40px_35px] 3xl:p-[50px_45px] bg-white transition-all hover:bg-[#FFF9EB]"
               >
                 {item?.icon?.url && (
@@ -95,22 +96,19 @@ export default function SpecialityPathway({ data }) {
             </div>
             <div className="flex items-center gap-[10px]">
               {cta_specialities_section?.botton_label && (
-                <Link
-                  href="/contact"
-                  className="group relative overflow-hidden  bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3] text-white font-medium inline-flex items-center justify-center px-[8px] min-w-[120px] xl:min-w-[150px] 2xl:min-w-[170px] 3xl:min-w-[205px] h-[32px] 2xl:h-[37px] 3xl:h-[45px] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]  hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)]"
-                >
-                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r  from-transparent  via-white/30 to-transparent skew-x-12  transition-transform  duration-700   group-hover:translate-x-[250%] " />
-                  <span className="text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] relative z-10">
-                    {cta_specialities_section.botton_label}
-                  </span>
-                </Link>
+                <ConsultationForm>
+                  <div className="group relative overflow-hidden  bg-gradient-to-r from-[#A14962] via-[#C16C84] to-[#E9CBA3] text-white font-medium inline-flex items-center justify-center px-[8px] min-w-[120px] xl:min-w-[150px] 2xl:min-w-[170px] 3xl:min-w-[205px] h-[32px] 2xl:h-[37px] 3xl:h-[45px] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]  hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)] cursor-default">
+                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r  from-transparent  via-white/30 to-transparent skew-x-12  transition-transform  duration-700   group-hover:translate-x-[250%] " />
+                    <span className="text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] relative z-10">
+                      {cta_specialities_section.botton_label}
+                    </span>
+                  </div>
+                </ConsultationForm>
               )}
               {cta_specialities_section?.whatsapp_number && (
                 <a
                   href={`https://wa.me/${cta_specialities_section.whatsapp_number}`}
-                  className="w-[32px] 2xl:w-[37px] 3xl:w-[45px] h-[32px] 2xl:h-[37px]
-                                3xl:h-[45px] flex items-center justify-center bg-[#00A85A] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03] 
-                                hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)]"
+                  className="w-[32px] 2xl:w-[37px] 3xl:w-[45px] h-[32px] 2xl:h-[37px] 3xl:h-[45px] flex items-center justify-center bg-[#00A85A] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]  hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)]"
                   aria-label="Contact via WhatsApp"
                 >
                   <div className="xl:p-[5px] 2xl:p-[8px] 3xl:p-[10px] flex">

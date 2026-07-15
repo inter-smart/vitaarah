@@ -140,8 +140,8 @@ export default function TreatmentPathway({ data }) {
                         treatment?.slug ? (
                           <Link
                             key={"treatment-" + treatmentIdx}
-                            href={`/treatment/${treatment.slug}`}
-                            className="text-[10px] xl:text-[12px] 2xl:text-[14px] ] font-helvetica-light text-black bg-[rgba(230,198,160,0.2)] flex items-center justify-center rounded-[30px] p-[8px_10px] xl:p-[8px_10px] 2xl:px-[8px_12px] 3xl:px-[10px_14px]"
+                            href={`/treatments/${treatment.slug}`}
+                            className="text-[10px] xl:text-[12px] 2xl:text-[14px] ] font-helvetica-light text-black bg-[rgba(230,198,160,0.2)] flex items-center justify-center rounded-[30px] p-[8px_12px] xl:p-[8px_12px] 2xl:px-[8px_12px] 3xl:px-[10px_14px]"
                           >
                             {treatment.title}
                           </Link>

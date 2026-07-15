@@ -127,15 +127,8 @@ export default function TreatmentComplementary({ data }) {
                     className="h-full"
                   >
                     <Link
-                      href={`/treatment/${item.slug}`}
-                      className="relative w-full h-full block group overflow-hidden
-                                            before:absolute before:inset-0 before:bg-gradient-to-t
-                                            before:from-black/50 before:via-black/10 before:to-transparent
-                                            before:z-[1] before:opacity-70 before:transition-all before:duration-700
-                                            after:absolute after:inset-0 after:bg-white/10
-                                            after:opacity-0 after:transition-all after:duration-700
-                                            hover:before:opacity-100
-                                            hover:after:opacity-100"
+                      href={`/treatments/${item.slug}`}
+                      className="relative w-full h-full block group overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/50 before:via-black/10 before:to-transparent before:z-[1] before:opacity-70 before:transition-all before:duration-700 after:absolute after:inset-0 after:bg-white/10 after:opacity-0 after:transition-all after:duration-700 hover:before:opacity-100 hover:after:opacity-100"
                     >
                       <Image
                         src={

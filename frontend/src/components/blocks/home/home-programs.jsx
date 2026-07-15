@@ -206,7 +206,7 @@ export default function HomePrograms({ data }) {
                             )}
                             asChild
                           >
-                            <span>Select Plan</span>
+                            <span>View More</span>
                           </Button>
                         )}
                       </div>

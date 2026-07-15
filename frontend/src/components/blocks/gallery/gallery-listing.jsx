@@ -54,7 +54,7 @@ export default function GalleryListing({ images }) {
                 )}
               >
                 <button
-                  className="w-full h-full overflow-hidden cursor-pointer text-left"
+                  className="w-full h-full max-h-[268px] xl:max-h-[330px] 2xl:max-h-[370px] 3xl:max-h-[450px] overflow-hidden cursor-pointer text-left"
                   onClick={() => {
                     setIndex(idx);
                     setOpen(true);

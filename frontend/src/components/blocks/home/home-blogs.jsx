@@ -35,13 +35,11 @@ export default function HomeBlogs({ data }) {
           {data.title && (
             <h2 className="text_2 text-center lg:mb-0">{data.title}</h2>
           )}
-
           <Button
             as="a"
-            href="/blogs"
             className="min-w-[90px] xl:min-w-[100px] 2xl:min-w-[113px] 3xl:min-w-[137px]"
           >
-            View All
+            <Link href="/blogs">View All</Link>
           </Button>
         </div>
         <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
@@ -76,9 +74,12 @@ export default function HomeBlogs({ data }) {
                             ? getStrapiMediaUrl(item.featured_image.url)
                             : "/images/placeholder.jpg"
                         }
-                        alt={(item?.featured_image?.alternativeText ||
+                        alt={
+                          item?.featured_image?.alternativeText ||
                           item?.title ||
-                          "Blog") || "Image"}
+                          "Blog" ||
+                          "Image"
+                        }
                         width={52}
                         height={52}
                         className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
@@ -129,9 +130,12 @@ export default function HomeBlogs({ data }) {
                               ? getStrapiMediaUrl(item.featured_image.url)
                               : "/images/placeholder.jpg"
                           }
-                          alt={(item?.featured_image?.alternativeText ||
+                          alt={
+                            item?.featured_image?.alternativeText ||
                             item?.title ||
-                            "Blog") || "Image"}
+                            "Blog" ||
+                            "Image"
+                          }
                           width={52}
                           height={52}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-500"

@@ -50,8 +50,10 @@ export default function HomeHero({ data }) {
               {(data.primary_button || data.secondary_button) && (
                 <div className="flex items-center gap-[4px] xl:gap-[6px] 2xl:gap-[8px]">
                   {data.primary_button && (
-                    <Button as="a" href={data.primary_button.url}>
-                      {data.primary_button.label}
+                    <Button>
+                      <Link href={data.primary_button.url}>
+                        {data.primary_button.label}
+                      </Link>
                     </Button>
                   )}
                   {data.secondary_button && (
