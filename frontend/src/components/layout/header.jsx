@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,6 +20,35 @@ export default function Header({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+
+          if (currentScrollY <= 5) {
+            setIsHeaderVisible((prev) => (prev !== true ? true : prev));
+          } else if (currentScrollY > lastScrollY.current) {
+            setIsHeaderVisible((prev) => (prev !== false ? false : prev));
+          } else if (currentScrollY < lastScrollY.current) {
+            setIsHeaderVisible((prev) => (prev !== true ? true : prev));
+          }
+
+          lastScrollY.current = currentScrollY;
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // 1) Lock full screen scroll and handle Escape key close when mega menu is open
   useEffect(() => {
@@ -44,7 +73,13 @@ export default function Header({
   
 
   return (
-    <header className="w-full flex flex-col items-center relative z-50 bg-white">
+    <header
+      className={cn(
+        "w-full flex flex-col items-center absolute z-10 inset-0 inset-x-0 top-0 bg-white",
+        "transition-transform duration-300 will-change-transform",
+        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+      )}
+    >
       <div className="container">
         <div className="h-(--header-y-sm) xl:h-(--header-y-xl) 2xl:h-(--header-y-2xl) 3xl:h-(--header-y-3xl) flex flex-wrap items-center justify-between">
           {header_logo ? (

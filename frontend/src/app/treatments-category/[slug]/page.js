@@ -21,13 +21,13 @@ export async function generateMetadata({ params }) {
   });
 }
 
-export default async function SpecialityDetails({ params }) {
+export default async function TreatmentsDetailPage({ params }) {
   const { slug } = await params;
 
   const res = await fetchAPI(
     `/api/specialities?filters[slug][$eq]=${slug}&${getSpecialityDetailQuery()}`,
   );
-  
+
   const speciality = res?.data?.[0];
 
   if (!speciality) {
