@@ -197,12 +197,12 @@ export const getHomePageQuery = () => buildQuery({
       },
     },
   },
-  home_packages_section: {
+  home_treatments_section: {
     populate: {
-      home_package_item: {
+      home_treatment_item: {
         populate: {
           background_video: true,
-          related_package: { populate: { featured_image: true } },
+          related_treatment_category: true,
         },
       },
     },

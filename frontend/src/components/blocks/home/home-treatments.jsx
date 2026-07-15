@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 export default function HomeTreatments({ data }) {
   const [activeIdx, setActiveIdx] = useState(0);
-  const treatments = data?.home_package_item || [];
+  const treatments = data?.home_treatment_item || [];
   const activeTreatment = treatments[activeIdx];
 
   const [emblaRef] = useEmblaCarousel(
@@ -25,12 +25,10 @@ export default function HomeTreatments({ data }) {
     [Autoplay({ delay: 5000, stopOnInteraction: true, pauseOnHover: true })],
   );
 
-  console.log("treatments" + treatments);
-
   return (
     <section
       id="Treatments"
-      className="w-full border-10 bg-black pt-[30px] sm:pt-[40px] xl:pt-[55px] 2xl:pt-[70px] overflow-hidden relative z-0"
+      className="w-full bg-black pt-[30px] sm:pt-[40px] xl:pt-[55px] 2xl:pt-[70px] overflow-hidden relative z-0"
     >
       <div className="absolute z-0 inset-0 bg-black/40" />
       <div className="absolute -z-1 inset-0">
@@ -102,8 +100,8 @@ export default function HomeTreatments({ data }) {
               >
                 <Link
                   href={
-                    item?.related_package?.slug
-                      ? `/packages/${item.related_package.slug}`
+                    item?.related_treatment_category?.slug
+                      ? `/${item.related_treatment_category.slug}`
                       : "#"
                   }
                   className={cn(
@@ -140,7 +138,7 @@ export default function HomeTreatments({ data }) {
                     <div className="text_3 text-center font-normal line-clamp-3 text-white mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                       {item?.short_description}
                     </div>
-                    {item?.related_package?.slug && (
+                    {item?.related_treatment_category?.slug && (
                       <div className="flex">
                         <Button className="border-[#a14962] mx-auto" asChild>
                           <span>Read More</span>
