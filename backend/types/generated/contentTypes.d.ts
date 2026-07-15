@@ -478,6 +478,7 @@ export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
       'sections.members-section',
       false
     >;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     services_section: Schema.Attribute.Component<
@@ -582,6 +583,7 @@ export interface ApiBlogPageBlogPage extends Struct.SingleTypeSchema {
       'api::blog-page.blog-page'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     Seo: Schema.Attribute.Component<'common.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
@@ -649,6 +651,7 @@ export interface ApiConditionPageConditionPage extends Struct.SingleTypeSchema {
       'api::condition-page.condition-page'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
@@ -814,6 +817,7 @@ export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
       'api::contact-page.contact-page'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
@@ -849,6 +853,7 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
       'api::footer.footer'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     phone_number: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     quick_links: Schema.Attribute.Component<'navigation.navigation', true>;
@@ -885,6 +890,7 @@ export interface ApiGalleryPageGalleryPage extends Struct.SingleTypeSchema {
       'api::gallery-page.gallery-page'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     treatment_video: Schema.Attribute.Component<
@@ -923,6 +929,7 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     mega_menu_image: Schema.Attribute.Media<'images'>;
     navigation: Schema.Attribute.Component<'navigation.navigation', true>;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -970,6 +977,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
       'api::home-page.home-page'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
@@ -1040,6 +1048,7 @@ export interface ApiPackagePagePackagePage extends Struct.SingleTypeSchema {
       'sections.package-listing-section',
       false
     >;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     statistics_section: Schema.Attribute.Component<
@@ -1109,6 +1118,7 @@ export interface ApiPrivacyPagePrivacyPage extends Struct.SingleTypeSchema {
       'api::privacy-page.privacy-page'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     privacySection: Schema.Attribute.Component<'sections.legal-section', false>;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
@@ -1244,6 +1254,7 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     logo: Schema.Attribute.Media<'images'>;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     site_name: Schema.Attribute.String;
@@ -1285,6 +1296,7 @@ export interface ApiSpecialitiesPageSpecialitiesPage
       'api::specialities-page.specialities-page'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     specialities_listing_section: Schema.Attribute.Component<
@@ -1317,6 +1329,7 @@ export interface ApiTermsPageTermsPage extends Struct.SingleTypeSchema {
       'api::terms-page.terms-page'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     termsSection: Schema.Attribute.Component<'sections.legal-section', false>;
@@ -1427,6 +1440,7 @@ export interface ApiTreatmentPageTreatmentPage extends Struct.SingleTypeSchema {
       'api::treatment-page.treatment-page'
     > &
       Schema.Attribute.Private;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'common.seo', false>;
     treatment_cta_section: Schema.Attribute.Component<

@@ -11,6 +11,9 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "page_title": {
+      "type": "string"
+    },
     "footer_logo": {
       "type": "media",
       "multiple": false,

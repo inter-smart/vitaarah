@@ -11,6 +11,9 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "page_title": {
+      "type": "string"
+    },
     "site_name": {
       "type": "string"
     },

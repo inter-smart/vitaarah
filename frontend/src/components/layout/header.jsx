@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,35 +20,6 @@ export default function Header({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const lastScrollY = useRef(0);
-  const ticking = useRef(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!ticking.current) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-
-          if (currentScrollY <= 5) {
-            setIsHeaderVisible((prev) => (prev !== true ? true : prev));
-          } else if (currentScrollY > lastScrollY.current) {
-            setIsHeaderVisible((prev) => (prev !== false ? false : prev));
-          } else if (currentScrollY < lastScrollY.current) {
-            setIsHeaderVisible((prev) => (prev !== true ? true : prev));
-          }
-
-          lastScrollY.current = currentScrollY;
-          ticking.current = false;
-        });
-        ticking.current = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // 1) Lock full screen scroll and handle Escape key close when mega menu is open
   useEffect(() => {
@@ -70,18 +41,47 @@ export default function Header({
       document.body.style.overflow = "";
     }
   }, [isOpen]);
-  
+
+  const [visible, setVisible] = useState(true);
+  const [toggle, setToggle] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const current = window.scrollY;
+      const atTop = current < 50;
+      setVisible(atTop || current < lastY);
+      setIsScrolled(!atTop);
+      lastY = current;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header
+      // style={{
+      //   transform: visible ? "translateY(0)" : "translateY(-100%)",
+      //   opacity: visible ? 1 : 0,
+      //   transition: "transform 0.3s ease-in-out, opacity 0.3s ease-in-out",
+      // }}
       className={cn(
-        "w-full flex flex-col items-center absolute z-10 inset-0 inset-x-0 top-0 bg-white",
-        "transition-transform duration-300 will-change-transform",
-        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+        "w-full z-50 top-0 inset-x-0 flex flex-col items-center bg-white transition-[background-color,backdrop-filter,box-shadow] fixed",
+        isScrolled
+          ? "bg-white/80 backdrop-blur-md shadow-sm duration-500 delay-100"
+          : "bg-white duration-300 delay-0",
       )}
     >
       <div className="container">
-        <div className="h-(--header-y-sm) xl:h-(--header-y-xl) 2xl:h-(--header-y-2xl) 3xl:h-(--header-y-3xl) flex flex-wrap items-center justify-between">
+        <div
+          className={cn(
+            " flex flex-wrap items-center justify-between transition-[height] duration-300 delay-0",
+            isScrolled
+              ? "h-[70px] xl:h-[80px] 2xl:h-[90px] 3xl:h-[100px]"
+              : "h-(--header-y-sm) xl:h-(--header-y-xl) 2xl:h-(--header-y-2xl) 3xl:h-(--header-y-3xl)",
+          )}
+        >
           {header_logo ? (
             <Link
               href="/"
@@ -101,26 +101,31 @@ export default function Header({
           <div className="flex items-center gap-[48px] 2xl:gap-[54px] 3xl:gap-[65px]">
             {cta_button?.url && (
               <Button
-                as="a"
                 variant="none"
                 size="none"
-                href={cta_button.url}
-                target={cta_button.is_external ? "_blank" : undefined}
-                rel={cta_button.is_external ? "noopener noreferrer" : undefined}
-                className="max-sm:hidden text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none font-helvetica font-normal text-center text-[#1c1c1c] bg-white border-white flex items-center gap-2 hover:opacity-85 transition-opacity"
+                className="max-sm:hidden text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none font-helvetica font-normal text-center text-[#1c1c1c] bg-none border-none flex items-center gap-2 hover:shadow-none transition-opacity"
+                asChild
               >
-                {cta_button.icon && (
-                  <span className="w-[11px] 2xl:w-[12px] 3xl:w-[14px]">
-                    <Image
-                      src={getStrapiMediaUrl(cta_button.icon.url)}
-                      alt="icon"
-                      width={15}
-                      height={15}
-                      className="w-full h-full"
-                    />
-                  </span>
-                )}
-                <span>{cta_button.label}</span>
+                <Link
+                  href={`tel:${cta_button.url}`}
+                  target="_blank"
+                  rel={
+                    cta_button.is_external ? "noopener noreferrer" : undefined
+                  }
+                >
+                  {cta_button.icon && (
+                    <span className="w-[11px] 2xl:w-[12px] 3xl:w-[14px]">
+                      <Image
+                        src={getStrapiMediaUrl(cta_button.icon.url)}
+                        alt="icon"
+                        width={15}
+                        height={15}
+                        className="w-full h-full"
+                      />
+                    </span>
+                  )}
+                  <span>{cta_button.label}</span>
+                </Link>
               </Button>
             )}
 
@@ -151,7 +156,12 @@ export default function Header({
             </button>
           </div>
         </div>
-        <div className="w-full h-0.5 bg-[#ece7d7]" />
+        <div
+          className={cn(
+            "w-full h-0.5 bg-[#ece7d7] transition-opacity duration-300",
+            isScrolled && "opacity-0",
+          )}
+        />
       </div>
 
       {/* Mega Menu Dropdown */}
@@ -162,7 +172,12 @@ export default function Header({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed z-10 inset-x-0 top-(--header-y-sm) xl:top-(--header-y-xl) 2xl:top-(--header-y-2xl) 3xl:top-(--header-y-3xl) overflow-y-auto"
+            className={cn(
+              "fixed z-10 inset-x-0 overflow-y-auto",
+              isScrolled
+                ? "top-[70px] xl:top-[80px] 2xl:top-[90px] 3xl:top-[100px]"
+                : "top-(--header-y-sm) xl:top-(--header-y-xl) 2xl:top-(--header-y-2xl) 3xl:top-(--header-y-3xl)",
+            )}
             onClick={() => setIsOpen(false)}
           >
             <div className="container">
