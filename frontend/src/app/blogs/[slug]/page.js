@@ -4,6 +4,7 @@ import Herosection from "@/components/common/InnerHero";
 import BlogDetail from "@/components/blocks/blog/blog-detail";
 import { fetchAPI, buildQuery } from "@/lib/strapi";
 import { buildMetadata } from "@/lib/seo";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -53,6 +54,13 @@ export default async function BlogDetailPage({ params }) {
   return (
     <>
       {hero && <Herosection data={hero} />}
+      <BreadcrumbNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Blogs", href: "/blogs" },
+          { label: activeBlog.title },
+        ]}
+      />
       <BlogDetail data={activeBlog} relatedBlogs={relatedBlogs} />
     </>
   );

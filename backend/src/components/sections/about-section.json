@@ -11,14 +11,11 @@
     "short_description": {
       "type": "text"
     },
-    "about_media": {
+    "featured_images": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "company_motto": {

@@ -8,14 +8,16 @@ import { buildMetadata } from "@/lib/seo";
 import InnerHero from "@/components/common/InnerHero";
 import TreatmentComplementary from "@/components/blocks/treatment/treatment-complementary";
 import TreatmentRitual from "@/components/blocks/treatment/treatment-ritual";
-import Link from "next/link";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  
+
   const [pageRes, categoryRes] = await Promise.all([
     fetchAPI(`/api/treatment-page?${getTreatmentPageQuery()}`),
-    fetchAPI(`/api/treatment-categories?filters[slug][$eq]=${slug}&${getTreatmentCategoryBySlugQuery()}`),
+    fetchAPI(
+      `/api/treatment-categories?filters[slug][$eq]=${slug}&${getTreatmentCategoryBySlugQuery()}`,
+    ),
   ]);
 
   const pageData = pageRes?.data;
@@ -33,7 +35,9 @@ export default async function TreatmentCategoryDetailPage({ params }) {
 
   const [pageRes, categoryRes] = await Promise.all([
     fetchAPI(`/api/treatment-page?${getTreatmentPageQuery()}`),
-    fetchAPI(`/api/treatment-categories?filters[slug][$eq]=${slug}&${getTreatmentCategoryBySlugQuery()}`),
+    fetchAPI(
+      `/api/treatment-categories?filters[slug][$eq]=${slug}&${getTreatmentCategoryBySlugQuery()}`,
+    ),
   ]);
 
   const pageData = pageRes?.data;
@@ -48,19 +52,29 @@ export default async function TreatmentCategoryDetailPage({ params }) {
   return (
     <>
       {hero && <InnerHero data={hero} />}
-      
-      <div className="container pt-[20px]">
-        <div className="text_3 font-helvetica-light text-[#7C7C7C] flex items-center gap-2">
-          <Link href="/" className="hover:text-black transition-colors">Home</Link>
-          <span>/</span>
-          <Link href="/treatments" className="hover:text-black transition-colors">Treatments</Link>
-          <span>/</span>
-          <span className="text-black">{categoryData.title}</span>
-        </div>
-      </div>
+
+      <BreadcrumbNav
+        items={[
+          {
+            label: "Home",
+            href: "/",
+          },
+          {
+            label: "Treatments",
+            href: "/treatments",
+          },
+          {
+            label: "Category",
+            href: "/treatments",
+          },
+          {
+            label: categoryData.title,
+          },
+        ]}
+      />
 
       <TreatmentComplementary data={categoryData} />
-      
+
       {treatment_cta_section && (
         <TreatmentRitual data={treatment_cta_section} />
       )}

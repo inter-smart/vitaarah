@@ -5,6 +5,7 @@ import { buildMetadata } from "@/lib/seo";
 import InnerHero from "@/components/common/InnerHero";
 import TreatmentFaq from "@/components/blocks/treatment/treatment-faq";
 import ProgramDetail from "@/components/blocks/program/program-detail";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata(props) {
   const params = await props.params;
@@ -52,6 +53,13 @@ export default async function ProgramPage(props) {
           title: program.title,
           hero_media: program.hero_media,
         }}
+      />
+      <BreadcrumbNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Packages", href: "/packages" },
+          { label: program.title },
+        ]}
       />
       <ProgramDetail data={program} availableDurations={availableDurations} />
       <TreatmentFaq data={program.faq_section} />

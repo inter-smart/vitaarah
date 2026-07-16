@@ -222,11 +222,8 @@ export interface SectionsAboutSection extends Struct.ComponentSchema {
     displayName: 'About Section';
   };
   attributes: {
-    about_media: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
     company_motto: Schema.Attribute.Component<'common.company-motto', true>;
+    featured_images: Schema.Attribute.Media<'images', true>;
     short_description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };

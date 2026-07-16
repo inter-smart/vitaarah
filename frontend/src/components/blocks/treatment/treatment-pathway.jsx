@@ -127,8 +127,8 @@ export default function TreatmentPathway({ data }) {
                   alt={item?.title || "Treatment"}
                 />
 
-                <div className="absolute bottom-0 left-0 w-full transition-all duration-700 z-[2] group-hover:translate-y-[-12px] p-[8px] sm:p-[10px] md:px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px] md:py-[20px] xl:py-[30px] 2xl:py-[35px] 3xl:py-[40px]">
-                  <div className="w-full max-w-[452px] bg-white/10 backdrop-blur-lg transition-all duration-700 group-hover:bg-white/15 group-hover:border-white/40 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] p-[8px] sm:p-[10px_12px] xl:p-[12px_15px] 3xl:p-[16px_20px]">
+                <div className="absolute bottom-0 left-0 w-full transition-all duration-700 z-[2] group-hover:translate-y-[-6px] p-[8px] sm:p-[10px] md:px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px] md:py-[20px] xl:py-[30px] 2xl:py-[35px] 3xl:py-[40px]">
+                  <div className="w-full max-w-[452px] bg-white/40 backdrop-blur-lg transition-all duration-700 group-hover:bg-white/60 group-hover:border-white/60 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] p-[8px] sm:p-[10px_12px] xl:p-[12px_15px] 3xl:p-[16px_20px]">
                     <div className="text-[15px] md:text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-0 transition-all duration-500 group-hover:tracking-[0.5px]">
                       {item.title}
                     </div>
@@ -141,7 +141,7 @@ export default function TreatmentPathway({ data }) {
                           <Link
                             key={"treatment-" + treatmentIdx}
                             href={`/treatments/${treatment.slug}`}
-                            className="text-[10px] xl:text-[12px] 2xl:text-[14px] ] font-helvetica-light text-black bg-[rgba(230,198,160,0.2)] flex items-center justify-center rounded-[30px] p-[8px_12px] xl:p-[8px_12px] 2xl:px-[8px_12px] 3xl:px-[10px_14px]"
+                            className="text-[10px] xl:text-[12px] 2xl:text-[14px] font-helvetica-light text-black bg-[#E6C6A0]/40 flex items-center justify-center rounded-[30px] p-[4px_10px] xl:p-[4px_10px] 2xl:p-[6px_12px] 3xl:p-[8px_14px] hover:bg-[#E6C6A0]/80 transition-background-color duration-300"
                           >
                             {treatment.title}
                           </Link>

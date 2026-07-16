@@ -186,7 +186,9 @@ export default function Header({
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -30, opacity: 0 }}
                 transition={{ type: "spring", damping: 25, stiffness: 220 }}
-                className="w-full bg-white/80 backdrop-blur-xl border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-4 sm:p-6 xl:p-10 grid grid-cols-1 lg:grid-cols-[1.1fr_1.9fr] gap-8 lg:gap-x-[26px] xl:gap-x-[34px] 2xl:gap-x-[37px] 3xl:gap-x-[45px] relative overflow-hidden"
+                className={cn("w-full bg-white/80 backdrop-blur-xl border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-4 sm:p-6 xl:p-10 grid grid-cols-1 lg:grid-cols-[1.1fr_1.9fr] gap-8 lg:gap-x-[26px] xl:gap-x-[34px] 2xl:gap-x-[37px] 3xl:gap-x-[45px] relative overflow-hidden",
+                  isScrolled ? "bg-white" : "bg-white/80"
+                )}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[454/408] group max-lg:hidden">

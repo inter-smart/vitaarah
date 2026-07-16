@@ -28,7 +28,7 @@ export default function AboutGuidence({ data }) {
               prevEl: ".guidance-prev",
               nextEl: ".guidance-next",
             }}
-            autoplay={{ delay: 0, disableOnInteraction: false }}
+            autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
             speed={4000}
             loop={true}
             breakpoints={{

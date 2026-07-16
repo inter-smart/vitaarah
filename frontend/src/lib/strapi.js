@@ -37,5 +37,6 @@ export function getStrapiMediaUrl(media) {
   const url = typeof media === "string" ? media : media.url;
   if (!url) return "/images/placeholder.jpg";
   if (url.startsWith("http")) return url;
+  if (url.startsWith("/") && !url.startsWith("/uploads")) return url;
   return `${STRAPI_URL}${url}`;
 }

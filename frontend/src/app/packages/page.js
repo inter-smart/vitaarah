@@ -6,6 +6,7 @@ import InnerHero from "@/components/common/InnerHero";
 import PackagesStatistics from "@/components/blocks/packages/packages-statistics";
 import PackagesListing from "@/components/blocks/packages/packages-listing";
 import PackagesDurations from "@/components/blocks/packages/packages-durations";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata() {
   const res = await fetchAPI(`/api/package-page?${getPackagePageQuery()}`);
@@ -62,16 +63,22 @@ export default async function PackagesPage() {
   } = pageData;
 
   const listingData = package_listing_section
-    ? {
-        ...package_listing_section,
-        packages: packagesData,
-        durations: availableDurationsData,
-      }
-    : null;
+     ? {
+         ...package_listing_section,
+         packages: packagesData,
+         durations: availableDurationsData,
+       }
+     : null;
 
   return (
     <>
       {hero && <InnerHero data={hero} />}
+      <BreadcrumbNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Packages" },
+        ]}
+      />
       {statistics_section && <PackagesStatistics data={statistics_section} />}
       {listingData && <PackagesListing data={listingData} />}
       {package_duration_section && (

@@ -10,6 +10,7 @@ import InnerHero from "@/components/common/InnerHero";
 import { notFound } from "next/navigation";
 import { fetchAPI, buildQuery } from "@/lib/strapi";
 import { buildMetadata } from "@/lib/seo";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -52,9 +53,23 @@ export default async function TreatmentDetails({ params }) {
 
   console.log("TreatmentDetails treatment:", treatment);
 
+  const category = treatment?.related_treatment_category;
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Treatments", href: "/treatments" },
+  ];
+  if (category) {
+    breadcrumbItems.push({
+      label: category.title,
+      href: `/treatments/category/${category.slug}`,
+    });
+  }
+  breadcrumbItems.push({ label: treatment.title });
+
   return (
     <>
       {treatment.hero && <InnerHero data={treatment.hero} />}
+      <BreadcrumbNav items={breadcrumbItems} />
       {detailsData && <TreatmentDetail data={detailsData} />}
       {treatment.ritual_experience_section && (
         <TreatmentRitualExperience data={treatment.ritual_experience_section} />

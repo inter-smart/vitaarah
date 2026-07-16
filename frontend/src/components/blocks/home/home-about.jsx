@@ -7,6 +7,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const ElementStyle =
   "group w-[140px] sm:w-[180px] lg:w-[200px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[90px] lg:-mr-[100px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1";
@@ -15,24 +16,26 @@ export default function HomeAbout({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = useMemo(() => {
-    const rawImages = data?.featured_images?.length 
-      ? data.featured_images 
-      : data?.about_media || [];
-    
+    const rawImages = data?.featured_images || [];
+
     if (rawImages.length === 0) {
-      return ["/images/placeholder.jpg", "/images/placeholder.jpg", "/images/placeholder.jpg"];
+      return [
+        "/images/placeholder.jpg",
+        "/images/placeholder.jpg",
+        "/images/placeholder.jpg",
+      ];
     }
     return rawImages;
-  }, [data?.featured_images, data?.about_media]);
+  }, [data?.featured_images]);
 
   const handleNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % Math.max(images.length, 3));
+    setCurrentIndex((prev) => (prev + 1) % images.length);
   }, [images.length]);
 
   const displayImages = useMemo(() => {
-    return [0, 1, 2].map((i) => {
-      const imgIndex = (currentIndex + i) % Math.max(images.length, 3);
-      return images[imgIndex % images.length] || "/images/placeholder.jpg";
+    return [0, 1].map((i) => {
+      const imgIndex = (currentIndex + i) % images.length;
+      return images[imgIndex];
     });
   }, [currentIndex, images]);
 
@@ -46,24 +49,24 @@ export default function HomeAbout({ data }) {
         alt="home about element 1"
         width={300}
         height={300}
-        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[310px] translate-x-1/2 absolute -z-1 top-[10%] right-0"
+        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[310px] translate-x-1/2 absolute -z-1 top-[10%] right-0 pointer-events-none"
       />
       <Image
         src="/images/home-about-elmt-2.svg"
         alt="home about element 2"
         width={60}
         height={60}
-        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[5%] left-[1%]"
+        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[5%] left-[1%] pointer-events-none"
       />
       <div className="container">
         <div className="flex flex-wrap">
           <div className="w-full lg:w-[55%] mb-5 lg:mb-0">
             <div className="flex relative z-0">
-              <div 
+              <div
                 onClick={handleNext}
                 className="cursor-pointer w-[40px] lg:w-[50px] xl:w-[60px] 2xl:w-[74px] 3xl:w-[90px] rounded-full aspect-square p-[4px] lg:p-[6px] 2xl:p-[8px] bg-linear-to-t from-[#a14962] to-[#e9cba3] absolute z-2 top-[5%] left-[200px] sm:left-[310px] lg:left-[69%] xl:left-[73%] 2xl:left-[76%] 3xl:left-[71%]"
               >
-                <span className="w-full h-full bg-white rounded-full flex items-center justify-center">
+                <span className="w-full h-full bg-white rounded-full flex items-center justify-center select-none">
                   <Image
                     src="/images/icon-arrow-2.svg"
                     alt="icon arrow"
@@ -73,12 +76,19 @@ export default function HomeAbout({ data }) {
                   />
                 </span>
               </div>
-              
+
+              {/* Decorative circle (empty gradient background only) */}
+              <div className={ElementStyle} />
+
+              {/* Active image circles */}
               {displayImages.map((img, index) => {
-                const imgKey = typeof img === "string" ? `${img}-${index}` : `${img.id || img.url}-${index}`;
+                const imgKey =
+                  typeof img === "string"
+                    ? `${img}-${index}`
+                    : `${img.id || img.url}-${index}`;
                 return (
-                  <div key={index} className={ElementStyle}>
-                    <AnimatePresence>
+                  <div key={imgKey} className={ElementStyle}>
+                    <AnimatePresence mode="wait">
                       <motion.div
                         key={imgKey}
                         initial={{ opacity: 0, scale: 0.95 }}
@@ -89,11 +99,15 @@ export default function HomeAbout({ data }) {
                       >
                         <Image
                           src={getStrapiMediaUrl(img)}
-                          alt={typeof img === "string" ? "placeholder" : img?.alternativeText || `home about ${index + 1}`}
+                          alt={
+                            typeof img === "string"
+                              ? "placeholder"
+                              : img?.alternativeText ||
+                                `home about ${index + 1}`
+                          }
                           width={300}
                           height={300}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                          unoptimized
                         />
                       </motion.div>
                     </AnimatePresence>

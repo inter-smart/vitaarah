@@ -73,6 +73,7 @@ export default function TreatmentRitualExperience({ data }) {
           autoplay={{
             delay: 0,
             disableOnInteraction: false,
+            pauseOnMouseEnter: true,
           }}
           speed={6000}
           loop={true}

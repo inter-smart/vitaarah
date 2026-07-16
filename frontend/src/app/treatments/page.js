@@ -8,6 +8,7 @@ import { buildMetadata } from "@/lib/seo";
 import TreatmentPathway from "@/components/blocks/treatment/treatment-pathway";
 import TreatmentRitual from "@/components/blocks/treatment/treatment-ritual";
 import InnerHero from "@/components/common/InnerHero";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata() {
   const res = await fetchAPI(`/api/treatment-page?${getTreatmentPageQuery()}`);
@@ -48,6 +49,12 @@ export default async function TreatmentPage() {
   return (
     <>
       {hero && <InnerHero data={hero} />}
+      <BreadcrumbNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Treatments" },
+        ]}
+      />
       {listingData && <TreatmentPathway data={listingData} />}
       {treatment_cta_section && (
         <TreatmentRitual data={treatment_cta_section} />

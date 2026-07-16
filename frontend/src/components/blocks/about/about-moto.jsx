@@ -7,14 +7,16 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 
 export default function AboutMoto({ data }) {
-  console.log(data);
-  
   return (
     <section className="w-full block relative pb-[30px] lg:pb-[50px] xl:pb-[70px] 2xl:pb-[100px] 3xl:pb-[120px]">
       <div className="container">
         <Swiper
           modules={[Autoplay]}
-          autoplay={{ delay: 0, disableOnInteraction: false }}
+          autoplay={{
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           speed={4000}
           loop={true}
           spaceBetween={15}

@@ -50,8 +50,6 @@ export default function HomePrograms({ data }) {
     };
   }, [emblaApi]);
 
-  console.log("HomePrograms", data);
-
   return (
     <section
       id="Packages"
@@ -141,9 +139,12 @@ export default function HomePrograms({ data }) {
                               ? getStrapiMediaUrl(item.featured_image.url)
                               : "/images/placeholder.jpg"
                           }
-                          alt={item.featured_image.alternativeText ||
+                          alt={
+                            item.featured_image.alternativeText ||
                             item.title ||
-                            "Program" || "Image"}
+                            "Program" ||
+                            "Image"
+                          }
                           width={336}
                           height={262}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
@@ -172,9 +173,12 @@ export default function HomePrograms({ data }) {
                                 {feature?.icon ? (
                                   <Image
                                     src={getStrapiMediaUrl(feature?.icon?.url)}
-                                    alt={(feature?.icon?.alternativeText ||
+                                    alt={
+                                      feature?.icon?.alternativeText ||
                                       feature?.title ||
-                                      "features") || "Image"}
+                                      "features" ||
+                                      "Image"
+                                    }
                                     width={14}
                                     height={14}
                                     className="w-[13px] 3xl:w-[14px] aspect-square object-contain"
@@ -183,9 +187,12 @@ export default function HomePrograms({ data }) {
                                 ) : (
                                   <Image
                                     src="/images/package-feature-list.svg"
-                                    alt={(feature?.icon?.alternativeText ||
+                                    alt={
+                                      feature?.icon?.alternativeText ||
                                       feature?.title ||
-                                      "features") || "Image"}
+                                      "features" ||
+                                      "Image"
+                                    }
                                     width={14}
                                     height={14}
                                     className="w-[14px] aspect-square object-contain"

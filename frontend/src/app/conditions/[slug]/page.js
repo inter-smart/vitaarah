@@ -9,6 +9,7 @@ import ConditionRootCause from "@/components/blocks/condition/condition-root-cau
 import ConditionTreatment from "@/components/blocks/condition/condition-treatment";
 import ConditionLifestyle from "@/components/blocks/condition/condition-lifestyle";
 import ConditionExpert from "@/components/blocks/condition/condition-expert";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -53,6 +54,13 @@ export default async function ConditionsPage({ params }) {
   return (
     <>
       {pageData?.hero && <InnerHero data={pageData.hero} />}
+      <BreadcrumbNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Specialities", href: "/specialities" },
+          { label: condition.title },
+        ]}
+      />
       <ConditionTab data={allConditions} />
       {condition?.symptoms_section && (
         <ConditionSymtoms data={condition.symptoms_section} />

@@ -72,6 +72,7 @@ export default function TreatmentComplementary({ data }) {
             autoplay={{
               delay: 0,
               disableOnInteraction: false,
+              pauseOnMouseEnter: true,
             }}
             speed={4000}
             loop={true}

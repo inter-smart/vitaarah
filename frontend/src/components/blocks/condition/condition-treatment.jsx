@@ -18,7 +18,7 @@ export default function ConditionTreatment({ data, treatments }) {
         </div>
         <Swiper
           modules={[Autoplay]}
-          autoplay={{ delay: 0, disableOnInteraction: false }}
+          autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
           speed={4000}
           loop={true}
           centerInsufficientSlides={true}

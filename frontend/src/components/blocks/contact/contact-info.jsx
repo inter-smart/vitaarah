@@ -2,10 +2,8 @@ import RequestQuoteForm from "@/components/form/request-quote-form";
 import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function ContactInfo({ data, siteSettings }) {
-  console.log("ContactInfo data:", data?.working_time_info);
   return (
     <section
       id="ContactInfo"

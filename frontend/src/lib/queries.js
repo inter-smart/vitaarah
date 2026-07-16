@@ -12,7 +12,7 @@ export const getAboutPageQuery = () => buildQuery({
   },
   about_section: {
     populate: {
-      about_media: true,
+      featured_images: true,
       company_motto: true,
     },
   },
@@ -410,5 +410,6 @@ export const getTreatmentDetailQuery = () => buildQuery({
     },
   },
   cta_treatment_section: true,
+  related_treatment_category: true,
   seo: seoPopulate,
 });

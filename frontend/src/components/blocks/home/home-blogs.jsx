@@ -18,7 +18,7 @@ export default function HomeBlogs({ data }) {
       slidesToScroll: 1,
       containScroll: "trimSnaps",
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: true, pauseOnHover: true })],
+    [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
   );
   return (
     <section className="w-full py-[40px] sm:py-[60px] xl:py-[74px] 2xl:py-[90px] relative z-0">

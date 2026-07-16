@@ -8,6 +8,7 @@ import AboutCredibility from "@/components/blocks/about/about-credibility";
 import AboutMoto from "@/components/blocks/about/about-moto";
 import HomeAbout from "@/components/blocks/home/home-about";
 import InnerHero from "@/components/common/InnerHero";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata() {
   return getAboutMetadata();
@@ -33,6 +34,12 @@ export default async function AboutPage() {
   return (
     <>
       {hero && <InnerHero data={hero} />}
+      <BreadcrumbNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "About" },
+        ]}
+      />
       {about_section && <HomeAbout data={about_section} />}
       {about_section && <AboutMoto data={about_section} />}
       {services_section && <AboutIntelligence data={services_section} />}

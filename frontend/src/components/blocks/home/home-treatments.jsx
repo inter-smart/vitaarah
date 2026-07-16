@@ -22,7 +22,7 @@ export default function HomeTreatments({ data }) {
       slidesToScroll: 1,
       containScroll: "trimSnaps",
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: true, pauseOnHover: true })],
+    [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
   );
 
   return (

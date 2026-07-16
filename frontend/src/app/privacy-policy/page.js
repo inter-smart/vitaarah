@@ -3,6 +3,7 @@ import LegalContent from "@/components/blocks/legal/legal-content";
 import { fetchAPI, buildQuery } from "@/lib/strapi";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata() {
   const res = await fetchAPI(`/api/privacy-page?${getPrivacyPageQuery()}`);
@@ -20,6 +21,12 @@ export default async function PrivacyPolicyPage() {
 
   return (
     <>
+      <BreadcrumbNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Privacy Policy" },
+        ]}
+      />
       {pageData.privacySection && (
         <LegalContent data={pageData.privacySection} />
       )}

@@ -85,7 +85,7 @@ export default async function RootLayout({ children }) {
             support_email={siteSetting?.support_email}
             social_links={siteSetting?.social_links}
           />
-          <main className="mt-(--header-y) flex-1">{children}</main>
+          <main className="pt-(--header-y) flex-1">{children}</main>
           <Footer data={footer} siteSettings={siteSetting} />
           <FloatingActionButtons
             supportPhone={siteSetting?.support_phone}

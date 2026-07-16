@@ -4,6 +4,7 @@ import BlogListing from "@/components/blocks/blog/blog-listing";
 import { fetchAPI, buildQuery } from "@/lib/strapi";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata() {
   const res = await fetchAPI(`/api/blog-page?${getBlogPageQuery()}`);
@@ -34,6 +35,12 @@ export default async function BlogPage() {
   return (
     <>
       {innerHero && <Herosection data={innerHero} />}
+      <BreadcrumbNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Blogs" },
+        ]}
+      />
       <BlogListing data={blogListingSection} blogs={blogsRes?.data || []} />
     </>
   );

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
 import InnerHero from "@/components/common/InnerHero";
 import SpecialityPathway from "@/components/blocks/treatment-category/speciality-pathway";
+import BreadcrumbNav from "@/components/common/breadcrumb";
 
 export async function generateMetadata() {
   const res = await fetchAPI(`/api/specialities-page?${getSpecialitiesPageQuery()}`);
@@ -28,6 +29,12 @@ export default async function SpecialityPage() {
   return (
     <>
       {hero && <InnerHero data={hero} />}
+      <BreadcrumbNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Specialities" },
+        ]}
+      />
       {specialities_listing_section && (
         <SpecialityPathway
           data={{
