@@ -211,8 +211,7 @@ export interface SectionsAbout extends Struct.ComponentSchema {
     about_statistic: Schema.Attribute.Component<'common.statistic', true>;
     button: Schema.Attribute.Component<'navigation.button', false>;
     description: Schema.Attribute.Blocks;
-    main_image: Schema.Attribute.Media<'images'>;
-    secondary_image: Schema.Attribute.Media<'images'>;
+    featured_images: Schema.Attribute.Media<'images', true>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

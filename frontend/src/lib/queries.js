@@ -180,8 +180,7 @@ export const getHomePageQuery = () => buildQuery({
   },
   home_about_section: {
     populate: {
-      main_image: true,
-      secondary_image: true,
+      featured_images: true,
       button: { populate: { icon: true } },
       about_statistic: true,
     },
@@ -345,6 +344,19 @@ export const getTreatmentPageQuery = () => buildQuery({
 export const getTreatmentCategoriesQuery = () => buildQuery({
   featured_image: true,
   related_treatments: true,
+});
+
+export const getTreatmentCategoryBySlugQuery = () => buildQuery({
+  featured_image: true,
+  related_treatments: {
+    populate: {
+      hero: {
+        populate: {
+          hero_media: true,
+        },
+      },
+    },
+  },
 });
 
 export const getTreatmentDetailQuery = () => buildQuery({

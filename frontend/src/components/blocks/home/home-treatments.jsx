@@ -101,7 +101,7 @@ export default function HomeTreatments({ data }) {
                 <Link
                   href={
                     item?.related_treatment_category?.slug
-                      ? `/${item.related_treatment_category.slug}`
+                      ? `/treatments/category/${item.related_treatment_category.slug}`
                       : "#"
                   }
                   className={cn(

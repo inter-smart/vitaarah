@@ -3,7 +3,7 @@ import { fetchAPI, buildQuery } from "@/lib/strapi";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
 import InnerHero from "@/components/common/InnerHero";
-import SpecialityPathway from "@/components/blocks/speciality/speciality-pathway";
+import SpecialityPathway from "@/components/blocks/treatment-category/speciality-pathway";
 
 export async function generateMetadata() {
   const res = await fetchAPI(`/api/specialities-page?${getSpecialitiesPageQuery()}`);

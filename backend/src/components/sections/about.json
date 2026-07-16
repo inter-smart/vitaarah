@@ -12,16 +12,9 @@
     "description": {
       "type": "blocks"
     },
-    "main_image": {
+    "featured_images": {
       "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "secondary_image": {
-      "type": "media",
-      "multiple": false,
+      "multiple": true,
       "allowedTypes": [
         "images"
       ]

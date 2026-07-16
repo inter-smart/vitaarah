@@ -1,14 +1,41 @@
+"use client";
+
+import { useState, useCallback, useMemo, Fragment } from "react";
 import { Button } from "@/components/ui/button";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
-// -mr-[100px] sm:-mr-[115px] xl:-mr-[130px] 2xl:-mr-[160px]
+import { AnimatePresence, motion } from "framer-motion";
+
 const ElementStyle =
   "group w-[140px] sm:w-[180px] lg:w-[200px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[90px] lg:-mr-[100px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1";
 
 export default function HomeAbout({ data }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const images = useMemo(() => {
+    const rawImages = data?.featured_images?.length 
+      ? data.featured_images 
+      : data?.about_media || [];
+    
+    if (rawImages.length === 0) {
+      return ["/images/placeholder.jpg", "/images/placeholder.jpg", "/images/placeholder.jpg"];
+    }
+    return rawImages;
+  }, [data?.featured_images, data?.about_media]);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % Math.max(images.length, 3));
+  }, [images.length]);
+
+  const displayImages = useMemo(() => {
+    return [0, 1, 2].map((i) => {
+      const imgIndex = (currentIndex + i) % Math.max(images.length, 3);
+      return images[imgIndex % images.length] || "/images/placeholder.jpg";
+    });
+  }, [currentIndex, images]);
+
   return (
     <section
       id="About"
@@ -32,9 +59,9 @@ export default function HomeAbout({ data }) {
         <div className="flex flex-wrap">
           <div className="w-full lg:w-[55%] mb-5 lg:mb-0">
             <div className="flex relative z-0">
-              <a
-                href="#About"
-                className="w-[40px] lg:w-[50px] xl:w-[60px] 2xl:w-[74px] 3xl:w-[90px] rounded-full aspect-square p-[4px] lg:p-[6px] 2xl:p-[8px] bg-linear-to-t from-[#a14962] to-[#e9cba3] absolute z-2 top-[5%] left-[200px] sm:left-[310px] lg:left-[69%] xl:left-[73%] 2xl:left-[76%] 3xl:left-[71%]"
+              <div 
+                onClick={handleNext}
+                className="cursor-pointer w-[40px] lg:w-[50px] xl:w-[60px] 2xl:w-[74px] 3xl:w-[90px] rounded-full aspect-square p-[4px] lg:p-[6px] 2xl:p-[8px] bg-linear-to-t from-[#a14962] to-[#e9cba3] absolute z-2 top-[5%] left-[200px] sm:left-[310px] lg:left-[69%] xl:left-[73%] 2xl:left-[76%] 3xl:left-[71%]"
               >
                 <span className="w-full h-full bg-white rounded-full flex items-center justify-center">
                   <Image
@@ -45,50 +72,34 @@ export default function HomeAbout({ data }) {
                     className="w-3 2xl:w-4 3xl:w-4.5 block"
                   />
                 </span>
-              </a>
-              <div className={ElementStyle} />
-              {(() => {
-                const secondaryImgUrl =
-                  data?.secondary_image?.url || data?.about_media?.[1]?.url;
-                const secondaryImgAlt =
-                  data?.secondary_image?.alternativeText ||
-                  data?.about_media?.[1]?.alternativeText ||
-                  "home about 1";
-                if (!secondaryImgUrl) return null;
+              </div>
+              
+              {displayImages.map((img, index) => {
+                const imgKey = typeof img === "string" ? `${img}-${index}` : `${img.id || img.url}-${index}`;
                 return (
-                  <div className={ElementStyle}>
-                    <Image
-                      src={getStrapiMediaUrl(secondaryImgUrl)}
-                      alt={secondaryImgAlt || "Image"}
-                      width={300}
-                      height={300}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                      unoptimized
-                    />
+                  <div key={index} className={ElementStyle}>
+                    <AnimatePresence>
+                      <motion.div
+                        key={imgKey}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.05 }}
+                        transition={{ duration: 0.4 }}
+                        className="absolute inset-0 w-full h-full"
+                      >
+                        <Image
+                          src={getStrapiMediaUrl(img)}
+                          alt={typeof img === "string" ? "placeholder" : img?.alternativeText || `home about ${index + 1}`}
+                          width={300}
+                          height={300}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          unoptimized
+                        />
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
                 );
-              })()}
-              {(() => {
-                const mainImgUrl =
-                  data?.main_image?.url || data?.about_media?.[0]?.url;
-                const mainImgAlt =
-                  data?.main_image?.alternativeText ||
-                  data?.about_media?.[0]?.alternativeText ||
-                  "home about 2";
-                if (!mainImgUrl) return null;
-                return (
-                  <div className={ElementStyle}>
-                    <Image
-                      src={getStrapiMediaUrl(mainImgUrl)}
-                      alt={mainImgAlt || "Image"}
-                      width={300}
-                      height={300}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                      unoptimized
-                    />
-                  </div>
-                );
-              })()}
+              })}
             </div>
 
             {data?.about_statistic?.length > 0 && (
@@ -133,7 +144,6 @@ export default function HomeAbout({ data }) {
                 </div>
               )
             )}
-            {}
             {data?.button && (
               <Button asChild>
                 <Link href={data?.button?.url}>{data?.button?.label}</Link>

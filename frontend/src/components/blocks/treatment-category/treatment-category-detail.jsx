@@ -2,17 +2,17 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function SpecialityDetail({ data }) {
+export default function TreatmentCategoryDetail({ data }) {
   return (
     <section className="relative py-[30px_40px] lg:py-[30px_60px] xl:py-[35px_80px] 2xl:py-[40px_120px] 3xl:py-[42px_140px]">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute right-[50px] top-[150px]  w-full max-w-[170px] xl:max-w-[210px] 2xl:max-w-[240px] 3xl:max-w-[290px] ">
           <Image
             src="/images/circle.svg"
-            className="w-full object-cover"
+            alt="floating_icon"
             width="85"
             height="85"
-            alt="floating_icon"
+            className="w-full object-cover"
           />
         </div>
       </div>
@@ -20,26 +20,28 @@ export default function SpecialityDetail({ data }) {
         <div className="w-full text-center m-auto lg:max-w-[510px] xl:max-w-[630px] 2xl:max-w-[720px] 3xl:max-w-[850px] mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
           <div className="heading_1 mb-[0px] ">{data.title}</div>
           <div className="text_3 font-helvetica-light mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
-            {data.subtitle}
+            <p>{data?.short_description}</p>
           </div>
-          <div className="text_3 font-helvetica-light [&>p]:mb-[30px]">
-            <BlocksRenderer content={data.description} />
-          </div>
+          {/* <div className="text_3 font-helvetica-light [&>p]:mb-[30px]">
+            {data?.short_description}
+          </div> */}
         </div>
         <div className="relative z-1 w-full h-full bg-[#FFF9EB] border border-[#C3C3C3] p-[12px] md:p-[18px] xl:p-[23px] 2xl:p-[26px] 3xl:p-[33px] mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]">
           <div className="flex flex-wrap max-md:gap-[20px]">
             <div className="w-full md:w-[calc(100%-380px)] lg:w-[calc(100%-520px)] xl:w-[calc(100%-640px)] 2xl:w-[calc(100%-725px)] 3xl:w-[calc(100%-920px)] flex items-center">
               <div className="w-full md:pl-[10px]">
                 <div className="text-[19px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-[12px] xl:mb-[15px] 2xl:mb-[18px] 3xl:mb-[22px]">
-                  {data?.content_section?.title}
+                  Conditions We Address
                 </div>
                 <ul className="space-y-[5px]">
-                  {data?.content_section?.conditions.map((item, idx) => (
+                  {data?.related_treatments?.map((item, idx) => (
                     <li
-                      key={idx}
+                      key={"related_treatments-" + idx}
                       className="text_3 font-helvetica-light relative flex items-center gap-[10px] before:content-[''] before:p-[2px] before:2xl:p-[3px] before:block before:w-[2px] before:h-[2px] before:bg-black before:rounded-full "
                     >
-                      {item.title}
+                      <link href={`/treatments/${item?.slug}`}>
+                        {item.title}
+                      </link>
                     </li>
                   ))}
                 </ul>
@@ -52,13 +54,13 @@ export default function SpecialityDetail({ data }) {
                   className="w-full h-full object-cover"
                   width={1640}
                   height={460}
-                  alt={(data?.content_section?.image?.alternativeText) || "Image"}
+                  alt={data?.content_section?.image?.alternativeText || "Image"}
                 />
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap justify-between items-center gap-[15px]">
+        {/* <div className="flex flex-wrap justify-between items-center gap-[15px]">
           <div className="text_3 font-helvetica-light mb-0">
             {data?.cta_section?.footerText}
           </div>
@@ -111,7 +113,7 @@ export default function SpecialityDetail({ data }) {
               </div>
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
