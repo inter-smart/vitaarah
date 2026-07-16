@@ -2,9 +2,13 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Lightbox from "yet-another-react-lightbox";
+import dynamic from "next/dynamic";
 import "yet-another-react-lightbox/styles.css";
 import { getStrapiMediaUrl } from "@/lib/strapi";
+
+const Lightbox = dynamic(() => import("yet-another-react-lightbox"), {
+  ssr: false,
+});
 
 export default function GalleryListing({ images }) {
   const [open, setOpen] = useState(false);
@@ -69,8 +73,8 @@ export default function GalleryListing({ images }) {
                     alt={item?.alternativeText || "Gallery Image"}
                     width={622}
                     height={450}
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
-                    unoptimized
                     onError={(e) => {
                       e.currentTarget.onerror = null;
                       e.currentTarget.srcset = "";
@@ -83,12 +87,14 @@ export default function GalleryListing({ images }) {
           })}
         </div>
       </div>
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        index={index}
-        slides={slides}
-      />
+      {open && (
+        <Lightbox
+          open={open}
+          close={() => setOpen(false)}
+          index={index}
+          slides={slides}
+        />
+      )}
     </section>
   );
 }

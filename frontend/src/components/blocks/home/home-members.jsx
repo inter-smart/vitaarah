@@ -37,7 +37,10 @@ export default function HomeMembers({ data }) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
+    // Initialize without synchronous state cascade — read current snap directly
+    const initialIndex = emblaApi.selectedScrollSnap();
+    setSelectedIdx(initialIndex);
+    thumbEmblaApi?.scrollTo(initialIndex);
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
     emblaApi.on("reinit", onSelect);
@@ -46,7 +49,7 @@ export default function HomeMembers({ data }) {
       emblaApi.off("reInit", onSelect);
       emblaApi.off("reinit", onSelect);
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi, onSelect, thumbEmblaApi]);
 
   const onThumbClick = useCallback(
     (index) => {
@@ -157,8 +160,8 @@ export default function HomeMembers({ data }) {
                             }
                             width={82}
                             height={82}
+                            sizes="80px"
                             className="w-full h-full object-cover hover:scale-105"
-                            unoptimized
                           />
                         </div>
                       </div>
@@ -172,7 +175,7 @@ export default function HomeMembers({ data }) {
             <div className="w-[168px] sm:w-[200px] lg:w-[320px] xl:w-[400px] 2xl:w-[454px] 3xl:w-[550px] aspect-[551/773] relative z-0 mx-auto mt-auto">
               <Image
                 src={"/images/home-members-bg.svg"}
-                alt="home-members-bg.svg"
+                alt=""
                 width={552}
                 height={775}
                 className="w-full h-full object-contain absolute -z-1 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -199,8 +202,8 @@ export default function HomeMembers({ data }) {
                     }
                     width={552}
                     height={775}
+                    sizes="(max-width: 640px) 168px, (max-width: 1024px) 320px, 454px"
                     className="w-full h-full object-cover"
-                    unoptimized
                   />
                 </motion.div>
               </AnimatePresence>

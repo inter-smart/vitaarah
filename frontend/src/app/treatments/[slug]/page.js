@@ -51,8 +51,6 @@ export default async function TreatmentDetails({ params }) {
     best_time_info: treatment.best_time_info,
   };
 
-  console.log("TreatmentDetails treatment:", treatment);
-
   const category = treatment?.related_treatment_category;
   const breadcrumbItems = [
     { label: "Home", href: "/" },

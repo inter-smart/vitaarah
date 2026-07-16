@@ -19,8 +19,8 @@ function BlogSpecItem({ src, alt, children }) {
         alt={alt || "Image"}
         width={12}
         height={12}
+        sizes="12px"
         className="w-[10px] 2xl:w-[11px] 3xl:w-[13.4px]"
-        unoptimized
       />
       {children}
     </div>
@@ -40,8 +40,8 @@ export default function BlogCard({ data }) {
           alt={data?.featured_image?.alternativeText || data?.title || "Blog"}
           width={502}
           height={403}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-          unoptimized
         />
       </div>
       <div className="flex-1 flex flex-col justify-between gap-[10px] lg:gap-[18px] xl:gap-[22px] 2xl:gap-[26px] 3xl:gap-[31px]">

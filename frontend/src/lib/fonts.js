@@ -2,11 +2,6 @@ import localFont from "next/font/local";
 
 export const helvetica = localFont({
   src: [
-    // {
-    //   path: "../../public/fonts/helvetica-light.woff2",
-    //   weight: "300",
-    //   style: "normal",
-    // },
     {
       path: "../../public/fonts/helvetica-light.woff2",
       weight: "400",
@@ -34,20 +29,6 @@ export const helvetica = localFont({
   fallback: ["Arial", "Helvetica", "sans-serif"],
 });
 
-export const helveticaLight = localFont({
-  src: [
-    {
-      path: "../../public/fonts/helvetica-light-regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-helvetica-light",
-  display: "swap",
-  preload: true,
-  fallback: ["Arial", "Helvetica", "sans-serif"],
-});
-
 export const things = localFont({
   src: [
     {
@@ -62,5 +43,5 @@ export const things = localFont({
 });
 
 export function getFontVariables() {
-  return `${helvetica.variable} ${helveticaLight.variable} ${things.variable}`;
+  return `${helvetica.variable} ${things.variable}`;
 }

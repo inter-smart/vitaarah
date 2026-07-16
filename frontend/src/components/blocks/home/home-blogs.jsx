@@ -24,7 +24,7 @@ export default function HomeBlogs({ data }) {
     <section className="w-full py-[40px] sm:py-[60px] xl:py-[74px] 2xl:py-[90px] relative z-0">
       <Image
         src={"/images/home-members-bg.svg"}
-        alt="home-members-bg.svg"
+        alt=""
         width={360}
         height={280}
         className="w-[200px] xl:w-[260px] 2xl:w-[300px] 3xl:w-[360px] object-contain absolute -z-1 top-[40px] sm:top-[60px] xl:top-[74px] 2xl:top-[90px] left-0 -translate-x-[5%]"
@@ -80,10 +80,10 @@ export default function HomeBlogs({ data }) {
                           "Blog" ||
                           "Image"
                         }
-                        width={52}
-                        height={52}
+                        width={373}
+                        height={473}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 25vw"
                         className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                        unoptimized
                       />
                     </div>
                   </div>
@@ -136,10 +136,10 @@ export default function HomeBlogs({ data }) {
                             "Blog" ||
                             "Image"
                           }
-                          width={52}
-                          height={52}
+                          width={373}
+                          height={473}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 25vw"
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                          unoptimized
                         />
                       </div>
                     </div>

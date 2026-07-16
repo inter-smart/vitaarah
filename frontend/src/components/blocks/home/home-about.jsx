@@ -26,7 +26,7 @@ export default function HomeAbout({ data }) {
       ];
     }
     return rawImages;
-  }, [data?.featured_images]);
+  }, [data]);
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % images.length);

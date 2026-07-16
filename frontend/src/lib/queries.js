@@ -122,11 +122,7 @@ export const getConditionQuery = () => buildQuery({
   },
   related_treatments: {
     populate: {
-      hero: {
-        populate: {
-          hero_media: true,
-        },
-      },
+      featured_image: true,
     },
   },
 });
@@ -212,7 +208,7 @@ export const getHomePageQuery = () => buildQuery({
         populate: {
           featured_image: true,
           program_attractions: { populate: { icon: true } },
-          related_program: { populate: { hero_media: true, related_package: true } },
+          related_program: { populate: { related_package: true } },
         },
       },
     },

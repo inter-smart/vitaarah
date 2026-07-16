@@ -1,4 +1,5 @@
 import qs from "qs";
+import { cache } from "react";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 const TOKEN = process.env.STRAPI_API_TOKEN;
@@ -10,13 +11,13 @@ export function buildQuery(populate) {
   );
 }
 
-export async function fetchAPI(endpoint, options = {}) {
+export const fetchAPI = cache(async function fetchAPI(endpoint, options = {}) {
   try {
     const response = await fetch(`${STRAPI_URL}${endpoint}`, {
       headers: TOKEN
         ? { Authorization: `Bearer ${TOKEN}` }
         : undefined,
-      next: { revalidate: 0 },
+      next: { revalidate: 3600 },
       ...options,
     });
 
@@ -30,7 +31,7 @@ export async function fetchAPI(endpoint, options = {}) {
     console.error("Strapi fetch error:", error);
     return null;
   }
-}
+});
 
 export function getStrapiMediaUrl(media) {
   if (!media) return "/images/placeholder.jpg";
