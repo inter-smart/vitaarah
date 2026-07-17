@@ -13,7 +13,7 @@ export default function BreadcrumbNav({ items }) {
   if (!items || items.length === 0) return null;
 
   return (
-    <div className="container mt-1 xl:mt-0.5">
+    <div className="container mt-1 xl:mt-1">
       <Breadcrumb>
         <BreadcrumbList className="flex-wrap items-center gap-1.5 xl:gap-2">
           {items.map((item, idx) => {
@@ -22,7 +22,7 @@ export default function BreadcrumbNav({ items }) {
               <React.Fragment key={idx}>
                 <BreadcrumbItem>
                   {isLast ? (
-                    <BreadcrumbPage className="text-[12px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-normal font-helvetica-light text-[#A14962]">
+                    <BreadcrumbPage className="text-[12px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-normal font-helvetica-light text-[#A14962] max-w-[120px] xl:max-w-[400px] truncate">
                       {item.label}
                     </BreadcrumbPage>
                   ) : (

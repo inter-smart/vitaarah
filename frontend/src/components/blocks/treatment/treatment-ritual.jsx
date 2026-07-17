@@ -34,7 +34,7 @@ export default function TreatmentRitual({ data }) {
                   group-hover:translate-x-[250%]"
                   />
 
-                  <span className="text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] relative z-10">
+                  <span className="text-[11px] sm:text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] relative z-10">
                     {data?.button_label}
                   </span>
                 </div>

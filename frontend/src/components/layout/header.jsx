@@ -78,8 +78,8 @@ export default function Header({
           className={cn(
             " flex flex-wrap items-center justify-between transition-[height] duration-300 delay-0",
             isScrolled
-              ? "h-[70px] xl:h-[80px] 2xl:h-[90px] 3xl:h-[100px]"
-              : "h-(--header-y-sm) xl:h-(--header-y-xl) 2xl:h-(--header-y-2xl) 3xl:h-(--header-y-3xl)",
+              ? "h-[60px] xl:h-[80px] 2xl:h-[90px] 3xl:h-[100px]"
+              : "h-(--header-y)",
           )}
         >
           {header_logo ? (
@@ -92,6 +92,7 @@ export default function Header({
                 alt={header_logo.alternativeText || "Vitaarah"}
                 width={170}
                 height={44}
+                priority
                 className="w-full h-full"
               />
             </Link>
@@ -175,9 +176,10 @@ export default function Header({
             className={cn(
               "fixed z-10 inset-x-0 overflow-y-auto",
               isScrolled
-                ? "top-[70px] xl:top-[80px] 2xl:top-[90px] 3xl:top-[100px]"
+                ? "top-[60px] xl:top-[80px] 2xl:top-[90px] 3xl:top-[100px]"
                 : "top-(--header-y-sm) xl:top-(--header-y-xl) 2xl:top-(--header-y-2xl) 3xl:top-(--header-y-3xl)",
             )}
+            data-lenis-prevent="true"
             onClick={() => setIsOpen(false)}
           >
             <div className="container">

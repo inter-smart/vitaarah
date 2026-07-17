@@ -25,6 +25,9 @@ export default function HomeTreatments({ data }) {
     [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
   );
 
+console.log(data?.home_treatment_item);
+
+
   return (
     <section
       id="Treatments"

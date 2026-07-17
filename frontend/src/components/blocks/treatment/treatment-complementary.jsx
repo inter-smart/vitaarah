@@ -1,14 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
-import "swiper/css";
-import "swiper/css/autoplay";
-import "swiper/css/navigation";
 import Link from "next/link";
 import { getStrapiMediaUrl } from "@/lib/strapi";
+import { cn } from "@/lib/utils";
 
 export default function TreatmentComplementary({ data }) {
   const fadeUp = {
@@ -59,52 +55,14 @@ export default function TreatmentComplementary({ data }) {
           </div>
         </motion.div>
         <div className="w-full h-full relative">
-          <Swiper
-            modules={[Autoplay, Navigation]}
-            onBeforeInit={(swiper) => {
-              swiper.params.navigation.prevEl = ".button-prev";
-              swiper.params.navigation.nextEl = ".button-next";
-            }}
-            navigation={{
-              prevEl: ".button-prev",
-              nextEl: ".button-next",
-            }}
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            speed={4000}
-            loop={true}
-            slidesPerView={1.5}
-            spaceBetween={15}
-            centerInsufficientSlides={true}
-            breakpoints={{
-              578: {
-                slidesPerView: 2.5,
-                spaceBetween: 25,
-              },
-              1090: {
-                slidesPerView: 3,
-                spaceBetween: 25,
-              },
-              1325: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
-              1535: {
-                slidesPerView: 3,
-                spaceBetween: 35,
-              },
-              1800: {
-                slidesPerView: 3,
-                spaceBetween: 44,
-              },
-            }}
-            className="relative z-20"
-          >
+          <div className="flex flex-wrap justify-center -mx-2.5 lg:-mx-[9px] xl:-mx-[11.5px] xl:-mx-[11.5px] 2xl:-mx-[13px] 3xl:-mx-[16px] lg:-my-[30px] xl:-my-[35.5px] xl:-my-[35.5px] 2xl:-my-[42px] 3xl:-my-[50px]">
             {(data?.related_treatments || []).map((item, index) => (
-              <SwiperSlide key={index} className="!h-auto">
+              <div
+                key={"related_treatments" + index}
+                className={cn(
+                  "w-full sm:w-1/2 lg:w-1/3 p-[15px_10px] lg:p-[30px_9px] xl:p-[35.5px_11.5px] xl:p-[35.5px_11.5px] 2xl:p-[42px_13px] 3xl:p-[50px_16px]",
+                )}
+              >
                 <motion.div
                   variants={fadeCard}
                   initial="hidden"
@@ -164,33 +122,22 @@ export default function TreatmentComplementary({ data }) {
                       >
                         <div
                           className="w-full max-w-[452px]
-                                                    bg-white/10
+                                                    bg-white/40
                                                     backdrop-blur-lg
                                                     transition-all duration-700
-                                                    group-hover:bg-white/15
-                                                    group-hover:border-white/40
+                                                    group-hover:bg-white/60
+                                                    group-hover:border-white/60
                                                     group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)]
                                                     p-[8px]
                                                     sm:p-[10px_12px]
                                                     xl:p-[12px_15px]
                                                     3xl:p-[16px_20px]"
                         >
-                          <div className="text_3 font-helvetica-light">
+                          <div className="text-[11px] xl:text-[14px] font-helvetica-light text-black">
                             {item?.duration_info}
                           </div>
 
-                          <div
-                            className="text-[15px]
-                                                        md:text-[18px]
-                                                        lg:text-[20px]
-                                                        xl:text-[24px]
-                                                        2xl:text-[27px]
-                                                        3xl:text-[35px]
-                                                        text-[#A14962]
-                                                        font-normal mb-0
-                                                        transition-all duration-500
-                                                        group-hover:tracking-[0.5px]"
-                          >
+                          <div className="text_4 font-helvetica-light text-[#A14962] font-normal mb-0 transition-all duration-500">
                             {item.title}
                           </div>
 
@@ -202,106 +149,8 @@ export default function TreatmentComplementary({ data }) {
                     </Link>
                   </motion.div>
                 </motion.div>
-              </SwiperSlide>
+              </div>
             ))}
-          </Swiper>
-
-          <div className="absolute inset-y-0 left-0 right-0 z-30 pointer-events-none">
-            <button
-              className="
-                            button-prev
-                            pointer-events-auto
-                            absolute
-                            left-[-15px]
-                            md:left-[-65px]
-                            top-1/2
-                            -translate-y-1/2
-                            max-md:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
-                            w-[35px]
-                            h-[35px]
-                            lg:w-[56px]
-                            lg:h-[56px]
-                            rounded-full
-                            bg-white
-                            max-md:p-[11px]
-                            flex
-                            items-center
-                            justify-center
-                            transition-all
-                            duration-300
-                            hover:scale-110
-                            hover:bg-[#A14962]
-                            text-[#A14962]
-                            hover:text-white"
-            >
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 28 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M14.0513 0.351562L0.70254 13.8759L14.0513 27.4003"
-                  stroke="black"
-                />
-                <line
-                  y1="-0.5"
-                  x2="26.3468"
-                  y2="-0.5"
-                  transform="matrix(1 -5.961e-08 -1.28212e-07 -1 0.877441 13.875)"
-                  stroke="black"
-                />
-              </svg>
-            </button>
-
-            <button
-              className="
-                            button-next
-                            pointer-events-auto
-                            absolute
-                            right-[-15px]
-                            md:right-[-65px]
-                            top-1/2
-                            -translate-y-1/2
-                            w-[35px]
-                            h-[35px]
-                            lg:w-[56px]
-                            lg:h-[56px]
-                            rounded-full
-                            bg-white
-                            max-md:p-[5px]
-                            max-md:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
-                            flex
-                            items-center
-                            justify-center
-                            transition-all
-                            duration-300
-                            hover:scale-110
-                            hover:bg-[#A14962]
-                            text-[#A14962]
-                            hover:text-white"
-            >
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 28 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.1729 0.351562L26.5216 13.8759L13.1729 27.4003"
-                  stroke="black"
-                />
-                <line
-                  x1="26.3467"
-                  y1="14.375"
-                  x2="-8.62318e-05"
-                  y2="14.375"
-                  stroke="black"
-                />
-              </svg>
-            </button>
           </div>
         </div>
       </div>

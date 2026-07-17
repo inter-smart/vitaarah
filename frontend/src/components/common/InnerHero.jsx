@@ -8,8 +8,8 @@ export default function InnerHero({ data }) {
 
   return (
     <section className="w-full block relative">
-      <div className="container">
-        <div className="relative w-full h-[250px] md:h-[285px] xl:h-[350px] 2xl:h-[400px] 3xl:h-[500px] w-full flex items-end overflow-hidden px-[25px] py-[30px]">
+      <div className="container max-sm:px-0">
+        <div className="relative w-full h-[250px] md:h-[285px] xl:h-[350px] 2xl:h-[400px] 3xl:h-[500px] w-full flex items-end overflow-hidden px-[25px] py-5 xl:py-[30px]">
           {/* Media */}
           {isVideo ? (
             <video
@@ -39,9 +39,9 @@ export default function InnerHero({ data }) {
             />
           )}
           {/* Content */}
-          <div className="relative z-10 w-full max-w-[350px] lg:max-w-[400px] xl:max-w-[500px] 2xl:max-w-[560px] 3xl:max-w-[680px] h-auto backdrop-blur-2xl ml-auto bg-white/10 border border-white/80 p-[20px_22px] xl:p-[25px_20px] 2xl:p-[30px_32px] 3xl:p-[35px_35px_32px_40px]">
+          <div className="relative z-10 w-full max-w-[350px] lg:max-w-[400px] xl:max-w-[500px] 2xl:max-w-[560px] 3xl:max-w-[680px] h-auto backdrop-blur-2xl ml-auto bg-white/10 border border-white/80 p-[15px_20px] xl:p-[25px_20px] 2xl:p-[30px_32px] 3xl:p-[35px_35px_32px_40px] flex flex-col gap-y-1 xl:gap-y-2.5">
             {data?.title && (
-              <h1 className="mb-[10px] text-[25px] sm:text-[30px] md:text-[35px] lg:text-[45px] xl:text-[56px] 2xl:text-[63px] 3xl:text-[77px] leading-[1] text-white font-normal font-things">
+              <h1 className="text-[25px] sm:text-[30px] md:text-[35px] lg:text-[45px] xl:text-[56px] 2xl:text-[63px] 3xl:text-[77px] leading-[1] text-white font-normal font-things">
                 {data?.title}
               </h1>
             )}

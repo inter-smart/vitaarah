@@ -37,7 +37,7 @@ export default function Footer({ data, siteSettings }) {
                     href={link.url}
                     target={link.is_external ? "_blank" : undefined}
                     rel={link.is_external ? "noopener noreferrer" : undefined}
-                    className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
+                    className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
                   >
                     {link.label}
                   </Link>
@@ -55,7 +55,7 @@ export default function Footer({ data, siteSettings }) {
                     href={item.url}
                     target={item.is_external ? "_blank" : undefined}
                     rel={item.is_external ? "noopener noreferrer" : undefined}
-                    className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2 items-center"
+                    className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2 items-center"
                   >
                     {item.icon?.url && (
                       <Image
@@ -74,7 +74,7 @@ export default function Footer({ data, siteSettings }) {
           <div className="w-[48%] sm:w-[30%] lg:w-[16%] xl:w-[18%]">
             <div className="mb-2">
               <div className={headStyle}>UAE</div>
-              <div className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-normal font-helvetica text-[#875849] xl:max-w-[90%]">
+              <div className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-normal font-helvetica text-[#875849] xl:max-w-[90%]">
                 {uae_address}
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function Footer({ data, siteSettings }) {
                       href={link.url}
                       target={link.is_external ? "_blank" : undefined}
                       rel={link.is_external ? "noopener noreferrer" : undefined}
-                      className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
+                      className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628]"
                     >
                       {link.label}
                     </Link>
@@ -166,11 +166,11 @@ export default function Footer({ data, siteSettings }) {
 
         <div className="flex flex-col sm:flex-row gap-2.5 max-sm:items-center sm:justify-between py-[15px] sm:py-[20px] xl:py-[27px] 2xl:py-[30px] 3xl:py-[37px]">
           {copyright_text && (
-            <div className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849]">
+            <div className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849]">
               &copy; {new Date().getFullYear()} {copyright_text}
             </div>
           )}
-          <div className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] flex items-center gap-2">
+          <div className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] flex items-center gap-2">
             Designed by:{" "}
             <a href="https://www.intersmartsolution.com/">
               <Image

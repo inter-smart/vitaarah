@@ -18,7 +18,7 @@
   --container-3xl: 1625px;
 
   /* Header Sizes */
-  --header-y-sm: 80px;
+  --header-y-sm: 70px;
   --header-y-xl: 110px;
   --header-y-2xl: 120px;
   --header-y-3xl: 150px;
@@ -153,7 +153,7 @@
     font-family: var(--font-helvetica);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    @apply [--header-y:var(--header-y)] xl:[--header-y:var(--header-y-xl)] 2xl:[--header-y:var(--header-y-2xl)] 3xl:[--header-y:var(--header-y-3xl)] bg-background text-foreground;
+    @apply [--header-y:var(--header-y-sm)] xl:[--header-y:var(--header-y-xl)] 2xl:[--header-y:var(--header-y-2xl)] 3xl:[--header-y:var(--header-y-3xl)] bg-background text-foreground;
   }
 
   ::selection {
@@ -297,19 +297,19 @@
 
 @layer components {
   .text_1 {
-    @apply text-[13px] lg:text-[12.4px] xl:text-[15.4px] 2xl:text-[17.4px] 3xl:text-[21.2px] leading-normal font-normal font-helvetica;
+    @apply text-[15px] sm:text-[13px] lg:text-[12.4px] xl:text-[15.4px] 2xl:text-[17.4px] 3xl:text-[21.2px] leading-normal font-normal font-helvetica;
   }
   .text_2 {
     @apply text-[32px] lg:text-[56.7px] xl:text-[70px] 2xl:text-[79.4px] 3xl:text-[96.3px] leading-tight font-normal font-things;
   }
   .text_3 {
-    @apply text-[13px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal 2xl:leading-7 3xl:leading-8 font-helvetica;
+    @apply text-[15px] sm:text-[13px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-normal 2xl:leading-7 3xl:leading-8 font-helvetica;
   }
   .text_4 {
-    @apply text-[15px] lg:text-[17px] xl:text-[21px] 2xl:text-[23.8px] 3xl:text-[28.9px] leading-normal font-normal font-helvetica text-[#a14962];
+    @apply text-[16px] sm:text-[15px] lg:text-[17px] xl:text-[21px] 2xl:text-[23.8px] 3xl:text-[28.9px] leading-normal font-normal font-helvetica text-[#a14962];
   }
   .text_5 {
-    @apply text-[14px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica;
+    @apply text-[15px] sm:text-[14px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica;
   }
   /* inner headings */
   .heading_1 {

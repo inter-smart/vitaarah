@@ -13,12 +13,38 @@ export function buildQuery(populate) {
 
 export const fetchAPI = cache(async function fetchAPI(endpoint, options = {}) {
   try {
-    const response = await fetch(`${STRAPI_URL}${endpoint}`, {
+    let finalEndpoint = endpoint;
+    const fetchOptions = { ...options };
+
+    let isDraft = false;
+    try {
+      const { draftMode } = await import("next/headers");
+      const draft = await draftMode();
+      isDraft = draft?.isEnabled;
+    } catch (e) {
+      // Ignore error outside request context (e.g. build/static rendering time or client side)
+    }
+
+    if (isDraft) {
+      // Bypass cache for preview requests
+      fetchOptions.cache = "no-store";
+      if (fetchOptions.next) {
+        delete fetchOptions.next;
+      }
+
+      // Query draft and published content in Strapi 5
+      const separator = finalEndpoint.includes("?") ? "&" : "?";
+      if (!finalEndpoint.includes("status=")) {
+        finalEndpoint = `${finalEndpoint}${separator}status=draft`;
+      }
+    }
+
+    const response = await fetch(`${STRAPI_URL}${finalEndpoint}`, {
       headers: TOKEN
         ? { Authorization: `Bearer ${TOKEN}` }
         : undefined,
-      next: { revalidate: 3600 },
-      ...options,
+      next: isDraft ? undefined : { revalidate: 3600 },
+      ...fetchOptions,
     });
 
     if (!response.ok) {

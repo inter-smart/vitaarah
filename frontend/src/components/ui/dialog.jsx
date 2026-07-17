@@ -6,11 +6,28 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { XIcon } from "lucide-react"
+import { useSmoothScroll } from "@/components/common/smooth-scroll/SmoothScrollProvider"
 
 function Dialog({
+  onOpenChange,
   ...props
 }) {
-  return <DialogPrimitive.Root data-slot="dialog" {...props} />;
+  const lenis = useSmoothScroll();
+
+  return (
+    <DialogPrimitive.Root
+      data-slot="dialog"
+      onOpenChange={(isOpen) => {
+        if (isOpen) {
+          lenis?.stop();
+        } else {
+          lenis?.start();
+        }
+        onOpenChange?.(isOpen);
+      }}
+      {...props}
+    />
+  );
 }
 
 function DialogTrigger({
@@ -57,6 +74,7 @@ function DialogContent({
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot="dialog-content"
+        data-lenis-prevent="true"
         className={cn(
           "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-popover p-4 text-sm text-popover-foreground ring-1 ring-foreground/10 duration-100 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
           className

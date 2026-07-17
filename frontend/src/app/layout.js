@@ -7,6 +7,8 @@ import Providers from "./providers";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import FloatingActionButtons from "@/components/layout/floating-action-buttons";
+import { PageTransitionProvider } from "@/components/common/page-transition/PageTransitionProvider";
+import { SmoothScrollProvider } from "@/components/common/smooth-scroll/SmoothScrollProvider";
 
 export async function generateMetadata() {
   const layoutData = await getLayoutData();
@@ -78,20 +80,26 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <body className={cn("flex min-h-screen flex-col antialiased")}>
-        <Providers>
+        <SmoothScrollProvider>
+          <Providers>
           <Header
             {...headerProps}
             support_phone={siteSetting?.support_phone}
             support_email={siteSetting?.support_email}
             social_links={siteSetting?.social_links}
           />
-          <main className="pt-(--header-y) flex-1">{children}</main>
+          <main className="pt-(--header-y) flex-1">
+            <PageTransitionProvider>
+              {children}
+            </PageTransitionProvider>
+          </main>
           <Footer data={footer} siteSettings={siteSetting} />
           <FloatingActionButtons
             supportPhone={siteSetting?.support_phone}
             supportWhatsapp={siteSetting?.support_whatsapp_number}
           />
-        </Providers>
+          </Providers>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

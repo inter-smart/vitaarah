@@ -45,6 +45,7 @@ const SelectContent = forwardRef(function SelectContent(
           className,
         )}
         position={position}
+        data-lenis-prevent="true"
         {...props}
       >
         <SelectPrimitive.Viewport className="p-1">
