@@ -58,6 +58,8 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Admin => 
           'api::treatment-category.treatment-category': `/treatments/category/${slug}`,
           'api::program.program': `/programs/${slug}`,
           'api::condition.condition': `/conditions/${slug}`,
+          'api::package.package': `/packages/${slug}`,
+          'api::specialty.specialty': `/specialties/${slug}`,
           'api::home-page.home-page': '/',
           'api::about-page.about-page': '/about',
           'api::contact-page.contact-page': '/contact',
@@ -82,7 +84,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Admin => 
           url: path,
         });
 
-        return `${frontendUrl}/api/preview?${params.toString()}`;
+        return `${frontendUrl}/preview?${params.toString()}`;
       },
     },
   },
