@@ -4,26 +4,15 @@ export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
   async bootstrap({ strapi }) {
-    // Validate SMTP environment variables on startup
-    const requiredEnv = [
-      "SMTP_HOST",
-      "SMTP_PORT",
-      "SMTP_USERNAME",
-      "SMTP_PASSWORD",
-      "SMTP_FROM",
-      "SMTP_FROM_NAME",
-      "SMTP_REPLY_TO",
-      "ADMIN_NOTIFICATION_EMAIL",
-    ];
-
-    const missing = requiredEnv.filter((envName) => !process.env[envName]);
-    if (missing.length > 0) {
-      strapi.log.warn(
-        `[Email Service Warning] The following environment variables are missing: ${missing.join(", ")}. Email notifications may not function correctly.`
-      );
-    } else {
-      strapi.log.info("[Email Service] All required SMTP environment variables are present.");
+    // Validate Brevo API Key on startup
+    const apiKey = process.env.BREVO_API_KEY;
+    if (!apiKey) {
+      throw new Error("[Startup Error] BREVO_API_KEY is missing from environment variables.");
     }
+    if (!apiKey.startsWith("xkeysib-")) {
+      throw new Error("[Startup Error] BREVO_API_KEY is invalid. It must start with 'xkeysib-'. Do not use the MCP Base64 key.");
+    }
+    strapi.log.info("[Brevo Service] BREVO_API_KEY successfully validated on startup.");
 
     const publicRole = await strapi
       .query('plugin::users-permissions.role')

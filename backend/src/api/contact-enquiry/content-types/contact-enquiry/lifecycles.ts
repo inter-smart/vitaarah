@@ -1,4 +1,4 @@
-import { emailService } from "../../../../services/email";
+import { brevoService } from "../../../../services/brevo";
 
 declare const strapi: any;
 
@@ -28,7 +28,7 @@ export default {
       const frontendUrl = process.env.FRONTEND_URL || "https://beta.vitaarah.intersmart.in";
 
       // 1. Send Admin Email Notification (Asynchronous & Safe)
-      emailService.sendAdminNotification(title, [
+      brevoService.sendAdminNotification(title, [
         { label: "Name", value: entry.name },
         { label: "Email", value: entry.email },
         { label: "Phone", value: entry.phone },
@@ -46,7 +46,7 @@ export default {
           `We have successfully received your enquiry. Our team is reviewing it and will get back to you shortly.\n\n` +
           `For any immediate questions, feel free to reply to this email or visit our website at ${frontendUrl}.`;
 
-      emailService.sendCustomerConfirmation(
+      brevoService.sendCustomerConfirmation(
         entry.email,
         entry.name,
         customerSubject,
