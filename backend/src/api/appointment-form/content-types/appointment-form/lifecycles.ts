@@ -7,6 +7,9 @@ export default {
     const { result } = event;
     if (!result || !result.documentId) return;
 
+    // Prevent duplicate emails in Strapi 5 Draft & Publish architecture
+    if (result.publishedAt === null) return;
+
     try {
       // Query the full entry
       const entry = await strapi.documents("api::appointment-form.appointment-form").findOne({

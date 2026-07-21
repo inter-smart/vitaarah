@@ -7,6 +7,10 @@ export default {
     const { result } = event;
     if (!result || !result.documentId) return;
 
+    // Prevent duplicate emails in Strapi 5 Draft & Publish architecture
+    // by only triggering on the published version (or draft if publishedAt is not used, but forms usually publish instantly).
+    if (result.publishedAt === null) return;
+
     try {
       // Query the full entry
       const entry = await strapi.documents("api::contact-enquiry.contact-enquiry").findOne({
