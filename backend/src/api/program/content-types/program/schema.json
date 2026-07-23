@@ -11,13 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "hero_media": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "title": {
       "type": "string"
     },
@@ -25,11 +18,24 @@
       "type": "uid",
       "targetField": "title"
     },
+    "short_description": {
+      "type": "text"
+    },
+    "hero_media": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "hero_title": {
       "type": "string"
     },
-    "short_description": {
-      "type": "text"
+    "related_package": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::package.package",
+      "inversedBy": "related_programs"
     },
     "available_durations": {
       "type": "relation",
@@ -65,12 +71,6 @@
       "type": "component",
       "component": "sections.faq-section",
       "repeatable": false
-    },
-    "related_package": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::package.package",
-      "inversedBy": "related_programs"
     }
   }
 }

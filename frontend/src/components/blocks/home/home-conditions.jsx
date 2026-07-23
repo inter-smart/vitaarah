@@ -84,7 +84,6 @@ export default function HomeConditions({ data }) {
                         width={90}
                         height={90}
                         className="w-[54px] xl:w-[67px] 2xl:w-[75px] 3xl:w-[85px] object-contain"
-                        unoptimized
                       />
                     </div>
                   )}

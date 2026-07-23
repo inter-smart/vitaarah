@@ -65,7 +65,7 @@ export default function TreatmentFaq({ data }) {
                   value={`item-${item?.id || id}`}
                   className="mb-[15px] border border-[#E4E4E4] transition-all duration-300 data-[state=open]:bg-[#FFF9EB] data-[state=open]:border-[#FFF9EB] px-[10px] lg:px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px]"
                 >
-                  <AccordionTrigger className="text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[22px] text-[#1C1C1C] font-normal relative py-[15px] xl:py-[18px] 2xl:py-[22px] 3xl:py-[25px] cursor-pointer hover:no-underline data-[state=open]:pb-[15px] [&>svg]:!hidden after:absolute after:content-['+'] after:w-[15px] after:h-[15px] after:flex after:items-center after:justify-center after:top-0 after:bottom-0 after:m-auto after:text-[13px] xl:after:text-[15px] 2xl:after:text-[18px] 3xl:after:text-[22px] after:right-0 after:text-[#1C1C1C] data-[state=open]:after:content-['−']">
+                  <AccordionTrigger className="text-[14px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[22px] text-[#1C1C1C] font-normal relative py-[15px] xl:py-[18px] 2xl:py-[22px] 3xl:py-[25px] cursor-pointer hover:no-underline data-[state=open]:pb-[15px] [&>svg]:!hidden after:absolute after:content-['+'] after:w-[15px] after:h-[15px] after:flex after:items-center after:justify-center after:top-0 after:bottom-0 after:m-auto after:text-[13px] xl:after:text-[15px] 2xl:after:text-[18px] 3xl:after:text-[22px] after:right-0 after:text-[#1C1C1C] data-[state=open]:after:content-['−']">
                     {item?.title}
                   </AccordionTrigger>
 
@@ -74,7 +74,7 @@ export default function TreatmentFaq({ data }) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="text-[11px] xl:text-[12px] 2xl:text-[15px] 3xl:text-[16px] font-helvetica-light [&>p:not(:last-child)]:mb-[15px] 3xl:max-w-[1024px] pb-[10px]"
+                      className="text-[12px] xl:text-[12px] 2xl:text-[15px] 3xl:text-[16px] leading-normal font-helvetica-light [&>p:not(:last-child)]:mb-[15px] 3xl:max-w-[1024px] pb-[10px]"
                     >
                       {typeof item?.short_description === "string" ? (
                         <p>{item?.short_description}</p>

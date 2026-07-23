@@ -33,16 +33,6 @@ export default function TreatmentAlchemy({ data }) {
   return (
     <section className="w-full block relative py-[40px_20px] lg:py-[60px_30px] xl:py-[90px_50px] 2xl:py-[100px_60px] 3xl:py-[140px_85px] overflow-hidden">
       <div className="absolute top-0 right-0 w-full h-full pointer-events-none">
-        <div className="absolute right-[0px] bottom-[-65px] xl:bottom-[-105px] 2xl:bottom-[-120px] 3xl:bottom-[-145px] ">
-          <Image
-            src="/images/circle.svg"
-            alt="floating_icon"
-            className="w-full max-w-[87px]"
-            width="85"
-            height="85"
-          />
-        </div>
-
         <div className="absolute left-[-30px] top-[-80px] w-full max-w-[170px] xl:max-w-[210px] 2xl:max-w-[240px] 3xl:max-w-[290px] ">
           <Image
             src="/images/circle.svg"
@@ -52,6 +42,14 @@ export default function TreatmentAlchemy({ data }) {
             height="85"
           />
         </div>
+
+        <Image
+          src="/images/home-about-elmt-2.svg"
+          alt="home about element 2"
+          width={60}
+          height={60}
+          className="w-[30px] sm:w-[40px] xl:w-[60px] 2xl:w-[80px] 3xl:w-[100px] absolute -z-1 bottom-[10%] right-[1%] pointer-events-none"
+        />
       </div>
 
       <div className="container">
@@ -86,9 +84,12 @@ export default function TreatmentAlchemy({ data }) {
                       ? getStrapiMediaUrl(data.featured_image.url)
                       : "/images/placeholder.jpg"
                   }
-                  alt={(data?.featured_image?.alternativeText ||
+                  alt={
+                    data?.featured_image?.alternativeText ||
                     data?.title ||
-                    "Benefits") || "Image"}
+                    "Benefits" ||
+                    "Image"
+                  }
                   className="w-full h-full object-cover transition-all duration-300 ease-in-out group-hover:scale-105"
                   width={578}
                   height={478}

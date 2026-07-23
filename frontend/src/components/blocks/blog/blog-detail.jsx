@@ -61,7 +61,6 @@ export default function BlogDetail({ data, relatedBlogs }) {
                   width={897}
                   height={450}
                   className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                  unoptimized
                 />
               </div>
               <div className="w-full p-[20px_15px] lg:p-[27px_32px] xl:p-[35px_40px] 2xl:p-[38px_45px] 3xl:p-[45px_52px]">

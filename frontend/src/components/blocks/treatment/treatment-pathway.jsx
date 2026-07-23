@@ -81,7 +81,7 @@ export default function TreatmentPathway({ data }) {
       <div className="container">
         <motion.div
           variants={itemVariants}
-          className="w-full text-center m-auto lg:max-w-[450px] xl:max-w-[580px] 2xl:max-w-[630px] 3xl:max-w-[790px] mb-[40px] xl:mb-[50px] 2xl:mb-[55px] 3xl:mb-[72px]"
+          className="w-full text-center m-auto lg:max-w-[450px] xl:max-w-[580px] 2xl:max-w-[630px] 3xl:max-w-[790px] mb-[30px] xl:mb-[50px] 2xl:mb-[55px] 3xl:mb-[72px]"
         >
           <div className="heading_1 mb-[0px]">{data?.title}</div>
 
@@ -92,11 +92,11 @@ export default function TreatmentPathway({ data }) {
 
         <motion.div
           variants={containerVariants}
-          className="flex flex-wrap -mx-[5px] xl:-mx-[10px] 2xl:-mx-[15px] 3xl:-mx-[20px] -my-[5px] xl:-my-[15px] 2xl:-my-[20px] 3xl:-my-[24px]"
+          className="flex flex-wrap justify-center -mx-[5px] xl:-mx-[10px] 2xl:-mx-[15px] 3xl:-mx-[20px] -my-[5px] xl:-my-[15px] 2xl:-my-[20px] 3xl:-my-[24px]"
         >
           {data?.categories?.map((item, idx) => (
             <motion.div
-              key={idx}
+              key={"categories" + idx}
               variants={itemVariants}
               whileHover={{
                 y: -10,
@@ -106,13 +106,13 @@ export default function TreatmentPathway({ data }) {
               }}
               className={cn(
                 "px-[5px] xl:px-[10px] 2xl:px-[15px] 3xl:px-[20px] py-[5px] xl:py-[15px] 2xl:py-[20px] 3xl:py-[24px]",
-                idx === 0 ? "w-1/2 md:w-2/3" : "w-1/2 md:w-1/3",
+                idx === 0 ? "w-full sm:w-1/2 lg:w-2/3" : "w-full sm:w-1/2 lg:w-1/3",
               )}
             >
               <div
                 className={cn(
-                  "relative w-full h-full block group overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/50 before:via-black/10 before:to-transparent before:z-[1] before:opacity-70 before:transition-all before:duration-700 after:absolute after:inset-0 after:bg-white/10 after:opacity-0 after:transition-all after:duration-700 hover:before:opacity-100 hover:after:opacity-100",
-                  idx === 0 ? "h-auto aspect-[1080/620]" : "h-full",
+                  "relative w-full max-sm:min-h-[320px] h-auto block group overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/50 before:via-black/10 before:to-transparent before:z-[1] before:opacity-70 before:transition-all before:duration-700 after:absolute after:inset-0 after:bg-white/10 after:opacity-0 after:transition-all after:duration-700 hover:before:opacity-100 hover:after:opacity-100",
+                  idx === 0 ? "sm:aspect-[1080/620]" : "sm:aspect-[516/620]",
                 )}
               >
                 <Image
@@ -121,27 +121,29 @@ export default function TreatmentPathway({ data }) {
                       ? getStrapiMediaUrl(item.featured_image.url)
                       : "/images/placeholder.jpg"
                   }
-                  className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-[1deg]"
-                  width={520}
-                  height={640}
                   alt={item?.title || "Treatment"}
+                  // width={520}
+                  // height={640}
+                  fill
+                  sizes="576px"
+                  className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-[1deg]"
                 />
 
                 <div className="absolute bottom-0 left-0 w-full transition-all duration-700 z-[2] group-hover:translate-y-[-6px] p-[8px] sm:p-[10px] md:px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px] md:py-[20px] xl:py-[30px] 2xl:py-[35px] 3xl:py-[40px]">
-                  <div className="w-full max-w-[452px] bg-white/40 backdrop-blur-lg transition-all duration-700 group-hover:bg-white/60 group-hover:border-white/60 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] p-[8px] sm:p-[10px_12px] xl:p-[12px_15px] 3xl:p-[16px_20px]">
-                    <div className="text-[15px] md:text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-0 transition-all duration-500 group-hover:tracking-[0.5px]">
+                  <div className="w-full max-w-[452px] bg-white/80 backdrop-blur-lg transition-all duration-700 group-hover:bg-white group-hover:border-white/60 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] p-[8px] sm:p-[10px_12px] xl:p-[12px_15px] 3xl:p-[16px_20px]">
+                    <div className="text-[16px] md:text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[26px] 3xl:text-[32px] leading-tight text-[#A14962] font-normal mb-0 transition-all duration-500 group-hover:tracking-[0.5px] mb-2">
                       {item.title}
                     </div>
-                    <div className="text_3 font-helvetica-light text-black mb-1.5 xl:mb-3">
+                    <div className="text_3 leading-tight max-sm:text-[12px] font-helvetica-light text-black mb-1.5 xl:mb-3">
                       {item.short_description}
                     </div>
-                    <div className="flex gap-1 xl:gap-1.5">
+                    <div className="flex flex-wrap gap-1 xl:gap-1.5">
                       {item?.treatments?.map((treatment, treatmentIdx) =>
                         treatment?.slug ? (
                           <Link
                             key={"treatment-" + treatmentIdx}
                             href={`/treatments/${treatment.slug}`}
-                            className="text-[10px] xl:text-[12px] 2xl:text-[14px] font-helvetica-light text-black bg-[#E6C6A0]/40 flex items-center justify-center rounded-[30px] p-[4px_10px] xl:p-[4px_10px] 2xl:p-[6px_12px] 3xl:p-[8px_14px] hover:bg-[#E6C6A0]/80 transition-background-color duration-300"
+                            className="text-[10px] xl:text-[10px] 2xl:text-[12px] leading-none font-helvetica-light text-center text-black bg-[#E6C6A0]/40 flex items-center justify-center rounded-[30px] p-[6px_10px] xl:p-[6px_10px] 2xl:p-[8px_12px] 3xl:p-[10px_14px] hover:bg-[#E6C6A0] transition-all duration-300 hover:scale-110"
                           >
                             {treatment.title}
                           </Link>

@@ -43,7 +43,7 @@ export default function TreatmentComplementary({ data }) {
     <section className="w-full block relative py-[25px] lg:py-[30px] xl:py-[35px] 2xl:py-[45px_35px] 3xl:py-[55px_40px]">
       <div className="container">
         <motion.div
-          className="max-w-[522px] xl:max-w-[644px] 2xl:max-w-[730px] 3xl:max-w-[887px] text-center m-auto mb-[25px] lg:mb-[35px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]"
+          className="max-w-[522px] xl:max-w-[644px] 2xl:max-w-[730px] 3xl:max-w-[887px] text-center m-auto mb-[20px] lg:mb-[35px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -87,7 +87,7 @@ export default function TreatmentComplementary({ data }) {
                   >
                     <Link
                       href={`/treatments/${item.slug}`}
-                      className="relative w-full h-full block group overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/50 before:via-black/10 before:to-transparent before:z-[1] before:opacity-70 before:transition-all before:duration-700 after:absolute after:inset-0 after:bg-white/10 after:opacity-0 after:transition-all after:duration-700 hover:before:opacity-100 hover:after:opacity-100"
+                      className="relative w-full aspect-[516/620] block group overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/50 before:via-black/10 before:to-transparent before:z-[1] before:opacity-70 before:transition-all before:duration-700 after:absolute after:inset-0 after:bg-white/10 after:opacity-0 after:transition-all after:duration-700 hover:before:opacity-100 hover:after:opacity-100"
                     >
                       <Image
                         src={
@@ -122,10 +122,10 @@ export default function TreatmentComplementary({ data }) {
                       >
                         <div
                           className="w-full max-w-[452px]
-                                                    bg-white/40
+                                                    bg-white/70
                                                     backdrop-blur-lg
                                                     transition-all duration-700
-                                                    group-hover:bg-white/60
+                                                    group-hover:bg-white
                                                     group-hover:border-white/60
                                                     group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)]
                                                     p-[8px]
@@ -133,15 +133,15 @@ export default function TreatmentComplementary({ data }) {
                                                     xl:p-[12px_15px]
                                                     3xl:p-[16px_20px]"
                         >
-                          <div className="text-[11px] xl:text-[14px] font-helvetica-light text-black">
+                          <div className="text-[11px] xl:text-[14px] font-light font-helvetica-light text-black">
                             {item?.duration_info}
                           </div>
 
-                          <div className="text_4 font-helvetica-light text-[#A14962] font-normal mb-0 transition-all duration-500">
+                          <div className="text_4 font-helvetica-light text-[#A14962] font-normal mb-0 transition-all duration-500 mb-1">
                             {item.title}
                           </div>
 
-                          <div className="text_3 font-helvetica-light text-black">
+                          <div className="text_3 leading-tight max-sm:text-[12px] font-helvetica-light text-black">
                             <p>{item.short_description}</p>
                           </div>
                         </div>

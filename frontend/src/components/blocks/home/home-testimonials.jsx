@@ -16,7 +16,13 @@ export default function HomeTestimonials({ data }) {
       slidesToScroll: 1,
       containScroll: "trimSnaps",
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
+    [
+      Autoplay({
+        delay: 5000,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
   );
   const [scrollTick, setScrollTick] = useState(0);
 
@@ -128,11 +134,14 @@ export default function HomeTestimonials({ data }) {
                               ? getStrapiMediaUrl(item.author_image.url)
                               : "/images/placeholder.jpg"
                           }
-                          alt={(item?.author_image?.alternativeText ||
+                          alt={
+                            item?.author_image?.alternativeText ||
                             item?.author_name ||
                             item?.name ||
                             item?.title ||
-                            "Testimonial author") || "Image"}
+                            "Testimonial author" ||
+                            "Image"
+                          }
                           width={95}
                           height={95}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"

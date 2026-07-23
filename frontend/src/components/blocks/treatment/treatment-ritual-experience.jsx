@@ -139,13 +139,14 @@ export default function TreatmentRitualExperience({ data }) {
                   duration: 2,
                   repeat: activeIndex === index ? Infinity : 0,
                 }}
-                className={`w-full h-full block p-[15px] lg:p-[20px] xl:p-[25px] 2xl:p-[30px_33px] 3xl:p-[40px] transition-all duration-300 ease-in-out group
-                                ${
-                                  activeIndex === index
-                                    ? "bg-gradient-to-r from-[#A14962] to-[#E9CBA3]"
-                                    : "bg-white"
-                                }`}
+                className="w-full h-full block p-[15px] lg:p-[20px] xl:p-[25px] 2xl:p-[30px_33px] 3xl:p-[40px] transition-all duration-300 ease-in-out group relative z-0 overflow-hidden"
               >
+                {/* Default white background */}
+                <div className="absolute inset-0 z-[-2] bg-white transition-colors duration-300" />
+                {/* Gradient background that fades in smoothly */}
+                <div 
+                  className={`absolute inset-0 z-[-1] bg-gradient-to-r from-[#A14962] to-[#E9CBA3] transition-opacity duration-500 ease-in-out ${activeIndex === index ? "opacity-100" : "opacity-0"}`}
+                />
                 <motion.div
                   animate={
                     activeIndex === index

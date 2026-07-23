@@ -4,7 +4,7 @@ import AppointmentForm from "../form/appointment-form";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 
 const headStyle =
-  "text-[13px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica text-[#a14962] mb-[10px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[30px] 3xl:mb-[30px]";
+  "text-[14px] lg:text-[14.1px] xl:text-[17.5px] 2xl:text-[19.8px] 3xl:text-[24px] leading-normal font-helvetica text-[#a14962] mb-[10px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[30px] 3xl:mb-[30px]";
 
 export default function Footer({ data, siteSettings }) {
   const footer_logo = data?.footer_logo;
@@ -71,7 +71,7 @@ export default function Footer({ data, siteSettings }) {
                 ))}
             </div>
           </div>
-          <div className="w-[48%] sm:w-[30%] lg:w-[16%] xl:w-[18%]">
+          <div className="w-[100%] sm:w-[30%] lg:w-[16%] xl:w-[18%]">
             <div className="mb-2">
               <div className={headStyle}>UAE</div>
               <div className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-normal font-helvetica text-[#875849] xl:max-w-[90%]">
@@ -97,7 +97,7 @@ export default function Footer({ data, siteSettings }) {
               </div>
             </div>
           </div>
-          <div className="w-[48%] sm:w-[30%] lg:w-[20%]">
+          <div className="w-[100%] sm:w-[30%] lg:w-[20%]">
             <div className={headStyle}>Connect with Us</div>
             <div className="flex flex-col gap-[15px] sm:gap-[20px] xl:gap-[25px] 2xl:gap-[30px] 3xl:gap-[35px]">
               {support_phone && (
@@ -135,7 +135,7 @@ export default function Footer({ data, siteSettings }) {
                     />
                   </div>
                   <div>
-                    <div className="text_3 text-[#875849]">Google Map</div>
+                    <div className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none text-[#875849]">Google Map</div>
                   </div>
                 </a>
               )}
@@ -190,7 +190,7 @@ export default function Footer({ data, siteSettings }) {
 
 function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
   return (
-    <div className="flex gap-2.5 xl:gap-[12px] 2xl:gap-[14px] 3xl:gap-[17px]">
+    <div className="flex flex-row gap-2.5 xl:gap-[12px] 2xl:gap-[14px] 3xl:gap-[17px]">
       <div className="w-[20px] sm:w-[30px] xl:w-[35px] 2xl:w-[40px] 3xl:w-[48px]">
         <Image
           src={url}
@@ -201,12 +201,12 @@ function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
         />
       </div>
       <div>
-        <div className="text_3 leading-none text-[#875849] xl:mb-0.5 2xl:mb-1">
+        <div className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none text-[#875849] xl:mb-0.5 2xl:mb-1">
           {label}
         </div>
         <Link
           href={linkUrl}
-          className="text_3 leading-none text-[#875849] hover:text-[#623628]"
+          className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none text-[#875849] hover:text-[#623628]"
         >
           {content}
         </Link>

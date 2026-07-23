@@ -148,7 +148,6 @@ export default function HomePrograms({ data }) {
                           width={336}
                           height={262}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
-                          unoptimized
                         />
                       </div>
                       <div className="w-full p-[12px] sm:p-[16px] xl:p-[20px] 2xl:p-[22px] 3xl:p-[27px]">
@@ -182,7 +181,6 @@ export default function HomePrograms({ data }) {
                                     width={14}
                                     height={14}
                                     className="w-[13px] 3xl:w-[14px] aspect-square object-contain"
-                                    unoptimized
                                   />
                                 ) : (
                                   <Image

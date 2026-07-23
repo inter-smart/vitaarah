@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ConsultationForm from "@/components/form/consultation-form";
+import Image from "next/image";
 
 export default function TreatmentRight({ data, commitmentDetails }) {
   const detailsList = [
@@ -37,6 +38,13 @@ export default function TreatmentRight({ data, commitmentDetails }) {
 
   return (
     <section className="w-full block relative py-[25px] lg:py-[30px_20px] xl:py-[50px_25px] 2xl:py-[60px_30px] 3xl:py-[85px_40px]">
+      <Image
+        src="/images/home-about-elmt-1.svg"
+        alt="home about element 1"
+        width={300}
+        height={300}
+        className="w-[100px] sm:w-[140px] xl:w-[220px] 2xl:w-[320px] 3xl:w-[340px] translate-y-1/3 absolute -z-1 bottom-0 right-0 pointer-events-none"
+      />
       <div className="container">
         <motion.div
           variants={fadeUp}
@@ -66,7 +74,7 @@ export default function TreatmentRight({ data, commitmentDetails }) {
             }}
             className="w-full lg:w-1/2"
           >
-            <div className="w-full h-full bg-[#FFF9EB] p-[42px_24px_42px_35px] xl:p-[50px_30px_50px_45px] 2xl:p-[60px_34px_60px_54px] 3xl:p-[75px_45px_45px_60px]">
+            <div className="w-full h-full bg-[#FFF9EB] p-[30px_20px] md:p-[42px_24px_42px_35px] xl:p-[50px_30px_50px_45px] 2xl:p-[60px_34px_60px_54px] 3xl:p-[75px_45px_45px_60px]">
               {(data?.right_for_you_item || []).map((item, id) => (
                 <motion.div
                   key={id}

@@ -39,49 +39,47 @@ export default function TreatmentDetail({ data }) {
       viewport={{ once: true, amount: 0.15 }}
       variants={staggerContainer}
     >
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <motion.div
-          animate={{
-            y: [0, -25, 0],
-            rotate: [0, 10, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute left-[-50px] bottom-[-65px] xl:bottom-[-105px] 2xl:bottom-[-120px] 3xl:bottom-[-145px]"
-        >
-          <Image
-            src="/images/circle.svg"
-            className="w-full max-w-[87px]"
-            width={85}
-            height={85}
-            alt="floating_icon"
-          />
-        </motion.div>
+      <motion.div
+        animate={{
+          y: [0, -25, 0],
+          rotate: [0, 10, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="translate-x-1/3 absolute -z-1 top-[10%] right-0 pointer-events-none"
+      >
+        <Image
+          src="/images/home-about-elmt-1.svg"
+          alt="home about element 1"
+          width={300}
+          height={300}
+          className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[310px] "
+        />
+      </motion.div>
 
-        <motion.div
-          animate={{
-            y: [0, 30, 0],
-            rotate: [0, -12, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute right-[-50px] top-[100px] w-full max-w-[170px] xl:max-w-[210px] 2xl:max-w-[240px] 3xl:max-w-[290px]"
-        >
-          <Image
-            src="/images/circle.svg"
-            className="w-full object-cover"
-            width={85}
-            height={85}
-            alt="floating_icon"
-          />
-        </motion.div>
-      </div>
+      <motion.div
+        animate={{
+          y: [0, 30, 0],
+          rotate: [0, -12, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute -z-1 bottom-[5%] left-[1%] pointer-events-none"
+      >
+        <Image
+          src="/images/home-about-elmt-2.svg"
+          alt="home about element 2"
+          width={60}
+          height={60}
+          className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] "
+        />
+      </motion.div>
 
       <div className="container">
         <motion.div

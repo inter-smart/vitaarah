@@ -82,7 +82,6 @@ export default function BlogListing({ data, blogs }) {
                       width={897}
                       height={450}
                       className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                      unoptimized
                     />
                   </div>
                   <div className="w-full sm:flex-1 p-[15px] sm:p-[18px] xl:p-[22px] 2xl:p-[25px] 3xl:p-[30px]">

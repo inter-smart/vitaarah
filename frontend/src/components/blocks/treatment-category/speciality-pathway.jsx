@@ -6,6 +6,7 @@ import ConsultationForm from "@/components/form/consultation-form";
 
 export default function SpecialityPathway({ data }) {
   const { specialities_listing_section, cta_specialities_section } = data;
+  console.log("specialities_listing_section", specialities_listing_section);
   return (
     <section className="w-full block overflow-hidden relative py-[30px_45px] lg:py-[30px_60px] xl:py-[45px_80px] 2xl:py-[55px_120px] 3xl:py-[70px_150px]">
       <Image
@@ -13,17 +14,17 @@ export default function SpecialityPathway({ data }) {
         alt="home about element 1"
         width={300}
         height={300}
-        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[310px] translate-x-1/3 absolute -z-1 top-[10%] right-0"
+        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[310px] translate-x-1/3 absolute -z-1 top-[10%] right-0 pointer-events-none"
       />
       <Image
         src="/images/home-about-elmt-2.svg"
         alt="home about element 2"
         width={60}
         height={60}
-        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[30%] left-[1%]"
+        className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[30%] left-[1%] pointer-events-none"
       />
       <div className="container">
-        <div className="w-full text-center m-auto lg:max-w-[450px] xl:max-w-[550px] 2xl:max-w-[630px] 3xl:max-w-[790px] mb-[40px] xl:mb-[50px] 2xl:mb-[55px] 3xl:mb-[72px]">
+        <div className="w-full text-center m-auto lg:max-w-[468px] xl:max-w-[576px] 2xl:max-w-[630px] 3xl:max-w-[790px] mb-[40px] xl:mb-[50px] 2xl:mb-[55px] 3xl:mb-[72px]">
           <div className="heading_1 mb-[0px] ">
             {specialities_listing_section?.title}
           </div>
@@ -39,8 +40,9 @@ export default function SpecialityPathway({ data }) {
             >
               <Link
                 href={`/treatments/${item?.treatment?.slug}`}
-                className=" relative z-1 w-full h-full block p-[20px] md:p-[20px_15px] xl:p-[30px_25px] 2xl:p-[40px_35px] 3xl:p-[50px_45px] bg-white transition-all hover:bg-[#FFF9EB]"
+                className=" relative z-1 w-full h-full block p-[20px] md:p-[20px_15px] xl:p-[30px_25px] 2xl:p-[40px_35px] 3xl:p-[50px_45px] bg-white transition-all hover:bg-[#FFF9EB] flex flex-col justify-between"
               >
+                <div>
                 {item?.icon?.url && (
                   <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[85px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] bg-white rounded-full border border-[#A7546C] overflow-hidden p-[10px] xl:p-[12px] 2xl:p-[15px] 3xl:p-[20px] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                     <Image
@@ -58,13 +60,14 @@ export default function SpecialityPathway({ data }) {
                   </div>
                 )}
                 <div className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-[8px] xl:mb-[10px] 2xl:mb-[15px]">
-                  {item?.treatment?.title}
+                  {item?.title}
                 </div>
-                {item?.treatment?.short_description && (
+                {item?.short_description && (
                   <p className="text_3 font-helvetica-light mb-[25px] md:mb-[40px] lg:mb-[70px] xl:mb-[85px] 2xl:mb-[100px] 3xl:mb-[130px] max-w-[215px] xl:max-w-[257px] 2xl:max-w-[290px] 3xl:max-w-[372px]">
-                    {item.treatment.short_description}
+                    {item?.short_description}
                   </p>
                 )}
+                </div>
                 {item?.treatment?.conditions_treated?.length > 0 && (
                   <div className="w-full">
                     <div className="text_3 font-helvetica-light text-black mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
@@ -108,6 +111,8 @@ export default function SpecialityPathway({ data }) {
               {cta_specialities_section?.whatsapp_number && (
                 <a
                   href={`https://wa.me/${cta_specialities_section.whatsapp_number}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-[32px] 2xl:w-[37px] 3xl:w-[45px] h-[32px] 2xl:h-[37px] 3xl:h-[45px] flex items-center justify-center bg-[#00A85A] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]  hover:shadow-[0_15px_40px_rgba(161,73,98,0.35)]"
                   aria-label="Contact via WhatsApp"
                 >

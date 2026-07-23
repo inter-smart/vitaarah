@@ -20,7 +20,7 @@ export default function PackagesListing({ data }) {
           alt="home about element 2"
           width={60}
           height={60}
-          className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[8%] left-0 -translate-x-1/2"
+          className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[8%] left-0 -translate-x-1/2 pointer-events-none"
         />
         <div className="container">
           {data?.title && (
@@ -52,7 +52,6 @@ export default function PackagesListing({ data }) {
                         width={336}
                         height={262}
                         className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
-                        unoptimized
                       />
                     </div>
                     <div className="flex-1 flex flex-col">
@@ -102,11 +101,11 @@ export default function PackagesListing({ data }) {
                       )}
 
                       {data?.durations?.length > 0 && (
-                        <div className="mt-auto mb-2 flex flex-wrap gap-[4px] sm:gap-[6px] xl:gap-[7.6px] 2xl:gap-[8.6px] 3xl:gap-[10.5px]">
+                        <div className="mt-auto mb-2 flex flex-wrap gap-[4px] sm:gap-[6px] xl:gap-[7px] 2xl:gap-[8px] 3xl:gap-[10px]">
                           {data?.durations?.map((availableDuration, dIdx) => (
                             <div
                               key={"availableDurations" + dIdx}
-                              className="text-[9px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[13px] leading-tight font-helvetica text-black p-[8px_10px] xl:p-[10px_12px] 2xl:p-[12px_14px] 3xl:p-[14px_16px] bg-[#E6C6A0]/20 rounded-full backdrop-blur-lg shadow-[-1px_-1px_0px_rgba(255,255,255,0.4)] inset-shadow-[-1px_-1px_0px_0px_rgba(255,255,255,0.4)] transition-all duration-300 group-hover/packages:bg-[#E6C6A0]/20 group-hover/packages:text-white"
+                              className="text-[9px] xl:text-[10px] 2xl:text-[11px] 3xl:text-[13px] leading-tight font-helvetica text-black p-[8px_10px] xl:p-[9px_11px] 2xl:p-[12px_14px] 3xl:p-[14px_16px] bg-[#E6C6A0]/20 rounded-full backdrop-blur-lg shadow-[-1px_-1px_0px_rgba(255,255,255,0.4)] inset-shadow-[-1px_-1px_0px_0px_rgba(255,255,255,0.4)] transition-all duration-300 group-hover/packages:bg-[#E6C6A0]/20 group-hover/packages:text-white"
                             >
                               {availableDuration?.label}
                             </div>
