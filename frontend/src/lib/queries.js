@@ -120,11 +120,7 @@ export const getConditionQuery = () => buildQuery({
       icon: true,
     },
   },
-  related_treatments: {
-    populate: {
-      featured_image: true,
-    },
-  },
+  related_treatments: true,
 });
 
 export const getGalleryPageQuery = () => buildQuery({

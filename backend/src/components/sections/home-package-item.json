@@ -12,6 +12,13 @@
     "short_description": {
       "type": "text"
     },
+    "background_image_thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "background_video": {
       "type": "media",
       "multiple": false,

@@ -392,6 +392,7 @@ export interface SectionsHomePackageItem extends Struct.ComponentSchema {
     displayName: 'Home Treatment Item';
   };
   attributes: {
+    background_image_thumbnail: Schema.Attribute.Media<'images'>;
     background_video: Schema.Attribute.Media<'videos'>;
     related_treatment_category: Schema.Attribute.Relation<
       'oneToOne',

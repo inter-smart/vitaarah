@@ -102,16 +102,15 @@ export default function HomePrograms({ data }) {
             />
           </button>
           <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
-            <div className="flex sm:items-center justify-center touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5">
+            <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5">
               {data?.home_program_item?.map((item, idx) => {
-                const centerIdx =
-                  (selectedIdx + 1) % (data?.home_program_item?.length || 1);
+                const centerIdx = selectedIdx;
                 const isCenter = idx === centerIdx;
                 return (
                   <div
                     key={"packages" + idx}
                     className={cn(
-                      "flex-[0_0_220px] sm:flex-[0_0_33.333%] lg:flex-[0_0_33.333%] min-w-0 select-none px-1 xl:px-2.5",
+                      "flex-[0_0_240px] sm:flex-[0_0_33.333%] lg:flex-[0_0_33.333%] min-w-0 select-none px-1 xl:px-2.5",
                     )}
                   >
                     <Link
@@ -121,7 +120,7 @@ export default function HomePrograms({ data }) {
                           : "#"
                       }
                       className={cn(
-                        "group w-full h-full block border border-[#b1b1b1] bg-white transition-all duration-500 transform",
+                        "group w-full h-full flex flex-col border border-[#b1b1b1] bg-white transition-all duration-500 transform",
                         isCenter
                           ? "sm:scale-100 z-1 sm:bg-[#FAF7ED] sm:border-[#FAF7ED]"
                           : "sm:scale-90",
@@ -150,70 +149,79 @@ export default function HomePrograms({ data }) {
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
                         />
                       </div>
-                      <div className="w-full p-[12px] sm:p-[16px] xl:p-[20px] 2xl:p-[22px] 3xl:p-[27px]">
-                        <div className="text_5 text-black mb-[8px] xl:mb-[12px] 2xl:mb-[16px] 3xl:mb-[20px]">
-                          {item?.related_program?.related_package?.title || ""}
-                        </div>
-                        {item?.title && (
+                      <div className="w-full flex-1 flex flex-col justify-between p-[12px] sm:p-[16px] xl:p-[20px] 2xl:p-[22px] 3xl:p-[27px]">
+                        <div>
+                          <div className="text_5 font-light font-helvetica-light text-black/60 mb-[8px] xl:mb-[12px] 2xl:mb-[16px] 3xl:mb-[20px]">
+                            {item?.related_program?.related_package?.title ||
+                              ""}
+                          </div>
                           <div className="text_4 text-[#a14962] mb-[4px] 2xl:mb-[6px] 3xl:mb-[8px]">
                             {item?.title}
                           </div>
-                        )}
-                        <div className="text_3 font-normal text-black mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
-                          {item?.short_description}
+                          {item?.short_description && (
+                            <div className="text_3 font-normal text-black mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
+                              {item?.short_description}
+                            </div>
+                          )}
+                          <div className="flex flex-col space-y-[10px] 2xl:space-y-[12px] 3xl:space-y-[14px] mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
+                            {item?.program_attractions?.map(
+                              (feature, featureIdx) => (
+                                <div
+                                  key={"features" + featureIdx}
+                                  className="flex gap-x-[5px] sm:gap-x-[8px] xl:gap-x-[14px] 2xl:gap-x-[16px] 3xl:gap-x-[18px] text_3 leading-tight text-black"
+                                >
+                                  {feature?.icon ? (
+                                    <Image
+                                      src={getStrapiMediaUrl(
+                                        feature?.icon?.url,
+                                      )}
+                                      alt={
+                                        feature?.icon?.alternativeText ||
+                                        feature?.title ||
+                                        "features" ||
+                                        "Image"
+                                      }
+                                      width={14}
+                                      height={14}
+                                      className="w-[13px] 3xl:w-[14px] aspect-square object-contain"
+                                    />
+                                  ) : (
+                                    <Image
+                                      src="/images/package-feature-list.svg"
+                                      alt={
+                                        feature?.icon?.alternativeText ||
+                                        feature?.title ||
+                                        "features" ||
+                                        "Image"
+                                      }
+                                      width={14}
+                                      height={14}
+                                      className="w-[14px] aspect-square object-contain"
+                                    />
+                                  )}
+                                  <span className="flex-1">
+                                    {feature?.title}
+                                  </span>
+                                </div>
+                              ),
+                            )}
+                          </div>
                         </div>
-                        <div className="flex flex-col space-y-[10px] 2xl:space-y-[12px] 3xl:space-y-[14px] mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
-                          {item?.program_attractions?.map(
-                            (feature, featureIdx) => (
-                              <div
-                                key={"features" + featureIdx}
-                                className="flex gap-x-[5px] sm:gap-x-[8px] xl:gap-x-[14px] 2xl:gap-x-[16px] 3xl:gap-x-[18px] text_3 leading-tight text-black"
-                              >
-                                {feature?.icon ? (
-                                  <Image
-                                    src={getStrapiMediaUrl(feature?.icon?.url)}
-                                    alt={
-                                      feature?.icon?.alternativeText ||
-                                      feature?.title ||
-                                      "features" ||
-                                      "Image"
-                                    }
-                                    width={14}
-                                    height={14}
-                                    className="w-[13px] 3xl:w-[14px] aspect-square object-contain"
-                                  />
-                                ) : (
-                                  <Image
-                                    src="/images/package-feature-list.svg"
-                                    alt={
-                                      feature?.icon?.alternativeText ||
-                                      feature?.title ||
-                                      "features" ||
-                                      "Image"
-                                    }
-                                    width={14}
-                                    height={14}
-                                    className="w-[14px] aspect-square object-contain"
-                                  />
-                                )}
-                                <span className="flex-1">{feature?.title}</span>
-                              </div>
-                            ),
+                        <div>
+                          {item?.related_program?.slug && (
+                            <Button
+                              className={cn(
+                                "w-full mx-auto transition-all duration-300",
+                                isCenter
+                                  ? "bg-[#FAF7ED]"
+                                  : "from-white to-white border-black text-black",
+                              )}
+                              asChild
+                            >
+                              <span>View More</span>
+                            </Button>
                           )}
                         </div>
-                        {item?.related_program?.slug && (
-                          <Button
-                            className={cn(
-                              "w-full mx-auto transition-all duration-300",
-                              isCenter
-                                ? "bg-[#FAF7ED]"
-                                : "from-white to-white border-black text-black",
-                            )}
-                            asChild
-                          >
-                            <span>View More</span>
-                          </Button>
-                        )}
                       </div>
                     </Link>
                   </div>

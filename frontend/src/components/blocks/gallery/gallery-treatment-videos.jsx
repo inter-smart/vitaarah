@@ -106,7 +106,7 @@ export default function GalleryTreatmentVideos({ data }) {
                 </h2>
               )}
               {data?.sub_description && (
-                <div className="text_3 font-normal text-center lg:text-start text-black  mb-[2px] xl:mb-[4px] 2xl:mb-[6px]">
+                <div className="text_3 font-helvetica-light text-center lg:text-start text-black mb-[2px] xl:mb-[4px] 2xl:mb-[6px]">
                   {data.sub_description}
                 </div>
               )}
@@ -128,7 +128,7 @@ export default function GalleryTreatmentVideos({ data }) {
                     alt="icon-insta-2"
                     width={21}
                     height={21}
-                    className="size-[25px] lg:size-[34px] xl:size-[42px] 2xl:size-[48px] 3xl:size-[58px] object-contain"
+                    className="size-[24px] lg:size-[32px] xl:size-[40px] 2xl:size-[46px] 3xl:size-[56px] object-contain"
                     unoptimized
                   />
                   View All on Instagram

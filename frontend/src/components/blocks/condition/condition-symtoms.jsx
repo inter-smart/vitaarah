@@ -74,7 +74,7 @@ export default function ConditionSymtoms({ data }) {
             <ul>
               {leftSymptoms.map((item, id) => (
                 <li
-                  key={id}
+                  key={"leftSymptoms" + id}
                   className="text_3 text-[#1C1C1C] font-helvetica-light relative flex items-center gap-[10px] 2xl:gap-[15px] 3xl:gap-[20px]
                                     [&:not(:last-child)]:mb-[8px]
                                     lg:[&:not(:last-child)]:mb-[10px]

@@ -7,7 +7,6 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 const ElementStyle =
   "group w-[140px] sm:w-[180px] lg:w-[200px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[90px] lg:-mr-[100px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1";
@@ -118,7 +117,7 @@ export default function HomeAbout({ data }) {
             </div>
 
             {data?.about_statistic?.length > 0 && (
-              <div className="lg:max-w-[403px] xl:max-w-[497px] 2xl:max-w-[563px] 3xl:max-w-[685px] flex items-center justify-between gap-[10px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[25px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
+              <div className="lg:max-w-[435px] xl:max-w-[550px] 2xl:max-w-[635px] 3xl:max-w-[735px] flex flex-wrap items-center justify-between gap-[10px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[25px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
                 {data?.about_statistic.map((stat, index) => (
                   <Fragment key={stat.label}>
                     <div>
@@ -160,8 +159,23 @@ export default function HomeAbout({ data }) {
               )
             )}
             {data?.button && (
-              <Button asChild>
-                <Link href={data?.button?.url}>{data?.button?.label}</Link>
+              <Button className="gap-2 xl:gap-2" asChild>
+                <Link href={data?.button?.url}>
+                  {data?.button?.icon && (
+                    <span className="w-[11px] 2xl:w-[12px] 3xl:w-[14px]">
+                      <Image
+                        src={getStrapiMediaUrl(data?.button?.icon?.url)}
+                        alt={
+                          data?.button?.icon?.alternativeText || "button icon"
+                        }
+                        width={15}
+                        height={15}
+                        className="w-full h-full"
+                      />
+                    </span>
+                  )}
+                  <span>{data?.button?.label}</span>
+                </Link>
               </Button>
             )}
           </div>

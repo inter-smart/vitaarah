@@ -39,7 +39,7 @@ export default function InnerHero({ data }) {
             />
           )}
           {/* Content */}
-          <div className="relative z-10 w-full max-w-[350px] lg:max-w-[400px] xl:max-w-[500px] 2xl:max-w-[560px] 3xl:max-w-[680px] h-auto backdrop-blur-2xl ml-auto bg-white/10 border border-white/80 p-[15px_20px] xl:p-[25px_20px] 2xl:p-[30px_32px] 3xl:p-[35px_35px_32px_40px] flex flex-col gap-y-1 xl:gap-y-2.5">
+          <div className="relative z-1 w-auto max-w-[350px] lg:max-w-[400px] xl:max-w-[500px] 2xl:max-w-[560px] 3xl:max-w-[680px] h-auto backdrop-blur-2xl ml-auto bg-white/10 border border-white/80 p-[10px_15px] sm:p-[15px_20px] xl:p-[25px_20px] 2xl:p-[30px_32px] 3xl:p-[35px_35px_32px_40px] flex flex-col gap-y-1 xl:gap-y-2.5">
             {data?.title && (
               <h1 className="text-[25px] sm:text-[30px] md:text-[35px] lg:text-[45px] xl:text-[56px] 2xl:text-[63px] 3xl:text-[77px] leading-[1] text-white font-normal font-things">
                 {data?.title}

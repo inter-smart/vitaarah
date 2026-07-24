@@ -60,7 +60,9 @@ export default function Footer({ data, siteSettings }) {
                     {item.icon?.url && (
                       <Image
                         src={getStrapiMediaUrl(item.icon.url)}
-                        alt={item.icon.alternativeText || item.label || "social"}
+                        alt={
+                          item.icon.alternativeText || item.label || "social"
+                        }
                         width={48}
                         height={48}
                         className="w-[10px] sm:w-[12px] xl:w-[16px] 2xl:w-[18px] 3xl:w-[22px] aspect-square object-contain block"
@@ -135,7 +137,9 @@ export default function Footer({ data, siteSettings }) {
                     />
                   </div>
                   <div>
-                    <div className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none text-[#875849]">Google Map</div>
+                    <div className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none text-[#875849]">
+                      Google Map
+                    </div>
                   </div>
                 </a>
               )}
@@ -172,7 +176,11 @@ export default function Footer({ data, siteSettings }) {
           )}
           <div className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] flex items-center gap-2">
             Designed by:{" "}
-            <a href="https://www.intersmartsolution.com/">
+            <a
+              href="https://www.intersmartsolution.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="/images/footer-author.svg"
                 alt="footer-author"

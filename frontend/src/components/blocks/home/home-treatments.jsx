@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 import { cn } from "@/lib/utils";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
@@ -15,18 +15,47 @@ export default function HomeTreatments({ data }) {
   const treatments = data?.home_treatment_item || [];
   const activeTreatment = treatments[activeIdx];
 
-  const [emblaRef] = useEmblaCarousel(
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
-      align: "start",
-      slidesToScroll: 1,
-      containScroll: "trimSnaps",
+      align: "center",
+      slidesToScroll: "auto",
+      containScroll: false,
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
+    [
+      Autoplay({
+        delay: 5000,
+        stopOnInteraction: true,
+        stopOnMouseEnter: true,
+      }),
+    ],
   );
 
-console.log(data?.home_treatment_item);
+  useEffect(() => {
+    if (!emblaApi) return;
 
+    const onSelect = () => {
+      setActiveIdx(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+
+    onSelect();
+
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi]);
+
+  const onSlideClick = useCallback(
+    (index) => {
+      if (!emblaApi) return;
+      emblaApi.scrollTo(index);
+    },
+    [emblaApi],
+  );
 
   return (
     <section
@@ -52,13 +81,25 @@ console.log(data?.home_treatment_item);
                   loop
                   playsInline
                   className="w-full h-full object-cover"
+                  poster={
+                    item?.background_image_thumbnail?.url ||
+                    "/images/placeholder.jpg"
+                  }
                 >
                   <source
                     src={getStrapiMediaUrl(item.background_video.url)}
                     type={item.background_video.mime}
                   />
                 </video>
-              ) : null}
+              ) : (
+                <Image
+                  src="/images/placeholder.jpg"
+                  alt="Image"
+                  width={1920}
+                  height={1080}
+                  className="w-full h-full object-cover"
+                />
+              )}
             </div>
           );
         })}
@@ -93,7 +134,7 @@ console.log(data?.home_treatment_item);
           </div>
         )}
         <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
-          <div className="flex justify-center touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
+          <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
             {treatments.map((item, idx) => (
               <div
                 key={"treatments" + idx}
@@ -101,12 +142,7 @@ console.log(data?.home_treatment_item);
                   "flex-[0_0_220px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-1 xl:px-2.5",
                 )}
               >
-                <Link
-                  href={
-                    item?.related_treatment_category?.slug
-                      ? `/treatments/category/${item.related_treatment_category.slug}`
-                      : "#"
-                  }
+                <div
                   className={cn(
                     "group w-full h-[268px] lg:h-[358px] xl:h-[442px] 2xl:h-[500px] 3xl:h-[610px] block flex flex-col justify-end p-[20px_10px] sm:p-[34px_15px] xl:p-[42px_20px] 2xl:p-[47px_25px] 3xl:p-[57px_30px] overflow-hidden transition-all duration-300",
                     idx === activeIdx
@@ -114,6 +150,7 @@ console.log(data?.home_treatment_item);
                       : "bg-none",
                   )}
                   onMouseEnter={() => setActiveIdx(idx)}
+                  onClick={() => onSlideClick(idx)}
                 >
                   <div
                     className={cn(
@@ -144,12 +181,20 @@ console.log(data?.home_treatment_item);
                     {item?.related_treatment_category?.slug && (
                       <div className="flex">
                         <Button className="border-[#a14962] mx-auto" asChild>
-                          <span>Read More</span>
+                          <Link
+                            href={
+                              item?.related_treatment_category?.slug
+                                ? `/treatments/category/${item.related_treatment_category.slug}`
+                                : "#"
+                            }
+                          >
+                            <span>Read More</span>
+                          </Link>
                         </Button>
                       </div>
                     )}
                   </div>
-                </Link>
+                </div>
               </div>
             ))}
           </div>

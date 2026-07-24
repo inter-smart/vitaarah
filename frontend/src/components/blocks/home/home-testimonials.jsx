@@ -93,13 +93,13 @@ export default function HomeTestimonials({ data }) {
               unoptimized
             />
           </button>
-          <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
+          <div ref={emblaRef} className="w-full max-w-full overflow-hidden p-[2px]">
             <div className="flex touch-pan-y touch-pinch-zoom">
               {data?.testimonials?.map((item, idx) => (
                 <div
                   key={"testimonials" + idx}
                   className={cn(
-                    "flex-[0_0_220px] sm:flex-[0_0_33.333%] lg:flex-[0_0_33.333%] min-w-0 select-none",
+                    "flex-[0_0_240px] sm:flex-[0_0_33.333%] lg:flex-[0_0_33.333%] min-w-0 select-none",
                   )}
                 >
                   <div
@@ -117,7 +117,7 @@ export default function HomeTestimonials({ data }) {
                         className="w-[37px] xl:w-[46px] 2xl:w-[52px] 3xl:w-[64px] object-contain"
                       />
                       {item?.review && (
-                        <div className="text_3 font-normal leading-normal text-black h-[100px] xl:h-[115px] 2xl:h-[130px] 3xl:h-[150px] overflow-y-auto my-[20px] lg:my-[30px] xl:my-[43px] 2xl:my-[52px] 3xl:my-[52px] pr-4 xl:pr-5 2xl:pr-6 3xl:pr-8 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] scrollbar-none">
+                        <div className="text_3 font-normal leading-normal text-black h-[140px] xl:h-[115px] 2xl:h-[130px] 3xl:h-[150px] overflow-y-auto my-[20px] lg:my-[30px] xl:my-[43px] 2xl:my-[52px] 3xl:my-[52px] pr-4 xl:pr-5 2xl:pr-6 3xl:pr-8 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] ">
                           {Array.isArray(item.review) ? (
                             <BlocksRenderer content={item.review} />
                           ) : (

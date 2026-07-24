@@ -50,7 +50,7 @@ export default async function ProgramPage(props) {
     <>
       <InnerHero
         data={{
-          title: program.title,
+          title: program.hero_title,
           hero_media: program.hero_media,
         }}
       />

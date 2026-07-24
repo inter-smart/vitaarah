@@ -26,7 +26,7 @@ export default function HomeHero({ data }) {
             <div className="w-full max-w-full sm:max-w-[340px] xl:max-w-[490px] 2xl:max-w-[590px] 3xl:max-w-[710px] ml-auto pr-[40px] xl:pr-[65px] 2xl:pr-[78px] 3xl:pr-[90px] relative z-0">
               <a
                 href="#About"
-                className="group w-[50px] sm:w-[60px] xl:w-[76px] 2xl:w-[90px] 3xl:w-[120px] rounded-full aspect-square p-[4px] 2xl:p-[6px] bg-linear-to-r from-[#a14962] to-[#f8c63d] absolute z-0 bottom-[15%] right-0 translate-y-1/2 hover:scale-110 transition-transform duration-500"
+                className="group w-[30px] min-[376px]:w-[50px] sm:w-[60px] xl:w-[76px] 2xl:w-[90px] 3xl:w-[120px] rounded-full aspect-square p-[4px] 2xl:p-[6px] bg-linear-to-r from-[#a14962] to-[#f8c63d] absolute z-0 bottom-0 min-[376px]:bottom-[15%] right-0 translate-y-1/2 hover:scale-110 transition-transform duration-500"
               >
                 <span className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden">
                   <Image
@@ -34,7 +34,7 @@ export default function HomeHero({ data }) {
                     alt="icon arrow"
                     width={16}
                     height={7}
-                    className="w-2 2xl:w-2.5 3xl:w-3 block group-hover:translate-y-1 transition-transform duration-300"
+                    className="w-1 min-[376px]:w-2 2xl:w-2.5 3xl:w-3 block group-hover:translate-y-1 transition-transform duration-300"
                   />
                 </span>
               </a>
@@ -50,16 +50,44 @@ export default function HomeHero({ data }) {
               {(data.primary_button || data.secondary_button) && (
                 <div className="flex items-center gap-[4px] xl:gap-[6px] 2xl:gap-[8px]">
                   {data.primary_button && (
-                    <Button>
+                    <Button className="gap-2 xl:gap-2" asChild>
                       <Link href={data.primary_button.url}>
-                        {data.primary_button.label}
+                        {data?.primary_button?.icon && (
+                          <span className="w-[11px] 2xl:w-[12px] 3xl:w-[14px]">
+                            <Image
+                              src={getStrapiMediaUrl(data?.primary_button?.icon?.url)}
+                              alt={
+                                data?.primary_button?.icon?.alternativeText ||
+                                "button icon"
+                              }
+                              width={15}
+                              height={15}
+                              className="w-full h-full"
+                            />
+                          </span>
+                        )}
+                        <span>{data.primary_button.label}</span>
                       </Link>
                     </Button>
                   )}
                   {data.secondary_button && (
-                    <Button variant="outline" asChild>
+                    <Button className="gap-2 xl:gap-2" variant="outline" asChild>
                       <Link href={data.secondary_button.url}>
-                        {data.secondary_button.label}
+                        {data?.secondary_button?.icon && (
+                          <span className="w-[11px] 2xl:w-[12px] 3xl:w-[14px]">
+                            <Image
+                              src={getStrapiMediaUrl(data?.secondary_button?.icon?.url)}
+                              alt={
+                                data?.secondary_button?.icon?.alternativeText ||
+                                "button icon"
+                              }
+                              width={15}
+                              height={15}
+                              className="w-full h-full"
+                            />
+                          </span>
+                        )}
+                        <span>{data.secondary_button.label}</span>
                       </Link>
                     </Button>
                   )}

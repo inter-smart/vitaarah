@@ -11,12 +11,18 @@ import Autoplay from "embla-carousel-autoplay";
 export default function HomeConditions({ data }) {
   const [emblaRef] = useEmblaCarousel(
     {
-      loop: false,
-      align: "start",
-      slidesToScroll: 1,
-      containScroll: "trimSnaps",
+      loop: true,
+      align: "center",
+      containScroll: false,
+      slidesToScroll: "auto",
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
+    [
+      Autoplay({
+        delay: 5000,
+        stopOnInteraction: true,
+        stopOnMouseEnter: true,
+      }),
+    ],
   );
   return (
     <section
@@ -28,14 +34,14 @@ export default function HomeConditions({ data }) {
         alt="home about element 1"
         width={80}
         height={80}
-        className="w-[30px] sm:w-[40px] xl:w-[60px] 2xl:w-[70px] 3xl:w-[80px] absolute -z-1 top-2/10 right-[5%]"
+        className="w-[30px] sm:w-[40px] xl:w-[60px] 2xl:w-[70px] 3xl:w-[80px] absolute -z-1 top-2/10 right-[5%] pointer-events-none"
       />
       <Image
         src="/images/home-about-elmt-1.svg"
         alt="home about element 2"
         width={300}
         height={300}
-        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] -translate-x-1/2 translate-y-1/2 absolute -z-1 bottom-0 left-0"
+        className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] -translate-x-1/2 translate-y-1/2 absolute -z-1 bottom-0 left-0 pointer-events-none"
       />
       <div className="container">
         {data.title && (
@@ -49,16 +55,20 @@ export default function HomeConditions({ data }) {
           </div>
         )}
         <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
-          <div className="flex justify-center touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
+          <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5 ">
             {data?.condition_item?.map((item, idx) => (
               <div
                 key={"condition" + idx}
                 className={cn(
-                  "flex-[0_0_180px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-1 xl:px-2.5",
+                  "flex-[0_0_220px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-1 xl:px-2.5",
                 )}
               >
                 <Link
-                  href={item?.related_condition?.slug ? `/conditions/${item.related_condition.slug}` : "#"}
+                  href={
+                    item?.related_condition?.slug
+                      ? `/conditions/${item.related_condition.slug}`
+                      : "#"
+                  }
                   className="group w-full h-[240px] lg:h-[270px] xl:h-[332px] 2xl:h-[376px] 3xl:h-[456px] block p-[30px_10px_35px] xl:p-[38px_14px_45px] 2xl:p-[48px_18px_57px] relative z-0"
                 >
                   {item?.background_video?.url ? (
@@ -73,9 +83,17 @@ export default function HomeConditions({ data }) {
                         type={item.background_video.mime || "video/mp4"}
                       />
                     </video>
-                  ) : null}
-                  {item?.icon?.url && (
-                    <div className="w-[60px] sm:w-[96px] xl:w-[118px] 2xl:w-[134px] 3xl:w-[162px] aspect-square rounded-full flex items-center justify-center transition-all duration-300 mx-auto bg-linear-to-b from-[#ecd6d0] to-[#fff9eb] mb-[15px] xl:mb-[20px] 2xl:mb-[24px]">
+                  ) : (
+                    <Image
+                      src="/images/placeholder.jpg"
+                      alt="placeholder"
+                      width={386}
+                      height={482}
+                      className="w-full h-full object-cover absolute z-0 inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    />
+                  )}
+                  <div className="w-[60px] sm:w-[96px] xl:w-[118px] 2xl:w-[134px] 3xl:w-[162px] aspect-square rounded-full flex items-center justify-center transition-all duration-300 mx-auto bg-linear-to-b from-[#ecd6d0] to-[#fff9eb] mb-[15px] xl:mb-[20px] 2xl:mb-[24px]">
+                    {item?.icon?.url ? (
                       <Image
                         src={getStrapiMediaUrl(item.icon.url)}
                         alt={
@@ -85,12 +103,20 @@ export default function HomeConditions({ data }) {
                         height={90}
                         className="w-[54px] xl:w-[67px] 2xl:w-[75px] 3xl:w-[85px] object-contain"
                       />
-                    </div>
-                  )}
-                  <div className="text_4 text-center mb-[6px] xl:mb-[8px] 2xl:mb-[10px] group-hover:text-white relative z-1">
+                    ) : (
+                      <Image
+                        src="/images/placeholder.jpg"
+                        alt="placeholder"
+                        width={90}
+                        height={90}
+                        className="w-[54px] xl:w-[67px] 2xl:w-[75px] 3xl:w-[85px] object-contain"
+                      />
+                    )}
+                  </div>
+                  <div className="text_4 line-clamp-2 text-center mb-[6px] xl:mb-[8px] 2xl:mb-[10px] group-hover:text-white relative z-1">
                     {item?.title}
                   </div>
-                  <div className="text_3 text-center text-black mx-auto xl:max-w-[80%] group-hover:text-white relative z-1">
+                  <div className="text_3 line-clamp-3 text-center text-black mx-auto xl:max-w-[80%] group-hover:text-white relative z-1">
                     {item?.short_description}
                   </div>
                 </Link>

@@ -35,11 +35,13 @@ import { cn } from "@/lib/utils";
 import { XIcon } from "lucide-react";
 
 const formSchema = z.object({
-  name: z.string().min(1, "Name is required"),
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .regex(/^[a-zA-Z\s]*$/, "Name must contain only letters"),
   phone: z
     .string()
-    .min(1, "Phone number is required")
-    .regex(/^[+]?[\d\s()-]{7,20}$/, "Please enter a valid phone number"),
+    .regex(/^[+]?[\d\s()-]{10,20}$/, "Please enter a valid phone number"),
   email: z
     .string()
     .email("Please enter a valid email")

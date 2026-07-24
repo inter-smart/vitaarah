@@ -2,9 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 import { cn } from "@/lib/utils";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 import useEmblaCarousel from "embla-carousel-react";
@@ -20,7 +18,13 @@ export default function HomeMembers({ data }) {
       slidesToScroll: 1,
       containScroll: "trimSnaps",
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
+    [
+      Autoplay({
+        delay: 5000,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
   );
 
   const [thumbEmblaRef, thumbEmblaApi] = useEmblaCarousel({
@@ -100,7 +104,11 @@ export default function HomeMembers({ data }) {
                         >
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
-                            animate={selectedIdx === idx ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                            animate={
+                              selectedIdx === idx
+                                ? { opacity: 1, y: 0 }
+                                : { opacity: 0, y: 10 }
+                            }
                             transition={{ duration: 0.4, ease: "easeOut" }}
                             className="group w-full block"
                           >
@@ -133,7 +141,7 @@ export default function HomeMembers({ data }) {
                         key={"members" + idx}
                         className={cn(
                           "flex-[0_0_auto] cursor-pointer relative",
-                          "-ml-3 sm:-ml-4 xl:-ml-5 first:ml-0"
+                          "-ml-3 sm:-ml-4 xl:-ml-5 first:ml-0",
                         )}
                         onClick={() => {
                           onThumbClick(idx);
@@ -147,7 +155,7 @@ export default function HomeMembers({ data }) {
                             "overflow-hidden transition-all duration-300",
                             selectedIdx === idx
                               ? "border-[5px] border-white z-20"
-                              : "border-[5px] border-transparent"
+                              : "border-[5px] border-transparent",
                           )}
                         >
                           <Image
