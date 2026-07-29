@@ -36,8 +36,6 @@ export default function BlogListing({ data, blogs }) {
   const [visibleCount, setVisibleCount] = useState(data?.itemsPerPage || 10);
   const visibleBlogs = (blogs || []).slice(0, visibleCount);
 
-  console.log(data);
-
   return (
     <section
       id="BlogListing"
@@ -125,7 +123,7 @@ export default function BlogListing({ data, blogs }) {
                         src="/images/icon-views.svg"
                         alt="icon-views"
                       >
-                        {item?.viewCount ?? 0} Views
+                        {item?.viewCount ?? item?.blog_views?.length ?? 0} Views
                       </BlogSpecItem>
                     </div>
                     <Button>Read More</Button>

@@ -20,7 +20,7 @@ export default async function BlogPage() {
   const [pageRes, blogsRes] = await Promise.all([
     fetchAPI(`/api/blog-page?${getBlogPageQuery()}`),
     fetchAPI(
-      `/api/blogs?${buildQuery({ featured_image: true })}&pagination[page]=1&pagination[pageSize]=20&sort=published_date:desc`,
+      `/api/blogs?${buildQuery({ featured_image: true, blog_views: { fields: ['id'] } })}&pagination[page]=1&pagination[pageSize]=20&sort=published_date:desc`,
     ),
   ]);
 

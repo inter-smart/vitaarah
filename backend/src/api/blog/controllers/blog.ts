@@ -5,33 +5,6 @@
 import { factories } from '@strapi/strapi';
 
 export default factories.createCoreController('api::blog.blog', ({ strapi }) => ({
-  async find(ctx) {
-    const { data, meta } = await super.find(ctx);
-
-    if (data && data.length > 0) {
-      for (const blog of data) {
-        const count = await strapi.db.query('api::blog-view.blog-view').count({
-          where: { blog: { documentId: blog.documentId } },
-        });
-        blog.viewCount = count;
-      }
-    }
-
-    return { data, meta };
-  },
-
-  async findOne(ctx) {
-    const response = await super.findOne(ctx);
-
-    if (response?.data) {
-      const count = await strapi.db.query('api::blog-view.blog-view').count({
-        where: { blog: { documentId: response.data.documentId } },
-      });
-      response.data.viewCount = count;
-    }
-
-    return response;
-  },
 
   async incrementView(ctx) {
     const { documentId } = ctx.params;

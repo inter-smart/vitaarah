@@ -37,7 +37,7 @@ export default async function BlogDetailPage({ params }) {
       `/api/blogs?filters[slug][$eq]=${slug}&${getActiveBlogQuery()}`,
     ),
     fetchAPI(
-      `/api/blogs?${buildQuery({ featured_image: true })}&pagination[page]=1&pagination[pageSize]=3&sort=published_date:desc`,
+      `/api/blogs?${buildQuery({ featured_image: true, blog_views: { fields: ['id'] } })}&pagination[page]=1&pagination[pageSize]=3&sort=published_date:desc`,
     ),
   ]);
 

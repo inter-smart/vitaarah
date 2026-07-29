@@ -84,6 +84,7 @@ export const getBlogDetailQuery = () => buildQuery({
 
 export const getActiveBlogQuery = () => buildQuery({
   featured_image: true,
+  blog_views: { fields: ['id'] }
 });
 
 export const getConditionPageQuery = () => buildQuery({
@@ -223,7 +224,7 @@ export const getHomePageQuery = () => buildQuery({
   },
   home_blogs_section: {
     populate: {
-      blogs: { populate: { featured_image: true } },
+      blogs: { populate: { featured_image: true, blog_views: { fields: ['id'] } } },
     },
   },
 });
