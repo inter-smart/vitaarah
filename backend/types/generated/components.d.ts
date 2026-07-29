@@ -272,7 +272,13 @@ export interface SectionsCertificationsSection extends Struct.ComponentSchema {
       'common.certification-card',
       true
     >;
-    statistic: Schema.Attribute.Component<'common.statistic', true>;
+    statistic: Schema.Attribute.Component<'common.statistic', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 3;
+        },
+        number
+      >;
     title: Schema.Attribute.String;
   };
 }

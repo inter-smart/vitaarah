@@ -592,6 +592,38 @@ export interface ApiBlogPageBlogPage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiBlogViewBlogView extends Struct.CollectionTypeSchema {
+  collectionName: 'blog_views';
+  info: {
+    description: 'Unique daily view counts for blogs';
+    displayName: 'Blog View';
+    pluralName: 'blog-views';
+    singularName: 'blog-view';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    blog: Schema.Attribute.Relation<'manyToOne', 'api::blog.blog'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-view.blog-view'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    viewed_at: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    viewed_date: Schema.Attribute.Date & Schema.Attribute.Required;
+    visitor_uuid: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   collectionName: 'blogs';
   info: {
@@ -604,6 +636,10 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   };
   attributes: {
     author_name: Schema.Attribute.String & Schema.Attribute.Required;
+    blog_views: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-view.blog-view'
+    >;
     category: Schema.Attribute.Enumeration<['events', 'treatment']>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -623,7 +659,6 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    view_count: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -2042,6 +2077,7 @@ declare module '@strapi/strapi' {
       'api::appointment-form.appointment-form': ApiAppointmentFormAppointmentForm;
       'api::available-duration.available-duration': ApiAvailableDurationAvailableDuration;
       'api::blog-page.blog-page': ApiBlogPageBlogPage;
+      'api::blog-view.blog-view': ApiBlogViewBlogView;
       'api::blog.blog': ApiBlogBlog;
       'api::condition-page.condition-page': ApiConditionPageConditionPage;
       'api::condition.condition': ApiConditionCondition;

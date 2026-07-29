@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blog_views",
+  "info": {
+    "singularName": "blog-view",
+    "pluralName": "blog-views",
+    "displayName": "Blog View",
+    "description": "Unique daily view counts for blogs"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "visitor_uuid": {
+      "type": "string",
+      "required": true
+    },
+    "viewed_date": {
+      "type": "date",
+      "required": true
+    },
+    "viewed_at": {
+      "type": "datetime",
+      "required": true
+    },
+    "blog": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::blog.blog",
+      "inversedBy": "blog_views"
+    }
+  }
+}

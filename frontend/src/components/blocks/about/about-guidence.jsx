@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,27 +10,32 @@ import "swiper/css/navigation";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 
 export default function AboutGuidence({ data }) {
+  const [prevEl, setPrevEl] = useState(null);
+  const [nextEl, setNextEl] = useState(null);
+
   return (
     <section className="relative py-[40px_10px] md:py-[50px] 2xl:py-[60px] 3xl:py-[80px_60px] overflow-hidden">
       <div className="container">
         <div className="max-w-[522px] xl:max-w-[644px] 2xl:max-w-[730px] 3xl:max-w-[887px] text-center m-auto mb-[25px] lg:mb-[35px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
           <div className="heading_1 mb-[20px]">{data?.title}</div>
-          <div className="text_3 font-helvetica-light">{data.short_description}</div>
+          <div className="text_3 font-helvetica-light">
+            {data.short_description}
+          </div>
         </div>
 
         <div className="w-full h-full relative  ">
           <Swiper
             modules={[Autoplay, Navigation]}
-            onBeforeInit={(swiper) => {
-              swiper.params.navigation.prevEl = ".guidance-prev";
-              swiper.params.navigation.nextEl = ".guidance-next";
-            }}
             navigation={{
-              prevEl: ".guidance-prev",
-              nextEl: ".guidance-next",
+              prevEl,
+              nextEl,
             }}
-            autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
-            speed={4000}
+            autoplay={{
+              delay: 1000,
+              disableOnInteraction: true,
+              pauseOnMouseEnter: true,
+            }}
+            speed={2000}
             loop={true}
             breakpoints={{
               478: {
@@ -49,7 +55,7 @@ export default function AboutGuidence({ data }) {
                 spaceBetween: 35,
               },
             }}
-            className="relative z-20 overflow-hidden"
+            className="relative z-0 overflow-hidden"
           >
             {(data?.members || []).map((item, index) => (
               <SwiperSlide key={index} className="!h-auto">
@@ -58,7 +64,7 @@ export default function AboutGuidence({ data }) {
                   className="block w-full h-full bg-gradient-to-r from-[#E9CBA3] via-[#C16C84] to-[#A14962] px-[20px] md:px-[20px] 3xl:px-[30px]"
                 >
                   <div className="flex w-full h-full">
-                    <div className="w-full md:w-[190px] xl:w-[230px] 2xl:w-[260px] 3xl:w-[320px] flex items-end h-full max-md:hidden">
+                    <div className="w-full md:w-[190px] xl:w-[230px] 2xl:w-[260px] 3xl:w-[320px] flex items-end h-full overflow-hidden max-md:hidden">
                       <div className="relative w-full h-auto flex items-end  after:absolute after:top-[35px] after:content-[''] after:right-0 after:left-0 after:m-auto after:w-[190px] xl:after:w-[230px] 2xl:after:w-[260px] 3xl:after:w-[320px] after:h-[190px] xl:after:h-[230px] 2xl:after:h-[260px] 3xl:after:h-[320px] after:bg-[url('/images/globe-line.svg')] after:pointer-events-none after:bg-contain after:bg-no-repeat">
                         <Image
                           src={getStrapiMediaUrl(item?.featured_image?.url)}
@@ -116,8 +122,9 @@ export default function AboutGuidence({ data }) {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="absolute inset-y-0 left-0 right-0 z-30 pointer-events-none">
+          <div className="absolute inset-y-0 left-0 right-0 z-2 pointer-events-none">
             <button
+              ref={setPrevEl}
               className="guidance-prev
                                     pointer-events-auto
                                     absolute
@@ -162,6 +169,7 @@ export default function AboutGuidence({ data }) {
             </button>
 
             <button
+              ref={setNextEl}
               className="
                                 guidance-next
                                 pointer-events-auto

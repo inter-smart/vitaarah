@@ -51,9 +51,11 @@
         "treatment"
       ]
     },
-    "view_count": {
-      "type": "integer",
-      "default": 0
+    "blog_views": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-view.blog-view",
+      "mappedBy": "blog"
     }
   }
 }

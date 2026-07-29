@@ -11,7 +11,8 @@
     "statistic": {
       "type": "component",
       "component": "common.statistic",
-      "repeatable": true
+      "repeatable": true,
+      "max": 3
     },
     "certification_card": {
       "type": "component",

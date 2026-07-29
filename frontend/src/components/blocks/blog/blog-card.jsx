@@ -65,7 +65,7 @@ export default function BlogCard({ data }) {
               </BlogSpecItem>
             )}
             <BlogSpecItem src="/images/icon-views.svg" alt="icon-views">
-              {data?.view_count ?? 0} Views
+              {data?.viewCount ?? 0} Views
             </BlogSpecItem>
           </div>
         </div>

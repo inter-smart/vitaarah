@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 import BlogCard from "./blog-card";
 import { getStrapiMediaUrl } from "@/lib/strapi";
+import { getVisitorUUID } from "@/lib/utils";
 
 const WORDS_PER_MINUTE = 200;
 
@@ -31,32 +32,37 @@ function BlogSpecItem({ src, alt, children }) {
 }
 
 export default function BlogDetail({ data, relatedBlogs }) {
-  const [viewCount, setViewCount] = useState(data?.view_count || 0);
+  const [viewCount, setViewCount] = useState(data?.viewCount || 0);
+  const incrementAttempted = useRef(false);
 
   useEffect(() => {
-    if (!data?.documentId) return;
+    if (!data?.documentId || incrementAttempted.current) return;
 
-    const sessionKey = `viewed_blog_${data.documentId}`;
-    if (!sessionStorage.getItem(sessionKey)) {
-      const apiUrl =
-        process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-      fetch(`${apiUrl}/api/blogs/${data.documentId}/view`, {
-        method: "POST",
+    incrementAttempted.current = true;
+    const visitor_uuid = getVisitorUUID();
+    
+    if (!visitor_uuid) return;
+
+    const apiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+    fetch(`${apiUrl}/api/blogs/${data.documentId}/view`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: { visitor_uuid } }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to increment view");
+        return res.json();
       })
-        .then((res) => {
-          if (!res.ok) throw new Error("Failed to increment view");
-          return res.json();
-        })
-        .then((json) => {
-          if (json?.data?.view_count) {
-            setViewCount(json.data.view_count);
-            sessionStorage.setItem(sessionKey, "true");
-          }
-        })
-        .catch((err) => {
-          console.error("View increment error:", err);
-        });
-    }
+      .then((json) => {
+        if (json?.viewCount !== undefined) {
+          setViewCount(json.viewCount);
+        }
+      })
+      .catch((err) => {
+        console.error("View increment error:", err);
+      });
   }, [data?.documentId]);
 
   return (
