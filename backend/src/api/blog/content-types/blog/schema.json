@@ -50,6 +50,10 @@
         "events",
         "treatment"
       ]
+    },
+    "view_count": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
@@ -29,6 +31,34 @@ function BlogSpecItem({ src, alt, children }) {
 }
 
 export default function BlogDetail({ data, relatedBlogs }) {
+  const [viewCount, setViewCount] = useState(data?.view_count || 0);
+
+  useEffect(() => {
+    if (!data?.documentId) return;
+
+    const sessionKey = `viewed_blog_${data.documentId}`;
+    if (!sessionStorage.getItem(sessionKey)) {
+      const apiUrl =
+        process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+      fetch(`${apiUrl}/api/blogs/${data.documentId}/view`, {
+        method: "POST",
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to increment view");
+          return res.json();
+        })
+        .then((json) => {
+          if (json?.data?.view_count) {
+            setViewCount(json.data.view_count);
+            sessionStorage.setItem(sessionKey, "true");
+          }
+        })
+        .catch((err) => {
+          console.error("View increment error:", err);
+        });
+    }
+  }, [data?.documentId]);
+
   return (
     <section
       id="BlogDetail"
@@ -48,16 +78,24 @@ export default function BlogDetail({ data, relatedBlogs }) {
               Blogs
             </div>
             <div className="w-full bg-[#fff9eb]">
-              <div className="w-full aspect-[897/450] overflow-hidden">
+              <div className="w-full aspect-[897/450] relative z-0 overflow-hidden">
+                {data?.category && (
+                  <div className="absolute z-1 top-[10px] xl:top-[12px] 2xl:top-[13px] 3xl:top-[16px] right-[10px] xl:right-[12px] 2xl:right-[13px] 3xl:right-[16px] text_3 font-things capitalize text-[#a14962] h-[24px] xl:h-[30px] 2xl:h-[34px] 3xl:h-[40px] bg-[#fff9eb] px-[6px] xl:px-[8px] 2xl:px-[10px] 3xl:px-[12px] flex items-center">
+                    {data?.category}
+                  </div>
+                )}
                 <Image
                   src={
                     data?.featured_image?.url
                       ? getStrapiMediaUrl(data.featured_image.url)
                       : "/images/placeholder.jpg"
                   }
-                  alt={(data?.featured_image?.alternativeText ||
+                  alt={
+                    data?.featured_image?.alternativeText ||
                     data?.title ||
-                    "Blog") || "Image"}
+                    "Blog" ||
+                    "Image"
+                  }
                   width={897}
                   height={450}
                   className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
@@ -68,27 +106,32 @@ export default function BlogDetail({ data, relatedBlogs }) {
                   {data?.title}
                 </div>
                 {data.description && (
-                  <div className="text_3 font-normal font-helvetica text-black mb-[20px] xl:mb-[28px] 2xl:mb-[30px] 3xl:mb-[38px]">
+                  <div className="text_3 font-normal font-helvetica text-black mb-1.5 xl:mb-2.5 3xl:mb-3">
                     <BlocksRenderer content={data.description} />
+                  </div>
+                )}
+                {data?.author_name && (
+                  <div className="text_3 font-normal font-things capitalize italic text-black mb-3 xl:mb-4 3xl:mb-6">
+                    - {data?.author_name}
                   </div>
                 )}
                 <div className="max-w-11/12 flex flex-wrap gap-4 sm:gap-[30px] xl:gap-[70px] 2xl:gap-[77px] 3xl:gap-[93px]">
                   <BlogSpecItem src="/images/icon-clock.svg" alt="icon-clock">
                     {calculateReadTime(data?.short_description || "")} min read
                   </BlogSpecItem>
-                  <BlogSpecItem src="/images/icon-calcu.svg" alt="icon-calcu">
-                    {data?.published_date
-                      ? new Date(data.published_date).toLocaleDateString(
-                          "en-US",
-                          {
-                            month: "long",
-                            year: "numeric",
-                          },
-                        )
-                      : ""}
-                  </BlogSpecItem>
+                  {data?.published_date && (
+                    <BlogSpecItem src="/images/icon-calcu.svg" alt="icon-calcu">
+                      {new Date(data.published_date).toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "long",
+                          year: "numeric",
+                        },
+                      )}
+                    </BlogSpecItem>
+                  )}
                   <BlogSpecItem src="/images/icon-views.svg" alt="icon-views">
-                    {data?.viewCount || 0} Views
+                    {viewCount ?? 0} Views
                   </BlogSpecItem>
                 </div>
               </div>

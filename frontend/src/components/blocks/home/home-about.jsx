@@ -9,7 +9,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 
 const ElementStyle =
-  "group w-[140px] sm:w-[180px] lg:w-[200px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[90px] lg:-mr-[100px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1";
+  "group w-[140px] sm:w-[180px] lg:w-[200px] xl:w-[260px] 2xl:w-[315px] 3xl:w-[370px] -mr-[90px] lg:-mr-[100px] xl:-mr-[130px] 2xl:-mr-[160px] 3xl:-mr-[200px] aspect-square border-[8px] 2xl:border-[10px] border-white bg-linear-to-l from-[#e9cba3] to-[#a14962] rounded-full overflow-hidden relative z-1 select-none";
 
 export default function HomeAbout({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);

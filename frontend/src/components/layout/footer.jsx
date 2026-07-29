@@ -15,8 +15,8 @@ export default function Footer({ data, siteSettings }) {
   const google_maps_url = data?.google_maps_url;
   const copyright_text = data?.copyright_text;
 
-  const support_phone = siteSettings?.support_phone;
-  const support_email = siteSettings?.support_email;
+  const support_phone = data?.phone_number;
+  const support_email = data?.email_address;
   const social_links = siteSettings?.social_links || [];
   return (
     <footer className="[--top-box:60px] sm:[--top-box:72px] xl:[--top-box:90px] 2xl:[--top-box:102px] 3xl:[--top-box:124px] w-full block bg-[#faf7ed] sm:pt-[60px] xl:pt-[73px] 2xl:pt-[80px] 3xl:pt-[100px] sm:mt-[calc(var(--top-box)/2)] relative z-0">
@@ -107,7 +107,7 @@ export default function Footer({ data, siteSettings }) {
                   url="/images/footer-address-icon.svg"
                   alternativeText="footer-address-icon"
                   label="Mobile"
-                  linkUrl={`tel:${support_phone}`}
+                  linkUrl={`tel:${support_phone.replace(/\s+/g, "")}`}
                   content={support_phone}
                 />
               )}
@@ -214,6 +214,7 @@ function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
         </div>
         <Link
           href={linkUrl}
+          target="_blank"
           className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none text-[#875849] hover:text-[#623628]"
         >
           {content}

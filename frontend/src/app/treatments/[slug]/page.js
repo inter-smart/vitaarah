@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
   });
 }
 
-export default async function TreatmentDetails({ params }) {
+export default async function TreatmentDetailPage({ params }) {
   const { slug } = await params;
   const url = `/api/treatments?filters[slug][$eq]=${slug}&${getTreatmentDetailQuery()}`;
 
@@ -70,7 +70,7 @@ export default async function TreatmentDetails({ params }) {
       <BreadcrumbNav items={breadcrumbItems} />
       {detailsData && <TreatmentDetail data={detailsData} />}
       {treatment.ritual_experience_section && (
-        <TreatmentRitualExperience data={treatment.ritual_experience_section} />
+        <TreatmentRitualExperience data={treatment.ritual_experience_section} treatmentSlug={slug} />
       )}
       {treatment.treatment_benefits_section && (
         <TreatmentAlchemy data={treatment.treatment_benefits_section} />
@@ -79,6 +79,7 @@ export default async function TreatmentDetails({ params }) {
         <TreatmentRight
           data={treatment.right_for_you_section}
           commitmentDetails={commitmentDetails}
+          treatmentSlug={slug}
         />
       )}
       {treatment.faq_section && <TreatmentFaq data={treatment.faq_section} />}
@@ -86,7 +87,7 @@ export default async function TreatmentDetails({ params }) {
         <TreatmentComplementary data={treatment.related_treatments_section} />
       )}
       {treatment.cta_treatment_section && (
-        <TreatmentRythym data={treatment.cta_treatment_section} />
+        <TreatmentRythym data={treatment.cta_treatment_section} treatmentSlug={slug} />
       )}
     </>
   );

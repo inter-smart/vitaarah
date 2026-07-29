@@ -121,7 +121,7 @@ export default function GalleryTreatmentVideos({ data }) {
                 <Link
                   href={data.instagram_url}
                   target="_blank"
-                  className="text_3 leading-none font-normal text-white w-full min-w-[185px] xl:min-w-[230px] 2xl:min-w-[260px] 3xl:min-w-[315px] h-[50px] xl:h-[62px] 2xl:h-[70px] 3xl:h-[85px] bg-linear-to-l from-[#e9cba3] to-[#a14962] flex items-center justify-center gap-[10px] xl:gap-[12px] 2xl:gap-[14px] 3xl:gap-[17px] hover:scale-105 transition-all duration-500"
+                  className="text_3 leading-none font-normal text-white w-full min-w-[185px] xl:min-w-[230px] 2xl:min-w-[260px] 3xl:min-w-[315px] h-[50px] xl:h-[62px] 2xl:h-[70px] 3xl:h-[85px] bg-linear-to-l from-[#e9cba3] to-[#a14962] p-2 flex items-center justify-center gap-[10px] xl:gap-[12px] 2xl:gap-[14px] 3xl:gap-[17px] hover:scale-105 transition-all duration-500"
                 >
                   <Image
                     src="/images/icon-insta-2.svg"

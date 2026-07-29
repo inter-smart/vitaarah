@@ -56,16 +56,16 @@ export default function BlogCard({ data }) {
             <BlogSpecItem src="/images/icon-clock.svg" alt="icon-clock">
               {calculateReadTime(data?.short_description || "")} min read
             </BlogSpecItem>
-            <BlogSpecItem src="/images/icon-calcu.svg" alt="icon-calcu">
-              {data?.published_date
-                ? new Date(data.published_date).toLocaleDateString("en-US", {
-                    month: "long",
-                    year: "numeric",
-                  })
-                : ""}
-            </BlogSpecItem>
+            {data?.published_date && (
+              <BlogSpecItem src="/images/icon-calcu.svg" alt="icon-calcu">
+                {new Date(data.published_date).toLocaleDateString("en-US", {
+                  month: "long",
+                  year: "numeric",
+                })}
+              </BlogSpecItem>
+            )}
             <BlogSpecItem src="/images/icon-views.svg" alt="icon-views">
-              {data?.viewCount || 0} Views
+              {data?.view_count ?? 0} Views
             </BlogSpecItem>
           </div>
         </div>

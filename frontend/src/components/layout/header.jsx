@@ -108,7 +108,7 @@ export default function Header({
                 asChild
               >
                 <Link
-                  href={`tel:${cta_button.url}`}
+                  href={`tel:${cta_button.url.replace(/\s+/g, "")}`}
                   target="_blank"
                   rel={
                     cta_button.is_external ? "noopener noreferrer" : undefined
@@ -245,7 +245,7 @@ export default function Header({
                           url="/images/footer-address-icon.svg"
                           alternativeText="footer-address-icon"
                           label="Mobile"
-                          linkUrl={`tel:${support_phone}`}
+                          linkUrl={`tel:${support_phone.replace(/\s+/g, "")}`}
                           content={support_phone}
                         />
                       )}
@@ -316,6 +316,7 @@ function ConnectCard({ url, alternativeText, label, linkUrl, content }) {
         </div>
         <Link
           href={linkUrl}
+          target="_blank"
           className="text_3 leading-none text-[#875849] hover:text-[#623628]"
         >
           {content}

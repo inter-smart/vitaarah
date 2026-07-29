@@ -10,7 +10,7 @@ export default function FloatingActionButtons({
       {/* Call Button */}
       {supportPhone && (
         <a
-          href={`tel:${supportPhone}`}
+          href={`tel:${supportPhone.replace(/\s+/g, "")}`}
           className="size-[28px] xl:size-[32px] 2xl:size-[36px] 3xl:size-[44px] aspect-square bg-[#a14962] hover:-translate-x-0.5 transition-all duration-300 shadow-md"
           aria-label="Call us"
         >

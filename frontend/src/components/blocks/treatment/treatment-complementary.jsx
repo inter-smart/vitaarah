@@ -39,6 +39,8 @@ export default function TreatmentComplementary({ data }) {
     },
   };
 
+  if (!(data?.related_treatments || []).length) return null;
+
   return (
     <section className="w-full block relative py-[25px] lg:py-[30px] xl:py-[35px] 2xl:py-[45px_35px] 3xl:py-[55px_40px]">
       <div className="container">
@@ -49,18 +51,18 @@ export default function TreatmentComplementary({ data }) {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="heading_1 mb-[0px]">{data?.title}</div>
+          <div className="heading_1 mb-0">{data?.title}</div>
           <div className="text_3 font-helvetica-light text-black">
             {data?.short_description}
           </div>
         </motion.div>
         <div className="w-full h-full relative">
-          <div className="flex flex-wrap justify-center -mx-2.5 lg:-mx-[9px] xl:-mx-[11.5px] xl:-mx-[11.5px] 2xl:-mx-[13px] 3xl:-mx-[16px] lg:-my-[30px] xl:-my-[35.5px] xl:-my-[35.5px] 2xl:-my-[42px] 3xl:-my-[50px]">
+          <div className="flex flex-wrap justify-center -mx-[5px] lg:-mx-[9px] xl:-mx-[10px] 2xl:-mx-[13px] 3xl:-mx-[16px] lg:-my-[10px] xl:-my-[15px] xl:-my-[20px] 2xl:-my-[25px] 3xl:-my-[30px]">
             {(data?.related_treatments || []).map((item, index) => (
               <div
                 key={"related_treatments" + index}
                 className={cn(
-                  "w-full sm:w-1/2 lg:w-1/3 p-[15px_10px] lg:p-[30px_9px] xl:p-[35.5px_11.5px] xl:p-[35.5px_11.5px] 2xl:p-[42px_13px] 3xl:p-[50px_16px]",
+                  "w-full min-[376px]:w-1/2 md:w-1/3 p-[5px_5px] lg:p-[10px_9px] xl:p-[15px_10px] 2xl:p-[25px_13px] 3xl:p-[30px_16px]",
                 )}
               >
                 <motion.div

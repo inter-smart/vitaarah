@@ -71,10 +71,12 @@ export default function ConsultationForm({
   source,
   conditionName,
   conditionSlug,
+  treatmentSlug,
 }) {
   const [open, setOpen] = useState(false);
   const [treatments, setTreatments] = useState([]);
   const [loadingTreatments, setLoadingTreatments] = useState(true);
+  const [hasAutoSelected, setHasAutoSelected] = useState(false);
 
   useEffect(() => {
     async function fetchTreatments() {
@@ -107,6 +109,16 @@ export default function ConsultationForm({
       await submit(value);
     },
   });
+
+  useEffect(() => {
+    if (treatments.length > 0 && treatmentSlug && !hasAutoSelected) {
+      const currentTreatment = treatments.find((t) => t.slug === treatmentSlug);
+      if (currentTreatment) {
+        form.setFieldValue("requested_treatment", currentTreatment.documentId);
+        setHasAutoSelected(true);
+      }
+    }
+  }, [treatments, treatmentSlug, hasAutoSelected, form]);
 
   const { submit, isSubmitting, isSuccess, error, reset } = useSubmitForm(
     submitConsultation,

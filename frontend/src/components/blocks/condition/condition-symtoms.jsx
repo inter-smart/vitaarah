@@ -115,7 +115,7 @@ export default function ConditionSymtoms({ data }) {
                 alt={data?.symptoms_image?.alternativeText || "Symptoms"}
                 width={520}
                 height={300}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-106 transition-transform duration-300"
               />
             </div>
           </motion.div>

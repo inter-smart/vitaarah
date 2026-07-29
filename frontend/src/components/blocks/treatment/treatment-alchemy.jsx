@@ -66,9 +66,11 @@ export default function TreatmentAlchemy({ data }) {
               <div className="heading_1 mb-[0px] max-w-[450px]">
                 {data?.title}
               </div>
-              <div className="text_3 font-helvetica-light text-black mb-[20px] md:mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
-                <BlocksRenderer content={data.description} />
-              </div>
+              {data?.description && (
+                <div className="text_3 font-helvetica-light text-black mb-[20px] md:mb-[30px] xl:mb-[40px] 2xl:mb-[45px] 3xl:mb-[50px]">
+                  <BlocksRenderer content={data.description} />
+                </div>
+              )}
               <motion.div
                 className="w-full aspect-[578/478] overflow-hidden group"
                 whileHover={{

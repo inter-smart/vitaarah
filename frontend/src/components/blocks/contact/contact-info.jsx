@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
 
-export default function ContactInfo({ data, siteSettings }) {
+export default function ContactInfo({ data }) {
   return (
     <section
       id="ContactInfo"
@@ -65,22 +65,22 @@ export default function ContactInfo({ data, siteSettings }) {
                 Connect with Us
               </div>
               <div className="flex flex-wrap justify-between gap-[30px] lg:gap-[33px] xl:gap-[42px] 2xl:gap-[46px] 3xl:gap-[56px]">
-                {siteSettings?.support_phone && (
+                {data?.phoneNumber && (
                   <ConnectCard
                     url="/images/footer-address-icon.svg"
                     alternativeText="footer-address-icon"
                     label="Mobile"
-                    linkUrl={`tel:${siteSettings?.support_phone}`}
-                    content={siteSettings?.support_phone}
+                    linkUrl={`tel:${data?.phoneNumber.replace(/\s+/g, "")}`}
+                    content={data?.phoneNumber}
                   />
                 )}
-                {siteSettings?.support_email && (
+                {data?.emailAddress && (
                   <ConnectCard
                     url="/images/footer-mail-icon.svg"
                     alternativeText="footer-mail-icon"
                     label="Mail"
-                    linkUrl={`mailto:${siteSettings?.support_email}`}
-                    content={siteSettings?.support_email}
+                    linkUrl={`mailto:${data?.emailAddress}`}
+                    content={data?.emailAddress}
                   />
                 )}
               </div>
@@ -113,7 +113,7 @@ export default function ContactInfo({ data, siteSettings }) {
       {data?.googleMapsUrl && (
         <div className="container mt-[30px] lg:mt-[75px] xl:mt-[96px] 2xl:mt-[104px] 3xl:mt-[127px] grayscale-100">
           <iframe
-            src={data.googleMapsUrl}
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2304511.7958019977!2d52.62929556445593!3d24.35078910637986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e48dfb1ab12bd%3A0x33d32f56c0080aa7!2sUnited%20Arab%20Emirates!5e1!3m2!1sen!2sin!4v1785305496003!5m2!1sen!2sin"
             width="100%"
             height="400"
             style={{ border: 0 }}
@@ -122,7 +122,7 @@ export default function ContactInfo({ data, siteSettings }) {
             referrerPolicy="no-referrer-when-downgrade"
             title="Google Map"
             className="w-full h-[250px] sm:h-[300px] xl:h-[350px] 2xl:h-[400px]"
-          />
+          ></iframe>
         </div>
       )}
     </section>

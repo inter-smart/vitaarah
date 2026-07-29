@@ -106,12 +106,12 @@ export default function TreatmentDetail({ data }) {
             >
               <Image
                 src={
-                  data?.featured_image?.url
-                    ? getStrapiMediaUrl(data.featured_image.url)
+                  data?.what_is_section?.featured_image?.url
+                    ? getStrapiMediaUrl(data.what_is_section.featured_image.url)
                     : "/images/placeholder.jpg"
                 }
                 alt={
-                  data?.featured_image?.alternativeText || "Treatment Details"
+                  data?.what_is_section?.featured_image?.alternativeText || "Treatment Details"
                 }
                 className="w-full h-full object-cover transition-all duration-300 ease-in group-hover:scale-110"
                 width={875}

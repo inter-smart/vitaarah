@@ -297,7 +297,7 @@ export interface SectionsContactSection extends Struct.ComponentSchema {
   };
   attributes: {
     emailAddress: Schema.Attribute.Email;
-    googleMapsUrl: Schema.Attribute.String;
+    googleMapsUrl: Schema.Attribute.Text;
     phoneNumber: Schema.Attribute.String;
     shortDescription: Schema.Attribute.Text;
     title: Schema.Attribute.String;

@@ -131,7 +131,7 @@ export async function submitConsultation(data) {
 export async function getTreatments() {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/api/treatments?fields[0]=title&fields[1]=documentId`,
+      `${API_BASE_URL}/api/treatments?fields[0]=title&fields[1]=documentId&fields[2]=slug`,
       {
         method: "GET",
         headers: {

@@ -15,7 +15,9 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
 
   const [conditionRes, conditionPageRes] = await Promise.all([
-    fetchAPI(`/api/conditions?filters[slug][$eq]=${slug}&${getConditionQuery()}`),
+    fetchAPI(
+      `/api/conditions?filters[slug][$eq]=${slug}&${getConditionQuery()}`,
+    ),
     fetchAPI(`/api/condition-page?${getConditionPageQuery()}`),
   ]);
 
@@ -35,7 +37,9 @@ export default async function ConditionsPage({ params }) {
   // We use Promise.all to fetch page global layout, the specific condition, and the lightweight conditions list for the Tabs.
   const [conditionPageRes, conditionRes, allConditionsRes] = await Promise.all([
     fetchAPI(`/api/condition-page?${getConditionPageQuery()}`),
-    fetchAPI(`/api/conditions?filters[slug][$eq]=${slug}&${getConditionQuery()}`),
+    fetchAPI(
+      `/api/conditions?filters[slug][$eq]=${slug}&${getConditionQuery()}`,
+    ),
     fetchAPI(`/api/conditions?${buildQuery({ fields: ["title", "slug"] })}`),
   ]);
 
@@ -46,10 +50,6 @@ export default async function ConditionsPage({ params }) {
 
   const pageData = conditionPageRes?.data || {};
   const allConditions = allConditionsRes?.data || [];
-
-  console.log(condition);
-  console.log(pageData);
-  console.log(allConditions);
 
   return (
     <>
@@ -66,14 +66,14 @@ export default async function ConditionsPage({ params }) {
         <ConditionSymtoms data={condition.symptoms_section} />
       )}
       {condition?.root_cause_section && (
-        <ConditionRootCause 
-          data={condition.root_cause_section} 
-          rootCauses={condition.related_root_causes} 
+        <ConditionRootCause
+          data={condition.root_cause_section}
+          rootCauses={condition.related_root_causes}
         />
       )}
       {condition?.recommended_treatments_section && (
-        <ConditionTreatment 
-          data={condition.recommended_treatments_section} 
+        <ConditionTreatment
+          data={condition.recommended_treatments_section}
           treatments={condition.related_treatments}
         />
       )}

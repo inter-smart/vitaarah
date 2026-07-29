@@ -18,7 +18,13 @@ export default function HomeBlogs({ data }) {
       slidesToScroll: 1,
       containScroll: "trimSnaps",
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
+    [
+      Autoplay({
+        delay: 5000,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
   );
   return (
     <section className="w-full py-[40px] sm:py-[60px] xl:py-[74px] 2xl:py-[90px] relative z-0">
@@ -110,18 +116,19 @@ export default function HomeBlogs({ data }) {
                         <div className="text_3 text-center text-[#a14962] underline underline-offset-4 hover:text-black">
                           Read More
                         </div>
-                        <div className="text_3 text-center text-[#a14962]">
-                          {item?.published_date
-                            ? new Date(item.published_date).toLocaleDateString(
-                                "de-DE",
-                                {
+                        {item?.published_date && (
+                          <div className="text_3 text-center text-[#a14962]">
+                            {item?.published_date
+                              ? new Date(
+                                  item.published_date,
+                                ).toLocaleDateString("de-DE", {
                                   day: "2-digit",
                                   month: "2-digit",
                                   year: "numeric",
-                                },
-                              )
-                            : ""}
-                        </div>
+                                })
+                              : ""}
+                          </div>
+                        )}
                       </div>
                       <div className="w-full aspect-[373/473] overflow-hidden mt-[15px] xl:mt-[20px] 2xl:mt-[24px] 3xl:mt-[30px]">
                         <Image

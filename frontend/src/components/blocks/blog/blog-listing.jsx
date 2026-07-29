@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -30,6 +33,9 @@ function BlogSpecItem({ src, alt, children }) {
 }
 
 export default function BlogListing({ data, blogs }) {
+  const [visibleCount, setVisibleCount] = useState(10);
+  const visibleBlogs = (blogs || []).slice(0, visibleCount);
+
   return (
     <section
       id="BlogListing"
@@ -57,7 +63,7 @@ export default function BlogListing({ data, blogs }) {
         )}
 
         <div className="flex flex-wrap justify-center -mx-2.5 lg:-mx-[9px] xl:-mx-[11.5px] xl:-mx-[11.5px] 2xl:-mx-[13px] 3xl:-mx-[16px] lg:-my-[30px] xl:-my-[35.5px] xl:-my-[35.5px] 2xl:-my-[42px] 3xl:-my-[50px]">
-          {blogs?.map((item, idx) => {
+          {visibleBlogs.map((item, idx) => {
             return idx === 0 ? (
               <div
                 key={"blogs" + idx}
@@ -76,9 +82,12 @@ export default function BlogListing({ data, blogs }) {
                           ? getStrapiMediaUrl(item.featured_image.url)
                           : "/images/placeholder.jpg"
                       }
-                      alt={(item?.featured_image?.alternativeText ||
+                      alt={
+                        item?.featured_image?.alternativeText ||
                         item?.title ||
-                        "Blog") || "Image"}
+                        "Blog" ||
+                        "Image"
+                      }
                       width={897}
                       height={450}
                       className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
@@ -99,22 +108,22 @@ export default function BlogListing({ data, blogs }) {
                         {calculateReadTime(item?.short_description || "")} min
                         read
                       </BlogSpecItem>
-                      <BlogSpecItem
-                        src="/images/icon-calcu.svg"
-                        alt="icon-calcu"
-                      >
-                        {item?.published_date
-                          ? new Date(item.published_date).toLocaleDateString(
-                              "en-US",
-                              { month: "long", year: "numeric" },
-                            )
-                          : ""}
-                      </BlogSpecItem>
+                      {item.published_date && (
+                        <BlogSpecItem
+                          src="/images/icon-calcu.svg"
+                          alt="icon-calcu"
+                        >
+                          {new Date(item.published_date).toLocaleDateString(
+                            "en-US",
+                            { month: "long", year: "numeric" },
+                          )}
+                        </BlogSpecItem>
+                      )}
                       <BlogSpecItem
                         src="/images/icon-views.svg"
                         alt="icon-views"
                       >
-                        {item?.viewCount || 0} Views
+                        {item?.view_count ?? 0} Views
                       </BlogSpecItem>
                     </div>
                     <Button>Read More</Button>
@@ -133,14 +142,23 @@ export default function BlogListing({ data, blogs }) {
             );
           })}
         </div>
-        <div className="flex justify-center mt-[20px] xl:mt-[47px] 2xl:mt-[54px] 3xl:mt-[60px]">
-          <Button
-            variant="none"
-            className="hover:text-white hover:bg-[#a14962]"
-          >
-            Load More...
-          </Button>
-        </div>
+        {blogs?.length > 10 && (
+          <div className="flex justify-center mt-[30px] xl:mt-[60px] 2xl:mt-[80px] 3xl:mt-[120px]">
+            <Button
+              variant="none"
+              className="hover:text-white hover:bg-[#a14962]"
+              onClick={() => {
+                if (visibleCount < blogs.length) {
+                  setVisibleCount((prev) => Math.min(prev + 10, blogs.length));
+                } else {
+                  setVisibleCount(10);
+                }
+              }}
+            >
+              {visibleCount < blogs.length ? "Load More..." : "Load Less"}
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

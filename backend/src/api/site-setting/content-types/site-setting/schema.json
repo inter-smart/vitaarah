@@ -41,6 +41,12 @@
     "site_url": {
       "type": "string"
     },
+    "support_email": {
+      "type": "email"
+    },
+    "support_phone": {
+      "type": "string"
+    },
     "google_analytics": {
       "type": "text"
     },
@@ -48,12 +54,6 @@
       "type": "component",
       "component": "common.seo",
       "repeatable": false
-    },
-    "support_phone": {
-      "type": "string"
-    },
-    "support_email": {
-      "type": "email"
     },
     "support_whatsapp_number": {
       "type": "string"

@@ -18,7 +18,7 @@
       "type": "string"
     },
     "googleMapsUrl": {
-      "type": "string"
+      "type": "text"
     },
     "emailAddress": {
       "type": "email"
