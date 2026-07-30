@@ -127,8 +127,6 @@ export default function HomeBlogs({ data }) {
                                   year: "numeric",
                                 })
                               : ""}
-                            {" | "}
-                            {item?.viewCount ?? item?.blog_views?.length ?? 0} Views
                           </div>
                         )}
                       </div>

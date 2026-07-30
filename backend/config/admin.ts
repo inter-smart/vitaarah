@@ -3,13 +3,6 @@ import type { Core } from '@strapi/strapi';
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Admin => ({
   auth: {
     secret: env('ADMIN_JWT_SECRET'),
-    sessions: {
-      accessTokenLifespan: 1800, // 30 minutes
-      maxRefreshTokenLifespan: 2592000, // 30 days
-      idleRefreshTokenLifespan: 604800, // 7 days
-      maxSessionLifespan: 2592000, // 30 days
-      idleSessionLifespan: 3600, // 1 hour (requires at least 30 minutes of inactivity)
-    },
   },
   watchIgnoreFiles: [
     '**/data.db',

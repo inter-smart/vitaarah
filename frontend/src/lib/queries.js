@@ -194,6 +194,7 @@ export const getHomePageQuery = () => buildQuery({
       home_treatment_item: {
         populate: {
           background_video: true,
+          background_image_thumbnail: true,
           related_treatment_category: true,
         },
       },

@@ -81,10 +81,10 @@ export default function HomeTreatments({ data }) {
                   loop
                   playsInline
                   className="w-full h-full object-cover"
-                  poster={
+                  poster={getStrapiMediaUrl(
                     item?.background_image_thumbnail?.url ||
-                    "/images/placeholder.jpg"
-                  }
+                      "/images/placeholder.jpg",
+                  )}
                 >
                   <source
                     src={getStrapiMediaUrl(item.background_video.url)}

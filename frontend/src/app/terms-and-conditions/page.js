@@ -19,15 +19,10 @@ export default async function TermsAndConditionsPage() {
 
   if (!pageData) return notFound();
 
-  console.log(pageData);
-
   return (
     <>
       <BreadcrumbNav
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Terms & Conditions" },
-        ]}
+        items={[{ label: "Home", href: "/" }, { label: "Terms & Conditions" }]}
       />
       {pageData.termsSection && <LegalContent data={pageData.termsSection} />}
     </>

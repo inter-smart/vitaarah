@@ -6,7 +6,6 @@ import ConsultationForm from "@/components/form/consultation-form";
 
 export default function SpecialityPathway({ data }) {
   const { specialities_listing_section, cta_specialities_section } = data;
-  console.log("specialities_listing_section", specialities_listing_section);
   return (
     <section className="w-full block overflow-hidden relative py-[30px_45px] lg:py-[30px_60px] xl:py-[45px_80px] 2xl:py-[55px_120px] 3xl:py-[70px_150px]">
       <Image
@@ -43,30 +42,30 @@ export default function SpecialityPathway({ data }) {
                 className=" relative z-1 w-full h-full block p-[20px] md:p-[20px_15px] xl:p-[30px_25px] 2xl:p-[40px_35px] 3xl:p-[50px_45px] bg-white transition-all hover:bg-[#FFF9EB] flex flex-col justify-between"
               >
                 <div>
-                {item?.icon?.url && (
-                  <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[85px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] bg-white rounded-full border border-[#A7546C] overflow-hidden p-[10px] xl:p-[12px] 2xl:p-[15px] 3xl:p-[20px] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
-                    <Image
-                      src={getStrapiMediaUrl(item.icon.url)}
-                      alt={
-                        item.icon.alternativeText ||
-                        item.treatment?.title ||
-                        "Speciality icon" ||
-                        "Image"
-                      }
-                      width={25}
-                      height={25}
-                      className="w-full h-full object-contain"
-                    />
+                  {item?.icon?.url && (
+                    <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[85px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] bg-white rounded-full border border-[#A7546C] overflow-hidden p-[10px] xl:p-[12px] 2xl:p-[15px] 3xl:p-[20px] mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                      <Image
+                        src={getStrapiMediaUrl(item.icon.url)}
+                        alt={
+                          item.icon.alternativeText ||
+                          item.treatment?.title ||
+                          "Speciality icon" ||
+                          "Image"
+                        }
+                        width={25}
+                        height={25}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  )}
+                  <div className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-[8px] xl:mb-[10px] 2xl:mb-[15px]">
+                    {item?.title}
                   </div>
-                )}
-                <div className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[27px] 3xl:text-[35px] text-[#A14962] font-normal mb-[8px] xl:mb-[10px] 2xl:mb-[15px]">
-                  {item?.title}
-                </div>
-                {item?.short_description && (
-                  <p className="text_3 font-helvetica-light mb-[25px] md:mb-[40px] lg:mb-[70px] xl:mb-[85px] 2xl:mb-[100px] 3xl:mb-[130px] max-w-[215px] xl:max-w-[257px] 2xl:max-w-[290px] 3xl:max-w-[372px]">
-                    {item?.short_description}
-                  </p>
-                )}
+                  {item?.short_description && (
+                    <p className="text_3 font-helvetica-light mb-[25px] md:mb-[40px] lg:mb-[70px] xl:mb-[85px] 2xl:mb-[100px] 3xl:mb-[130px] max-w-[215px] xl:max-w-[257px] 2xl:max-w-[290px] 3xl:max-w-[372px]">
+                      {item?.short_description}
+                    </p>
+                  )}
                 </div>
                 {item?.treatment?.conditions_treated?.length > 0 && (
                   <div className="w-full">
