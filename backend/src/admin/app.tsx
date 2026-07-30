@@ -30,6 +30,9 @@ export default {
       // 'zh-Hans',
       // 'zh',
     ],
+    head: {
+      title: "Vitaarah CMS",
+    },
     translations: {
       en: {
         "Auth.form.welcome.title": "Welcome to Vitaarah CMS",
