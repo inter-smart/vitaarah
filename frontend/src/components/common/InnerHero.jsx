@@ -5,6 +5,8 @@ import { getStrapiMediaUrl } from "@/lib/strapi";
 
 export default function InnerHero({ data }) {
   const isVideo = data?.hero_media?.mime?.includes("video");
+  console.log(data);
+  
 
   return (
     <section className="w-full block relative">

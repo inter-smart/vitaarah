@@ -102,16 +102,19 @@ export default function AboutGuidence({ data }) {
                             </div>
                           </div>
                         </div>
-                        <div className="w-full mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">
-                          <div className="text_3 text-white font-helvetica-light mb-[5px]">
-                            {item?.expirence}
-                          </div>
-                          <div className="text_3 text-white font-helvetica-light">
-                            {item?.specialisation}
-                          </div>
-                        </div>
-                        <div className="w-full pr-[20px]">
-                          <div className="text_3 text-white font-helvetica-light relative after:absolute after:bottom-[-20px] after:content-[''] after:right-0 after:w-[30px] after:h-[17px] after:bg-[url('/images/quote.svg')] after:bg-contain after:bg-no-repeat">
+                        {item?.expirence ||
+                          (item?.specialisation && (
+                            <div className="w-full mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">
+                              <div className="text_3 text-white font-helvetica-light mb-[5px]">
+                                {item?.expirence}
+                              </div>
+                              <div className="text_3 text-white font-helvetica-light">
+                                {item?.specialisation}
+                              </div>
+                            </div>
+                          ))}
+                        <div className="w-full relative after:absolute after:bottom-[-20px] after:content-[''] after:right-0 after:w-[30px] after:h-[17px] after:bg-[url('/images/quote.svg')] after:bg-contain after:bg-no-repeat">
+                          <div className="text_3 text-white font-helvetica-light pr-[20px] h-[140px] xl:h-[160px] 2xl:h-[180px] 3xl:h-[200px] overflow-y-auto pr-4 xl:pr-5 2xl:pr-6 3xl:pr-8 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)]">
                             {item?.description}
                           </div>
                         </div>
