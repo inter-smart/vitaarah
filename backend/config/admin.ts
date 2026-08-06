@@ -30,7 +30,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Admin => 
   preview: {
     enabled: true,
     config: {
-      allowedOrigins: [env('FRONTEND_URL', 'https://beta.vitaarah.intersmart.in')],
+      allowedOrigins: [env('FRONTEND_URL', 'https://vitaarah.ae')],
       async handler(uid, { documentId, locale, status }) {
         let slug = '';
         if (uid.startsWith('api::')) {
@@ -69,7 +69,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Admin => 
         const path = pathMap[uid];
         if (!path) return null;
 
-        const frontendUrl = env('FRONTEND_URL', 'https://beta.vitaarah.intersmart.in');
+        const frontendUrl = env('FRONTEND_URL', 'https://vitaarah.ae');
         const secret = env('PREVIEW_SECRET', 'vitaarah-preview-secret');
 
         const params = new URLSearchParams({

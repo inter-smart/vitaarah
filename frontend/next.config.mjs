@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "beta.vitaarah.intersmart.in",
+        hostname: "vitaarah.ae",
         pathname: "/uploads/**",
       },
       {
@@ -17,5 +17,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-
-
