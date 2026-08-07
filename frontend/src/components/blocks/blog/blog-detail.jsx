@@ -43,7 +43,7 @@ export default function BlogDetail({ data, relatedBlogs }) {
     
     if (!visitor_uuid) return;
 
-    const apiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+    const apiUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
     fetch(`${apiUrl}/api/blogs/${data.documentId}/view`, {
       method: "POST",
       headers: {

@@ -41,7 +41,7 @@ export default {
       ]);
 
       // 2. Send Customer Confirmation Email (Asynchronous & Safe)
-      const frontendUrl = process.env.FRONTEND_URL || "https://beta.vitaarah.intersmart.in";
+      const frontendUrl = process.env.FRONTEND_URL || "https://vitaarah.ae";
       brevoService.sendCustomerConfirmation(
         entry.email,
         entry.name,

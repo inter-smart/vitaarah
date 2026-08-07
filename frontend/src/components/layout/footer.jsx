@@ -28,7 +28,7 @@ export default function Footer({ data, siteSettings }) {
         <div className="flex flex-wrap flex-row-reverse sm:flex-row gap-y-5 sm:gap-y-4 gap-x-[4%] sm:gap-x-[2%] xl:gap-x-[1%]">
           <div className="w-[48%] sm:w-[30%] lg:w-[17%] xl:w-[19%]">
             <div className={headStyle}>Quick Links</div>
-            <div className="flex flex-col gap-[10px] lg:gap-[14px] xl:gap-[18px] 2xl:gap-[22px] 3xl:gap-[26px]">
+            <div className="flex flex-col gap-[10px] lg:gap-[14px] xl:gap-[18px] 2xl:gap-[20px] 3xl:gap-[22px]">
               {quick_links
                 ?.filter((link) => link?.url)
                 .map((link, idx) => (

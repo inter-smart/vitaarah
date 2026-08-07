@@ -635,7 +635,7 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    author_name: Schema.Attribute.String & Schema.Attribute.Required;
+    author_name: Schema.Attribute.String;
     blog_views: Schema.Attribute.Relation<
       'oneToMany',
       'api::blog-view.blog-view'

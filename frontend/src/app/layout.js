@@ -44,7 +44,7 @@ export async function generateMetadata() {
       icon: favicon ? getStrapiMediaUrl(favicon.url) : "/favicon.ico",
     },
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL || "https://vitaarah.com",
+      process.env.NEXT_PUBLIC_SITE_URL,
     ),
   };
 }

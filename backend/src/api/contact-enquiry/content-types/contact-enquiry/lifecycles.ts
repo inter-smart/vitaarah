@@ -29,7 +29,7 @@ export default {
       const title = isQuote ? "New Quote Request" : "New Contact Enquiry";
       const customerSubject = isQuote ? "Quote Request Received" : "Thank you for contacting us";
       
-      const frontendUrl = process.env.FRONTEND_URL || "https://beta.vitaarah.intersmart.in";
+      const frontendUrl = process.env.FRONTEND_URL || "https://vitaarah.ae";
 
       // 1. Send Admin Email Notification (Asynchronous & Safe)
       brevoService.sendAdminNotification(title, [
