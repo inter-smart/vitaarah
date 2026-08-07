@@ -43,7 +43,7 @@ export const fetchAPI = cache(async function fetchAPI(endpoint, options = {}) {
       headers: TOKEN
         ? { Authorization: `Bearer ${TOKEN}` }
         : undefined,
-      next: isDraft ? undefined : { revalidate: 3600 },
+      next: isDraft ? undefined : { revalidate: 60 },
       ...fetchOptions,
     });
 
