@@ -8,7 +8,7 @@ export interface CommonApproachCard extends Struct.ComponentSchema {
   attributes: {
     icon: Schema.Attribute.Media<'images'>;
     short_description: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
