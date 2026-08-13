@@ -9,6 +9,7 @@ import Footer from "@/components/layout/footer";
 import FloatingActionButtons from "@/components/layout/floating-action-buttons";
 import { PageTransitionProvider } from "@/components/common/page-transition/PageTransitionProvider";
 import { SmoothScrollProvider } from "@/components/common/smooth-scroll/SmoothScrollProvider";
+import { GoogleTagManager } from '@next/third-parties/google'
 
 export async function generateMetadata() {
   const layoutData = await getLayoutData();
@@ -43,9 +44,10 @@ export async function generateMetadata() {
     icons: {
       icon: favicon ? getStrapiMediaUrl(favicon.url) : "/favicon.ico",
     },
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL,
-    ),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
+    verification: {
+      google: "5a-qkdTVnORRpb1J6gu3pRSKLoYSwj3mmWotYxKjqwc",
+    },
   };
 }
 
@@ -79,25 +81,24 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
+      <GoogleTagManager gtmId="G-KGGBCEZSHV" />
       <body className={cn("flex min-h-screen flex-col antialiased")}>
         <SmoothScrollProvider>
           <Providers>
-          <Header
-            {...headerProps}
-            support_phone={siteSetting?.support_phone}
-            support_email={siteSetting?.support_email}
-            social_links={siteSetting?.social_links}
-          />
-          <main className="pt-(--header-y) flex-1">
-            <PageTransitionProvider>
-              {children}
-            </PageTransitionProvider>
-          </main>
-          <Footer data={footer} siteSettings={siteSetting} />
-          <FloatingActionButtons
-            supportPhone={siteSetting?.support_phone}
-            supportWhatsapp={siteSetting?.support_whatsapp_number}
-          />
+            <Header
+              {...headerProps}
+              support_phone={siteSetting?.support_phone}
+              support_email={siteSetting?.support_email}
+              social_links={siteSetting?.social_links}
+            />
+            <main className="pt-(--header-y) flex-1">
+              <PageTransitionProvider>{children}</PageTransitionProvider>
+            </main>
+            <Footer data={footer} siteSettings={siteSetting} />
+            <FloatingActionButtons
+              supportPhone={siteSetting?.support_phone}
+              supportWhatsapp={siteSetting?.support_whatsapp_number}
+            />
           </Providers>
         </SmoothScrollProvider>
       </body>
