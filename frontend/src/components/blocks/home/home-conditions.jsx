@@ -31,17 +31,19 @@ export default function HomeConditions({ data }) {
     >
       <Image
         src="/images/home-about-elmt-2.svg"
-        alt="home about element 1"
+        alt="conditon background"
         width={80}
         height={80}
         className="w-[30px] sm:w-[40px] xl:w-[60px] 2xl:w-[70px] 3xl:w-[80px] absolute -z-1 top-2/10 right-[5%] pointer-events-none"
+        unoptimized
       />
       <Image
         src="/images/home-about-elmt-1.svg"
-        alt="home about element 2"
+        alt="conditon background two"
         width={300}
         height={300}
         className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] -translate-x-1/2 translate-y-1/2 absolute -z-1 bottom-0 left-0 pointer-events-none"
+        unoptimized
       />
       <div className="container">
         {data.title && (
@@ -60,7 +62,7 @@ export default function HomeConditions({ data }) {
               <div
                 key={"condition" + idx}
                 className={cn(
-                  "flex-[0_0_220px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-1 xl:px-2.5",
+                  "flex-[0_0_100%] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-1 xl:px-2.5",
                 )}
               >
                 <Link
@@ -76,7 +78,7 @@ export default function HomeConditions({ data }) {
                       autoPlay
                       muted
                       loop
-                      className="w-full h-full object-cover absolute z-0 inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      className="w-full h-full object-cover absolute -z-1 inset-0 opacity-[40%] sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500"
                     >
                       <source
                         src={getStrapiMediaUrl(item.background_video.url)}
@@ -89,7 +91,7 @@ export default function HomeConditions({ data }) {
                       alt="placeholder"
                       width={386}
                       height={482}
-                      className="w-full h-full object-cover absolute z-0 inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      className="w-full h-full object-cover absolute -z-1 inset-0 opacity-[40%] sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500"
                     />
                   )}
                   <div className="w-[60px] sm:w-[96px] xl:w-[118px] 2xl:w-[134px] 3xl:w-[162px] aspect-square rounded-full flex items-center justify-center transition-all duration-300 mx-auto bg-linear-to-b from-[#ecd6d0] to-[#fff9eb] mb-[15px] xl:mb-[20px] 2xl:mb-[24px]">

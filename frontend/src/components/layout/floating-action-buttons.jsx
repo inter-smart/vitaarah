@@ -44,12 +44,11 @@ export default function FloatingActionButtons({
       )}
 
       <ConsultationForm>
-        <div
-          style={{ writingMode: "sideways-lr" }}
-          className="text-[12px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-none font-helvetica text-white w-[28px] xl:w-[32px] 2xl:w-[36px] 3xl:w-[44px] h-[85px] xl:h-[105px] 2xl:h-[119px] 3xl:h-[145px] bg-[#a14962] hover:-translate-x-0.5 transition-all duration-300 shadow-md select-none whitespace-nowrap flex items-center justify-center"
+        <button
+          className="text-[12px] lg:text-[11.3px] xl:text-[14px] 2xl:text-[15.8px] 3xl:text-[19.2px] leading-none font-helvetica text-white w-[28px] xl:w-[32px] 2xl:w-[36px] 3xl:w-[44px] h-[85px] xl:h-[105px] 2xl:h-[119px] 3xl:h-[145px] bg-[#a14962] hover:-translate-x-0.5 transition-all duration-300 shadow-md select-none flex items-center justify-center cursor-pointer"
         >
-          Book Now
-        </div>
+          <span className="whitespace-nowrap -rotate-90 block">Book Now</span>
+        </button>
       </ConsultationForm>
     </div>
   );

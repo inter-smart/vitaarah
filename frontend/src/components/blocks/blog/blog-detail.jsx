@@ -72,7 +72,7 @@ export default function BlogDetail({ data, relatedBlogs }) {
     >
       <Image
         src="/images/home-about-elmt-2.svg"
-        alt="home about element 2"
+        alt="blog background"
         width={80}
         height={80}
         className="w-[30px] sm:w-[40px] xl:w-[60px] 2xl:w-[80px] 3xl:w-[100px] absolute -z-1 bottom-[5%] left-0"

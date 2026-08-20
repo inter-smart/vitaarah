@@ -64,7 +64,7 @@ export default function ConditionExpert({ data }) {
             </div>
           </div>
           <div className="lg:w-8/12">
-            <div className="bg-[#FFF4DE] p-[35px] lg:p-[40px_45px_45px_50px] xl:p-[45px_55px_60px_70px] 2xl:p-[50px_60px_80px_70px] 3xl:p-[65px_75px_100px_85px] lg:max-w-[90%] ml-auto">
+            <div className="w-full bg-[#FFF4DE] p-[20px] sm:p-[35px] lg:p-[40px_45px_45px_50px] xl:p-[45px_55px_60px_70px] 2xl:p-[50px_60px_80px_70px] 3xl:p-[65px_75px_100px_85px] lg:max-w-[90%] ml-auto">
               <ConsultationForm
                 inline={true}
                 variant="expert"

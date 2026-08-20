@@ -5,6 +5,7 @@ import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 import { useSubmitForm } from "@/hooks/useSubmitForm";
 import { submitContact } from "@/lib/forms/form-api";
+import { sharedNameSchema, sharedPhoneSchema, sharedEmailSchema, sharedMessageSchemaRequired } from "@/lib/forms/validation-schemas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -18,15 +19,10 @@ import "react-international-phone/style.css";
 import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
-  name: z
-    .string()
-    .min(2, "Name must be at least 2 characters")
-    .regex(/^[a-zA-Z\s]*$/, "Name must contain only letters"),
-  phone: z
-    .string()
-    .regex(/^[+]?[\d\s()-]{10,20}$/, "Please enter a valid phone number"),
-  email: z.string().min(1, "Email is required").email("Please enter a valid email"),
-  message: z.string().min(5, "Message must be at least 5 characters"),
+  name: sharedNameSchema,
+  phone: sharedPhoneSchema,
+  email: sharedEmailSchema,
+  message: sharedMessageSchemaRequired,
 });
 
 const inputStyle =
@@ -91,7 +87,7 @@ export default function RequestQuoteForm() {
             <form.Field name="name">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}
@@ -107,7 +103,7 @@ export default function RequestQuoteForm() {
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
                       aria-invalid={isInvalid || undefined}
-                      placeholder="Your Name"
+                      placeholder="Your Name*"
                       autoComplete="name"
                       disabled={isSubmitting}
                       className={cn(inputStyle)}
@@ -123,7 +119,7 @@ export default function RequestQuoteForm() {
             <form.Field name="phone">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}
@@ -164,7 +160,7 @@ export default function RequestQuoteForm() {
             <form.Field name="email">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}
@@ -206,7 +202,7 @@ export default function RequestQuoteForm() {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
-                    placeholder="Message / Treatment Interest*"
+                    placeholder="Message / Treatment Interest"
                     rows={3}
                     disabled={isSubmitting}
                     className={cn(textareaBase)}

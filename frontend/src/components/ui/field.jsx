@@ -43,7 +43,7 @@ const FieldError = forwardRef(function FieldError(
     <div
       ref={ref}
       className={cn(
-        "text-[10px] xl:text-[11px] 3xl:text-[12px] leading-normal font-normal text-red-300 mt-1",
+        "text-[10px] xl:text-[11px] 3xl:text-[12px] leading-normal font-normal text-red-300",
         className,
       )}
       {...props}

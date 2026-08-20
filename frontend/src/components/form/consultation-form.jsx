@@ -5,6 +5,7 @@ import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 import { useSubmitForm } from "@/hooks/useSubmitForm";
 import { submitConsultation, getTreatments } from "@/lib/forms/form-api";
+import { sharedNameSchema, sharedPhoneSchema, sharedEmailSchema, sharedMessageSchemaOptional } from "@/lib/forms/validation-schemas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -35,20 +36,11 @@ import { cn } from "@/lib/utils";
 import { XIcon } from "lucide-react";
 
 const formSchema = z.object({
-  name: z
-    .string()
-    .min(2, "Name must be at least 2 characters")
-    .regex(/^[a-zA-Z\s]*$/, "Name must contain only letters"),
-  phone: z
-    .string()
-    .regex(/^[+]?[\d\s()-]{10,20}$/, "Please enter a valid phone number"),
-  email: z
-    .string()
-    .email("Please enter a valid email")
-    .optional()
-    .or(z.literal("")),
+  name: sharedNameSchema,
+  phone: sharedPhoneSchema,
+  email: z.string().email("Please enter a valid email").optional().or(z.literal("")),
   requested_treatment: z.string().min(1, "Please select a treatment"),
-  message: z.string().optional(),
+  message: sharedMessageSchemaOptional,
 });
 
 const inputStyleDefault =
@@ -179,7 +171,7 @@ export default function ConsultationForm({
             <form.Field name="name">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}
@@ -211,14 +203,14 @@ export default function ConsultationForm({
             <form.Field name="email">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}
                     className="w-full sm:w-1/2"
                   >
                     <FieldLabel className="sr-only" htmlFor={field.name}>
-                      Email*
+                      Email
                     </FieldLabel>
                     <Input
                       id={field.name}
@@ -228,7 +220,7 @@ export default function ConsultationForm({
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
                       aria-invalid={isInvalid || undefined}
-                      placeholder="Email*"
+                      placeholder="Email"
                       autoComplete="email"
                       disabled={isSubmitting}
                       className={cn(inputStyle)}
@@ -244,7 +236,7 @@ export default function ConsultationForm({
             <form.Field name="phone">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}
@@ -285,7 +277,7 @@ export default function ConsultationForm({
             <form.Field name="requested_treatment">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}

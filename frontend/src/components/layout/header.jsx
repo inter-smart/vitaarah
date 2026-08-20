@@ -174,7 +174,7 @@ export default function Header({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             className={cn(
-              "fixed z-10 inset-x-0 overflow-y-auto",
+              "fixed z-10 inset-x-0 bottom-0 overflow-y-auto cursor-pointer",
               isScrolled
                 ? "top-[60px] xl:top-[80px] 2xl:top-[90px] 3xl:top-[100px]"
                 : "top-(--header-y-sm) xl:top-(--header-y-xl) 2xl:top-(--header-y-2xl) 3xl:top-(--header-y-3xl)",
@@ -189,7 +189,7 @@ export default function Header({
                 exit={{ y: -30, opacity: 0 }}
                 transition={{ type: "spring", damping: 25, stiffness: 220 }}
                 className={cn(
-                  "w-full bg-white/80 backdrop-blur-xl border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-4 sm:p-6 xl:p-10 grid grid-cols-1 lg:grid-cols-[1.1fr_1.9fr] gap-8 lg:gap-x-[26px] xl:gap-x-[34px] 2xl:gap-x-[37px] 3xl:gap-x-[45px] relative overflow-hidden",
+                  "w-full bg-white/80 backdrop-blur-xl border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-4 sm:p-6 xl:p-10 grid grid-cols-1 lg:grid-cols-[1.1fr_1.9fr] gap-8 lg:gap-x-[26px] xl:gap-x-[34px] 2xl:gap-x-[37px] 3xl:gap-x-[45px] relative overflow-hidden cursor-auto",
                   isScrolled ? "bg-white" : "bg-white/80",
                 )}
                 onClick={(e) => e.stopPropagation()}

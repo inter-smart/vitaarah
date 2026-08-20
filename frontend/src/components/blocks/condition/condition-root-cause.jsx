@@ -18,7 +18,11 @@ export default function ConditionRootCause({ data, rootCauses }) {
         </div>
         <Swiper
           modules={[Autoplay]}
-          autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          autoplay={{
+            delay: 1000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           speed={4000}
           loop={true}
           centerInsufficientSlides={true}
@@ -50,10 +54,9 @@ export default function ConditionRootCause({ data, rootCauses }) {
             <SwiperSlide key={index} className="!h-auto group transition-all ">
               <div
                 key={"services" + index}
-                className="relative block w-full h-full bg-white lg:bg-[#FFFCF5] p-[30px_10px] lg:p-[43px_15px] xl:p-[55px_18px] 2xl:p-[60px_20px] 3xl:p-[73px_55px] 
-                                text-center group transition-all  lg:scale-y-90 group-[.swiper-slide-next]:lg:scale-y-100   group-[.swiper-slide-next]:lg:bg-white "
+                className="relative block w-full h-full bg-white lg:bg-[#FFFCF5] p-[30px_15px] lg:p-[43px_15px] xl:p-[55px_18px] 2xl:p-[60px_20px] 3xl:p-[73px_55px] text-center group transition-all  lg:scale-y-90 group-[.swiper-slide-next]:lg:scale-y-100 group-[.swiper-slide-next]:lg:bg-white "
               >
-                <div className=" w-[32px]xl:w-[38px] 2xl:w-[42px]  3xl:w-[52px] h-[32px] xl:h-[38px] 2xl:h-[42px]  3xl:h-[52px] overflow-hidden m-auto mb-[12px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                <div className="w-[32px]xl:w-[38px] 2xl:w-[42px] 3xl:w-[52px] h-[32px] xl:h-[38px] 2xl:h-[42px] 3xl:h-[52px] overflow-hidden m-auto mb-[12px] 2xl:mb-[15px] 3xl:mb-[20px]">
                   <Image
                     src={
                       item?.icon?.url

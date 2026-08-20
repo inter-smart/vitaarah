@@ -23,8 +23,12 @@ function cleanPayload(endpoint, data) {
 
   const cleaned = {};
   for (const key of Object.keys(data)) {
-    if (allowedFields.includes(key) && data[key] !== undefined && data[key] !== null && data[key] !== "") {
-      cleaned[key] = data[key];
+    let value = data[key];
+    if (typeof value === "string") {
+      value = value.trim();
+    }
+    if (allowedFields.includes(key) && value !== undefined && value !== null && value !== "") {
+      cleaned[key] = value;
     }
   }
   return cleaned;

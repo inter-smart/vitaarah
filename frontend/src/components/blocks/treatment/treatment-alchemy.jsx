@@ -37,9 +37,10 @@ export default function TreatmentAlchemy({ data }) {
           <Image
             src="/images/circle.svg"
             alt="floating_icon"
-            className="w-full object-cover"
             width="85"
             height="85"
+            className="w-full object-cover"
+            unoptimized
           />
         </div>
 
@@ -49,6 +50,7 @@ export default function TreatmentAlchemy({ data }) {
           width={60}
           height={60}
           className="w-[30px] sm:w-[40px] xl:w-[60px] 2xl:w-[80px] 3xl:w-[100px] absolute -z-1 bottom-[10%] right-[1%] pointer-events-none"
+          unoptimized
         />
       </div>
 

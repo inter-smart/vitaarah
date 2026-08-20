@@ -5,6 +5,7 @@ import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 import { useSubmitForm } from "@/hooks/useSubmitForm";
 import { submitAppointment } from "@/lib/forms/form-api";
+import { sharedNameSchema, sharedPhoneSchema, sharedEmailSchema } from "@/lib/forms/validation-schemas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -26,14 +27,9 @@ import "react-international-phone/style.css";
 import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
-  name: z
-    .string()
-    .min(2, "Name must be at least 2 characters")
-    .regex(/^[a-zA-Z\s]*$/, "Name must contain only letters"),
-  phone: z
-    .string()
-    .regex(/^[+]?[\d\s()-]{10,20}$/, "Please enter a valid phone number"),
-  email: z.string().email("Please enter a valid email"),
+  name: sharedNameSchema,
+  phone: sharedPhoneSchema,
+  email: sharedEmailSchema,
 });
 
 export default function AppointmentForm() {
@@ -101,7 +97,7 @@ export default function AppointmentForm() {
             <form.Field name="name">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}
@@ -133,7 +129,7 @@ export default function AppointmentForm() {
             <form.Field name="phone">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}
@@ -173,7 +169,7 @@ export default function AppointmentForm() {
             <form.Field name="email">
               {(field) => {
                 const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                  (field.state.meta.isTouched || field.form.state.submittedCount > 0) && !field.state.meta.isValid;
                 return (
                   <Field
                     data-invalid={isInvalid || undefined}

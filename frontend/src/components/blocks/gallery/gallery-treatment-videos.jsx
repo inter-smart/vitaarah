@@ -6,6 +6,7 @@ import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 import Image from "next/image";
 import { getStrapiMediaUrl } from "@/lib/strapi";
+import { useEffect } from "react";
 
 export default function GalleryTreatmentVideos({ data }) {
   const [emblaRef] = useEmblaCarousel(
@@ -17,6 +18,31 @@ export default function GalleryTreatmentVideos({ data }) {
     },
     [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
   );
+
+  useEffect(() => {
+    // Only run this observer logic on touch devices where hover/mouse-enter doesn't exist natively.
+    const isTouch = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+    if (!isTouch) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.play().catch(() => {});
+          } else {
+            entry.target.pause();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const videos = document.querySelectorAll(".gallery-video");
+    videos.forEach((vid) => observer.observe(vid));
+
+    return () => observer.disconnect();
+  }, [data]);
+
   return (
     <section className="w-full block">
       <div className="w-full py-[30px] sm:py-[40px] xl:py-[61px_98px] 2xl:py-[69px_111px] 3xl:py-[90px_134px] bg-[#fff9eb] overflow-hidden relative z-0">
@@ -56,7 +82,7 @@ export default function GalleryTreatmentVideos({ data }) {
                   >
                     <video
                       src={getStrapiMediaUrl(item?.video?.url)}
-                      className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                      className="gallery-video w-full h-full object-cover hover:scale-105 transition-all duration-500"
                       muted
                       loop
                       playsInline

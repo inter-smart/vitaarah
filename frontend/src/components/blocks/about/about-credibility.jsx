@@ -21,7 +21,7 @@ export default function AboutCredibility({ data }) {
               {data?.statistic.map((stat, index) => (
                 <Fragment key={stat.label}>
                   <div>
-                    <h3 className="text-[18px] sm:text-[26.6px] xl:text-[32.9px] 2xl:text-[37.3px] 3xl:text-[45.2px] leading-normal font-normal font-helvetica-light text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[8px]">
+                    <h3 className="text-[18px] sm:text-[26.6px] xl:text-[32.9px] 2xl:text-[37.3px] 3xl:text-[45.2px] leading-tight font-normal font-helvetica-light text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[8px]">
                       {stat.value_count}
                       {stat.value_suffix || ""}
                     </h3>
