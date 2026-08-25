@@ -20,7 +20,7 @@ export default function HomeMembers({ data }) {
     },
     [
       Autoplay({
-        delay: 5000,
+        delay: 8000,
         stopOnInteraction: false,
         stopOnMouseEnter: true,
       }),
@@ -89,8 +89,8 @@ export default function HomeMembers({ data }) {
                     width={125}
                     height={75}
                     className={cn(
-                      "w-[60px] lg:w-[74px] xl:w-[90px] 2xl:w-[100px] 3xl:w-[125px]",
-                      "absolute bottom-0 right-0 scale-x-[-1]",
+                      "w-[30px] sm:w-[50px] lg:w-[74px] xl:w-[90px] 2xl:w-[100px] 3xl:w-[125px]",
+                      "absolute bottom-[10%] sm:bottom-0 right-0 scale-x-[-1]",
                     )}
                   />
                   <div ref={emblaRef} className="w-full overflow-hidden">
@@ -121,7 +121,7 @@ export default function HomeMembers({ data }) {
                             <div className="text_4 truncate text-[#fbaac1]">
                               {item?.name}
                             </div>
-                            <div className="text_3 truncate text-white">
+                            <div className="text_3 truncate text-white max-sm:text-[10px]">
                               {item?.designation}
                             </div>
                           </motion.div>
@@ -150,12 +150,12 @@ export default function HomeMembers({ data }) {
                         <div
                           className={cn(
                             "relative z-10 bg-white",
-                            "w-[40px] sm:w-[48px] xl:w-[60px] 2xl:w-[64px] 3xl:w-[80px]",
-                            "aspect-square rounded-full p-[3px] xl:p-[4px]",
+                            "w-[30px] sm:w-[48px] xl:w-[60px] 2xl:w-[64px] 3xl:w-[80px]",
+                            "aspect-square rounded-full ",
                             "overflow-hidden transition-all duration-300",
                             selectedIdx === idx
-                              ? "border-[5px] border-white z-20"
-                              : "border-[5px] border-transparent",
+                              ? "border-[2px] sm:border-[5px] border-white z-20"
+                              : "border-[2px] sm:border-[5px] border-transparent",
                           )}
                         >
                           <Image

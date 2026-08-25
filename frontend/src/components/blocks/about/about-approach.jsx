@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export default function AboutApproach({ data }) {
   return (
-    <section className="relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[90px_80px]">
+    <section className="w-full relative py-[40px_60px] xl:py-[55px_70px] 2xl:py-[65px_75px] 3xl:py-[90px_80px]">
       <div className="container">
         <div className="flex flex-wrap">
           <div className="w-full lg:w-1/2 flex items-center max-lg:gap-[30px]">

@@ -71,7 +71,7 @@ export default function HomePrograms({ data }) {
             onClick={scrollPrev}
             disabled={!canScrollPrev}
             className={cn(
-              "absolute z-0 -left-[1%] lg:-left-[2%] top-1/2 -translate-y-1/2 -translate-x-4 w-[16px] xl:w-[20px] 2xl:w-[22px] 3xl:w-[25px] bg-none flex items-center justify-center transition-all",
+              "absolute z-0 left-[1%] sm:-left-[1%] lg:-left-[2%] top-1/2 -translate-y-1/2 -translate-x-4 w-[16px] sm:w-[16px] xl:w-[20px] 2xl:w-[22px] 3xl:w-[25px] bg-none flex items-center justify-center transition-all max-sm:hidden",
               !canScrollPrev && "opacity-0 pointer-events-none",
             )}
           >
@@ -88,7 +88,7 @@ export default function HomePrograms({ data }) {
             onClick={scrollNext}
             disabled={!canScrollNext}
             className={cn(
-              "absolute z-0 -right-[1%] lg:-right-[2%] top-1/2 -translate-y-1/2 translate-x-4 w-[16px] xl:w-[20px] 2xl:w-[22px] 3xl:w-[25px] -rotate-180 bg-none flex items-center justify-center transition-all",
+              "absolute z-0 right-[1%] sm:-right-[1%] lg:-right-[2%] top-1/2 -translate-y-1/2 translate-x-4 w-[16px] sm:w-[16px] xl:w-[20px] 2xl:w-[22px] 3xl:w-[25px] -rotate-180 bg-none flex items-center justify-center transition-all max-sm:hidden",
               !canScrollNext && "opacity-0 pointer-events-none",
             )}
           >
@@ -102,15 +102,19 @@ export default function HomePrograms({ data }) {
             />
           </button>
           <div ref={emblaRef} className="w-full max-w-full overflow-hidden">
-            <div className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5">
+            <div
+            onMouseLeave={() => setSelectedIdx(0)}
+            className="flex touch-pan-y touch-pinch-zoom -mx-1 xl:-mx-2.5">
               {data?.home_program_item?.map((item, idx) => {
-                const centerIdx = selectedIdx;
-                const isCenter = idx === centerIdx;
+                // const centerIdx = selectedIdx;
+                // const isCenter = idx === centerIdx;
+                const isCenter = idx === selectedIdx;
                 return (
                   <div
                     key={"packages" + idx}
+                    onMouseEnter={() => setSelectedIdx(idx)}
                     className={cn(
-                      "flex-[0_0_240px] sm:flex-[0_0_33.333%] lg:flex-[0_0_33.333%] min-w-0 select-none px-1 xl:px-2.5",
+                      "flex-[0_0_268px] sm:flex-[0_0_33.333%] lg:flex-[0_0_33.333%] min-w-0 select-none px-1 xl:px-2.5",
                     )}
                   >
                     <Link

@@ -291,6 +291,7 @@ export default function ConsultationForm({
                       value={field.state.value ?? ""}
                       onValueChange={field.handleChange}
                       disabled={isSubmitting}
+                      data-lenis-prevent="true"
                     >
                       <SelectTrigger
                         id="treatment-select"

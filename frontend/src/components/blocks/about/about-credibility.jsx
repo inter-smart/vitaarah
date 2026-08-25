@@ -14,23 +14,23 @@ export default function AboutCredibility({ data }) {
   return (
     <section className="relative py-[15px_40px] xl:py-[25px_55px] 2xl:py-[30px_70px] 3xl:py-[60px_180px]">
       <div className="container">
-        <div className="flex flex-wrap items-center justify-between mb-[35px]">
+        <div className="flex flex-wrap items-center justify-between gap-[20px] mb-[35px]">
           <div className="heading_1">{data.title}</div>
           {data?.statistic?.length > 0 && (
             <div className="lg:max-w-[403px] xl:max-w-[497px] 2xl:max-w-[563px] 3xl:max-w-[685px] flex justify-between gap-[10px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[25px]">
               {data?.statistic.map((stat, index) => (
                 <Fragment key={stat.label}>
                   <div>
-                    <h3 className="text-[18px] sm:text-[26.6px] xl:text-[32.9px] 2xl:text-[37.3px] 3xl:text-[45.2px] leading-tight font-normal font-helvetica-light text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[8px]">
+                    <h3 className="text-[18px] sm:text-[22px] xl:text-[32.9px] 2xl:text-[37.3px] 3xl:text-[45.2px] leading-tight font-normal font-helvetica-light text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[8px]">
                       {stat.value_count}
                       {stat.value_suffix || ""}
                     </h3>
-                    <p className="text_3 leading-tight font-helvetica-light text-black xl:max-w-[80%]">
+                    <p className="text_3 leading-tight font-helvetica-light text-black max-xl:text-[10px] xl:max-w-[80%]">
                       {stat.label}
                     </p>
                   </div>
                   {index < data.statistic.length - 1 && (
-                    <div className="w-[1px] h-[91px] 2xl:h-[110px] 3xl:h-[130px] bg-[#ECE7D7]" />
+                    <div className="w-[1px] xl:h-[91px] 2xl:h-[110px] 3xl:h-[130px] bg-[#ECE7D7]" />
                   )}
                 </Fragment>
               ))}
@@ -71,7 +71,7 @@ export default function AboutCredibility({ data }) {
                       height="150"
                     />
                   </div>
-                  <div className="text_3 font-helvetica-light">{item.title}</div>
+                  <div className="text_3 leading-tight font-helvetica-light text-black">{item.title}</div>
                 </div>
               </SwiperSlide>
             ),

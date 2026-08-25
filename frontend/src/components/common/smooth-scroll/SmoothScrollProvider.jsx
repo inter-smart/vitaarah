@@ -51,6 +51,35 @@ export function SmoothScrollProvider({ children }) {
     };
   }, []);
 
+  useEffect(() => {
+    const body = document.body;
+    const html = document.documentElement;
+
+    // Check initial state
+    if (body.hasAttribute("data-scroll-locked")) {
+      html.classList.add("lenis-stopped");
+    }
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "data-scroll-locked") {
+          if (body.hasAttribute("data-scroll-locked")) {
+            html.classList.add("lenis-stopped");
+          } else {
+            html.classList.remove("lenis-stopped");
+          }
+        }
+      });
+    });
+
+    observer.observe(body, { attributes: true, attributeFilter: ["data-scroll-locked"] });
+
+    return () => {
+      observer.disconnect();
+      html.classList.remove("lenis-stopped");
+    };
+  }, []);
+
   return (
     <SmoothScrollContext.Provider value={lenisInstance}>
       {children}
