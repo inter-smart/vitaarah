@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,8 +20,31 @@ export default function Header({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
-  // 1) Lock full screen scroll and handle Escape key close when mega menu is open
+  // 1) Handle outside click to close the menu
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleOutsideClick = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("pointerdown", handleOutsideClick);
+    };
+  }, [isOpen]);
+
+  // 2) Lock full screen scroll and handle Escape key close when mega menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -131,6 +154,7 @@ export default function Header({
             )}
 
             <button
+              ref={hamburgerRef}
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
               className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none font-helvetica font-normal text-[#202020] flex items-center gap-[13px] 2xl:gap-[14px] 3xl:gap-[18px] cursor-pointer"
@@ -177,13 +201,13 @@ export default function Header({
               "fixed z-10 inset-x-0 bottom-0 cursor-pointer",
               isScrolled
                 ? "top-[60px] xl:top-[80px] 2xl:top-[90px] 3xl:top-[100px]"
-                : "top-(--header-y-sm) xl:top-(--header-y-xl) 2xl:top-(--header-y-2xl) 3xl:top-(--header-y-3xl)",
+                : "top-(--header-y-sm) xl:top-(--header-y-xl) 2xl:top-(--header-y-2xl) 3xl:top-(--header-y-3xl) overflow-y-auto",
             )}
             data-lenis-prevent="true"
-            onClick={() => setIsOpen(false)}
           >
               <div className="container">
                 <motion.div
+                  ref={menuRef}
                   initial={{ y: -30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -30, opacity: 0 }}
@@ -192,7 +216,6 @@ export default function Header({
                     "w-full bg-white/80 backdrop-blur-xl border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-4 sm:p-6 xl:p-10 grid grid-cols-1 lg:grid-cols-[1.1fr_1.9fr] gap-8 lg:gap-x-[26px] xl:gap-x-[34px] 2xl:gap-x-[37px] 3xl:gap-x-[45px] relative overflow-hidden cursor-auto",
                     isScrolled ? "bg-white" : "bg-white/80",
                   )}
-                  onClick={(e) => e.stopPropagation()}
                 >
                   <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[454/408] group max-lg:hidden">
                     <Image
