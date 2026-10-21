@@ -8,6 +8,11 @@ const nextConfig = {
         pathname: "/uploads/**",
       },
       {
+        protocol: "https",
+        hostname: "beta.vitaarah.intersmart.in",
+        pathname: "/uploads/**",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
         port: "1337",
