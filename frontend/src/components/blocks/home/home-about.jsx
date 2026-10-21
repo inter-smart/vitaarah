@@ -45,17 +45,19 @@ export default function HomeAbout({ data }) {
     >
       <Image
         src="/images/home-about-elmt-1.svg"
-        alt="home about element 1"
+        alt="about info background"
         width={300}
         height={300}
         className="w-[100px] sm:w-[140px] xl:w-[180px] 2xl:w-[220px] 3xl:w-[310px] translate-x-1/2 absolute -z-1 top-[10%] right-0 pointer-events-none"
+        unoptimized
       />
       <Image
         src="/images/home-about-elmt-2.svg"
-        alt="home about element 2"
+        alt="about info background two"
         width={60}
         height={60}
         className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] 3xl:w-[100px] absolute -z-1 bottom-[5%] left-[1%] pointer-events-none"
+        unoptimized
       />
       <div className="container">
         <div className="flex flex-wrap">
@@ -68,7 +70,7 @@ export default function HomeAbout({ data }) {
                 <span className="w-full h-full bg-white rounded-full flex items-center justify-center select-none">
                   <Image
                     src="/images/icon-arrow-2.svg"
-                    alt="icon arrow"
+                    alt="next button"
                     width={16}
                     height={7}
                     className="w-3 2xl:w-4 3xl:w-4.5 block"
@@ -117,10 +119,10 @@ export default function HomeAbout({ data }) {
             </div>
 
             {data?.about_statistic?.length > 0 && (
-              <div className="lg:max-w-[435px] xl:max-w-[550px] 2xl:max-w-[635px] 3xl:max-w-[735px] flex flex-wrap items-center justify-between gap-[10px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[25px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
+              <div className="lg:max-w-[435px] xl:max-w-[550px] 2xl:max-w-[635px] 3xl:max-w-[735px] flex flex-wrap items-center justify-between gap-[15px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[25px] mt-[20px] xl:mt-[45px] 2xl:mt-[55px] 3xl:mt-[65px]">
                 {data?.about_statistic.map((stat, index) => (
                   <Fragment key={stat.label}>
-                    <div>
+                    <div className="w-[45%] sm:w-auto">
                       <h3 className="text-[18px] sm:text-[26.6px] xl:text-[32.9px] 2xl:text-[37.3px] 3xl:text-[45.2px] leading-normal font-normal font-helvetica text-[#a14962] mb-[2px] 2xl:mb-[4px] 3xl:mb-[6px]">
                         {stat.value_count}
                         {stat.value_suffix || ""}
@@ -130,7 +132,7 @@ export default function HomeAbout({ data }) {
                       </p>
                     </div>
                     {index < data.about_statistic.length - 1 && (
-                      <div className="w-[1px] h-[91px] 2xl:h-[110px] 3xl:h-[130px] bg-[#ECE7D7]" />
+                      <div className="w-[1px] h-[91px] 2xl:h-[110px] 3xl:h-[130px] bg-[#ECE7D7] max-sm:hidden" />
                     )}
                   </Fragment>
                 ))}

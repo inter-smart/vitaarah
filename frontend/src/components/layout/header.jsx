@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,8 +20,31 @@ export default function Header({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
-  // 1) Lock full screen scroll and handle Escape key close when mega menu is open
+  // 1) Handle outside click to close the menu
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleOutsideClick = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("pointerdown", handleOutsideClick);
+    };
+  }, [isOpen]);
+
+  // 2) Lock full screen scroll and handle Escape key close when mega menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -131,6 +154,7 @@ export default function Header({
             )}
 
             <button
+              ref={hamburgerRef}
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
               className="text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-none font-helvetica font-normal text-[#202020] flex items-center gap-[13px] 2xl:gap-[14px] 3xl:gap-[18px] cursor-pointer"
@@ -174,123 +198,122 @@ export default function Header({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             className={cn(
-              "fixed z-10 inset-x-0 overflow-y-auto",
+              "fixed z-10 inset-x-0 bottom-0 cursor-pointer",
               isScrolled
                 ? "top-[60px] xl:top-[80px] 2xl:top-[90px] 3xl:top-[100px]"
-                : "top-(--header-y-sm) xl:top-(--header-y-xl) 2xl:top-(--header-y-2xl) 3xl:top-(--header-y-3xl)",
+                : "top-(--header-y-sm) xl:top-(--header-y-xl) 2xl:top-(--header-y-2xl) 3xl:top-(--header-y-3xl) overflow-y-auto",
             )}
             data-lenis-prevent="true"
-            onClick={() => setIsOpen(false)}
           >
-            <div className="container">
-              <motion.div
-                initial={{ y: -30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -30, opacity: 0 }}
-                transition={{ type: "spring", damping: 25, stiffness: 220 }}
-                className={cn(
-                  "w-full bg-white/80 backdrop-blur-xl border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-4 sm:p-6 xl:p-10 grid grid-cols-1 lg:grid-cols-[1.1fr_1.9fr] gap-8 lg:gap-x-[26px] xl:gap-x-[34px] 2xl:gap-x-[37px] 3xl:gap-x-[45px] relative overflow-hidden",
-                  isScrolled ? "bg-white" : "bg-white/80",
-                )}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[454/408] group max-lg:hidden">
-                  <Image
-                    src={getStrapiMediaUrl(mega_menu_image?.url)}
-                    alt={mega_menu_image?.alternativeText || "Vitaarah"}
-                    fill
-                    sizes="576px"
-                    className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                  />
-                </div>
-
-                <div className="flex flex-col justify-between h-full gap-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 lg:gap-x-[71px] xl:gap-x-[91px] 2xl:gap-x-[100px] 3xl:gap-x-[121px]">
-                    {navigation
-                      .filter((link) => link?.url)
-                      .map((link, idx) => {
-                        const isActive = pathname === link.url;
-                        return (
-                          <Link
-                            key={`${idx}-${link.url}`}
-                            href={link.url}
-                            target={link.is_external ? "_blank" : undefined}
-                            rel={
-                              link.is_external
-                                ? "noopener noreferrer"
-                                : undefined
-                            }
-                            onClick={() =>
-                              !link.is_external && setIsOpen(false)
-                            }
-                            className={cn(
-                              "text-[14px] lg:text-[17px] xl:text-[21.3px] 2xl:text-[23.3px] 3xl:text-[28.9px] leading-tight font-helvetica py-3 lg:py-4 xl:py-[19px] 2xl:py-[21px] 3xl:py-[26px] transition-colors duration-200",
-                              "border-b border-black/10",
-                              isActive
-                                ? "text-[#a14962]"
-                                : "text-[#202020] hover:text-[#a14962]",
-                            )}
-                          >
-                            {link.label}
-                          </Link>
-                        );
-                      })}
+              <div className="container">
+                <motion.div
+                  ref={menuRef}
+                  initial={{ y: -30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -30, opacity: 0 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 220 }}
+                  className={cn(
+                    "w-full bg-white/80 backdrop-blur-xl border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-4 sm:p-6 xl:p-10 grid grid-cols-1 lg:grid-cols-[1.1fr_1.9fr] gap-8 lg:gap-x-[26px] xl:gap-x-[34px] 2xl:gap-x-[37px] 3xl:gap-x-[45px] relative overflow-hidden cursor-auto",
+                    isScrolled ? "bg-white" : "bg-white/80",
+                  )}
+                >
+                  <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[454/408] group max-lg:hidden">
+                    <Image
+                      src={getStrapiMediaUrl(mega_menu_image?.url)}
+                      alt={mega_menu_image?.alternativeText || "Vitaarah"}
+                      fill
+                      sizes="576px"
+                      className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                    />
                   </div>
 
-                  <div className="w-full bg-[#fff9eb] p-3 lg:p-[22px_10px] xl:p-[26px_13px] 2xl:p-[31px_15px] 3xl:p-[38px_18px] flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border border-[#f3ebda]">
-                    <div className="flex flex-col sm:flex-row gap-[15px] sm:gap-[20px] xl:gap-[25px] 2xl:gap-[28px] 3xl:gap-[34px]">
-                      {/* {support_phone from site settings and support_email from site settings */}
-                      {support_phone && (
-                        <ConnectCard
-                          url="/images/footer-address-icon.svg"
-                          alternativeText="footer-address-icon"
-                          label="Mobile"
-                          linkUrl={`tel:${support_phone.replace(/\s+/g, "")}`}
-                          content={support_phone}
-                        />
-                      )}
-                      {support_email && (
-                        <ConnectCard
-                          url="/images/footer-mail-icon.svg"
-                          alternativeText="footer-mail-icon"
-                          label="Mail"
-                          linkUrl={`mailto:${support_email}`}
-                          content={support_email}
-                        />
-                      )}
-                    </div>
-                    {/* social_links && social_links.length > 0 &&  from site settings */}
-                    <div className="flex items-center gap-[15px] xl:gap-[20px] 2xl:gap-[25px] 3xl:gap-[30px]">
-                      <div className="text_3 leading-none font-helvetica-light text-black">
-                        Follow Us
-                      </div>
-                      <div className="flex items-center gap-[15px] xl:gap-[20px] 2xl:gap-[25px] 3xl:gap-[33px]">
-                        {social_links.map((link, idx) => (
-                          <Link
-                            key={idx + link.url}
-                            href={link.url}
-                            target="_blank"
-                            aria-label={link.label}
-                            className="flex gap-2"
-                          >
-                            <Image
-                              src={
-                                getStrapiMediaUrl(link.icon) ||
-                                "/images/placeholder.jpg"
+                  <div className="flex flex-col justify-between h-full gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 lg:gap-x-[71px] xl:gap-x-[91px] 2xl:gap-x-[100px] 3xl:gap-x-[121px]">
+                      {navigation
+                        .filter((link) => link?.url)
+                        .map((link, idx) => {
+                          const isActive = pathname === link.url;
+                          return (
+                            <Link
+                              key={`${idx}-${link.url}`}
+                              href={link.url}
+                              target={link.is_external ? "_blank" : undefined}
+                              rel={
+                                link.is_external
+                                  ? "noopener noreferrer"
+                                  : undefined
                               }
-                              alt={link.label || "social"}
-                              width={48}
-                              height={48}
-                              className="w-[10px] sm:w-[12px] xl:w-[13px] 2xl:w-[14px] 3xl:w-[16px] aspect-square object-contain block"
-                            />
-                          </Link>
-                        ))}
+                              onClick={() =>
+                                !link.is_external && setIsOpen(false)
+                              }
+                              className={cn(
+                                "text-[14px] lg:text-[17px] xl:text-[21.3px] 2xl:text-[23.3px] 3xl:text-[28.9px] leading-tight font-helvetica py-3 lg:py-4 xl:py-[19px] 2xl:py-[21px] 3xl:py-[26px] transition-colors duration-200",
+                                "border-b border-black/10",
+                                isActive
+                                  ? "text-[#a14962]"
+                                  : "text-[#202020] hover:text-[#a14962]",
+                              )}
+                            >
+                              {link.label}
+                            </Link>
+                          );
+                        })}
+                    </div>
+
+                    <div className="w-full bg-[#fff9eb] p-3 lg:p-[22px_10px] xl:p-[26px_13px] 2xl:p-[31px_15px] 3xl:p-[38px_18px] flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border border-[#f3ebda]">
+                      <div className="flex flex-col sm:flex-row gap-[15px] sm:gap-[20px] xl:gap-[25px] 2xl:gap-[28px] 3xl:gap-[34px]">
+                        {/* {support_phone from site settings and support_email from site settings */}
+                        {support_phone && (
+                          <ConnectCard
+                            url="/images/footer-address-icon.svg"
+                            alternativeText="footer-address-icon"
+                            label="Mobile"
+                            linkUrl={`tel:${support_phone.replace(/\s+/g, "")}`}
+                            content={support_phone}
+                          />
+                        )}
+                        {support_email && (
+                          <ConnectCard
+                            url="/images/footer-mail-icon.svg"
+                            alternativeText="footer-mail-icon"
+                            label="Mail"
+                            linkUrl={`mailto:${support_email}`}
+                            content={support_email}
+                          />
+                        )}
+                      </div>
+                      {/* social_links && social_links.length > 0 &&  from site settings */}
+                      <div className="flex items-center gap-[15px] xl:gap-[20px] 2xl:gap-[25px] 3xl:gap-[30px]">
+                        <div className="text_3 leading-none font-helvetica-light text-black">
+                          Follow Us
+                        </div>
+                        <div className="flex items-center gap-[15px] xl:gap-[20px] 2xl:gap-[25px] 3xl:gap-[33px]">
+                          {social_links.map((link, idx) => (
+                            <Link
+                              key={idx + link.url}
+                              href={link.url}
+                              target="_blank"
+                              aria-label={link.label}
+                              className="flex gap-2"
+                            >
+                              <Image
+                                src={
+                                  getStrapiMediaUrl(link.icon) ||
+                                  "/images/placeholder.jpg"
+                                }
+                                alt={link.label || "social"}
+                                width={48}
+                                height={48}
+                                className="w-[12px] sm:w-[12px] xl:w-[13px] 2xl:w-[14px] 3xl:w-[16px] aspect-square object-contain block"
+                              />
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            </div>
+                </motion.div>
+              </div>
           </motion.div>
         )}
       </AnimatePresence>

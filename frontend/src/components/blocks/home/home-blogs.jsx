@@ -54,7 +54,7 @@ export default function HomeBlogs({ data }) {
               <div
                 key={"blogs" + idx}
                 className={cn(
-                  "flex-[0_0_240px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-[10px] xl:px-[14px] 2xl:px-[16px] 3xl:px-[20px]",
+                  "flex-[0_0_268px] sm:flex-[0_0_33.333%] lg:flex-[0_0_25%] min-w-0 select-none px-[10px] xl:px-[14px] 2xl:px-[16px] 3xl:px-[20px]",
                 )}
               >
                 <div

@@ -31,7 +31,7 @@ export default function HomeHero({ data }) {
                 <span className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden">
                   <Image
                     src="/images/icon-arrow.svg"
-                    alt="icon arrow"
+                    alt="button icon"
                     width={16}
                     height={7}
                     className="w-1 min-[376px]:w-2 2xl:w-2.5 3xl:w-3 block group-hover:translate-y-1 transition-transform duration-300"

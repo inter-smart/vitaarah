@@ -50,11 +50,11 @@ export default function Footer({ data, siteSettings }) {
               {social_links
                 ?.filter((item) => item?.url)
                 .map((item, index) => (
-                  <Link
+                  <a
                     key={`${index}-${item.url}`}
                     href={item.url}
-                    target={item.is_external ? "_blank" : undefined}
-                    rel={item.is_external ? "noopener noreferrer" : undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-[13px] sm:text-[12px] xl:text-[12.6px] 2xl:text-[14.3px] 3xl:text-[17.3px] leading-tight font-helvetica text-[#875849] hover:text-[#623628] flex gap-2 items-center"
                   >
                     {item.icon?.url && (
@@ -69,7 +69,7 @@ export default function Footer({ data, siteSettings }) {
                       />
                     )}
                     <span>{item.label ?? ""}</span>
-                  </Link>
+                  </a>
                 ))}
             </div>
           </div>

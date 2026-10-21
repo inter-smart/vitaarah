@@ -132,7 +132,7 @@ export default function AboutGuidence({ data }) {
                                     pointer-events-auto
                                     absolute
                                     left-[-15px]
-                                    md:left-[-65px]
+                                    lg:left-[-30px]
                                     top-1/2
                                     -translate-y-1/2
                                     max-md:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
@@ -142,7 +142,7 @@ export default function AboutGuidence({ data }) {
                                     lg:h-[56px]
                                     rounded-full
                                     bg-white 
-                                    max-md:p-[11px]
+                                    p-[11px]
                                     flex
                                     items-center
                                     justify-center
@@ -178,7 +178,7 @@ export default function AboutGuidence({ data }) {
                                 pointer-events-auto
                                 absolute
                                 right-[-15px]
-                                md:right-[-65px]
+                                lg:right-[-30px]
                                 top-1/2
                                 -translate-y-1/2
                                 w-[35px]
@@ -187,7 +187,7 @@ export default function AboutGuidence({ data }) {
                                 lg:h-[56px]
                                 rounded-full
                                 bg-white
-                                max-md:p-[5px]
+                                p-[5px]
                                 max-md:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
                                 flex
                                 items-center

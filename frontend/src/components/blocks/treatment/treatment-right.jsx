@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ConsultationForm from "@/components/form/consultation-form";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export default function TreatmentRight({ data, commitmentDetails, treatmentSlug }) {
   const detailsList = [
@@ -66,14 +67,15 @@ export default function TreatmentRight({ data, commitmentDetails, treatmentSlug 
           className="flex max-lg:flex-wrap gap-[20px] 2xl:gap-[25px] 3xl:gap-[30px]"
         >
           {/* Left Side */}
-          <motion.div
-            variants={fadeUp}
-            whileHover={{
-              y: -8,
-              transition: { duration: 0.3 },
-            }}
-            className="w-full lg:w-1/2"
-          >
+          {data?.right_for_you_item?.length > 0 && (
+            <motion.div
+              variants={fadeUp}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.3 },
+              }}
+              className="w-full lg:w-1/2"
+            >
             <div className="w-full h-full bg-[#FFF9EB] p-[30px_20px] md:p-[42px_24px_42px_35px] xl:p-[50px_30px_50px_45px] 2xl:p-[60px_34px_60px_54px] 3xl:p-[75px_45px_45px_60px]">
               {(data?.right_for_you_item || []).map((item, id) => (
                 <motion.div
@@ -106,6 +108,7 @@ export default function TreatmentRight({ data, commitmentDetails, treatmentSlug 
               ))}
             </div>
           </motion.div>
+          )}
 
           {/* Right Side */}
           <motion.div
@@ -117,7 +120,7 @@ export default function TreatmentRight({ data, commitmentDetails, treatmentSlug 
             transition={{
               duration: 0.35,
             }}
-            className="w-full lg:w-1/2"
+            className={cn("w-full", data?.right_for_you_item?.length > 0 ? "lg:w-1/2" : "")}
           >
             <div className="w-full h-full p-[30px_20px] md:p-[55px_35px] lg:p-[75px_45px] xl:p-[90px_65px] 2xl:p-[105px_75px_110px] 3xl:p-[130px_100px_140px] bg-gradient-to-r from-[#E9CBA3] to-[#A14962]">
               <motion.div
