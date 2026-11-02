@@ -32,13 +32,28 @@ export default function SpecialityPathway({ data }) {
           </div>
         </div>
         <div className="w-full flex flex-wrap justify-center mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[40px]">
-          {specialities_listing_section?.specialities_item?.map((item, idx) => (
+          {specialities_listing_section?.specialities_item?.map((item, idx) => {
+            // Pills: the card's own `conditions` (each links to its condition page).
+            // Fallback: the linked treatment's related_conditions (plain labels, as before).
+            const ownConditions = item?.conditions?.filter((c) => c?.slug) || [];
+            const usesOwnConditions = ownConditions.length > 0;
+            const conditionsTreated = usesOwnConditions
+              ? ownConditions
+              : item?.treatment?.related_conditions || [];
+            // The whole card links to the treatment only when the pills are not
+            // links themselves (nested <a> is invalid) and a treatment exists.
+            const cardHref =
+              !usesOwnConditions && item?.treatment?.slug
+                ? `/treatments/${item.treatment.slug}`
+                : null;
+            const CardWrapper = cardHref ? Link : "div";
+            return (
             <div
               key={"specialities_item" + idx}
               className="w-full sm:w-1/2 md:w-1/3 border border-[#C3C3C3]"
             >
-              <Link
-                href={`/treatments/${item?.treatment?.slug}`}
+              <CardWrapper
+                {...(cardHref ? { href: cardHref } : {})}
                 className=" relative z-1 w-full h-full block p-[20px] md:p-[20px_15px] xl:p-[30px_25px] 2xl:p-[40px_35px] 3xl:p-[50px_45px] bg-white transition-all hover:bg-[#FFF9EB] flex flex-col justify-between"
               >
                 <div>
@@ -67,28 +82,36 @@ export default function SpecialityPathway({ data }) {
                     </p>
                   )}
                 </div>
-                {item?.treatment?.conditions_treated?.length > 0 && (
+                {conditionsTreated.length > 0 && (
                   <div className="w-full">
                     <div className="text_3 font-helvetica-light text-black mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                       {item?.conditions_treated_title}
                     </div>
                     <div className="flex flex-wrap gap-[5px] md:gap-[10px] 2xl:gap-[13px]">
-                      {item?.treatment?.conditions_treated?.map(
-                        (condition, idx) => (
-                          <div
+                      {conditionsTreated.map((condition, idx) => {
+                        const pillClassName =
+                          "text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[16px] bg-[rgba(230,198,160,0.2)] font-helvetica-light flex items-center justify-center rounded-[30px] p-[10px] xl:p-[11px] 2xl:px-[12px] 3xl:px-[15px] h-[30px] xl:h-[35px] 2xl:h-[40px] 3xl:h-[45px]";
+                        return usesOwnConditions ? (
+                          <Link
                             key={"condition" + idx}
-                            className="text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[16px] bg-[rgba(230,198,160,0.2)] font-helvetica-light flex items-center justify-center rounded-[30px] p-[10px] xl:p-[11px] 2xl:px-[12px] 3xl:px-[15px] h-[30px] xl:h-[35px] 2xl:h-[40px] 3xl:h-[45px]"
+                            href={`/conditions/${condition.slug}`}
+                            className={`${pillClassName} transition-all hover:bg-[rgba(230,198,160,0.45)]`}
                           >
                             {condition?.title}
+                          </Link>
+                        ) : (
+                          <div key={"condition" + idx} className={pillClassName}>
+                            {condition?.title}
                           </div>
-                        ),
-                      )}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
-              </Link>
+              </CardWrapper>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {cta_specialities_section && (
