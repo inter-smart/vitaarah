@@ -259,7 +259,9 @@ export const getProgramQuery = () => buildQuery({
   },
 });
 
-export const getSpecialitiesPageQuery = () => buildQuery({
+// `withConditions: false` omits the `conditions` relation, for a Strapi backend
+// deployed before that field existed (Strapi rejects unknown populate keys with 400).
+export const getSpecialitiesPageQuery = ({ withConditions = true } = {}) => buildQuery({
   hero: {
     populate: {
       hero_media: true,
@@ -280,6 +282,7 @@ export const getSpecialitiesPageQuery = () => buildQuery({
               related_conditions: true,
             },
           },
+          ...(withConditions && { conditions: { fields: ["title", "slug"] } }),
         },
       },
     },
