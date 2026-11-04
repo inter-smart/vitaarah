@@ -6,8 +6,19 @@ import InnerHero from "@/components/common/InnerHero";
 import SpecialityPathway from "@/components/blocks/treatment-category/speciality-pathway";
 import BreadcrumbNav from "@/components/common/breadcrumb";
 
+// Falls back to the query without `conditions` if the Strapi backend has not
+// been redeployed with that field yet, so the page never 404s during rollout.
+async function getSpecialitiesPage() {
+  return (
+    (await fetchAPI(`/api/specialities-page?${getSpecialitiesPageQuery()}`)) ??
+    (await fetchAPI(
+      `/api/specialities-page?${getSpecialitiesPageQuery({ withConditions: false })}`,
+    ))
+  );
+}
+
 export async function generateMetadata() {
-  const res = await fetchAPI(`/api/specialities-page?${getSpecialitiesPageQuery()}`);
+  const res = await getSpecialitiesPage();
   const data = res?.data;
   return buildMetadata(data?.seo, {
     title: data?.hero?.title || "Specialities | Vitaarah",
@@ -17,7 +28,7 @@ export async function generateMetadata() {
 }
 
 export default async function SpecialityPage() {
-  const res = await fetchAPI(`/api/specialities-page?${getSpecialitiesPageQuery()}`);
+  const res = await getSpecialitiesPage();
   const data = res?.data;
 
   if (!data) {
@@ -37,19 +48,7 @@ export default async function SpecialityPage() {
       />
       {specialities_listing_section && (
         <SpecialityPathway
-          data={{
-            specialities_listing_section: {
-              ...specialities_listing_section,
-              specialities_item: specialities_listing_section.specialities_item?.map(item => ({
-                ...item,
-                treatment: item.treatment ? {
-                  ...item.treatment,
-                  conditions_treated: item.treatment.related_conditions
-                } : null
-              }))
-            },
-            cta_specialities_section,
-          }}
+          data={{ specialities_listing_section, cta_specialities_section }}
         />
       )}
     </>

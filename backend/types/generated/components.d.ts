@@ -154,6 +154,10 @@ export interface CommonSpecialitiesItem extends Struct.ComponentSchema {
     displayName: 'Specialities Item';
   };
   attributes: {
+    conditions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::condition.condition'
+    >;
     conditions_treated_title: Schema.Attribute.String;
     icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     short_description: Schema.Attribute.Text;
